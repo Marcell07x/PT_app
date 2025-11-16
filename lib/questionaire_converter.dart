@@ -33,8 +33,8 @@ class Converter {
       legse = 5;
     } 
 
-    int pulle = 1;
-    int coree = 1;
+    pulle = 1;
+    coree = 1;
      
   }
 }
