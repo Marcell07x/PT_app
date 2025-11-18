@@ -3,6 +3,7 @@ import 'questionaire.dart';
 import 'button_status.dart';
 import 'streak.dart';
 import 'question1.dart';
+import 'workout_flow.dart';
 
 
 void main() async {
@@ -65,20 +66,27 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton(
-                onPressed: StatusManager.status == StatusManager.getTodayDate() 
-                      ? null 
-                      : () async {
+                onPressed: //StatusManager.status == StatusManager.getTodayDate() 
+                      //? null 
+                      //: 
+                      () async {
                           await StatusManager.resetStatus();
                           setState(() {});
                         }, 
                 child: const Text('Ma Nem Edzek')),
                ElevatedButton(
-                onPressed: StatusManager.status == StatusManager.getTodayDate() 
-                      ? null 
-                      : () async {
+                onPressed: //StatusManager.status == StatusManager.getTodayDate() 
+                      //? null 
+                      //: 
+                      () async {
                   _handleComplete();
                   await StatusManager.resetStatus();
                   setState(() {});
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => WorkoutFlow(),
+                    ),
+                  );
                 },  
                 child: const Text('Kész')),
                TextButton(onPressed: () {

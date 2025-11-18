@@ -10,6 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   shared_preferences: ^2.5.3
+  video_player: ^2.10.1
 
 dev_dependencies:
   flutter_test:
@@ -19,4 +20,5 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
+    - assets/videos/
     
