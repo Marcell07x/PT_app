@@ -4,6 +4,7 @@ import 'package:video_player/video_player.dart';
 class WorkoutScreen extends StatefulWidget {
   final String videoPath;
   final String description;
+  final String reps; // 👈 ÚJ: REPS STRING
   final String buttonText;
   final VoidCallback onNextPressed;
   final VoidCallback onPreviousPressed;
@@ -14,6 +15,7 @@ class WorkoutScreen extends StatefulWidget {
     Key? key,
     required this.videoPath,
     required this.description,
+    required this.reps, // 👈 ÚJ PARAMÉTER
     required this.buttonText,
     required this.onNextPressed,
     required this.onPreviousPressed,
@@ -135,21 +137,30 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
               
               SizedBox(height: 25),
               
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Text(
-                    widget.description,
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black87,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
+              // LEÍRÁS
+              Text(
+                widget.description,
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black87,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              
+              SizedBox(height: 15),
+              
+              // 👈 REPS STRING - A SZÓTÁRBÓL SZEDVE
+              Text(
+                widget.reps, // "15 ismétlés", "12 ismétlés", stb.
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black87,
                 ),
               ),
               
-              SizedBox(height: 20),
+              Spacer(),
               
               Row(
                 children: [

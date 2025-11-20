@@ -3,13 +3,11 @@ import 'questionaire.dart';
 
 class Exercises {
 
-  //a kérdőív befejeésével a tárhely elmenti a push, pull, legs, core értékét valamire
-  //itt változókba tároljuk az elmentett értéket => a workout class ennek lesz a meghosszabbítása
- 
 
   Map<String, Map<String, String>> push = {
     '1': {'videoPath': 'assets/videos/test1.mp4',
-            'description': 'Fal fekvőtámasz',},
+            'description': 'Fal fekvőtámasz',
+            'reps': '10 ismétlés'},
     '2': {'videoPath': 'assets/videos/test1.mp4',
             'description': 'Asztal fekvőtámasz',},
     '3': {'videoPath': 'assets/videos/test1.mp4',
@@ -66,6 +64,3 @@ class Exercises {
 
 }
 
-
-//probléma: egyszerre csak egy szetnél szeretnénk gyakorlatot váltani
-//előbb lehet, meg kéne határozni az összes lépést, utána gondolkozni

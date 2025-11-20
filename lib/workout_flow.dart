@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'workout_screen.dart';
-import 'workout_done_screen.dart'; 
-import 'exercises.dart'; 
-
-class WorkoutGenerator {
-
-  var Workoutparts = [];
-}
+import 'workout_done_screen.dart';
+import 'exercises.dart';
 
 class WorkoutFlow extends StatefulWidget {
   @override
@@ -14,20 +9,24 @@ class WorkoutFlow extends StatefulWidget {
 }
 
 class _WorkoutFlowState extends State<WorkoutFlow> {
-  final List<Map<String, String>> workouts = [];
-  final Exercises exercises = Exercises(); 
+  final List<Map<String, String>> workouts = []; // 👈 DYNAMIC
   int currentIndex = 0;
+
+  Exercises exercises = Exercises();
+
+  void initializeWorkouts() {
+    setState(() {
+      workouts.add(exercises.push['1']!);
+      
+    
+      }
+    );
+  } 
 
   @override
   void initState() {
     super.initState();
     initializeWorkouts();
-  }
-
-  void initializeWorkouts() {
-    setState(() {
-      workouts.add(exercises.push['1']!);
-    });
   }
 
   void goToNext() {
@@ -37,7 +36,7 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
       });
     } else {
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => CongratulationsScreen()), // 👈 HELYES NÉV!
+        MaterialPageRoute(builder: (context) => CongratulationsScreen()),
       );
     }
   }
@@ -66,6 +65,7 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
     return WorkoutScreen(
       videoPath: workouts[currentIndex]['videoPath']!,
       description: workouts[currentIndex]['description']!,
+      reps: workouts[currentIndex]['reps']!, // 👈 REPS STRING ÁTVITEL
       buttonText: isLastWorkout ? 'Befejezés' : 'Következő',
       onNextPressed: goToNext,
       onPreviousPressed: goToPrevious,
