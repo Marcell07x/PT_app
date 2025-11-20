@@ -7,13 +7,19 @@ class Exercises {
   //itt változókba tároljuk az elmentett értéket => a workout class ennek lesz a meghosszabbítása
  
 
-  var push = {
-    '1': 'Fal Fekvőtámasz',
-    '2': 'Asztal Fekvőtámasz',
-    '3': 'Térd Fekvőtámasz',
-    '4': 'Fekvőtámasz',
-    '5': 'Feltett Lábbal Fekvő',
-    '6': 'Tolóckodás',
+  Map<String, Map<String, String>> push = {
+    '1': {'videoPath': 'assets/videos/test1.mp4',
+            'description': 'Fal fekvőtámasz',},
+    '2': {'videoPath': 'assets/videos/test1.mp4',
+            'description': 'Asztal fekvőtámasz',},
+    '3': {'videoPath': 'assets/videos/test1.mp4',
+            'description': 'Térdelő fekvőtámasz',},
+    '4': {'videoPath': 'assets/videos/test1.mp4',
+            'description': 'Fekvőtámasz',},
+    '5': {'videoPath': 'assets/videos/test1.mp4',
+            'description': 'Feltett lábas fekvőtámasz',},   
+    '6': {'videoPath': 'assets/videos/test1.mp4',
+            'description': 'Tolóckodás',},
   };
 
   var pull = {
@@ -45,17 +51,17 @@ class Exercises {
 
 
 
-  void initializeExercises() {
-    String pushe = (prefs?.getInt('pushe') ?? 0).toString();
-    String legse = (prefs?.getInt('legse') ?? 0).toString();
-    String coree = (prefs?.getInt('coree') ?? 0).toString();
-    String pulle = (prefs?.getInt('pulle') ?? 0).toString();
+  //void initializeExercises() {
+    //String pushe = (prefs?.getInt('pushe') ?? 0).toString();
+    //String legse = (prefs?.getInt('legse') ?? 0).toString();
+    //String coree = (prefs?.getInt('coree') ?? 0).toString();
+    //String pulle = (prefs?.getInt('pulle') ?? 0).toString();
 
-    pushex = push[pushe];
-    legsex = legs[legse];
-    pullex = pull[pulle];
-    coreex = core[coree];
-  }
+    //pushex = push[pushe];
+    //legsex = legs[legse];
+    //pullex = pull[pulle];
+    //coreex = core[coree];
+  //}
 
 
 }

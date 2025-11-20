@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'workout_screen.dart';
-import 'workout_done_screen.dart';
+import 'workout_done_screen.dart'; 
+import 'exercises.dart'; 
+
+class WorkoutGenerator {
+
+  var Workoutparts = [];
+}
 
 class WorkoutFlow extends StatefulWidget {
   @override
@@ -8,35 +14,38 @@ class WorkoutFlow extends StatefulWidget {
 }
 
 class _WorkoutFlowState extends State<WorkoutFlow> {
-  final List<Map<String, String>> _workouts = [
-    {
-      'videoPath': 'assets/videos/test1.mp4',
-      'description': 'Guggolás - 4 sorozat, 10 ismétlés\nPihenő: 45 másodperc',
-    },
-    {
-      'videoPath': 'assets/videos/test2.mp4',
-      'description': 'Húzódzkodás - 3 sorozat, 8 ismétlés\nPihenő: 90 másodperc',
-    },
-  ];
+  final List<Map<String, String>> workouts = [];
+  final Exercises exercises = Exercises(); 
+  int currentIndex = 0;
 
-  int _currentIndex = 0;
+  @override
+  void initState() {
+    super.initState();
+    initializeWorkouts();
+  }
 
-  void _goToNext() {
-    if (_currentIndex < _workouts.length - 1) {
+  void initializeWorkouts() {
+    setState(() {
+      workouts.add(exercises.push['1']!);
+    });
+  }
+
+  void goToNext() {
+    if (currentIndex < workouts.length - 1) {
       setState(() {
-        _currentIndex++;
+        currentIndex++;
       });
     } else {
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => CongratulationsScreen()),
+        MaterialPageRoute(builder: (context) => CongratulationsScreen()), // 👈 HELYES NÉV!
       );
     }
   }
 
-  void _goToPrevious() {
-    if (_currentIndex > 0) {
+  void goToPrevious() {
+    if (currentIndex > 0) {
       setState(() {
-        _currentIndex--;
+        currentIndex--;
       });
     } else {
       Navigator.of(context).pop();
@@ -45,16 +54,23 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
 
   @override
   Widget build(BuildContext context) {
-    final isLastWorkout = _currentIndex == _workouts.length - 1;
+    if (workouts.isEmpty) {
+      return Scaffold(
+        appBar: AppBar(title: Text('Edzés')),
+        body: Center(child: Text('Gyakorlatok betöltése...')),
+      );
+    }
+
+    final isLastWorkout = currentIndex == workouts.length - 1;
     
     return WorkoutScreen(
-      videoPath: _workouts[_currentIndex]['videoPath']!,
-      description: _workouts[_currentIndex]['description']!,
+      videoPath: workouts[currentIndex]['videoPath']!,
+      description: workouts[currentIndex]['description']!,
       buttonText: isLastWorkout ? 'Befejezés' : 'Következő',
-      onNextPressed: _goToNext,
-      onPreviousPressed: _goToPrevious,
-      currentIndex: _currentIndex,
-      totalWorkouts: _workouts.length,
+      onNextPressed: goToNext,
+      onPreviousPressed: goToPrevious,
+      currentIndex: currentIndex,
+      totalWorkouts: workouts.length,
     );
   }
 }

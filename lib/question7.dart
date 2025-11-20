@@ -46,7 +46,7 @@ class _Question7PageState extends State<Question7Page> {
                         prefs?.setInt('coree', converter.coree ?? 0);
 
                         Exercises exercises = Exercises();
-                        exercises.initializeExercises();
+                        //exercises.initializeExercises();
                         
                         Navigator.of(context).popUntil((route) => route.isFirst);
                         print(exercises.pushex);
