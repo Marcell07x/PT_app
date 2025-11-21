@@ -7,7 +7,7 @@ class Exercises {
   Map<String, Map<String, String>> push = {
     '1': {'videoPath': 'assets/videos/test1.mp4',
             'description': 'Fal fekvőtámasz',
-            'reps': '10 ismétlés'},
+            'reps': ''},
     '2': {'videoPath': 'assets/videos/test1.mp4',
             'description': 'Asztal fekvőtámasz',},
     '3': {'videoPath': 'assets/videos/test1.mp4',

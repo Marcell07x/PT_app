@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'workout_screen.dart';
 import 'workout_done_screen.dart';
-import 'exercises.dart';
+import 'workouta.dart';
+import 'workouta_reps.dart';
+
 
 class WorkoutFlow extends StatefulWidget {
   @override
@@ -9,14 +11,16 @@ class WorkoutFlow extends StatefulWidget {
 }
 
 class _WorkoutFlowState extends State<WorkoutFlow> {
-  final List<Map<String, String>> workouts = []; // 👈 DYNAMIC
+  WorkoutA workouta = WorkoutA();
+  WorkoutAReps workoutareps = WorkoutAReps();
+  final List<Map<String, String>> workouts = []; 
   int currentIndex = 0;
-
-  Exercises exercises = Exercises();
+  
 
   void initializeWorkouts() {
     setState(() {
-      workouts.add(exercises.push['1']!);
+      workouts.addAll(workouta.workout_parts);
+      print(workouts);
       
     
       }
@@ -26,6 +30,8 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
   @override
   void initState() {
     super.initState();
+    workouta.SetExer();
+    workoutareps.SetReps(workouta.workout_parts);
     initializeWorkouts();
   }
 
