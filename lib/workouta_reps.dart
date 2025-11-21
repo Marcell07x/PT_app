@@ -1,16 +1,12 @@
 import 'workouta.dart';
 
-class WorkoutAReps extends WorkoutA{
+class WorkoutAReps extends WorkoutA {
+    var Reps = [];
 
-  
-  var Reps = [];
-
-  SetReps(List<Map<String, String>> workoutParts) {
-
-    for (var i in workoutParts) {
-      i['reps'] = '12';
+    SetReps(List<Map<String, String>> workoutParts) {
+        for (var i in workoutParts) {
+            i['reps'] = '12';
+        }
+        print(workoutParts);
     }
-    print(workoutParts);
-  }
-
 }
