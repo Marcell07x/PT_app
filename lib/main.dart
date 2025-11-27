@@ -4,7 +4,10 @@ import 'button_status.dart';
 import 'streak.dart';
 import 'question1.dart';
 import 'workout_flow.dart';
-import 'workouta_reps.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'l10n/app_localizations.dart';
+
+//8th step is the next in the flutter localization tutorial
 
 void main() async {
     WidgetsFlutterBinding.ensureInitialized();
@@ -25,6 +28,9 @@ class _MyAppState extends State<MyApp> {
     @override
     Widget build(BuildContext context) {
         return MaterialApp(
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+
             home: MyHomePage(),
         );
     }
