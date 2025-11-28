@@ -93,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     ),
                                 );
                             },
-                            child: Text('Ez az űrlap képernyője.')
+                            child: Text(AppLocalizations.of(context)!.form)
                         ),
                     ],
                 )

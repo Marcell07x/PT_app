@@ -1,3 +1,30 @@
 {
-    "form": "Here is the form"
+    "form": "Here is the form",
+
+
+    "@@comment": "exercises:",
+
+    "wallPush": "Wall Pushups",
+    "tablePush": "Table Pushups",
+    "kneePush": "Knee Pushups",
+    "pushUp": "Pushups",
+    "inclinePush": "Incline Pushups",
+    "dipPush": "Dips",
+
+    "bagPull": "One Hand Bag Rows",
+    "bwPull": "Bodyweight Rows",
+    "pullup": "Pullups",
+
+    "squat1": "Assisted Squats",
+    "lunge1": "Assisted Lunges",
+    "squat2": "Squats",
+    "lunge2": "Lunges",
+    "squat3": "Jumping Squats",
+    "lunge3": "Jumping Lunges",
+    "squat4": "Archer Squats",
+    "lunge4": "Elevated Lunges",
+
+    "core1": "Situps",
+    "core2": "Supermans"
+
 }

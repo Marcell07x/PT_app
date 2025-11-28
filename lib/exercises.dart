@@ -1,71 +1,113 @@
-import 'package:shared_preferences/shared_preferences.dart';
-import 'questionaire.dart';
-
 class Exercises {
     Map<String, Map<String, String>> push = {
         '1': {
             'videoPath': 'assets/videos/test1.mp4',
-            'description': 'Fal fekvőtámasz',
+            'localizationKey': 'wallPush',
             'reps': ''
         },
         '2': {
             'videoPath': 'assets/videos/test1.mp4',
-            'description': 'Asztal fekvőtámasz',
+            'localizationKey': 'tablePush',
+            'reps': ''
         },
         '3': {
             'videoPath': 'assets/videos/test1.mp4',
-            'description': 'Térdelő fekvőtámasz',
+            'localizationKey': 'kneePush',
+            'reps': ''
         },
         '4': {
             'videoPath': 'assets/videos/test1.mp4',
-            'description': 'Fekvőtámasz',
+            'localizationKey': 'pushUp',
+            'reps': ''
         },
         '5': {
             'videoPath': 'assets/videos/test1.mp4',
-            'description': 'Feltett lábas fekvőtámasz',
+            'localizationKey': 'inclinePush',
+            'reps': ''
         },   
         '6': {
             'videoPath': 'assets/videos/test1.mp4',
-            'description': 'Tolóckodás',
+            'localizationKey': 'dipPush',
+            'reps': ''
         },
     };
 
-    var pull = {
-        '1': 'Táskás/Súlyzós Evezés',
-        '2': 'Alacsony Rudas Evezés',
-        '3': 'Húzóckodás',
+    Map<String, Map<String, String>> pull = {
+        '1': {
+            'videoPath': 'assets/videos/test1.mp4',
+            'localizationKey': 'bagPull',
+            'reps': ''
+        },
+        '2': {
+            'videoPath': 'assets/videos/test1.mp4',
+            'localizationKey': 'bwPull',
+            'reps': ''
+        },
+        '3': {
+            'videoPath': 'assets/videos/test1.mp4',
+            'localizationKey': 'pullup',
+            'reps': ''
+        },
     };
 
-    var legs = {
-        '1': 'Kapaszkodással Guggolás',
-        '2': 'Kapaszkodással Kitörés',
-        '3': 'Guggolás',
-        '4': 'Kitörés',
-        '5': 'Guggolásból Ugrás',
-        '6': 'Kitörésben Ugrás',
-        '7': 'Oldalas Guggolás',
-        '8': 'Bolgár Guggolás',
+    Map<String, Map<String, String>> legs = {
+        '1': {
+            'videoPath': 'assets/videos/test1.mp4',
+            'localizationKey': 'squat1',
+            'reps': ''
+        },
+        '2': {
+            'videoPath': 'assets/videos/test1.mp4',
+            'localizationKey': 'lunge1',
+            'reps': ''
+        },
+        '3': {
+            'videoPath': 'assets/videos/test1.mp4',
+            'localizationKey': 'squat2',
+            'reps': ''
+        },
+        '4': {
+            'videoPath': 'assets/videos/test1.mp4',
+            'localizationKey': 'lunge2',
+            'reps': ''
+        },
+        '5': {
+            'videoPath': 'assets/videos/test1.mp4',
+            'localizationKey': 'squat3',
+            'reps': ''
+        },
+        '6': {
+            'videoPath': 'assets/videos/test1.mp4',
+            'localizationKey': 'lunge3',
+            'reps': ''
+        },
+        '7': {
+            'videoPath': 'assets/videos/test1.mp4',
+            'localizationKey': 'squat4',
+            'reps': ''
+        },
+        '8': {
+            'videoPath': 'assets/videos/test1.mp4',
+            'localizationKey': 'lunge4',
+            'reps': ''
+        },
     };
 
-    var core = {
-        '1': 'Hasprés',
-        '2': 'Superman',
+    Map<String, Map<String, String>> core = {
+        '1': {
+            'videoPath': 'assets/videos/test1.mp4',
+            'localizationKey': 'core1',
+            'reps': ''
+        },
+        '2': {
+            'videoPath': 'assets/videos/test1.mp4',
+            'localizationKey': 'core2',
+            'reps': ''
+        },
     };
 
     late String? pushex;
     late String? legsex;
     late String? pullex;
     late String? coreex;
-
-    //void initializeExercises() {
-        //String pushe = (prefs?.getInt('pushe') ?? 0).toString();
-        //String legse = (prefs?.getInt('legse') ?? 0).toString();
-        //String coree = (prefs?.getInt('coree') ?? 0).toString();
-        //String pulle = (prefs?.getInt('pulle') ?? 0).toString();
-
-        //pushex = push[pushe];
-        //legsex = legs[legse];
-        //pullex = pull[pulle];
-        //coreex = core[coree];
-    //}
 }

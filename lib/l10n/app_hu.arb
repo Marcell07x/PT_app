@@ -1,3 +1,29 @@
 {
-    "form": "kérdőív"
+    "form": "kérdőív",
+
+
+    "@@comment": "exercises:",
+
+    "wallPush": "Fal Fekvőtámasz",
+    "tablePush": "Asztal Fekvőtámasz",
+    "kneePush": "Térdelő Fekvőtámasz",
+    "pushUp": "Fekvőtámasz",
+    "inclinePush": "Feltett Lábas Fekvőtámasz",
+    "dipPush": "Tolóckodás",
+
+    "bagPull": "Táskás/Súlyzós Evezés",
+    "bwPull": "Alacsony Rudas Evezés",
+    "pullup": "Húzóckodás",
+
+    "squat1": "Kapaszkodással Guggolás",
+    "lunge1": "Kapaszkodással Kitörés",
+    "squat2": "Guggolás",
+    "lunge2": "Kitörés",
+    "squat3": "Guggolásból Ugrás",
+    "lunge3": "Kitörésből Ugrás",
+    "squat4": "Oldalas Guggolás",
+    "lunge4": "Bolgár Guggolás",
+
+    "core1": "Hasprés",
+    "core2": "Superman"
 }

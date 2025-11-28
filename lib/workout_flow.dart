@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'l10n/app_localizations.dart';
 import 'workout_screen.dart';
 import 'workout_done_screen.dart';
 import 'workouta.dart';
@@ -21,6 +23,33 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
             print(workouts);
         });
     } 
+
+    String getLocalizedExerciseName(String localizationKey, BuildContext context) {
+        final loc = AppLocalizations.of(context)!;
+        
+        switch (localizationKey) {
+            case 'wallPush': return loc.wallPush;
+            case 'tablePush': return loc.tablePush;
+            case 'kneePush': return loc.kneePush;
+            case 'pushUp': return loc.pushUp;
+            case 'inclinePush': return loc.inclinePush;
+            case 'dipPush': return loc.dipPush;
+            case 'bagPull': return loc.bagPull;
+            case 'bwPull': return loc.bwPull;
+            case 'pullup': return loc.pullup;
+            case 'squat1': return loc.squat1;
+            case 'lunge1': return loc.lunge1;
+            case 'squat2': return loc.squat2;
+            case 'lunge2': return loc.lunge2;
+            case 'squat3': return loc.squat3;
+            case 'lunge3': return loc.lunge3;
+            case 'squat4': return loc.squat4;
+            case 'lunge4': return loc.lunge4;
+            case 'core1': return loc.core1;
+            case 'core2': return loc.core2;
+            default: return localizationKey;
+        }
+    }
 
     @override
     void initState() {
@@ -62,11 +91,12 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
         }
 
         final isLastWorkout = currentIndex == workouts.length - 1;
+        final currentExercise = workouts[currentIndex];
         
         return WorkoutScreen(
-            videoPath: workouts[currentIndex]['videoPath']!,
-            description: workouts[currentIndex]['description']!,
-            reps: workouts[currentIndex]['reps']!,
+            videoPath: currentExercise['videoPath']!,
+            description: getLocalizedExerciseName(currentExercise['localizationKey']!, context),
+            reps: currentExercise['reps']!,
             buttonText: isLastWorkout ? 'Befejezés' : 'Következő',
             onNextPressed: goToNext,
             onPreviousPressed: goToPrevious,

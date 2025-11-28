@@ -6,7 +6,7 @@ class WorkoutA {
     List<Map<String, String>> workout_parts = [];
 
     SetExer() {
-        workout_parts.add(exercises.push['1']!);
+        workout_parts.add(exercises.pull['1']!);
         print(workout_parts);
     }
 }

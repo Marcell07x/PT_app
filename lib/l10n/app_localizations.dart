@@ -103,6 +103,120 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Here is the form'**
   String get form;
+
+  /// No description provided for @wallPush.
+  ///
+  /// In en, this message translates to:
+  /// **'Wall Pushups'**
+  String get wallPush;
+
+  /// No description provided for @tablePush.
+  ///
+  /// In en, this message translates to:
+  /// **'Table Pushups'**
+  String get tablePush;
+
+  /// No description provided for @kneePush.
+  ///
+  /// In en, this message translates to:
+  /// **'Knee Pushups'**
+  String get kneePush;
+
+  /// No description provided for @pushUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Pushups'**
+  String get pushUp;
+
+  /// No description provided for @inclinePush.
+  ///
+  /// In en, this message translates to:
+  /// **'Incline Pushups'**
+  String get inclinePush;
+
+  /// No description provided for @dipPush.
+  ///
+  /// In en, this message translates to:
+  /// **'Dips'**
+  String get dipPush;
+
+  /// No description provided for @bagPull.
+  ///
+  /// In en, this message translates to:
+  /// **'One Hand Bag Rows'**
+  String get bagPull;
+
+  /// No description provided for @bwPull.
+  ///
+  /// In en, this message translates to:
+  /// **'Bodyweight Rows'**
+  String get bwPull;
+
+  /// No description provided for @pullup.
+  ///
+  /// In en, this message translates to:
+  /// **'Pullups'**
+  String get pullup;
+
+  /// No description provided for @squat1.
+  ///
+  /// In en, this message translates to:
+  /// **'Assisted Squats'**
+  String get squat1;
+
+  /// No description provided for @lunge1.
+  ///
+  /// In en, this message translates to:
+  /// **'Assisted Lunges'**
+  String get lunge1;
+
+  /// No description provided for @squat2.
+  ///
+  /// In en, this message translates to:
+  /// **'Squats'**
+  String get squat2;
+
+  /// No description provided for @lunge2.
+  ///
+  /// In en, this message translates to:
+  /// **'Lunges'**
+  String get lunge2;
+
+  /// No description provided for @squat3.
+  ///
+  /// In en, this message translates to:
+  /// **'Jumping Squats'**
+  String get squat3;
+
+  /// No description provided for @lunge3.
+  ///
+  /// In en, this message translates to:
+  /// **'Jumping Lunges'**
+  String get lunge3;
+
+  /// No description provided for @squat4.
+  ///
+  /// In en, this message translates to:
+  /// **'Archer Squats'**
+  String get squat4;
+
+  /// No description provided for @lunge4.
+  ///
+  /// In en, this message translates to:
+  /// **'Elevated Lunges'**
+  String get lunge4;
+
+  /// No description provided for @core1.
+  ///
+  /// In en, this message translates to:
+  /// **'Situps'**
+  String get core1;
+
+  /// No description provided for @core2.
+  ///
+  /// In en, this message translates to:
+  /// **'Supermans'**
+  String get core2;
 }
 
 class _AppLocalizationsDelegate
