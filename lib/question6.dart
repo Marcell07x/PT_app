@@ -1,6 +1,7 @@
 import 'questionaire.dart';
 import 'package:flutter/material.dart';
 import 'question7.dart';
+import 'l10n/app_localizations.dart';
 
 class Question6Page extends StatefulWidget {
     final QuestionnaireData data;
@@ -14,37 +15,41 @@ class _Question6PageState extends State<Question6Page> {
 
     @override
     Widget build(BuildContext context) {
-        return Scaffold(
-            appBar: AppBar(title: Text('6. kérdés')),
-            body: Padding(
-                padding: EdgeInsets.all(16),
-                child: Column(
-                    children: [
-                        Text("Mennyire van kedved edzeni?",
-                            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                        SizedBox(height: 20),
-                        _buildOption('Szinte semmennyire', 1),
-                        SizedBox(height: 10),
-                        _buildOption('Nem igazán', 2),
-                        SizedBox(height: 10),
-                        _buildOption('Motivált vagyok', 3),
-                        SizedBox(height: 40),
-                        SizedBox(
-                            width: double.infinity,
-                            child: ElevatedButton(
-                                onPressed: _selected != null
-                                    ? () {
-                                        prefs?.setInt('motivation', _selected!);
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (_) => Question7Page(data: widget.data)));
-                                    }
-                                    : null,
-                                child: Text('Következő kérdés'),
+        return MaterialApp(
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+            home: Scaffold(
+                appBar: AppBar(title: Text('6. ' + AppLocalizations.of(context)!.question)),
+                body: Padding(
+                    padding: EdgeInsets.all(16),
+                    child: Column(
+                        children: [
+                            Text(AppLocalizations.of(context)!.motivation,
+                                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                            SizedBox(height: 20),
+                            _buildOption(AppLocalizations.of(context)!.notAtAll, 1),
+                            SizedBox(height: 10),
+                            _buildOption(AppLocalizations.of(context)!.somewhat, 2),
+                            SizedBox(height: 10),
+                            _buildOption(AppLocalizations.of(context)!.motivated, 3),
+                            SizedBox(height: 40),
+                            SizedBox(
+                                width: double.infinity,
+                                child: ElevatedButton(
+                                    onPressed: _selected != null
+                                        ? () {
+                                            prefs?.setInt('motivation', _selected!);
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (_) => Question7Page(data: widget.data)));
+                                        }
+                                        : null,
+                                    child: Text(AppLocalizations.of(context)!.nextq),
+                                ),
                             ),
-                        ),
-                    ],
+                        ],
+                    ),
                 ),
             ),
         );

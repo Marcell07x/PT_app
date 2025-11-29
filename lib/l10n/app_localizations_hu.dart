@@ -67,4 +67,64 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get core2 => 'Superman';
+
+  @override
+  String get workout => 'Edzés';
+
+  @override
+  String get question => 'Kérdés';
+
+  @override
+  String get nextq => 'Következő kérdés';
+
+  @override
+  String get finish => 'Befejezés';
+
+  @override
+  String get mainGoal => 'Mi a fő célod?';
+
+  @override
+  String get weightLoss => 'Fogyás';
+
+  @override
+  String get muscleBuild => 'Izomosodás';
+
+  @override
+  String get maxKneePush => 'Hány térdelő fekvőtámaszt tudsz?';
+
+  @override
+  String get maxSquats => 'Hány guggolást tudsz?';
+
+  @override
+  String get prevExp1 => 'Sportoltál-e régebben rendszeresen?';
+
+  @override
+  String get yes => 'Igen';
+
+  @override
+  String get no => 'Nem';
+
+  @override
+  String get prevExp2 => 'Próbáltál már elkezdeni edzeni?';
+
+  @override
+  String get motivation => 'Mennyire van kedved edzeni?';
+
+  @override
+  String get notAtAll => 'Nincsen';
+
+  @override
+  String get somewhat => 'Valamennyire talán';
+
+  @override
+  String get motivated => 'Motivált vagyok';
+
+  @override
+  String get age => 'Mi a korosztályod?';
+
+  @override
+  String get congrat => 'Gratulálok!';
+
+  @override
+  String get congratMessage => 'Megcsináltad az edzésed!';
 }

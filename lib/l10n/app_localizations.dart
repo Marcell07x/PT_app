@@ -217,6 +217,126 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Supermans'**
   String get core2;
+
+  /// No description provided for @workout.
+  ///
+  /// In en, this message translates to:
+  /// **'Workout'**
+  String get workout;
+
+  /// No description provided for @question.
+  ///
+  /// In en, this message translates to:
+  /// **'Question'**
+  String get question;
+
+  /// No description provided for @nextq.
+  ///
+  /// In en, this message translates to:
+  /// **'Next question'**
+  String get nextq;
+
+  /// No description provided for @finish.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish'**
+  String get finish;
+
+  /// No description provided for @mainGoal.
+  ///
+  /// In en, this message translates to:
+  /// **'What\'s your main goal?'**
+  String get mainGoal;
+
+  /// No description provided for @weightLoss.
+  ///
+  /// In en, this message translates to:
+  /// **'Weight Loss'**
+  String get weightLoss;
+
+  /// No description provided for @muscleBuild.
+  ///
+  /// In en, this message translates to:
+  /// **'Building Muscle'**
+  String get muscleBuild;
+
+  /// No description provided for @maxKneePush.
+  ///
+  /// In en, this message translates to:
+  /// **'How many knee pushups can you do?'**
+  String get maxKneePush;
+
+  /// No description provided for @maxSquats.
+  ///
+  /// In en, this message translates to:
+  /// **'How many squats can you do?'**
+  String get maxSquats;
+
+  /// No description provided for @prevExp1.
+  ///
+  /// In en, this message translates to:
+  /// **'Did you use to play sports regularly?'**
+  String get prevExp1;
+
+  /// No description provided for @yes.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes'**
+  String get yes;
+
+  /// No description provided for @no.
+  ///
+  /// In en, this message translates to:
+  /// **'No'**
+  String get no;
+
+  /// No description provided for @prevExp2.
+  ///
+  /// In en, this message translates to:
+  /// **'Have you tried to work out before?'**
+  String get prevExp2;
+
+  /// No description provided for @motivation.
+  ///
+  /// In en, this message translates to:
+  /// **'How much are you motivated to work out?'**
+  String get motivation;
+
+  /// No description provided for @notAtAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Not at all'**
+  String get notAtAll;
+
+  /// No description provided for @somewhat.
+  ///
+  /// In en, this message translates to:
+  /// **'I\'m somewhat motivated'**
+  String get somewhat;
+
+  /// No description provided for @motivated.
+  ///
+  /// In en, this message translates to:
+  /// **'I\'m motivated'**
+  String get motivated;
+
+  /// No description provided for @age.
+  ///
+  /// In en, this message translates to:
+  /// **'What is your age group?'**
+  String get age;
+
+  /// No description provided for @congrat.
+  ///
+  /// In en, this message translates to:
+  /// **'Congratulations!'**
+  String get congrat;
+
+  /// No description provided for @congratMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Workout complete!'**
+  String get congratMessage;
 }
 
 class _AppLocalizationsDelegate

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'l10n/app_localizations.dart';
 import 'package:video_player/video_player.dart';
 
@@ -78,19 +76,13 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
     @override
     Widget build(BuildContext context) {
         return MaterialApp(
-            localizationsDelegates: const [
-                AppLocalizations.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-            ],
-            supportedLocales: const [
-                Locale('hu'),
-                Locale('en'),
-            ],
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+            
             home: Scaffold(
                 appBar: AppBar(
-                    title: Text('Edzés (${widget.currentIndex + 1}/${widget.totalWorkouts})'),
+                    title: Text('${AppLocalizations.of(context)!.workout} ' + 
+                    '(${widget.currentIndex + 1}/${widget.totalWorkouts})'),
                     backgroundColor: Colors.blue,
                     leading: IconButton(
                         icon: Icon(Icons.arrow_back),

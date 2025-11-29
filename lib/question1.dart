@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'questionaire.dart';
 import 'question2.dart';
+import 'l10n/app_localizations.dart';
 
 class Question1Page extends StatefulWidget {
     @override
@@ -13,38 +14,43 @@ class _Question1PageState extends State<Question1Page> {
 
     @override
     Widget build(BuildContext context) {
-        return Scaffold(
-            appBar: AppBar(
-                title: Text('1. kérdés'),
-                automaticallyImplyLeading: false,
-            ),
-            body: Padding(
-                padding: EdgeInsets.all(16),
-                child: Column(
-                    children: [
-                        Text("Mi a fő célod?",
-                            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                        SizedBox(height: 20),
-                        _buildOption('Fogyás', 'weight_loss'),
-                        SizedBox(height: 10),
-                        _buildOption('Izom építése', 'muscle'),
-                        SizedBox(height: 40),
-                        SizedBox(
-                            width: double.infinity,
-                            child: ElevatedButton(
-                                onPressed: _selected != null
-                                    ? () {
-                                        prefs?.setString('main_goal', _selected!);
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (_) => Question2Page(data: _data)));
-                                    }
-                                    : null,
-                                child: Text('Következő kérdés'),
+        return MaterialApp(
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+    
+            home: Scaffold(
+                appBar: AppBar(
+                    title: Text('1. ' + AppLocalizations.of(context)!.question),
+                    automaticallyImplyLeading: false,
+                ),
+                body: Padding(
+                    padding: EdgeInsets.all(16),
+                    child: Column(
+                        children: [
+                            Text(AppLocalizations.of(context)!.mainGoal,
+                                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                            SizedBox(height: 20),
+                            _buildOption(AppLocalizations.of(context)!.weightLoss, 'weight_loss'),
+                            SizedBox(height: 10),
+                            _buildOption(AppLocalizations.of(context)!.muscleBuild, 'muscle'),
+                            SizedBox(height: 40),
+                            SizedBox(
+                                width: double.infinity,
+                                child: ElevatedButton(
+                                    onPressed: _selected != null
+                                        ? () {
+                                            prefs?.setString('main_goal', _selected!);
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (_) => Question2Page(data: _data)));
+                                        }
+                                        : null,
+                                    child: Text(AppLocalizations.of(context)!.nextq),
+                                ),
                             ),
-                        ),
-                    ],
+                        ],
+                    ),
                 ),
             ),
         );

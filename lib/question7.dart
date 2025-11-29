@@ -2,6 +2,7 @@ import 'questionaire.dart';
 import 'package:flutter/material.dart';
 import "questionaire_converter.dart";
 import "exercises.dart";
+import 'l10n/app_localizations.dart';
 
 class Question7Page extends StatefulWidget {
     final QuestionnaireData data;
@@ -15,50 +16,53 @@ class _Question7PageState extends State<Question7Page> {
 
     @override
     Widget build(BuildContext context) {
-        return Scaffold(
-            appBar: AppBar(title: Text('7. kérdés')),
-            body: Padding(
-                padding: EdgeInsets.all(16),
-                child: Column(
-                    children: [
-                        Text("Melyik a te korosztályod?",
-                            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                        SizedBox(height: 20),
-                        _buildOption('< 30', 1),
-                        SizedBox(height: 10),
-                        _buildOption('30-60', 2),
-                        SizedBox(height: 10),
-                        _buildOption('60 +', 3),
-                        SizedBox(height: 40),
-                        SizedBox(
-                            width: double.infinity,
-                            child: ElevatedButton(
-                                onPressed: _selected != null
-                                    ? () async {
-                                        prefs?.setInt('age', _selected!);
+        return MaterialApp(
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+            home: Scaffold(
+                appBar: AppBar(title: Text('7. ' + AppLocalizations.of(context)!.question)),
+                body: Padding(
+                    padding: EdgeInsets.all(16),
+                    child: Column(
+                        children: [
+                            Text(AppLocalizations.of(context)!.age,
+                                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                            SizedBox(height: 20),
+                            _buildOption('< 30', 1),
+                            SizedBox(height: 10),
+                            _buildOption('30-60', 2),
+                            SizedBox(height: 10),
+                            _buildOption('60 +', 3),
+                            SizedBox(height: 40),
+                            SizedBox(
+                                width: double.infinity,
+                                child: ElevatedButton(
+                                    onPressed: _selected != null
+                                        ? () async {
+                                            prefs?.setInt('age', _selected!);
 
-                                        Converter converter = Converter();
-                                        await converter.calculateAll();
+                                            Converter converter = Converter();
+                                            await converter.calculateAll();
 
-                                        prefs?.setInt('pushe', converter.pushe ?? 0);
-                                        prefs?.setInt('legse', converter.legse ?? 0);
-                                        prefs?.setInt('pulle', converter.pulle ?? 0);
-                                        prefs?.setInt('coree', converter.coree ?? 0);
+                                            prefs?.setInt('pushe', converter.pushe ?? 0);
+                                            prefs?.setInt('legse', converter.legse ?? 0);
+                                            prefs?.setInt('pulle', converter.pulle ?? 0);
+                                            prefs?.setInt('coree', converter.coree ?? 0);
 
-                                        Exercises exercises = Exercises();
-                                        //exercises.initializeExercises();
-                                        
-                                        Navigator.of(context).popUntil((route) => route.isFirst);
-                                        print(exercises.pushex);
-                                        print(exercises.pullex);
-                                        print(exercises.legsex);
-                                        print(exercises.coreex);
-                                    }
-                                    : null,
-                                child: Text('Befejezés'),
+                                            Exercises exercises = Exercises();
+                                            
+                                            Navigator.of(context).popUntil((route) => route.isFirst);
+                                            print(exercises.pushex);
+                                            print(exercises.pullex);
+                                            print(exercises.legsex);
+                                            print(exercises.coreex);
+                                        }
+                                        : null,
+                                    child: Text(AppLocalizations.of(context)!.finish),
+                                ),
                             ),
-                        ),
-                    ],
+                        ],
+                    ),
                 ),
             ),
         );

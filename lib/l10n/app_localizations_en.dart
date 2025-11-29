@@ -67,4 +67,64 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get core2 => 'Supermans';
+
+  @override
+  String get workout => 'Workout';
+
+  @override
+  String get question => 'Question';
+
+  @override
+  String get nextq => 'Next question';
+
+  @override
+  String get finish => 'Finish';
+
+  @override
+  String get mainGoal => 'What\'s your main goal?';
+
+  @override
+  String get weightLoss => 'Weight Loss';
+
+  @override
+  String get muscleBuild => 'Building Muscle';
+
+  @override
+  String get maxKneePush => 'How many knee pushups can you do?';
+
+  @override
+  String get maxSquats => 'How many squats can you do?';
+
+  @override
+  String get prevExp1 => 'Did you use to play sports regularly?';
+
+  @override
+  String get yes => 'Yes';
+
+  @override
+  String get no => 'No';
+
+  @override
+  String get prevExp2 => 'Have you tried to work out before?';
+
+  @override
+  String get motivation => 'How much are you motivated to work out?';
+
+  @override
+  String get notAtAll => 'Not at all';
+
+  @override
+  String get somewhat => 'I\'m somewhat motivated';
+
+  @override
+  String get motivated => 'I\'m motivated';
+
+  @override
+  String get age => 'What is your age group?';
+
+  @override
+  String get congrat => 'Congratulations!';
+
+  @override
+  String get congratMessage => 'Workout complete!';
 }

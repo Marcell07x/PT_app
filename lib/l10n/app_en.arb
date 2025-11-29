@@ -25,6 +25,42 @@
     "lunge4": "Elevated Lunges",
 
     "core1": "Situps",
-    "core2": "Supermans"
+    "core2": "Supermans",
+
+    "workout": "Workout",
+
+
+    "@@comment": "(not only) for the questionaire:",
+
+    "question": "Question",
+    "nextq": "Next question",
+    "finish": "Finish",
+
+    "mainGoal": "What's your main goal?",
+    "weightLoss": "Weight Loss", 
+    "muscleBuild": "Building Muscle",
+
+    "maxKneePush": "How many knee pushups can you do?",
+
+    "maxSquats": "How many squats can you do?",
+    
+    "prevExp1": "Did you use to play sports regularly?",
+
+    "yes": "Yes",
+    "no": "No",
+
+    "prevExp2": "Have you tried to work out before?",
+
+    "motivation": "How much are you motivated to work out?",
+    "notAtAll": "Not at all",
+    "somewhat": "I'm somewhat motivated",
+    "motivated": "I'm motivated",
+
+    "age": "What is your age group?",
+
+
+    "congrat": "Congratulations!",
+    "congratMessage": "Workout complete!"
+
 
 }

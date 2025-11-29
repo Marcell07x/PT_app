@@ -4,7 +4,6 @@ import 'button_status.dart';
 import 'streak.dart';
 import 'question1.dart';
 import 'workout_flow.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'l10n/app_localizations.dart';
 
 //8th step is the next in the flutter localization tutorial

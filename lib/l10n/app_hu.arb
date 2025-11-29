@@ -25,5 +25,41 @@
     "lunge4": "Bolgár Guggolás",
 
     "core1": "Hasprés",
-    "core2": "Superman"
+    "core2": "Superman",
+
+    "workout": "Edzés",
+
+
+    "@@comment": "(not only) for the questionaire:",
+
+    "question": "Kérdés",
+    "nextq": "Következő kérdés",
+    "finish": "Befejezés",
+
+    "mainGoal": "Mi a fő célod?",
+    "weightLoss": "Fogyás", 
+    "muscleBuild": "Izomosodás",
+
+    "maxKneePush": "Hány térdelő fekvőtámaszt tudsz?",
+
+    "maxSquats": "Hány guggolást tudsz?",
+    
+    "prevExp1": "Sportoltál-e régebben rendszeresen?",
+
+    "yes": "Igen",
+    "no": "Nem",
+
+    "prevExp2": "Próbáltál már elkezdeni edzeni?",
+
+    "motivation": "Mennyire van kedved edzeni?",
+    "notAtAll": "Nincsen",
+    "somewhat": "Valamennyire talán",
+    "motivated": "Motivált vagyok",
+
+    "age": "Mi a korosztályod?",
+    
+
+    "congrat": "Gratulálok!",
+    "congratMessage": "Megcsináltad az edzésed!"
+
 }

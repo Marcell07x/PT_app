@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'daycount.dart';
+import 'l10n/app_localizations.dart';
 
 class CongratulationsScreen extends StatelessWidget {
     Daycount daycount = Daycount();
@@ -24,7 +25,7 @@ class CongratulationsScreen extends StatelessWidget {
                             ),
                             SizedBox(height: 30),
                             Text(
-                                'Gratulálok!',
+                                AppLocalizations.of(context)!.congrat,
                                 style: TextStyle(
                                     fontSize: 32,
                                     fontWeight: FontWeight.bold,
@@ -33,7 +34,7 @@ class CongratulationsScreen extends StatelessWidget {
                             ),
                             SizedBox(height: 20),
                             Text(
-                                'Sikeresen elvégezted az edzést!',
+                                AppLocalizations.of(context)!.congratMessage,
                                 style: TextStyle(
                                     fontSize: 20,
                                     color: Colors.black87,
@@ -51,7 +52,7 @@ class CongratulationsScreen extends StatelessWidget {
                                     padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
                                 ),
                                 child: Text(
-                                    'Befejezés',
+                                    AppLocalizations.of(context)!.finish,
                                     style: TextStyle(fontSize: 18),
                                 ),
                             ),
