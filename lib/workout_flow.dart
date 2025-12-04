@@ -16,13 +16,6 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
     final List<Map<String, String>> workouts = []; 
     int currentIndex = 0;
 
-    void initializeWorkouts() {
-        setState(() {
-            workouts.addAll(workouta.workout_parts);
-            print(workouts);
-        });
-    } 
-
     String getLocalizedExerciseName(String localizationKey, BuildContext context) {
         final loc = AppLocalizations.of(context)!;
         
@@ -53,9 +46,17 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
     @override
     void initState() {
         super.initState();
-        workouta.SetExer();
+        _initializeData();
+    }
+
+    void _initializeData() async {
+        await workouta.SetExer();
         workoutareps.SetReps(workouta.workout_parts);
-        initializeWorkouts();
+        
+        setState(() {
+            workouts.addAll(workouta.workout_parts);
+            }
+        );
     }
 
     void goToNext() {
@@ -85,7 +86,7 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
         if (workouts.isEmpty) {
             return Scaffold(
                 appBar: AppBar(title: Text('Edzés')),
-                body: Center(child: Text('Gyakorlatok betöltése...')),
+                body: Center(child: Text('No Exercises Error')),
             );
         }
 

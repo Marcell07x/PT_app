@@ -48,14 +48,8 @@ class _Question7PageState extends State<Question7Page> {
                                             prefs?.setInt('legse', converter.legse ?? 0);
                                             prefs?.setInt('pulle', converter.pulle ?? 0);
                                             prefs?.setInt('coree', converter.coree ?? 0);
-
-                                            Exercises exercises = Exercises();
                                             
                                             Navigator.of(context).popUntil((route) => route.isFirst);
-                                            print(exercises.pushex);
-                                            print(exercises.pullex);
-                                            print(exercises.legsex);
-                                            print(exercises.coreex);
                                         }
                                         : null,
                                     child: Text(AppLocalizations.of(context)!.finish),

@@ -106,8 +106,4 @@ class Exercises {
         },
     };
 
-    late String? pushex;
-    late String? legsex;
-    late String? pullex;
-    late String? coreex;
 }
