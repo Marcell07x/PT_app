@@ -51,7 +51,7 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
 
     void _initializeData() async {
         await workouta.SetExer();
-        workoutareps.SetReps(workouta.workout_parts);
+        await workoutareps.SetReps(workouta.workout_parts);
         
         setState(() {
             workouts.addAll(workouta.workout_parts);

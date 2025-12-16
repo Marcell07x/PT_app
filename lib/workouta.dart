@@ -7,6 +7,8 @@ class WorkoutA {
     Exercises exercises = Exercises();
     WorkoutLevel workoutLevel = WorkoutLevel();
 
+    List<Map<String, String>> workout_parts = [];
+
     late String pushe;
     late String pulle;
     late String legse;
@@ -17,10 +19,8 @@ class WorkoutA {
     late var legsex;
     late var coreex;
 
-    List<Map<String, String>> workout_parts = [];
-
-    SetExer() async {
-        workoutLevel.getLevel(); 
+    Future<void> SetExer() async {
+        await workoutLevel.getLevel(); 
 
         final prefs = await SharedPreferences.getInstance();
 
