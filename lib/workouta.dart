@@ -4,6 +4,7 @@ import "package:shared_preferences/shared_preferences.dart";
 
 
 class WorkoutA {
+    late int levelE;
     Exercises exercises = Exercises();
     WorkoutLevel workoutLevel = WorkoutLevel();
 
@@ -21,6 +22,7 @@ class WorkoutA {
 
     Future<void> SetExer() async {
         await workoutLevel.getLevel(); 
+        levelE = workoutLevel.level;
 
         final prefs = await SharedPreferences.getInstance();
 
@@ -34,7 +36,7 @@ class WorkoutA {
         legsex = exercises.legs[legse];
         coreex = exercises.core[coree];
 
-        if (workoutLevel.level == 1) {
+        if (levelE <= 25) {
             workout_parts.add(pushex);
         } 
     }

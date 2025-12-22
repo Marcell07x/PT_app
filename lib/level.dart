@@ -1,4 +1,6 @@
 import "package:shared_preferences/shared_preferences.dart";
+import 'dart:io';
+import 'package:flutter/foundation.dart';
 
 class WorkoutLevel {
     late int level;
@@ -29,5 +31,4 @@ class WorkoutLevel {
 
         await prefs.setInt('level', roundedResultLevel);
     }
-
 }

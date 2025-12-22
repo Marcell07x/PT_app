@@ -3,6 +3,7 @@ import 'questionaire.dart';
 import 'question2.dart';
 import 'l10n/app_localizations.dart';
 
+//if any data is missing, they shoud do the survey
 class Question1Page extends StatefulWidget {
     @override
     _Question1PageState createState() => _Question1PageState();

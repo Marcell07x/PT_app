@@ -5,8 +5,9 @@ import 'streak.dart';
 import 'question1.dart';
 import 'workout_flow.dart';
 import 'l10n/app_localizations.dart';
+import 'level.dart';
+import 'manuallysetlevel.dart';
 
-//8th step is the next in the flutter localization tutorial
 
 void main() async {
     WidgetsFlutterBinding.ensureInitialized();
@@ -66,10 +67,14 @@ class _MyHomePageState extends State<MyHomePage> {
                     children: [
                         ElevatedButton(
                             onPressed: () async {
-                                await StatusManager.resetStatus();
-                                setState(() {});
+                                int? newLevel = await ManuallySetLevel.showLevelInputDialog(context);
+                                if (newLevel != null) {
+                                    await ManuallySetLevel.saveLevelToPrefs(newLevel);
+                                    ManuallySetLevel.showSuccess(context, 'Level set: $newLevel');
+                                    setState(() {});
+                                }
                             }, 
-                            child: const Text('Ma Nem Edzek')
+                            child: const Text('Set Level')
                         ),
                         ElevatedButton(
                             onPressed: () async {

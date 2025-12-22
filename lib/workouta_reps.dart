@@ -8,17 +8,19 @@ class WorkoutAReps extends WorkoutA {
     Future<void> SetReps(List<Map<String, String>> workoutParts) async {
         WorkoutLevel workoutLevel = WorkoutLevel();
         await workoutLevel.getLevel(); 
+        levelR = workoutLevel.level; 
 
-        workoutlevel.level = levelR; 
-
-        if (levelR == 1) {
-            Reps.add('10');
+        if (levelR >= 1 && levelR < 5) {
+              Reps = [10];
+        } else if (levelR >= 5 && levelR < 10) {
+              Reps = [11];
+        } else if (levelR >= 10 && levelR < 15) {
+              Reps = [12];
         }
 
-        if (levelR == 5 || ) // Problem: if the level increment skips a difficulty increase, that increase won't happen
-
+        //This should stay at the end
         for (int i = 0; i < workoutParts.length; i++) {
-            workoutParts[i]['reps'] = Reps[i];
+            workoutParts[i]['reps'] = Reps[i].toString();
         }
     }
 }
