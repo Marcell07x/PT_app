@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'daycount.dart';
 import 'l10n/app_localizations.dart';
 
 class CongratulationsScreen extends StatelessWidget {
-    Daycount daycount = Daycount();
-    int? days;
-
     @override
     Widget build(BuildContext context) {
         return Scaffold(
@@ -44,7 +40,6 @@ class CongratulationsScreen extends StatelessWidget {
                             SizedBox(height: 40),
                             ElevatedButton(
                                 onPressed: () {
-                                    daycount.setDayCount(days);
                                     Navigator.popUntil(context, (route) => route.isFirst);
                                 },
                                 style: ElevatedButton.styleFrom(
