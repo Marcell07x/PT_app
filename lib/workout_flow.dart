@@ -4,6 +4,7 @@ import 'workout_screen.dart';
 import 'workout_done_screen.dart';
 import 'workouta.dart';
 import 'workouta_reps.dart';
+import 'legswitch.dart';
 
 class WorkoutFlow extends StatefulWidget {
     @override
@@ -13,12 +14,12 @@ class WorkoutFlow extends StatefulWidget {
 class _WorkoutFlowState extends State<WorkoutFlow> {
     WorkoutA workouta = WorkoutA();
     WorkoutAReps workoutareps = WorkoutAReps();
-    final List<Map<String, String>> workouts = []; 
+    LegSwitch legSwitch = LegSwitch();
+    final List<Map<String, String>> workouts = [];
     int currentIndex = 0;
 
     String getLocalizedExerciseName(String localizationKey, BuildContext context) {
         final loc = AppLocalizations.of(context)!;
-        
         switch (localizationKey) {
             case 'wallPush': return loc.wallPush;
             case 'tablePush': return loc.tablePush;
@@ -52,11 +53,9 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
     void _initializeData() async {
         await workouta.SetExer();
         await workoutareps.SetReps(workouta.workout_parts);
-        
         setState(() {
             workouts.addAll(workouta.workout_parts);
-            }
-        );
+        });
     }
 
     void goToNext() {
@@ -64,11 +63,19 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
             setState(() {
                 currentIndex++;
             });
-        } else {
-            Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => CongratulationsScreen()),
-            );
         }
+    }
+
+    Future<void> _toggleLegSwitch() async {
+        await legSwitch.getSwitch();
+        await legSwitch.setSwitch();
+    }
+
+    Future<void> _finishWorkout() async {
+        await _toggleLegSwitch();
+        Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => CongratulationsScreen()),
+        );
     }
 
     void goToPrevious() {
@@ -85,7 +92,7 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
     Widget build(BuildContext context) {
         if (workouts.isEmpty) {
             return Scaffold(
-                appBar: AppBar(title: Text('Edzés')),
+                appBar: AppBar(title: Text('Workout')),
                 body: Center(child: Text('No Exercises Error')),
             );
         }
@@ -98,7 +105,7 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
             description: getLocalizedExerciseName(currentExercise['localizationKey']!, context),
             reps: currentExercise['reps']!,
             buttonText: isLastWorkout ? 'Befejezés' : 'Következő',
-            onNextPressed: goToNext,
+            onNextPressed: isLastWorkout ? _finishWorkout : goToNext,
             onPreviousPressed: goToPrevious,
             currentIndex: currentIndex,
             totalWorkouts: workouts.length,

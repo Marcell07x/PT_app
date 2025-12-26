@@ -34,6 +34,42 @@ class WorkoutAReps extends WorkoutA {
             Reps = [15, 9];
         } else if (levelR < 60) {
             Reps = [15, 10];
+        } else if (levelR < 65) {
+            Reps = [15, 5, 10];
+        } else if (levelR < 70) {
+            Reps = [15, 10, 10];
+        } else if (levelR < 75) {
+            Reps = [15, 10, 12];
+        } else if (levelR < 80) {
+            Reps = [15, 15, 12];
+        } else if (levelR < 85) {
+            Reps = [15, 15, 15];
+        } else if (levelR < 90) {
+            Reps = [15, 15, 15, 5];
+        } else if (levelR < 95) {
+            Reps = [10, 15, 10, 7];
+        } else if (levelR < 100) {
+            Reps = [12, 15, 10, 10];
+        } else if (levelR < 105) {
+            Reps = [15, 15, 10, 10];
+        } else if (levelR < 110) {
+            Reps = [15, '10-15', 12, '10-15'];
+        } else if (levelR < 115) {
+            Reps = [15, '10-15', 12, '10-15', 5];
+        } else if (levelR < 120) {
+            Reps = [15, '10-15', 12, '10-15', 5, 5];
+        } else if (levelR < 125) {
+            Reps = [15, '10-15', 12, '10-15', 6, 5];
+        } else if (levelR < 130) {
+            Reps = [15, '10-15', 12, '10-15', 6, 6];
+        } else if (levelR < 135) {
+            Reps = [12, '10-15', 10, '10-15', 6, 6];
+        } else if (levelR < 140) {
+            Reps = [12, '10-15', 5, 10, '10-15', 5, 6, 6, 5];
+        } else if (levelR < 145) {
+            Reps = [12, '10-15', 7, 10, '10-15', 7, 6, 6, 7];
+        } else if (levelR < 150) {
+            Reps = [12, '10-15', 10, 10, '10-15', 10, 6, 6, 5];
         }
         
         //This should stay at the end
