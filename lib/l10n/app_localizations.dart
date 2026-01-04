@@ -224,6 +224,30 @@ abstract class AppLocalizations {
   /// **'Workout'**
   String get workout;
 
+  /// No description provided for @reps.
+  ///
+  /// In en, this message translates to:
+  /// **'Repetitions'**
+  String get reps;
+
+  /// No description provided for @next.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get next;
+
+  /// No description provided for @goback.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get goback;
+
+  /// No description provided for @startWorkout.
+  ///
+  /// In en, this message translates to:
+  /// **'Start Workout'**
+  String get startWorkout;
+
   /// No description provided for @question.
   ///
   /// In en, this message translates to:

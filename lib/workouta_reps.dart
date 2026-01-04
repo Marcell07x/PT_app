@@ -5,7 +5,7 @@ class WorkoutAReps extends WorkoutA {
     var Reps = [];
     late int levelR;
 
-    Future<void> SetReps(List<Map<String, String>> workoutParts) async {
+    Future<void> SetRepsA(List<Map<String, String>> workoutParts) async {
         WorkoutLevel workoutLevel = WorkoutLevel();
         await workoutLevel.getLevel(); 
         levelR = workoutLevel.level; 

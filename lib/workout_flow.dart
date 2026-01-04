@@ -4,7 +4,10 @@ import 'workout_screen.dart';
 import 'workout_done_screen.dart';
 import 'workouta.dart';
 import 'workouta_reps.dart';
+import 'workoutb_home.dart';
+import 'workoutb_reps.dart';
 import 'legswitch.dart';
+import 'level.dart';
 
 class WorkoutFlow extends StatefulWidget {
     @override
@@ -14,7 +17,11 @@ class WorkoutFlow extends StatefulWidget {
 class _WorkoutFlowState extends State<WorkoutFlow> {
     WorkoutA workouta = WorkoutA();
     WorkoutAReps workoutareps = WorkoutAReps();
+    WorkoutBHome workoutBHome = WorkoutBHome();
+    WorkoutBReps workoutBReps = WorkoutBReps();
     LegSwitch legSwitch = LegSwitch();
+    WorkoutLevel workoutLevel = WorkoutLevel();
+
     final List<Map<String, String>> workouts = [];
     int currentIndex = 0;
 
@@ -51,11 +58,20 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
     }
 
     void _initializeData() async {
-        await workouta.SetExer();
-        await workoutareps.SetReps(workouta.workout_parts);
-        setState(() {
-            workouts.addAll(workouta.workout_parts);
-        });
+        await workoutLevel.getLevel();
+        if (workoutLevel.level < 150) {
+            await workouta.SetExerA();
+            await workoutareps.SetRepsA(workouta.workout_partsA);
+            setState(() {
+                workouts.addAll(workouta.workout_partsA);
+            });
+        }  else {
+            await workoutBHome.SetExerBHome();
+            await workoutBReps.SetRepsB(workoutBHome.workout_partsBHome);
+            setState(() {
+                workouts.addAll(workoutBHome.workout_partsBHome);
+            });
+        }   
     }
 
     void goToNext() {
@@ -73,6 +89,8 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
 
     Future<void> _finishWorkout() async {
         await _toggleLegSwitch();
+        await workoutLevel.setLevel();
+        if (!mounted) return;
         Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (context) => CongratulationsScreen()),
         );
@@ -102,9 +120,9 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
         
         return WorkoutScreen(
             videoPath: currentExercise['videoPath']!,
-            description: getLocalizedExerciseName(currentExercise['localizationKey']!, context),
-            reps: currentExercise['reps']!,
-            buttonText: isLastWorkout ? 'Befejezés' : 'Következő',
+            exerciseName: getLocalizedExerciseName(currentExercise['localizationKey']!, context),
+            reps: "${currentExercise['reps']!} ${AppLocalizations.of(context)!.reps}",
+            buttonText: isLastWorkout ? AppLocalizations.of(context)!.finish : AppLocalizations.of(context)!.next,
             onNextPressed: isLastWorkout ? _finishWorkout : goToNext,
             onPreviousPressed: goToPrevious,
             currentIndex: currentIndex,

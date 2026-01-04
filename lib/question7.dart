@@ -40,15 +40,8 @@ class _Question7PageState extends State<Question7Page> {
                                     onPressed: _selected != null
                                         ? () async {
                                             prefs?.setInt('age', _selected!);
-
                                             Converter converter = Converter();
-                                            await converter.calculateAll();
-
-                                            prefs?.setInt('pushe', converter.pushe ?? 0);
-                                            prefs?.setInt('legse', converter.legse ?? 0);
-                                            prefs?.setInt('pulle', converter.pulle ?? 0);
-                                            prefs?.setInt('coree', converter.coree ?? 0);
-                                            
+                                            await converter.convert();
                                             Navigator.of(context).popUntil((route) => route.isFirst);
                                         }
                                         : null,

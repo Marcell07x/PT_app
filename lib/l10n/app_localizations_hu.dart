@@ -72,6 +72,18 @@ class AppLocalizationsHu extends AppLocalizations {
   String get workout => 'Edzés';
 
   @override
+  String get reps => 'Ismétlés';
+
+  @override
+  String get next => 'Következő';
+
+  @override
+  String get goback => 'Előző';
+
+  @override
+  String get startWorkout => 'Edzés Kezdése';
+
+  @override
   String get question => 'Kérdés';
 
   @override

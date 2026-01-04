@@ -4,62 +4,58 @@ import "package:shared_preferences/shared_preferences.dart";
 import 'legswitch.dart';
 
 class WorkoutA {
-    late int levelE;
+    late int _levelE;
     Exercises exercises = Exercises();
     WorkoutLevel workoutLevel = WorkoutLevel();
     LegSwitch legSwitch = LegSwitch();
 
-    List<Map<String, String>> workout_parts = [];
+    List<Map<String, String>> workout_partsA = [];
 
-    late int pushe;
-    late int pulle;
-    late int legse;
-    late int coree;
+    late int _pushe;
+    late int _pulle;
+    late int _legse;
 
-    late var pushex;
-    late var pullex;
-    late var legsex;
-    late var coreex;
+    late var _pushex;
+    late var _pullex;
+    late var _legsex;
 
-    Future<void> SetExer() async {
+    Future<void> SetExerA() async {
         await legSwitch.getSwitch();
         await workoutLevel.getLevel(); 
-        levelE = workoutLevel.level;
+        _levelE = workoutLevel.level;
 
         final prefs = await SharedPreferences.getInstance();
 
-        pushe = prefs.getInt('pushe')!;
-        pulle = prefs.getInt('pulle')!;
-        legse = prefs.getInt('legse')!;
-        coree = prefs.getInt('coree')!;
+        _pushe = prefs.getInt('pushe')!;
+        _pulle = prefs.getInt('pulle')!;
+        _legse = prefs.getInt('legse')!;
 
-        pushex = exercises.push[pushe]!;
-        pullex = exercises.pull[pulle]!;
-        legsex = exercises.legs[legse]!;
-        coreex = exercises.core[coree]!;
+        _pushex = exercises.push[_pushe]!;
+        _pullex = exercises.pull[_pulle]!;
+        _legsex = exercises.legs[_legse]!;
 
-        if (levelE < 30) {
-            workout_parts = [{...pushex}];
-        } else if (levelE < 60) {
-            workout_parts = [{...pushex}, {...pushex}];
-        } else if (levelE < 85) {
-            workout_parts = [{...pushex}, {...pullex}, {...pushex}];
-        } else if (levelE < 90) {
-            workout_parts = [{...pushex}, {...pullex}, {...pushex}, {...pullex}];
-        } else if (levelE < 110) {
-            workout_parts = [{...pushex}, {...pullex}, {...exercises.push[pushe+1]!}, {...pullex}];
-        } else if (levelE < 115) {
-            workout_parts = [{...pushex}, {...pullex}, {...exercises.push[pushe+1]!}, {...pullex}, {...pushex}];
-        } else if (levelE < 130) {
-            workout_parts = [{...pushex}, {...pullex}, {...exercises.push[pushe+1]!}, {...pullex}, {...pushex}, {...pullex},];
-        } else if (levelE < 135) {
-            workout_parts = [{...exercises.push[pushe+1]!}, {...pullex}, {...exercises.push[pushe+1]!}, {...pullex}, {...pushex}, {...pullex},];
-        } else if (levelE < 150 && legSwitch.switchState == 1) {
-            workout_parts = [{...exercises.push[pushe+1]!}, {...pullex}, {...legsex}, {...exercises.push[pushe+1]!},
-                             {...pullex}, {...legsex}, {...pushex}, {...pullex}, {...legsex}];
-        } else if (levelE < 150 && legSwitch.switchState == (-1)) {
-            workout_parts = [{...exercises.push[pushe+1]!}, {...pullex}, {...exercises.legs[legse+1]!}, {...exercises.push[pushe+1]!},
-                             {...pullex}, {...exercises.legs[legse+1]!}, {...pushex}, {...pullex}, {...exercises.legs[legse+1]!}];
+        if (_levelE < 30) {
+            workout_partsA = [{..._pushex}];
+        } else if (_levelE < 60) {
+            workout_partsA = [{..._pushex}, {..._pushex}];
+        } else if (_levelE < 85) {
+            workout_partsA = [{..._pushex}, {..._pullex}, {..._pushex}];
+        } else if (_levelE < 90) {
+            workout_partsA = [{..._pushex}, {..._pullex}, {..._pushex}, {..._pullex}];
+        } else if (_levelE < 110) {
+            workout_partsA = [{..._pushex}, {..._pullex}, {...exercises.push[_pushe+1]!}, {..._pullex}];
+        } else if (_levelE < 115) {
+            workout_partsA = [{..._pushex}, {..._pullex}, {...exercises.push[_pushe+1]!}, {..._pullex}, {..._pushex}];
+        } else if (_levelE < 130) {
+            workout_partsA = [{..._pushex}, {..._pullex}, {...exercises.push[_pushe+1]!}, {..._pullex}, {..._pushex}, {..._pullex},];
+        } else if (_levelE < 135) {
+            workout_partsA = [{...exercises.push[_pushe+1]!}, {..._pullex}, {...exercises.push[_pushe+1]!}, {..._pullex}, {..._pushex}, {..._pullex},];
+        } else if (_levelE < 150 && legSwitch.switchState == 1) {
+            workout_partsA = [{...exercises.push[_pushe+1]!}, {..._pullex}, {..._legsex}, {...exercises.push[_pushe+1]!},
+                             {..._pullex}, {..._legsex}, {..._pushex}, {..._pullex}, {..._legsex}];
+        } else if (_levelE < 150 && legSwitch.switchState == (-1)) {
+            workout_partsA = [{...exercises.push[_pushe+1]!}, {..._pullex}, {...exercises.legs[_legse+1]!}, {...exercises.push[_pushe+1]!},
+                             {..._pullex}, {...exercises.legs[_legse+1]!}, {..._pushex}, {..._pullex}, {...exercises.legs[_legse+1]!}];
         }
     }
 }

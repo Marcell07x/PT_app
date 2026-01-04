@@ -87,7 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     ),
                                 );
                             },  
-                            child: const Text('Kész')
+                            child: Text(AppLocalizations.of(context)!.startWorkout)
                         ),
                         TextButton(
                             onPressed: () {

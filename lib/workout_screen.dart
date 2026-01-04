@@ -4,7 +4,7 @@ import 'package:video_player/video_player.dart';
 
 class WorkoutScreen extends StatefulWidget {
     final String videoPath;
-    final String description;
+    final String exerciseName;
     final String reps;
     final String buttonText;
     final VoidCallback onNextPressed;
@@ -15,7 +15,7 @@ class WorkoutScreen extends StatefulWidget {
     const WorkoutScreen({
         Key? key,
         required this.videoPath,
-        required this.description,
+        required this.exerciseName,
         required this.reps,
         required this.buttonText,
         required this.onNextPressed,
@@ -140,7 +140,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                                 ),
                                 SizedBox(height: 25),
                                 Text(
-                                    widget.description,
+                                    widget.exerciseName,
                                     style: TextStyle(
                                         fontSize: 18,
                                         fontWeight: FontWeight.w500,

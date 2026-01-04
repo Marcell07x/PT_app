@@ -28,6 +28,10 @@
     "core2": "Superman",
 
     "workout": "Edzés",
+    "reps": "Ismétlés",
+    "next": "Következő",
+    "goback": "Előző",
+    "startWorkout": "Edzés Kezdése",
 
 
     "@@comment": "(not only) for the questionaire:",

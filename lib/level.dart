@@ -4,12 +4,7 @@ import 'package:flutter/foundation.dart';
 
 class WorkoutLevel {
     late int level;
-    late int resultLevel;
-    late int roundedResultLevel;
-    late int incSpeed;
-    late int previousStep;
-    late int newStep;
-    
+
     Future<void> getLevel() async {
         final prefs = await SharedPreferences.getInstance();
         level = prefs.getInt('level') ?? 1;
@@ -17,18 +12,10 @@ class WorkoutLevel {
 
     Future<void> setLevel() async {
         final prefs = await SharedPreferences.getInstance();
-
-        // incSpeed has not been set
-
-        resultLevel = level + incSpeed;
-
-        previousStep = level ~/ 5;
-        newStep = resultLevel ~/ 5;
-
-        if (newStep > previousStep) {
-            roundedResultLevel = newStep * 5;
-        }
-
-        await prefs.setInt('level', roundedResultLevel);
+        int currentLevel = prefs.getInt('level') ?? 1;
+        int inc = prefs.getInt('incspeed') ?? 1;
+        int newLevel = currentLevel + inc;
+        await prefs.setInt('level', newLevel);
     }
+
 }

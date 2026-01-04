@@ -28,6 +28,10 @@
     "core2": "Supermans",
 
     "workout": "Workout",
+    "reps": "Repetitions",
+    "next": "Next",
+    "goback": "Back",
+    "startWorkout": "Start Workout",
 
 
     "@@comment": "(not only) for the questionaire:",

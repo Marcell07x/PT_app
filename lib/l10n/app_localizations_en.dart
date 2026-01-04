@@ -72,6 +72,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get workout => 'Workout';
 
   @override
+  String get reps => 'Repetitions';
+
+  @override
+  String get next => 'Next';
+
+  @override
+  String get goback => 'Back';
+
+  @override
+  String get startWorkout => 'Start Workout';
+
+  @override
   String get question => 'Question';
 
   @override
