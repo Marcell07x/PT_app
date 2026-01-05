@@ -4,11 +4,13 @@
 
     "@@comment": "exercises:",
 
-    "wallPush": "Wall Pushups",
-    "tablePush": "Table Pushups",
-    "kneePush": "Knee Pushups",
+    "wallPush": "Wall Push Ups",
+    "tablePush": "Table Push Ups",
+    "kneePush": "Knee Push Ups",
     "pushUp": "Pushups",
-    "inclinePush": "Incline Pushups",
+    "declinePush": "Decline Push Ups",
+    "clapPush": "Explosive Clap Push Ups",
+    "archerPush": "Archer Push Ups",
     "dipPush": "Dips",
 
     "bagPull": "One Hand Bag Rows",
@@ -19,10 +21,12 @@
     "lunge1": "Assisted Lunges",
     "squat2": "Squats",
     "lunge2": "Lunges",
-    "squat3": "Jumping Squats",
-    "lunge3": "Jumping Lunges",
-    "squat4": "Archer Squats",
+    "squat3": "Backpack Squats",
+    "lunge3": "Step Ups",
+    "squat4": "Jumping Squats",
     "lunge4": "Elevated Lunges",
+    "squat5": "Archer Squats",
+    "lunge5": "Half Leg Lunges",
 
     "core1": "Situps",
     "core2": "Supermans",

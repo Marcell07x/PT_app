@@ -12,19 +12,25 @@ class AppLocalizationsEn extends AppLocalizations {
   String get form => 'Here is the form';
 
   @override
-  String get wallPush => 'Wall Pushups';
+  String get wallPush => 'Wall Push Ups';
 
   @override
-  String get tablePush => 'Table Pushups';
+  String get tablePush => 'Table Push Ups';
 
   @override
-  String get kneePush => 'Knee Pushups';
+  String get kneePush => 'Knee Push Ups';
 
   @override
   String get pushUp => 'Pushups';
 
   @override
-  String get inclinePush => 'Incline Pushups';
+  String get declinePush => 'Decline Push Ups';
+
+  @override
+  String get clapPush => 'Explosive Clap Push Ups';
+
+  @override
+  String get archerPush => 'Archer Push Ups';
 
   @override
   String get dipPush => 'Dips';
@@ -51,16 +57,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String get lunge2 => 'Lunges';
 
   @override
-  String get squat3 => 'Jumping Squats';
+  String get squat3 => 'Backpack Squats';
 
   @override
-  String get lunge3 => 'Jumping Lunges';
+  String get lunge3 => 'Step Ups';
 
   @override
-  String get squat4 => 'Archer Squats';
+  String get squat4 => 'Jumping Squats';
 
   @override
   String get lunge4 => 'Elevated Lunges';
+
+  @override
+  String get squat5 => 'Archer Squats';
+
+  @override
+  String get lunge5 => 'Half Leg Lunges';
 
   @override
   String get core1 => 'Situps';

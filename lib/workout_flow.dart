@@ -32,7 +32,9 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
             case 'tablePush': return loc.tablePush;
             case 'kneePush': return loc.kneePush;
             case 'pushUp': return loc.pushUp;
-            case 'inclinePush': return loc.inclinePush;
+            case 'declinePush': return loc.declinePush;
+            case 'clapPush': return loc.clapPush;
+            case 'archerPush': return loc.archerPush;
             case 'dipPush': return loc.dipPush;
             case 'bagPull': return loc.bagPull;
             case 'bwPull': return loc.bwPull;
@@ -45,6 +47,8 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
             case 'lunge3': return loc.lunge3;
             case 'squat4': return loc.squat4;
             case 'lunge4': return loc.lunge4;
+            case 'squat5': return loc.squat5;
+            case 'lunge5': return loc.lunge5;
             case 'core1': return loc.core1;
             case 'core2': return loc.core2;
             default: return localizationKey;
@@ -71,6 +75,7 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
             setState(() {
                 workouts.addAll(workoutBHome.workout_partsBHome);
             });
+
         }   
     }
 

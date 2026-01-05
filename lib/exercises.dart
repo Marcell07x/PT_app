@@ -6,7 +6,7 @@ class Exercises {
       'reps': ''
     },
     2: {
-      'videoPath': 'assets/videos/test1.mp4',
+      'videoPath': 'assets/videos/test2.mp4',
       'localizationKey': 'tablePush',
       'reps': ''
     },
@@ -16,17 +16,27 @@ class Exercises {
       'reps': ''
     },
     4: {
-      'videoPath': 'assets/videos/test1.mp4',
+      'videoPath': 'assets/videos/test2.mp4',
       'localizationKey': 'pushUp',
       'reps': ''
     },
     5: {
       'videoPath': 'assets/videos/test1.mp4',
-      'localizationKey': 'inclinePush',
+      'localizationKey': 'declinePush',
+      'reps': ''
+    }, 
+    6: {
+      'videoPath': 'assets/videos/test2.mp4',
+      'localizationKey': 'clapPush',
+      'reps': ''
+    }, 
+    7: {
+      'videoPath': 'assets/videos/test1.mp4',
+      'localizationKey': 'archerPush',
       'reps': ''
     },   
-    6: {
-      'videoPath': 'assets/videos/test1.mp4',
+    8: {
+      'videoPath': 'assets/videos/test2.mp4',
       'localizationKey': 'dipPush',
       'reps': ''
     },
@@ -89,6 +99,16 @@ class Exercises {
     8: {
       'videoPath': 'assets/videos/test1.mp4',
       'localizationKey': 'lunge4',
+      'reps': ''
+    },
+    9: {
+      'videoPath': 'assets/videos/test1.mp4',
+      'localizationKey': 'squat5',
+      'reps': ''
+    },
+    10: {
+      'videoPath': 'assets/videos/test1.mp4',
+      'localizationKey': 'lunge5',
       'reps': ''
     },
   };

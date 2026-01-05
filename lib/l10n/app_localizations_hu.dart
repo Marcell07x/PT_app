@@ -24,7 +24,13 @@ class AppLocalizationsHu extends AppLocalizations {
   String get pushUp => 'Fekvőtámasz';
 
   @override
-  String get inclinePush => 'Feltett Lábas Fekvőtámasz';
+  String get declinePush => 'Feltett Lábas Fekvőtámasz';
+
+  @override
+  String get clapPush => 'Tapsoló Fekvőtámasz';
+
+  @override
+  String get archerPush => 'Íjász Fekvőtámasz';
 
   @override
   String get dipPush => 'Tolóckodás';
@@ -51,16 +57,22 @@ class AppLocalizationsHu extends AppLocalizations {
   String get lunge2 => 'Kitörés';
 
   @override
-  String get squat3 => 'Guggolásból Ugrás';
+  String get squat3 => 'Táskás Guggolás';
 
   @override
-  String get lunge3 => 'Kitörésből Ugrás';
+  String get lunge3 => 'Fellépések';
 
   @override
-  String get squat4 => 'Oldalas Guggolás';
+  String get squat4 => 'Guggolásból Ugrás';
 
   @override
   String get lunge4 => 'Bolgár Guggolás';
+
+  @override
+  String get squat5 => 'Oldalas Guggolás';
+
+  @override
+  String get lunge5 => 'Féllábas kitörés';
 
   @override
   String get core1 => 'Hasprés';

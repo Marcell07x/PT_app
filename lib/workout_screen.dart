@@ -103,7 +103,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                                 Container(
                                     width: double.infinity,
                                     constraints: BoxConstraints(
-                                        maxHeight: MediaQuery.of(context).size.height * 0.6,
+                                        maxHeight: MediaQuery.of(context).size.height * 0.3,
                                     ),
                                     child: AspectRatio(
                                         aspectRatio: _videoAspectRatio,
@@ -129,7 +129,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                                                             CircularProgressIndicator(),
                                                             SizedBox(height: 10),
                                                             Text(
-                                                                'Videó betöltése...',
+                                                                'Loading...',
                                                                 style: TextStyle(color: Colors.white),
                                                             ),
                                                         ],
