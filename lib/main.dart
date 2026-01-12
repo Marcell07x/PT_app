@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'questionaire.dart';
 import 'button_status.dart';
 import 'streak.dart';
@@ -7,12 +8,15 @@ import 'workout_flow.dart';
 import 'l10n/app_localizations.dart';
 import 'level.dart';
 import 'manuallysetlevel.dart';
+import 'workout_signal.dart';
 
 
 void main() async {
     WidgetsFlutterBinding.ensureInitialized();
     await StatusManager.loadStatus();
     await StreakManager.init(); 
+    await WorkoutSignal.setSignalTrueA();
+    await WorkoutSignal.setSignalTrueB();
     await prefsInit();
     runApp(const MyApp());
 }
@@ -44,15 +48,20 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+    late bool _isButtonEnabled;
+
     @override
     void initState() {
         super.initState();
+        _checkWorkout();
     }
 
-    Future<void> _handleComplete() async {
-        await StreakManager.incrementStreak();
-        await StatusManager.resetStatus();
-        setState(() {});
+    Future<void> _checkWorkout() async {
+        final prefs = await SharedPreferences.getInstance();
+        final boolValue = prefs.getBool('signal') ?? true;
+        setState(() {
+           _isButtonEnabled = boolValue;
+        });
     }
     
     @override
@@ -77,16 +86,15 @@ class _MyHomePageState extends State<MyHomePage> {
                             child: const Text('Set Level')
                         ),
                         ElevatedButton(
-                            onPressed: () async {
-                                _handleComplete();
-                                await StatusManager.resetStatus();
+                            onPressed: _isButtonEnabled ? () async {
+                                await StreakManager.incrementStreak();
                                 setState(() {});
                                 Navigator.of(context).push(
                                     MaterialPageRoute(
                                         builder: (context) => WorkoutFlow(),
                                     ),
                                 );
-                            },  
+                            } : null,  
                             child: Text(AppLocalizations.of(context)!.startWorkout)
                         ),
                         TextButton(

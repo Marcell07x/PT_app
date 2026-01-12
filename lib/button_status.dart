@@ -1,5 +1,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
+//not used, probably will not be needed
+
 class StatusManager {
     static String _status = '';
     static bool _isFirstTime = true;
