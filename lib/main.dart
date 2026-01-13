@@ -15,7 +15,7 @@ void main() async {
     WidgetsFlutterBinding.ensureInitialized();
     await StatusManager.loadStatus();
     await StreakManager.init(); 
-    //await WorkoutSignal.setSignalTrueA();
+    await WorkoutSignal.setSignalTrueA();
     await WorkoutSignal.setSignalTrueB();
     await prefsInit();
     runApp(const MyApp());
@@ -54,9 +54,18 @@ class _MyHomePageState extends State<MyHomePage> {
     void initState() {
         super.initState();
         _checkWorkout();
+        WorkoutSignal.onSignalChanged = _checkWorkout;
+    }
+    
+    @override
+    void dispose() {
+        WorkoutSignal.onSignalChanged = null;
+        super.dispose();
     }
 
     Future<void> _checkWorkout() async {
+         if (!mounted) return;
+
         final prefs = await SharedPreferences.getInstance();
         final boolValue = prefs.getBool('signal') ?? true;
         setState(() {

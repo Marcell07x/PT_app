@@ -1,4 +1,5 @@
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/foundation.dart';
 //if finished, button_status.dart should be deleted
 
 //goal: to make a variable, that is set true the secound day after 
@@ -14,16 +15,25 @@ class WorkoutSignal {
         await prefs.setInt("lastWorkoutDate", todayInNum);
     }
 
-    static Future<void> setSignalFalse() async { //I have to use a Callback for example, to update
-        final prefs = await SharedPreferences.getInstance(); //the start workout button's state
+    static VoidCallback? _onSignalChanged;
+    static set onSignalChanged(VoidCallback? callback) {
+        _onSignalChanged = callback;
+    }
+
+    static Future<void> setSignalFalse() async {
+        final prefs = await SharedPreferences.getInstance();
         await prefs.setBool("signal", false);
         await _saveTodayAsDays();
+
+        _onSignalChanged?.call();
     }
 
     //for debug/developement purposes
     static Future<void> debugSetSignalTrue() async {
         final prefs = await SharedPreferences.getInstance();
         await prefs.setBool("signal", true);
+
+        _onSignalChanged?.call();
     }
 
     //sets the signal true the next day after the signal was set to false
