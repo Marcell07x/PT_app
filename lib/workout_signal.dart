@@ -1,32 +1,47 @@
 import 'package:shared_preferences/shared_preferences.dart';
 //if finished, button_status.dart should be deleted
 
-
 //goal: to make a variable, that is set true the secound day after 
 //it was set to false, and to do it a maximum amount of 3 times a week
 class WorkoutSignal {
-    static late String _key = "signal";
-    static late bool signal;
-    static String? _lastworkoutdate;
-
-    //checks if there's a workout the user should do
-    static Future<void> getSignal() async {
+    static Future<void> _saveTodayAsDays() async {
         final prefs = await SharedPreferences.getInstance();
-        signal = prefs.getBool(_key) ?? true;
+
+        DateTime date1 = DateTime.now();
+        DateTime date2 = DateTime(2020, 01, 01);
+        int todayInNum = date1.difference(date2).inDays;
+
+        await prefs.setInt("lastWorkoutDate", todayInNum);
     }
 
-    //sets the signal false after the workout has been done, and saves the date
-    static Future<void> setSignalFalse() async {
+    static Future<void> setSignalFalse() async { //I have to use a Callback for example, to update
+        final prefs = await SharedPreferences.getInstance(); //the start workout button's state
+        await prefs.setBool("signal", false);
+        await _saveTodayAsDays();
+    }
+
+    //for debug/developement purposes
+    static Future<void> debugSetSignalTrue() async {
         final prefs = await SharedPreferences.getInstance();
-        signal = false;
-        prefs.setBool(_key, false);
-        //i dont know how to save dates in the memory
+        await prefs.setBool("signal", true);
     }
 
     //sets the signal true the next day after the signal was set to false
     //only if the level is below 150
     static Future<void> setSignalTrueA() async {
+        final prefs = await SharedPreferences.getInstance();
+        int levelA = prefs.getInt('level') ?? 1; // this ?? 1; might be a temporary solution
 
+        if (levelA < 150) {
+            DateTime date1 = DateTime.now();
+            DateTime date2 = DateTime(2020, 01, 01);
+            int todayInNum = date1.difference(date2).inDays;
+            int lastWorkoutDate = prefs.getInt("lastWorkoutDate") ?? todayInNum;
+
+            if (todayInNum != lastWorkoutDate) {
+                await prefs.setBool("signal", true);
+            }
+        }
     }
 
     //sets the signal true the second day after it has been set to false

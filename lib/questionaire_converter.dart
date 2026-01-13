@@ -52,10 +52,10 @@ class Converter {
 
         _incSpeed += _motivation;
 
-        prefs.setInt('pushe', _pushe);
-        prefs.setInt('legse', _legse);
-        prefs.setInt('pulle', _pulle);
-        prefs.setInt('coree', _coree);
-        prefs.setInt('incspeed', _incSpeed);
+        await prefs.setInt('pushe', _pushe);
+        await prefs.setInt('legse', _legse);
+        await prefs.setInt('pulle', _pulle);
+        await prefs.setInt('coree', _coree);
+        await prefs.setInt('incspeed', _incSpeed);
     }
 }

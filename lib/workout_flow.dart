@@ -8,6 +8,7 @@ import 'workoutb_home.dart';
 import 'workoutb_reps.dart';
 import 'legswitch.dart';
 import 'level.dart';
+import 'workout_signal.dart';
 
 class WorkoutFlow extends StatefulWidget {
     @override
@@ -95,6 +96,7 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
     Future<void> _finishWorkout() async {
         await _toggleLegSwitch();
         await workoutLevel.setLevel();
+        await WorkoutSignal.setSignalFalse();
         if (!mounted) return;
         Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (context) => CongratulationsScreen()),

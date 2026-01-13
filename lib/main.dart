@@ -15,7 +15,7 @@ void main() async {
     WidgetsFlutterBinding.ensureInitialized();
     await StatusManager.loadStatus();
     await StreakManager.init(); 
-    await WorkoutSignal.setSignalTrueA();
+    //await WorkoutSignal.setSignalTrueA();
     await WorkoutSignal.setSignalTrueB();
     await prefsInit();
     runApp(const MyApp());
@@ -76,6 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     children: [
                         ElevatedButton(
                             onPressed: () async {
+                                WorkoutSignal.debugSetSignalTrue();
                                 int? newLevel = await ManuallySetLevel.showLevelInputDialog(context);
                                 if (newLevel != null) {
                                     await ManuallySetLevel.saveLevelToPrefs(newLevel);
