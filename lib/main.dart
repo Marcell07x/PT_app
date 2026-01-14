@@ -10,7 +10,6 @@ import 'level.dart';
 import 'manuallysetlevel.dart';
 import 'workout_signal.dart';
 
-
 void main() async {
     WidgetsFlutterBinding.ensureInitialized();
     await StatusManager.loadStatus();
