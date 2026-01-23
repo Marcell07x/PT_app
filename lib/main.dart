@@ -85,6 +85,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         ElevatedButton(
                             onPressed: () async {
                                 WorkoutSignal.debugSetSignalTrue();
+                                //await prefs?.setInt('workoutsThisWeek', 0);
+                                setState(() {});
                                 int? newLevel = await ManuallySetLevel.showLevelInputDialog(context);
                                 if (newLevel != null) {
                                     await ManuallySetLevel.saveLevelToPrefs(newLevel);

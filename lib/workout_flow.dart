@@ -98,22 +98,29 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
     Future<void> _finishWorkout() async {
         final prefs = await SharedPreferences.getInstance();
         int levelF = prefs.getInt('level') ?? 1;
+        int workoutCount = prefs.getInt('workoutsThisWeek') ?? 0;
 
         await _toggleLegSwitch();
         await workoutLevel.setLevel();
         await WorkoutSignal.setSignalFalse();
 
-        if (levelF > 149) {
-            int workoutCount = prefs.getInt('workoutsThisWeek') ?? 0;
-            workoutCount++;
-            print('This is the workout count: ${workoutCount}');
-            await prefs.setInt('workoutsThisWeek', workoutCount);
-        }
+        workoutCount++;
+        await prefs.setInt('workoutsThisWeek', workoutCount);
+
 
         if (!mounted) return;
-        Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => WorkoutFeedback()),
-        );
+        print('Workoutcount value: ${workoutCount}');
+
+        if (levelF > 149 || (workoutCount == 4 && levelF > 100)) {
+            Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => WorkoutFeedback()),
+            );
+        } else {
+            Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => CongratulationsScreen()),
+            );
+        }
+
     }
 
     void goToPrevious() {

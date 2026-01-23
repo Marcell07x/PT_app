@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'workout_done_screen.dart';
 
-//if the level is under 150 this page should appear only once in every week
-
 class WorkoutFeedback extends StatefulWidget {
     @override
     _WorkoutFeedbackState createState() => _WorkoutFeedbackState();
