@@ -151,4 +151,25 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get congratMessage => 'Megcsináltad az edzésed!';
+
+  @override
+  String get rpe1 => 'Nagyon Könnyed';
+
+  @override
+  String get rpe23 => 'Könnyed';
+
+  @override
+  String get rpe46 => 'Moderate Activity';
+
+  @override
+  String get rpe78 => 'Megerőltető';
+
+  @override
+  String get rpe910 => 'Nagyon Megerőltető';
+
+  @override
+  String get howWasTheWorkout => 'Milyen volt az edzés?';
+
+  @override
+  String get feedback => 'Visszajelzés';
 }

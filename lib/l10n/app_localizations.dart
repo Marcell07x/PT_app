@@ -385,6 +385,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Workout complete!'**
   String get congratMessage;
+
+  /// No description provided for @rpe1.
+  ///
+  /// In en, this message translates to:
+  /// **'Very Light Activity'**
+  String get rpe1;
+
+  /// No description provided for @rpe23.
+  ///
+  /// In en, this message translates to:
+  /// **'Light Activity'**
+  String get rpe23;
+
+  /// No description provided for @rpe46.
+  ///
+  /// In en, this message translates to:
+  /// **'Moderate Activity'**
+  String get rpe46;
+
+  /// No description provided for @rpe78.
+  ///
+  /// In en, this message translates to:
+  /// **'Vigorous Activity'**
+  String get rpe78;
+
+  /// No description provided for @rpe910.
+  ///
+  /// In en, this message translates to:
+  /// **'Very Intense Activity'**
+  String get rpe910;
+
+  /// No description provided for @howWasTheWorkout.
+  ///
+  /// In en, this message translates to:
+  /// **'How was the workout?'**
+  String get howWasTheWorkout;
+
+  /// No description provided for @feedback.
+  ///
+  /// In en, this message translates to:
+  /// **'Feedback'**
+  String get feedback;
 }
 
 class _AppLocalizationsDelegate

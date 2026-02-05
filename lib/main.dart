@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'l10n/app_localizations.dart';
 import 'questionaire.dart';
-import 'button_status.dart';
 import 'streak.dart';
 import 'question1.dart';
 import 'workout_flow.dart';
-import 'l10n/app_localizations.dart';
 import 'level.dart';
 import 'manuallysetlevel.dart';
 import 'workout_signal.dart';
 
 void main() async {
     WidgetsFlutterBinding.ensureInitialized();
-    await StatusManager.loadStatus();
     await StreakManager.init(); 
     await WorkoutSignal.setSignalTrueA();
     await WorkoutSignal.setSignalTrueB();

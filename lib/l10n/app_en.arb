@@ -38,7 +38,6 @@
     "startWorkout": "Start Workout",
 
 
-    "@@comment": "(not only) for the questionaire:",
 
     "question": "Question",
     "nextq": "Next question",
@@ -68,7 +67,15 @@
 
 
     "congrat": "Congratulations!",
-    "congratMessage": "Workout complete!"
+    "congratMessage": "Workout complete!",
 
 
+    "rpe1": "Very Light Activity",
+    "rpe23": "Light Activity",
+    "rpe46": "Moderate Activity",
+    "rpe78": "Vigorous Activity",
+    "rpe910": "Very Intense Activity",
+
+    "howWasTheWorkout": "How was the workout?",
+    "feedback": "Feedback"
 }

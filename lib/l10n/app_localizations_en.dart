@@ -151,4 +151,25 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get congratMessage => 'Workout complete!';
+
+  @override
+  String get rpe1 => 'Very Light Activity';
+
+  @override
+  String get rpe23 => 'Light Activity';
+
+  @override
+  String get rpe46 => 'Moderate Activity';
+
+  @override
+  String get rpe78 => 'Vigorous Activity';
+
+  @override
+  String get rpe910 => 'Very Intense Activity';
+
+  @override
+  String get howWasTheWorkout => 'How was the workout?';
+
+  @override
+  String get feedback => 'Feedback';
 }

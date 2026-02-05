@@ -1,6 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'l10n/app_localizations.dart';
 import 'workout_done_screen.dart';
+
+void main() {
+    runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+    @override
+    Widget build(BuildContext context) {
+        return MaterialApp(
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+            home: WorkoutFeedback(),
+        );
+    }
+}
 
 class WorkoutFeedback extends StatefulWidget {
     @override
@@ -8,21 +24,9 @@ class WorkoutFeedback extends StatefulWidget {
 }
 
 class _WorkoutFeedbackState extends State<WorkoutFeedback> {
-    // if level > 150 this should be at 3 ftom the beginning
     double _rpeValue = 5.0;
     
-    final List<String> _rpeDescriptions = [
-        '1 - Semmi erőfeszítés',
-        '2 - Nagyon könnyű',
-        '3 - Könnyű',
-        '4 - Mérsékelt',
-        '5 - Egy kicsit nehéz',
-        '6 - Nehéz',
-        '7 - Nagyon nehéz',
-        '8 - Rendkívül nehéz',
-        '9 - Extrém',
-        '10 - Maximális erőfeszítés'
-    ];
+    List<String> _rpeDescriptions = [];
 
     Color _getColorForRPE(double value) {
         if (value <= 3) return Colors.green;
@@ -30,23 +34,50 @@ class _WorkoutFeedbackState extends State<WorkoutFeedback> {
         if (value <= 7) return Colors.orange;
         return Colors.red;
     }
+    
+    @override
+    void didChangeDependencies() {
+        super.didChangeDependencies();
+        _rpeDescriptions = [
+            AppLocalizations.of(context)!.rpe1,
+            AppLocalizations.of(context)!.rpe23,
+            AppLocalizations.of(context)!.rpe23,
+            AppLocalizations.of(context)!.rpe46,
+            AppLocalizations.of(context)!.rpe46,
+            AppLocalizations.of(context)!.rpe46,
+            AppLocalizations.of(context)!.rpe78,
+            AppLocalizations.of(context)!.rpe78,
+            AppLocalizations.of(context)!.rpe910,
+            AppLocalizations.of(context)!.rpe910
+        ];
+    }
 
     @override
     Widget build(BuildContext context) {
         return Scaffold(
             appBar: AppBar(
                 automaticallyImplyLeading: false,
-                title: Text('Edzés Visszajelzés'),
+                title: Text(AppLocalizations.of(context)!.feedback),
             ),
             body: SafeArea(
                 child: Padding(
                     padding: EdgeInsets.all(16.0),
                     child: Column(
                         children: [
+                            SizedBox(height: 20),
+                            Text(
+                                AppLocalizations.of(context)!.howWasTheWorkout,
+                                    style: TextStyle(
+                                        fontSize: 28,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                    ),
+                                ),
                             Expanded(
                                 child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
+                                       
                                         Container(
                                             width: 250,
                                             padding: EdgeInsets.all(20),
@@ -66,7 +97,7 @@ class _WorkoutFeedbackState extends State<WorkoutFeedback> {
                                                     ),
                                                     SizedBox(height: 8),
                                                     Text(
-                                                        _rpeDescriptions[_rpeValue.round() - 1],
+                                                        _rpeDescriptions.isNotEmpty ? _rpeDescriptions[_rpeValue.round() - 1] : '',
                                                         style: TextStyle(
                                                             fontSize: 16,
                                                             color: Colors.white,
@@ -149,6 +180,7 @@ class _WorkoutFeedbackState extends State<WorkoutFeedback> {
                                 padding: EdgeInsets.only(bottom: 16.0),
                                 child: SizedBox(
                                     height: 50,
+                                    width: double.infinity,
                                     child: ElevatedButton(
                                         onPressed: () async {
                                             final prefs = await SharedPreferences.getInstance();                                                
@@ -168,7 +200,7 @@ class _WorkoutFeedbackState extends State<WorkoutFeedback> {
                                             ),
                                         ),
                                         child: Text(
-                                            'Vissza a kezdőlapra',
+                                            AppLocalizations.of(context)!.next,
                                             style: TextStyle(
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.bold,
