@@ -86,10 +86,12 @@ class WorkoutBHome {
             workout_partsBHome = [
                 {..._pushexp}, {..._pullex}, {..._legsex},
                 {..._pushexp}, {..._pullex}, {..._legsex},
+                {..._pushexp}, {..._pullex}, {..._legsex},
                 {..._pushex}, {..._pullex}, {..._legsex}
             ];
         } else if (_levelE < 270 && _switch == (-1)) {
             workout_partsBHome = [
+                {..._pushexp}, {..._pullex}, {..._legsexl},
                 {..._pushexp}, {..._pullex}, {..._legsexl},
                 {..._pushexp}, {..._pullex}, {..._legsexl},
                 {..._pushex}, {..._pullex}, {..._legsexl}

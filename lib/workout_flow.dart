@@ -11,6 +11,7 @@ import 'legswitch.dart';
 import 'level.dart';
 import 'workout_signal.dart';
 import 'workout_feedback.dart';
+import 'workoutsthisweek.dart';
 
 class WorkoutFlow extends StatefulWidget {
     @override
@@ -97,19 +98,26 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
 
     Future<void> _finishWorkout() async {
         final prefs = await SharedPreferences.getInstance();
+        await WorkoutsThisWeek.checkAndResetWeek();
+
         int levelF = prefs.getInt('level') ?? 1;
         int workoutCount = prefs.getInt('workoutsThisWeek') ?? 0;
 
         await _toggleLegSwitch();
-        await workoutLevel.setLevel();
         await WorkoutSignal.setSignalFalse();
 
         workoutCount++;
         await prefs.setInt('workoutsThisWeek', workoutCount);
 
+        if (workoutCount == 4) {
+            int inc = prefs.getInt('incspeed')!;
+            inc++;
+            await prefs.setInt('incspeed', inc);
+        }
+
+        await workoutLevel.setLevel();
 
         if (!mounted) return;
-        print('Workoutcount value: ${workoutCount}');
 
         if (levelF > 149 || (workoutCount == 4 && levelF > 100)) {
             Navigator.of(context).pushReplacement(

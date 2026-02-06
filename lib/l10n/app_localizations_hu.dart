@@ -159,7 +159,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get rpe23 => 'Könnyed';
 
   @override
-  String get rpe46 => 'Moderate Activity';
+  String get rpe46 => 'Kicsit Megerőltető';
 
   @override
   String get rpe78 => 'Megerőltető';

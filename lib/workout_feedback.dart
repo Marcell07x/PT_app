@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'l10n/app_localizations.dart';
 import 'workout_done_screen.dart';
+import 'feedback_execution.dart';
 
 void main() {
     runApp(MyApp());
@@ -29,9 +30,10 @@ class _WorkoutFeedbackState extends State<WorkoutFeedback> {
     List<String> _rpeDescriptions = [];
 
     Color _getColorForRPE(double value) {
-        if (value <= 3) return Colors.green;
-        if (value <= 5) return Colors.lightGreen;
-        if (value <= 7) return Colors.orange;
+        int roundedValue = value.round();
+        if (roundedValue <= 3) return Colors.green;
+        if (roundedValue <= 6) return Colors.lightGreen;
+        if (roundedValue <= 8) return Colors.orange[600]!;
         return Colors.red;
     }
     
@@ -77,7 +79,6 @@ class _WorkoutFeedbackState extends State<WorkoutFeedback> {
                                 child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                       
                                         Container(
                                             width: 250,
                                             padding: EdgeInsets.all(20),
@@ -184,10 +185,9 @@ class _WorkoutFeedbackState extends State<WorkoutFeedback> {
                                     child: ElevatedButton(
                                         onPressed: () async {
                                             final prefs = await SharedPreferences.getInstance();                                                
-                                            prefs.setInt('rpe_value', _rpeValue.round());
-                                           
-                                            int _testRpe = prefs.getInt('rpe_value')!;
-                                            print(_testRpe);
+                                            await prefs.setInt('rpe_value', _rpeValue.round());
+                                            
+                                            await FeedbackExecution.executeOnFeedback();
 
                                             Navigator.of(context).pushReplacement(
                                                 MaterialPageRoute(builder: (context) => CongratulationsScreen()),

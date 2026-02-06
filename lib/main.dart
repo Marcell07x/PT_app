@@ -97,6 +97,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         ElevatedButton(
                             onPressed: _isButtonEnabled ? () async {
                                 await StreakManager.incrementStreak();
+                                final prefs = await SharedPreferences.getInstance();
+                                int testlevel = prefs.getInt('level') ?? 67676767;
+                                print('testlevel is: ${testlevel}');
                                 setState(() {});
                                 Navigator.of(context).push(
                                     MaterialPageRoute(
