@@ -20,7 +20,7 @@ class _Question3PageState extends State<Question3Page> {
             supportedLocales: AppLocalizations.supportedLocales,
 
             home: Scaffold(
-                appBar: AppBar(title: Text('3. ' + AppLocalizations.of(context)!.question)),
+                appBar: AppBar(title: Text('2. ' + AppLocalizations.of(context)!.question)),
                 body: Padding(
                     padding: EdgeInsets.all(16),
                     child: Column(

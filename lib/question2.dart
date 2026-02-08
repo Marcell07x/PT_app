@@ -11,6 +11,7 @@ class Question2Page extends StatefulWidget {
 }
 
 class _Question2PageState extends State<Question2Page> {
+    final _data = QuestionnaireData();
     int? _selected;
 
     @override
@@ -20,7 +21,7 @@ class _Question2PageState extends State<Question2Page> {
             supportedLocales: AppLocalizations.supportedLocales,
 
             home: Scaffold(
-                appBar: AppBar(title: Text('2. ' + AppLocalizations.of(context)!.question)),
+                appBar: AppBar(title: Text('1. ' + AppLocalizations.of(context)!.question)),
                 body: Padding(
                     padding: EdgeInsets.all(16),
                     child: Column(

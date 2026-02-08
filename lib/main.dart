@@ -1,21 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'l10n/app_localizations.dart';
+import 'package:workmanager/workmanager.dart';
 import 'questionaire.dart';
 import 'streak.dart';
 import 'question1.dart';
+import 'question2.dart';
 import 'workout_flow.dart';
 import 'level.dart';
 import 'manuallysetlevel.dart';
 import 'workout_signal.dart';
+import "background_scheduler.dart";
 
 void main() async {
-    WidgetsFlutterBinding.ensureInitialized();
-    await StreakManager.init(); 
-    await WorkoutSignal.setSignalTrueA();
-    await WorkoutSignal.setSignalTrueB();
-    await prefsInit();
-    runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  
+  Workmanager().initialize(
+    () => Workmanager().executeTask((task, inputData) async {
+            await WorkoutSignal.setSignalTrue();
+            //the functions for the notification go here
+            return Future.value(true);
+        }),
+    isInDebugMode: true,
+  );
+  
+  await StreakManager.init(); 
+  await WorkoutSignal.setSignalTrue();
+  await prefsInit();
+  
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -50,6 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
     @override
     void initState() {
         super.initState();
+        BackgroundScheduler.scheduleDailyAt5PM();
         _checkWorkout();
         WorkoutSignal.onSignalChanged = _checkWorkout;
     }
@@ -113,7 +127,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             onPressed: () {
                                 Navigator.of(context).push(
                                     MaterialPageRoute(
-                                        builder: (context) => Question1Page(),
+                                        builder: (context) => Question2Page(data: QuestionnaireData()),
                                     ),
                                 );
                             },

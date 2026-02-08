@@ -73,4 +73,9 @@ class WorkoutSignal {
             }
         }
     }
+
+    static Future<void> setSignalTrue() async {
+        await setSignalTrueA();
+        await setSignalTrueB();
+    }
 }
