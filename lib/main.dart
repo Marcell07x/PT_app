@@ -11,6 +11,7 @@ import 'level.dart';
 import 'manuallysetlevel.dart';
 import 'workout_signal.dart';
 import "background_scheduler.dart";
+import 'schedule_noti.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,7 +19,7 @@ void main() async {
   Workmanager().initialize(
     () => Workmanager().executeTask((task, inputData) async {
             await WorkoutSignal.setSignalTrue();
-            //the functions for the notification go here
+            //notification functions go here
             return Future.value(true);
         }),
     isInDebugMode: true,
@@ -98,6 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             onPressed: () async {
                                 WorkoutSignal.debugSetSignalTrue();
                                 //await prefs?.setInt('workoutsThisWeek', 0);
+                                await ScheduleNotifications.testNoti();
                                 setState(() {});
                                 int? newLevel = await ManuallySetLevel.showLevelInputDialog(context);
                                 if (newLevel != null) {

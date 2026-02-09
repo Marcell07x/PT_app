@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import "questionaire_converter.dart";
 import "exercises.dart";
 import 'l10n/app_localizations.dart';
+import 'background_scheduler.dart';
 
 class Question7Page extends StatefulWidget {
     final QuestionnaireData data;
@@ -42,6 +43,7 @@ class _Question7PageState extends State<Question7Page> {
                                             prefs?.setInt('age', _selected!);
                                             Converter converter = Converter();
                                             await converter.convert();
+                                            await BackgroundScheduler.scheduleDailyAt5PM();
                                             Navigator.of(context).popUntil((route) => route.isFirst);
                                         }
                                         : null,
