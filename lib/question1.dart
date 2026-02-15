@@ -5,6 +5,8 @@ import 'l10n/app_localizations.dart';
 
 //this question is not being used for now
 class Question1Page extends StatefulWidget {
+  const Question1Page({super.key});
+
     @override
     _Question1PageState createState() => _Question1PageState();
 }
@@ -21,7 +23,7 @@ class _Question1PageState extends State<Question1Page> {
     
             home: Scaffold(
                 appBar: AppBar(
-                    title: Text('1. ' + AppLocalizations.of(context)!.question),
+                    title: Text('1. ${AppLocalizations.of(context)!.question}'),
                     automaticallyImplyLeading: false,
                 ),
                 body: Padding(

@@ -9,6 +9,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
     @override
     Widget build(BuildContext context) {
         return MaterialApp(
@@ -20,6 +22,8 @@ class MyApp extends StatelessWidget {
 }
 
 class WorkoutFeedback extends StatefulWidget {
+  const WorkoutFeedback({super.key});
+
     @override
     _WorkoutFeedbackState createState() => _WorkoutFeedbackState();
 }
@@ -156,7 +160,7 @@ class _WorkoutFeedbackState extends State<WorkoutFeedback> {
                                                                 fontSize: 16,
                                                                 fontWeight: FontWeight.bold,
                                                             ),
-                                                            showValueIndicator: ShowValueIndicator.always,
+                                                            showValueIndicator: ShowValueIndicator.onDrag,
                                                         ),
                                                         child: Slider(
                                                             value: _rpeValue,

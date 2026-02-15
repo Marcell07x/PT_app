@@ -15,10 +15,13 @@ import 'schedule_noti.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  ScheduleNotifications.initNotification();
+
   
   Workmanager().initialize(
     () => Workmanager().executeTask((task, inputData) async {
             await WorkoutSignal.setSignalTrue();
+            ScheduleNotifications.initNotification();
             //notification functions go here
             return Future.value(true);
         }),
@@ -115,7 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 await StreakManager.incrementStreak();
                                 final prefs = await SharedPreferences.getInstance();
                                 int testlevel = prefs.getInt('level') ?? 67676767;
-                                print('testlevel is: ${testlevel}');
+                                print('testlevel is: $testlevel');
                                 setState(() {});
                                 Navigator.of(context).push(
                                     MaterialPageRoute(

@@ -5,7 +5,7 @@ import 'l10n/app_localizations.dart';
 
 class Question4Page extends StatefulWidget {
     final QuestionnaireData data;
-    const Question4Page({Key? key, required this.data}) : super(key: key);
+    const Question4Page({super.key, required this.data});
     @override
     _Question4PageState createState() => _Question4PageState();
 }
@@ -19,7 +19,7 @@ class _Question4PageState extends State<Question4Page> {
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             home: Scaffold(
-                appBar: AppBar(title: Text('3. ' + AppLocalizations.of(context)!.question)),
+                appBar: AppBar(title: Text('3. ${AppLocalizations.of(context)!.question}')),
                 body: Padding(
                     padding: EdgeInsets.all(16),
                     child: Column(

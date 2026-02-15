@@ -7,7 +7,7 @@ import 'background_scheduler.dart';
 
 class Question7Page extends StatefulWidget {
     final QuestionnaireData data;
-    const Question7Page({Key? key, required this.data}) : super(key: key);
+    const Question7Page({super.key, required this.data});
     @override
     _Question7PageState createState() => _Question7PageState();
 }
@@ -21,7 +21,7 @@ class _Question7PageState extends State<Question7Page> {
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             home: Scaffold(
-                appBar: AppBar(title: Text('6. ' + AppLocalizations.of(context)!.question)),
+                appBar: AppBar(title: Text('6. ${AppLocalizations.of(context)!.question}')),
                 body: Padding(
                     padding: EdgeInsets.all(16),
                     child: Column(

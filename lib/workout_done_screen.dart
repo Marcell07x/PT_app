@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'l10n/app_localizations.dart';
 
 class CongratulationsScreen extends StatelessWidget {
+  const CongratulationsScreen({super.key});
+
     @override
     Widget build(BuildContext context) {
         return Scaffold(

@@ -14,6 +14,8 @@ import 'workout_feedback.dart';
 import 'workoutsthisweek.dart';
 
 class WorkoutFlow extends StatefulWidget {
+  const WorkoutFlow({super.key});
+
     @override
     _WorkoutFlowState createState() => _WorkoutFlowState();
 }

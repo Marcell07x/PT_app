@@ -13,7 +13,7 @@ class WorkoutScreen extends StatefulWidget {
     final int totalWorkouts;
 
     const WorkoutScreen({
-        Key? key,
+        super.key,
         required this.videoPath,
         required this.exerciseName,
         required this.reps,
@@ -22,7 +22,7 @@ class WorkoutScreen extends StatefulWidget {
         required this.onPreviousPressed,
         required this.currentIndex,
         required this.totalWorkouts,
-    }) : super(key: key);
+    });
 
     @override
     _WorkoutScreenState createState() => _WorkoutScreenState();
@@ -81,8 +81,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
             
             home: Scaffold(
                 appBar: AppBar(
-                    title: Text('${AppLocalizations.of(context)!.workout} ' + 
-                    '(${widget.currentIndex + 1}/${widget.totalWorkouts})'),
+                    title: Text('${AppLocalizations.of(context)!.workout} ' '(${widget.currentIndex + 1}/${widget.totalWorkouts})'),
                     backgroundColor: Colors.blue,
                     leading: IconButton(
                         icon: Icon(Icons.arrow_back),
