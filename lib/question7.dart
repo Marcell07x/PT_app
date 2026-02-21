@@ -43,7 +43,7 @@ class _Question7PageState extends State<Question7Page> {
                                             prefs?.setInt('age', _selected!);
                                             Converter converter = Converter();
                                             await converter.convert();
-                                            await BackgroundScheduler.scheduleDailyAt5PM();
+                                            //await BackgroundScheduler.scheduleDailyAt5PM();
                                             Navigator.of(context).popUntil((route) => route.isFirst);
                                         }
                                         : null,
