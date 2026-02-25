@@ -3,7 +3,6 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 // the scource for the code should be the package's page
 //first goal: initialize notis and a function that sends a noti
-//icon location: @mipmap/ic_launcher
 
 
 class ScheduleNotifications {

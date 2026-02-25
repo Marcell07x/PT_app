@@ -16,23 +16,29 @@ import 'schedule_noti.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   ScheduleNotifications.initNotification();
-
-  
-  Workmanager().initialize(
-    () => Workmanager().executeTask((task, inputData) async {
-            await WorkoutSignal.setSignalTrue();
-            ScheduleNotifications.initNotification();
-            //notification functions go here
-            return Future.value(true);
-        }),
-    isInDebugMode: true,
-  );
-  
+  Workmanager().initialize(callbackDispatcher);
   await StreakManager.init(); 
   await WorkoutSignal.setSignalTrue();
   await prefsInit();
   
   runApp(const MyApp());
+}
+
+@pragma('vm:entry-point')
+void callbackDispatcher() {
+    Workmanager().executeTask((task, inputData) async {
+        switch (task) {
+            case "test_noti":
+                ScheduleNotifications.initNotification();
+                await ScheduleNotifications.testNoti();
+                break;
+            default:
+                // Handle unknown task types
+                break;
+        }
+        
+        return Future.value(true);
+    });
 }
 
 class MyApp extends StatefulWidget {
