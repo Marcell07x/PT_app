@@ -1,6 +1,7 @@
 import 'package:workmanager/workmanager.dart';
 
 //implemented at the end of the questionaire
+//it doesn't set the time yet
 class BackgroundScheduler {
     static Future<void> scheduleDailyAt5PM() async {
         final now = DateTime.now();
