@@ -14,14 +14,12 @@ import "background_scheduler.dart";
 import 'schedule_noti.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  ScheduleNotifications.initNotification();
-  Workmanager().initialize(callbackDispatcher);
-  await StreakManager.init(); 
-  await WorkoutSignal.setSignalTrue();
-  await prefsInit();
-  
-  runApp(const MyApp());
+    WidgetsFlutterBinding.ensureInitialized();
+    ScheduleNotifications.initNotification();
+    await StreakManager.init(); 
+    await WorkoutSignal.setSignalTrue();
+    await prefsInit();
+    runApp(const MyApp());
 }
 
 @pragma('vm:entry-point')
