@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'l10n/app_localizations.dart';
-import 'package:workmanager/workmanager.dart';
 import 'questionaire.dart';
 import 'streak.dart';
 import 'question1.dart';
@@ -10,8 +9,9 @@ import 'workout_flow.dart';
 import 'level.dart';
 import 'manuallysetlevel.dart';
 import 'workout_signal.dart';
-import "background_scheduler.dart";
 import 'schedule_noti.dart';
+import 'checkdata.dart';
+import 'questionaire.dart';
 
 void main() async {
     WidgetsFlutterBinding.ensureInitialized();
@@ -19,24 +19,19 @@ void main() async {
     await StreakManager.init(); 
     await WorkoutSignal.setSignalTrue();
     await prefsInit();
-    runApp(const MyApp());
-}
-
-@pragma('vm:entry-point')
-void callbackDispatcher() {
-    Workmanager().executeTask((task, inputData) async {
-        switch (task) {
-            case "test_noti":
-                ScheduleNotifications.initNotification();
-                await ScheduleNotifications.testNoti();
-                break;
-            default:
-                // Handle unknown task types
-                break;
-        }
-        
-        return Future.value(true);
-    });
+    bool truth = await CheckData.checkData();
+    if (truth) {
+        runApp(const MyApp());
+    } else {
+        final _qdata = QuestionnaireData();
+        runApp(
+            MaterialApp(
+                localizationsDelegates: AppLocalizations.localizationsDelegates,
+                supportedLocales: AppLocalizations.supportedLocales,
+                home: Question2Page(data: _qdata),
+                ),
+            );
+    }
 }
 
 class MyApp extends StatefulWidget {
@@ -71,7 +66,6 @@ class _MyHomePageState extends State<MyHomePage> {
     @override
     void initState() {
         super.initState();
-        BackgroundScheduler.scheduleDailyAt5PM();
         _checkWorkout();
         WorkoutSignal.onSignalChanged = _checkWorkout;
     }
