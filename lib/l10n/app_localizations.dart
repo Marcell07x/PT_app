@@ -427,6 +427,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Feedback'**
   String get feedback;
+
+  /// No description provided for @workoutReminderTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick workout? 💪'**
+  String get workoutReminderTitle;
+
+  /// No description provided for @workoutReminderBody.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re building a habit - keep going!'**
+  String get workoutReminderBody;
 }
 
 class _AppLocalizationsDelegate

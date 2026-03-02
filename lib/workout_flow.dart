@@ -12,6 +12,7 @@ import 'level.dart';
 import 'workout_signal.dart';
 import 'workout_feedback.dart';
 import 'workoutsthisweek.dart';
+import 'schedule_noti.dart';
 
 class WorkoutFlow extends StatefulWidget {
   const WorkoutFlow({super.key});
@@ -118,6 +119,8 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
         }
 
         await workoutLevel.setLevel();
+        await ScheduleNotifications.dayLaterNoti(context);
+        await ScheduleNotifications.testImmediateNotification();
 
         if (!mounted) return;
 

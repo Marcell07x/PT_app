@@ -76,6 +76,9 @@
     "rpe910": "Nagyon Megerőltető",
 
     "howWasTheWorkout": "Milyen volt az edzés?",
-    "feedback": "Visszajelzés"
+    "feedback": "Visszajelzés",
+
+    "workoutReminderTitle": "Egy kis edzés",
+    "workoutReminderBody": "Tegyés ma is magadért, nyomj le egy gyors edzést ;)"
 
 }

@@ -1,10 +1,12 @@
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'l10n/app_localizations.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
-// the time zone is set to Budapest's timezone
+//the time zone is set to Budapest
 
 class ScheduleNotifications {
     static final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
@@ -70,6 +72,7 @@ class ScheduleNotifications {
         );
     }
 
+    //it's not needed
     static tz.TZDateTime _nextInstanceOfTime(int time) {
         final location = tz.getLocation('Europe/Budapest');
         final tz.TZDateTime now = tz.TZDateTime.now(location);  
@@ -87,16 +90,53 @@ class ScheduleNotifications {
         return scheduledDate;
     }
 
-    static Future<void> noti5PM() async {
-        final prefs = await SharedPreferences.getInstance();
-        bool? signal = prefs.getBool('signal');
+    static Future<void> dayLaterNoti(BuildContext context) async {
+        final location = tz.getLocation('Europe/Budapest');
+        final tz.TZDateTime now = tz.TZDateTime.now(location);
+        
+        tz.TZDateTime dayLaterTime = now.add(const Duration(hours: 24));
+        tz.TZDateTime testTime = now.add(const Duration(seconds: 60));
 
-        if (signal == true) {
+        if (dayLaterTime.hour >= 21) {
+            dayLaterTime = tz.TZDateTime(location, now.year, now.month, now.day + 1, 21);
+        } else if (dayLaterTime.hour <= 6) {
+            dayLaterTime = tz.TZDateTime(location, now.year, now.month, now.day + 1, 6);
         }
+
+        final String reminderTitle = AppLocalizations.of(context)!.workoutReminderTitle;
+        final String reminderBody = AppLocalizations.of(context)!.workoutReminderBody;
+
+        await flutterLocalNotificationsPlugin.zonedSchedule(
+            id: 0,
+            title: reminderTitle,
+            body: reminderBody,
+            scheduledDate: testTime,
+            notificationDetails: const NotificationDetails(
+                android: AndroidNotificationDetails(
+                    'Workout reminder id',
+                    'Workout reminder notifications',
+                    channelDescription: 'Reminds users to work out',
+                ),
+            ),
+            androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+            matchDateTimeComponents: DateTimeComponents.time,
+        );
     }
 
-    static Future<void> noti8PM() async {
-        final prefs = await SharedPreferences.getInstance();
-        bool? signal = prefs.getBool('signal');
-    }
+    static Future<void> testImmediateNotification() async {
+    // AZONNALI megjelenítésre való a show(), nem a zonedSchedule
+        await flutterLocalNotificationsPlugin.show(
+        id: 999,
+        title: 'Teszt értesítés',
+        body: 'Ez egy teszt',
+        notificationDetails: const NotificationDetails(
+            android: AndroidNotificationDetails(
+                'channel_id',
+                'channel_name',
+                importance: Importance.high,
+            ),
+        ),
+    );
+}
+
 }

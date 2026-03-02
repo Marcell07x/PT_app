@@ -172,4 +172,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get feedback => 'Feedback';
+
+  @override
+  String get workoutReminderTitle => 'Quick workout? 💪';
+
+  @override
+  String get workoutReminderBody => 'You\'re building a habit - keep going!';
 }

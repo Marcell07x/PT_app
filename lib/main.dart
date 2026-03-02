@@ -19,8 +19,8 @@ void main() async {
     await StreakManager.init(); 
     await WorkoutSignal.setSignalTrue();
     await prefsInit();
-    bool truth = await CheckData.checkData();
-    if (truth) {
+    bool hasData = await CheckData.checkData();
+    if (hasData) {
         runApp(const MyApp());
     } else {
         final _qdata = QuestionnaireData();

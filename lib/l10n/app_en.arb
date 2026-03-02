@@ -77,5 +77,8 @@
     "rpe910": "Very Intense Activity",
 
     "howWasTheWorkout": "How was the workout?",
-    "feedback": "Feedback"
+    "feedback": "Feedback",
+    
+    "workoutReminderTitle": "Quick workout? 💪",
+    "workoutReminderBody": "You're building a habit - keep going!"
 }

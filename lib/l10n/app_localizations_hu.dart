@@ -172,4 +172,11 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get feedback => 'Visszajelzés';
+
+  @override
+  String get workoutReminderTitle => 'Egy kis edzés';
+
+  @override
+  String get workoutReminderBody =>
+      'Tegyés ma is magadért, nyomj le egy gyors edzést ;)';
 }
