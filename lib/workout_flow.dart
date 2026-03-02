@@ -15,7 +15,7 @@ import 'workoutsthisweek.dart';
 import 'schedule_noti.dart';
 
 class WorkoutFlow extends StatefulWidget {
-  const WorkoutFlow({super.key});
+    const WorkoutFlow({super.key});
 
     @override
     _WorkoutFlowState createState() => _WorkoutFlowState();
@@ -30,9 +30,9 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
     WorkoutLevel workoutLevel = WorkoutLevel();
 
     final List<Map<String, String>> workouts = [];
-    int currentIndex = 0;
+    int _currentIndex = 0;
 
-    String getLocalizedExerciseName(String localizationKey, BuildContext context) {
+    String _getLocalizedExerciseName(String localizationKey, BuildContext context) {
         final loc = AppLocalizations.of(context)!;
         switch (localizationKey) {
             case 'wallPush': return loc.wallPush;
@@ -82,14 +82,13 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
             setState(() {
                 workouts.addAll(workoutBHome.workout_partsBHome);
             });
-
         }   
     }
 
     void goToNext() {
-        if (currentIndex < workouts.length - 1) {
+        if (_currentIndex < workouts.length - 1) {
             setState(() {
-                currentIndex++;
+                _currentIndex++;
             });
         }
     }
@@ -137,9 +136,9 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
     }
 
     void goToPrevious() {
-        if (currentIndex > 0) {
+        if (_currentIndex > 0) {
             setState(() {
-                currentIndex--;
+                _currentIndex--;
             });
         } else {
             Navigator.of(context).pop();
@@ -155,17 +154,17 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
             );
         }
 
-        final isLastWorkout = currentIndex == workouts.length - 1;
-        final currentExercise = workouts[currentIndex];
+        final isLastWorkout = _currentIndex == workouts.length - 1;
+        final currentExercise = workouts[_currentIndex];
         
         return WorkoutScreen(
             videoPath: currentExercise['videoPath']!,
-            exerciseName: getLocalizedExerciseName(currentExercise['localizationKey']!, context),
+            exerciseName: _getLocalizedExerciseName(currentExercise['localizationKey']!, context),
             reps: "${currentExercise['reps']!} ${AppLocalizations.of(context)!.reps}",
             buttonText: isLastWorkout ? AppLocalizations.of(context)!.finish : AppLocalizations.of(context)!.next,
             onNextPressed: isLastWorkout ? _finishWorkout : goToNext,
             onPreviousPressed: goToPrevious,
-            currentIndex: currentIndex,
+            currentIndex: _currentIndex,
             totalWorkouts: workouts.length,
         );
     }
