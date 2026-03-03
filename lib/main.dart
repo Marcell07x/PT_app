@@ -100,7 +100,6 @@ class _MyHomePageState extends State<MyHomePage> {
                             onPressed: () async {
                                 WorkoutSignal.debugSetSignalTrue();
                                 //await prefs?.setInt('workoutsThisWeek', 0);
-                                await ScheduleNotifications.testNoti();
                                 setState(() {});
                                 int? newLevel = await ManuallySetLevel.showLevelInputDialog(context);
                                 if (newLevel != null) {

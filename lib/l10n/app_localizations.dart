@@ -439,6 +439,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'You\'re building a habit - keep going!'**
   String get workoutReminderBody;
+
+  /// No description provided for @notis.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get notis;
+
+  /// No description provided for @notisAreImportant.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications help you build the habit of working out.'**
+  String get notisAreImportant;
+
+  /// No description provided for @enableNotis.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable Notifications'**
+  String get enableNotis;
 }
 
 class _AppLocalizationsDelegate

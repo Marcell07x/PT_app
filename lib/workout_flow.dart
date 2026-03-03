@@ -118,8 +118,7 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
         }
 
         await workoutLevel.setLevel();
-        await ScheduleNotifications.dayLaterNoti(context);
-        await ScheduleNotifications.testImmediateNotification();
+        await ScheduleNotifications.laterNoti(context);
 
         if (!mounted) return;
 

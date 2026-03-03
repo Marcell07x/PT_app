@@ -79,6 +79,10 @@
     "feedback": "Visszajelzés",
 
     "workoutReminderTitle": "Egy kis edzés",
-    "workoutReminderBody": "Tegyés ma is magadért, nyomj le egy gyors edzést ;)"
+    "workoutReminderBody": "Tegyés ma is magadért, nyomj le egy gyors edzést ;)",
+
+    "notis": "Értesítések",
+    "notisAreImportant": "Az emlékeztető értesítések segítenek rászokni az edzésre.",
+    "enableNotis": "Értesítések engedélyezése"
 
 }

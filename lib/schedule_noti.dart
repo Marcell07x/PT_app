@@ -7,6 +7,8 @@ import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
 //the time zone is set to Budapest
+//Sometimes there won't be notification, when a workout is available,
+    //but it's not a big problem
 
 class ScheduleNotifications {
     static final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
@@ -54,24 +56,6 @@ class ScheduleNotifications {
         }
     }
 
-    static Future<void> testNoti() async {
-        await flutterLocalNotificationsPlugin.zonedSchedule(
-            id: 0,
-            title: 'Successful message',
-            body: 'testing daily notifications',
-            scheduledDate: _nextInstanceOfTime(20),
-            notificationDetails: const NotificationDetails(
-                android: AndroidNotificationDetails(
-                    'daily notification channel id',
-                    'daily notification channel name',
-                    channelDescription: 'daily notification description',
-                ),
-            ),
-            androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-            matchDateTimeComponents: DateTimeComponents.time,
-        );
-    }
-
     //it's not needed
     static tz.TZDateTime _nextInstanceOfTime(int time) {
         final location = tz.getLocation('Europe/Budapest');
@@ -90,17 +74,28 @@ class ScheduleNotifications {
         return scheduledDate;
     }
 
-    static Future<void> dayLaterNoti(BuildContext context) async {
+    static Future<void> laterNoti(BuildContext context) async {
         final location = tz.getLocation('Europe/Budapest');
         final tz.TZDateTime now = tz.TZDateTime.now(location);
+
+        final prefs = await SharedPreferences.getInstance();
+
+        int levelN = prefs.getInt('level') ?? 1;
+        int numOfWorkouts = prefs.getInt('workoutsThisWeek')!;
+        int hoursAdded = 24;
         
-        tz.TZDateTime dayLaterTime = now.add(const Duration(hours: 24));
-        tz.TZDateTime testTime = now.add(const Duration(seconds: 60));
+        if (levelN > 149 && numOfWorkouts == 3) {
+            hoursAdded = 72;
+        } else if (levelN > 149) {
+            hoursAdded = 48;
+        }
+
+        tz.TZDateTime dayLaterTime = now.add(Duration(hours: hoursAdded));
 
         if (dayLaterTime.hour >= 21) {
-            dayLaterTime = tz.TZDateTime(location, now.year, now.month, now.day + 1, 21);
+            dayLaterTime = tz.TZDateTime(location, dayLaterTime.year, dayLaterTime.month, dayLaterTime.day, 21);
         } else if (dayLaterTime.hour <= 6) {
-            dayLaterTime = tz.TZDateTime(location, now.year, now.month, now.day + 1, 6);
+            dayLaterTime = tz.TZDateTime(location, dayLaterTime.year, dayLaterTime.month, dayLaterTime.day, 6);
         }
 
         final String reminderTitle = AppLocalizations.of(context)!.workoutReminderTitle;
@@ -110,7 +105,7 @@ class ScheduleNotifications {
             id: 0,
             title: reminderTitle,
             body: reminderBody,
-            scheduledDate: testTime,
+            scheduledDate: dayLaterTime,
             notificationDetails: const NotificationDetails(
                 android: AndroidNotificationDetails(
                     'Workout reminder id',
@@ -122,21 +117,5 @@ class ScheduleNotifications {
             matchDateTimeComponents: DateTimeComponents.time,
         );
     }
-
-    static Future<void> testImmediateNotification() async {
-    // AZONNALI megjelenítésre való a show(), nem a zonedSchedule
-        await flutterLocalNotificationsPlugin.show(
-        id: 999,
-        title: 'Teszt értesítés',
-        body: 'Ez egy teszt',
-        notificationDetails: const NotificationDetails(
-            android: AndroidNotificationDetails(
-                'channel_id',
-                'channel_name',
-                importance: Importance.high,
-            ),
-        ),
-    );
-}
 
 }

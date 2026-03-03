@@ -170,7 +170,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                                                         ),
                                                     ),
                                                     child: Text(
-                                                        'Előző',
+                                                        AppLocalizations.of(context)!.goback,
                                                         style: TextStyle(
                                                             fontSize: 18,
                                                             fontWeight: FontWeight.bold,

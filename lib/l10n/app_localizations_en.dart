@@ -178,4 +178,14 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get workoutReminderBody => 'You\'re building a habit - keep going!';
+
+  @override
+  String get notis => 'Notifications';
+
+  @override
+  String get notisAreImportant =>
+      'Notifications help you build the habit of working out.';
+
+  @override
+  String get enableNotis => 'Enable Notifications';
 }

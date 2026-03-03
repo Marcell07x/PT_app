@@ -1,9 +1,10 @@
 import 'main.dart';
 import 'questionaire.dart';
 import 'package:flutter/material.dart';
+import 'l10n/app_localizations.dart';
 import "questionaire_converter.dart";
 import "exercises.dart";
-import 'l10n/app_localizations.dart';
+import 'request_noti_permission.dart';
 
 class Question7Page extends StatefulWidget {
     final QuestionnaireData data;
@@ -45,7 +46,7 @@ class _Question7PageState extends State<Question7Page> {
                                             await converter.convert();
                                             Navigator.of(context).pushAndRemoveUntil(
                                                 MaterialPageRoute(
-                                                    builder: (context) => const MyApp(),
+                                                    builder: (context) => const RequestNotiPermission(),
                                                 ),
                                                 (Route<dynamic> route) => false,
                                             );

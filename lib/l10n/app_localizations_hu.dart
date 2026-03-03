@@ -179,4 +179,14 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get workoutReminderBody =>
       'Tegyés ma is magadért, nyomj le egy gyors edzést ;)';
+
+  @override
+  String get notis => 'Értesítések';
+
+  @override
+  String get notisAreImportant =>
+      'Az emlékeztető értesítések segítenek rászokni az edzésre.';
+
+  @override
+  String get enableNotis => 'Értesítések engedélyezése';
 }
