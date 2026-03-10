@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'l10n/app_localizations.dart';
 import 'package:video_player/video_player.dart';
+import 'main.dart';
 
 class WorkoutScreen extends StatefulWidget {
     final String videoPath;
     final String exerciseName;
     final String reps;
+    final String description;
     final String buttonText;
     final VoidCallback onNextPressed;
     final VoidCallback onPreviousPressed;
@@ -17,6 +19,7 @@ class WorkoutScreen extends StatefulWidget {
         required this.videoPath,
         required this.exerciseName,
         required this.reps,
+        required this.description,
         required this.buttonText,
         required this.onNextPressed,
         required this.onPreviousPressed,
@@ -81,11 +84,26 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
             
             home: Scaffold(
                 appBar: AppBar(
-                    title: Text('${AppLocalizations.of(context)!.workout} ' '(${widget.currentIndex + 1}/${widget.totalWorkouts})'),
+                    title: Text(
+                        '${AppLocalizations.of(context)!.workout} ' '(${widget.currentIndex + 1}/${widget.totalWorkouts})',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                        ),
+                    ),
                     backgroundColor: Colors.blue,
                     leading: IconButton(
-                        icon: Icon(Icons.arrow_back),
-                        onPressed: widget.onPreviousPressed,
+                        icon: Icon(
+                            Icons.home,
+                            color: Colors.white,
+                        ),
+                        onPressed: () { Navigator.of(context).pushAndRemoveUntil(
+                                MaterialPageRoute(
+                                    builder: (context) => const MyApp(),
+                                ),
+                                (Route<dynamic> route) => false,
+                            );
+                        },
                     ),
                 ),
                 body: SafeArea(
@@ -127,10 +145,6 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                                                         children: [
                                                             CircularProgressIndicator(),
                                                             SizedBox(height: 10),
-                                                            Text(
-                                                                'Loading...',
-                                                                style: TextStyle(color: Colors.white),
-                                                            ),
                                                         ],
                                                     ),
                                                 ),
@@ -141,7 +155,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                                 Text(
                                     widget.exerciseName,
                                     style: TextStyle(
-                                        fontSize: 18,
+                                        fontSize: 25,
                                         fontWeight: FontWeight.w500,
                                         color: Colors.black87,
                                     ),
@@ -151,9 +165,23 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                                 Text(
                                     widget.reps,
                                     style: TextStyle(
-                                        fontSize: 22,
+                                        fontSize: 20,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black87,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                ),
+                                SizedBox(height: 25),
+                                Container(
+                                    width: double.infinity,
+                                    padding: EdgeInsets.only(left: 16),
+                                    child: Text(
+                                        widget.description,
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            color: Colors.black87,
+                                        ),
+                                        textAlign: TextAlign.left,
                                     ),
                                 ),
                                 Spacer(),

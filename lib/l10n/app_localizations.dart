@@ -457,6 +457,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Enable Notifications'**
   String get enableNotis;
+
+  /// No description provided for @testDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'-desc\n-desc\n-desc'**
+  String get testDescription;
 }
 
 class _AppLocalizationsDelegate

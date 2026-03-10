@@ -58,6 +58,7 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
             case 'lunge5': return loc.lunge5;
             case 'core1': return loc.core1;
             case 'core2': return loc.core2;
+            case 'testKey': return loc.testDescription;
             default: return localizationKey;
         }
     }
@@ -158,8 +159,9 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
         
         return WorkoutScreen(
             videoPath: currentExercise['videoPath']!,
-            exerciseName: _getLocalizedExerciseName(currentExercise['localizationKey']!, context),
+            exerciseName: _getLocalizedExerciseName(currentExercise['nameKey']!, context),
             reps: "${currentExercise['reps']!} ${AppLocalizations.of(context)!.reps}",
+            description: _getLocalizedExerciseName(currentExercise['descriptionKey']!, context),
             buttonText: isLastWorkout ? AppLocalizations.of(context)!.finish : AppLocalizations.of(context)!.next,
             onNextPressed: isLastWorkout ? _finishWorkout : goToNext,
             onPreviousPressed: goToPrevious,

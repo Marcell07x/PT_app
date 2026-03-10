@@ -189,4 +189,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get enableNotis => 'Értesítések engedélyezése';
+
+  @override
+  String get testDescription => '-desc154\n-desc\n-desc';
 }

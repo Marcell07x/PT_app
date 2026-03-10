@@ -84,5 +84,7 @@
 
     "notis": "Notifications",
     "notisAreImportant": "Notifications help you build the habit of working out.",
-    "enableNotis": "Enable Notifications"
+    "enableNotis": "Enable Notifications",
+
+    "testDescription": "-desc\n-desc\n-desc"
 }

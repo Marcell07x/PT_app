@@ -188,4 +188,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get enableNotis => 'Enable Notifications';
+
+  @override
+  String get testDescription => '-desc\n-desc\n-desc';
 }
