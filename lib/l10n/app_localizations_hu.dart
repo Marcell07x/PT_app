@@ -192,4 +192,10 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get testDescription => '-desc154\n-desc\n-desc';
+
+  @override
+  String get lightBagPull => 'Táskás/Súlyzós Evezés kisebb súllyal';
+
+  @override
+  String get warmupDesc => 'Bemelegítés leírása';
 }

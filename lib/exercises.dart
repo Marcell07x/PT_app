@@ -148,4 +148,13 @@ class Exercises {
             'reps': ''
         },
     };
+
+    Map<int, Map<String, String>> warmUpExer = {
+        1: {
+            'videoPath': 'assets/videos/test1.mp4',
+            'nameKey': 'lightBagPull',
+            'descriptionKey': 'testKey',
+            'reps': ''
+        },
+    };
 }

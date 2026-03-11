@@ -6,6 +6,7 @@ import 'streak.dart';
 import 'question1.dart';
 import 'question2.dart';
 import 'workout_flow.dart';
+import 'warmup_flow.dart';
 import 'level.dart';
 import 'manuallysetlevel.dart';
 import 'workout_signal.dart';
@@ -114,14 +115,21 @@ class _MyHomePageState extends State<MyHomePage> {
                             onPressed: _isButtonEnabled ? () async {
                                 await StreakManager.incrementStreak();
                                 final prefs = await SharedPreferences.getInstance();
-                                int testlevel = prefs.getInt('level') ?? 67676767;
-                                print('testlevel is: $testlevel');
+                                int wlevel = prefs.getInt('level') ?? 1;
                                 setState(() {});
-                                Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                        builder: (context) => WorkoutFlow(),
-                                    ),
-                                );
+                                if (wlevel <= 129) {
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) => WorkoutFlow(),
+                                        ),
+                                    );
+                                } else {
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) => WarmupFlow(),
+                                        ),
+                                    );
+                                }
                             } : null,  
                             child: Text(AppLocalizations.of(context)!.startWorkout)
                         ),

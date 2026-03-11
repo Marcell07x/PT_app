@@ -85,7 +85,10 @@
     "notisAreImportant": "Az emlékeztető értesítések segítenek rászokni az edzésre.",
     "enableNotis": "Értesítések engedélyezése",
 
-    "testDescription": "-desc154\n-desc\n-desc"
+    "testDescription": "-desc154\n-desc\n-desc",
+
+    "lightBagPull": "Táskás/Súlyzós Evezés kisebb súllyal",
+    "warmupDesc": "Bemelegítés leírása"
 
 
 }

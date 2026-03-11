@@ -86,7 +86,7 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
         }   
     }
 
-    void goToNext() {
+    void _goToNext() {
         if (_currentIndex < workouts.length - 1) {
             setState(() {
                 _currentIndex++;
@@ -135,7 +135,7 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
 
     }
 
-    void goToPrevious() {
+    void _goToPrevious() {
         if (_currentIndex > 0) {
             setState(() {
                 _currentIndex--;
@@ -163,8 +163,8 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
             reps: "${currentExercise['reps']!} ${AppLocalizations.of(context)!.reps}",
             description: _getLocalizedExerciseName(currentExercise['descriptionKey']!, context),
             buttonText: isLastWorkout ? AppLocalizations.of(context)!.finish : AppLocalizations.of(context)!.next,
-            onNextPressed: isLastWorkout ? _finishWorkout : goToNext,
-            onPreviousPressed: goToPrevious,
+            onNextPressed: isLastWorkout ? _finishWorkout : _goToNext,
+            onPreviousPressed: _goToPrevious,
             currentIndex: _currentIndex,
             totalWorkouts: workouts.length,
         );

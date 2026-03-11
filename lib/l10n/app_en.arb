@@ -86,5 +86,8 @@
     "notisAreImportant": "Notifications help you build the habit of working out.",
     "enableNotis": "Enable Notifications",
 
-    "testDescription": "-desc\n-desc\n-desc"
+    "testDescription": "-desc123\n-desc\n-desc",
+
+    "lightBagPull": "One Hand Bag Rows with less weight",
+    "warmupDesc": "Warmup Description"
 }

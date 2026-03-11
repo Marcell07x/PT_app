@@ -190,5 +190,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get enableNotis => 'Enable Notifications';
 
   @override
-  String get testDescription => '-desc\n-desc\n-desc';
+  String get testDescription => '-desc123\n-desc\n-desc';
+
+  @override
+  String get lightBagPull => 'One Hand Bag Rows with less weight';
+
+  @override
+  String get warmupDesc => 'Warmup Description';
 }

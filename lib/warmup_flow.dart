@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'workout_flow.dart';
 import 'workout_screen.dart';
 import 'level.dart';
+import 'warmup.dart';
 
 class WarmupFlow extends StatefulWidget {
     const WarmupFlow({super.key});
@@ -14,6 +15,10 @@ class WarmupFlow extends StatefulWidget {
 
 class _WarmupFlowState extends State<WarmupFlow> {
     WorkoutLevel workoutLevel = WorkoutLevel();
+    Warmup warmup = Warmup();
+
+    final List<Map<String, String>> warmupParts = [];
+    int _currentIndex = 0;
 
     String _getLocalizedExerciseName(String localizationKey, BuildContext context) {
         final loc = AppLocalizations.of(context)!;
@@ -41,8 +46,73 @@ class _WarmupFlowState extends State<WarmupFlow> {
             case 'lunge5': return loc.lunge5;
             case 'core1': return loc.core1;
             case 'core2': return loc.core2;
+            case 'lightBagPull': return loc.lightBagPull;
+            case 'testKey': return loc.testDescription;
             default: return localizationKey;
         }
     }
+
+    @override
+    void initState() {
+        super.initState();
+        _initializeData();
+    }
+
+    void _initializeData() async {
+        await warmup.setWarmup();
+        setState(() {
+            warmupParts.addAll(warmup.warmup_parts);
+        });
+    }    
+
+    void _goToNext() {
+        if (_currentIndex < warmupParts.length - 1) {
+            setState(() {
+                _currentIndex++;
+            });
+        }
+    }
+
+    Future<void> _finishWarmup() async {
+        Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => WorkoutFlow()),
+        );
+    }
+
+    void _goToPrevious() {
+        if (_currentIndex > 0) {
+            setState(() {
+                _currentIndex--;
+            });
+        } else {
+            Navigator.of(context).pop();
+        }
+    }
+
+
+    @override
+    Widget build(BuildContext context) {
+        if (warmupParts.isEmpty) {
+            return Scaffold(
+                appBar: AppBar(title: Text('Workout')),
+                body: Center(child: Text('No Exercises Error')),
+            );
+        }
+
+        final isLastWarmup = _currentIndex == warmupParts.length - 1;
+        final currentExercise = warmupParts[_currentIndex];
         
+        return WorkoutScreen(
+            videoPath: currentExercise['videoPath']!,
+            exerciseName: _getLocalizedExerciseName(currentExercise['nameKey']!, context),
+            reps: "12 ${AppLocalizations.of(context)!.reps}",
+            description: AppLocalizations.of(context)!.warmupDesc,
+            buttonText: isLastWarmup ? AppLocalizations.of(context)!.finish : AppLocalizations.of(context)!.next,
+            onNextPressed: isLastWarmup ? _finishWarmup : _goToNext,
+            onPreviousPressed: _goToPrevious,
+            currentIndex: _currentIndex,
+            totalWorkouts: warmupParts.length,
+        );
+    }
+
 }

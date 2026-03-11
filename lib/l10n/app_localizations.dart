@@ -461,8 +461,20 @@ abstract class AppLocalizations {
   /// No description provided for @testDescription.
   ///
   /// In en, this message translates to:
-  /// **'-desc\n-desc\n-desc'**
+  /// **'-desc123\n-desc\n-desc'**
   String get testDescription;
+
+  /// No description provided for @lightBagPull.
+  ///
+  /// In en, this message translates to:
+  /// **'One Hand Bag Rows with less weight'**
+  String get lightBagPull;
+
+  /// No description provided for @warmupDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Warmup Description'**
+  String get warmupDesc;
 }
 
 class _AppLocalizationsDelegate
