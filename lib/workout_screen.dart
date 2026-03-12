@@ -180,7 +180,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                                     child: Text(
                                         widget.description,
                                         style: TextStyle(
-                                            fontSize: 18,
+                                            fontSize: 16,
                                             color: Colors.black87,
                                         ),
                                         textAlign: TextAlign.left,

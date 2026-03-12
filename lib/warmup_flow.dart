@@ -47,7 +47,29 @@ class _WarmupFlowState extends State<WarmupFlow> {
             case 'core1': return loc.core1;
             case 'core2': return loc.core2;
             case 'lightBagPull': return loc.lightBagPull;
-            case 'testKey': return loc.testDescription;
+            case 'wallPushDesc': return loc.wallPushDesc;
+            case 'tablePushDesc': return loc.tablePushDesc;
+            case 'kneePushDesc': return loc.kneePushDesc;
+            case 'pushUpDesc': return loc.pushUpDesc;
+            case 'declinePushDesc': return loc.declinePushDesc;
+            case 'clapPushDesc': return loc.clapPushDesc;
+            case 'archerPushDesc': return loc.archerPushDesc;
+            case 'dipPushDesc': return loc.dipPushDesc;
+            case 'bagPullDesc': return loc.bagPullDesc;
+            case 'bwPullDesc': return loc.bwPullDesc;
+            case 'pullupDesc': return loc.pullupDesc;
+            case 'squat1Desc': return loc.squat1Desc;
+            case 'lunge1Desc': return loc.lunge1Desc;
+            case 'squat2Desc': return loc.squat2Desc;
+            case 'lunge2Desc': return loc.lunge2Desc;
+            case 'squat3Desc': return loc.squat3Desc;
+            case 'lunge3Desc': return loc.lunge3Desc;
+            case 'squat4Desc': return loc.squat4Desc;
+            case 'lunge4Desc': return loc.lunge4Desc;
+            case 'squat5Desc': return loc.squat5Desc;
+            case 'lunge5Desc': return loc.lunge5Desc;
+            case 'core1Desc': return loc.core1Desc;
+            case 'core2Desc': return loc.core2Desc;
             default: return localizationKey;
         }
     }

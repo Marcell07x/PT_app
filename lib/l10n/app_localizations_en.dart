@@ -190,7 +190,75 @@ class AppLocalizationsEn extends AppLocalizations {
   String get enableNotis => 'Enable Notifications';
 
   @override
-  String get testDescription => '-desc123\n-desc\n-desc';
+  String get wallPushDesc => '';
+
+  @override
+  String get tablePushDesc => '';
+
+  @override
+  String get kneePushDesc => '';
+
+  @override
+  String get pushUpDesc =>
+      'Place your hands a bit wider than your shoulders, keep your elbows roughly 30-45 degrees from your body, and keep your body in a straight line. Go as deep as you can, then push yourself up.';
+
+  @override
+  String get declinePushDesc =>
+      'Place your legs onto an elevated surface (like a bed) and your hands a bit wider than your shoulders. Keep your elbows roughly 30-45 degrees from your body, and keep your body in a straight line. Go as deep as you can, then push yourself up.';
+
+  @override
+  String get clapPushDesc => '';
+
+  @override
+  String get archerPushDesc => '';
+
+  @override
+  String get dipPushDesc => '';
+
+  @override
+  String get bagPullDesc => '';
+
+  @override
+  String get bwPullDesc => '';
+
+  @override
+  String get pullupDesc => '';
+
+  @override
+  String get squat1Desc => '';
+
+  @override
+  String get lunge1Desc => '';
+
+  @override
+  String get squat2Desc => '';
+
+  @override
+  String get lunge2Desc => '';
+
+  @override
+  String get squat3Desc => '';
+
+  @override
+  String get lunge3Desc => '';
+
+  @override
+  String get squat4Desc => '';
+
+  @override
+  String get lunge4Desc => '';
+
+  @override
+  String get squat5Desc => '';
+
+  @override
+  String get lunge5Desc => '';
+
+  @override
+  String get core1Desc => '';
+
+  @override
+  String get core2Desc => '';
 
   @override
   String get lightBagPull => 'One Hand Bag Rows with less weight';

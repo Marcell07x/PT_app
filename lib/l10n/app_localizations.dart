@@ -458,11 +458,143 @@ abstract class AppLocalizations {
   /// **'Enable Notifications'**
   String get enableNotis;
 
-  /// No description provided for @testDescription.
+  /// No description provided for @wallPushDesc.
   ///
   /// In en, this message translates to:
-  /// **'-desc123\n-desc\n-desc'**
-  String get testDescription;
+  /// **''**
+  String get wallPushDesc;
+
+  /// No description provided for @tablePushDesc.
+  ///
+  /// In en, this message translates to:
+  /// **''**
+  String get tablePushDesc;
+
+  /// No description provided for @kneePushDesc.
+  ///
+  /// In en, this message translates to:
+  /// **''**
+  String get kneePushDesc;
+
+  /// No description provided for @pushUpDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Place your hands a bit wider than your shoulders, keep your elbows roughly 30-45 degrees from your body, and keep your body in a straight line. Go as deep as you can, then push yourself up.'**
+  String get pushUpDesc;
+
+  /// No description provided for @declinePushDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Place your legs onto an elevated surface (like a bed) and your hands a bit wider than your shoulders. Keep your elbows roughly 30-45 degrees from your body, and keep your body in a straight line. Go as deep as you can, then push yourself up.'**
+  String get declinePushDesc;
+
+  /// No description provided for @clapPushDesc.
+  ///
+  /// In en, this message translates to:
+  /// **''**
+  String get clapPushDesc;
+
+  /// No description provided for @archerPushDesc.
+  ///
+  /// In en, this message translates to:
+  /// **''**
+  String get archerPushDesc;
+
+  /// No description provided for @dipPushDesc.
+  ///
+  /// In en, this message translates to:
+  /// **''**
+  String get dipPushDesc;
+
+  /// No description provided for @bagPullDesc.
+  ///
+  /// In en, this message translates to:
+  /// **''**
+  String get bagPullDesc;
+
+  /// No description provided for @bwPullDesc.
+  ///
+  /// In en, this message translates to:
+  /// **''**
+  String get bwPullDesc;
+
+  /// No description provided for @pullupDesc.
+  ///
+  /// In en, this message translates to:
+  /// **''**
+  String get pullupDesc;
+
+  /// No description provided for @squat1Desc.
+  ///
+  /// In en, this message translates to:
+  /// **''**
+  String get squat1Desc;
+
+  /// No description provided for @lunge1Desc.
+  ///
+  /// In en, this message translates to:
+  /// **''**
+  String get lunge1Desc;
+
+  /// No description provided for @squat2Desc.
+  ///
+  /// In en, this message translates to:
+  /// **''**
+  String get squat2Desc;
+
+  /// No description provided for @lunge2Desc.
+  ///
+  /// In en, this message translates to:
+  /// **''**
+  String get lunge2Desc;
+
+  /// No description provided for @squat3Desc.
+  ///
+  /// In en, this message translates to:
+  /// **''**
+  String get squat3Desc;
+
+  /// No description provided for @lunge3Desc.
+  ///
+  /// In en, this message translates to:
+  /// **''**
+  String get lunge3Desc;
+
+  /// No description provided for @squat4Desc.
+  ///
+  /// In en, this message translates to:
+  /// **''**
+  String get squat4Desc;
+
+  /// No description provided for @lunge4Desc.
+  ///
+  /// In en, this message translates to:
+  /// **''**
+  String get lunge4Desc;
+
+  /// No description provided for @squat5Desc.
+  ///
+  /// In en, this message translates to:
+  /// **''**
+  String get squat5Desc;
+
+  /// No description provided for @lunge5Desc.
+  ///
+  /// In en, this message translates to:
+  /// **''**
+  String get lunge5Desc;
+
+  /// No description provided for @core1Desc.
+  ///
+  /// In en, this message translates to:
+  /// **''**
+  String get core1Desc;
+
+  /// No description provided for @core2Desc.
+  ///
+  /// In en, this message translates to:
+  /// **''**
+  String get core2Desc;
 
   /// No description provided for @lightBagPull.
   ///

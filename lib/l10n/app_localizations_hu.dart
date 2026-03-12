@@ -190,7 +190,81 @@ class AppLocalizationsHu extends AppLocalizations {
   String get enableNotis => 'Értesítések engedélyezése';
 
   @override
-  String get testDescription => '-desc154\n-desc\n-desc';
+  String get wallPushDesc =>
+      ' Állj egy lépésre a faltól. Helyezd a kezeidet vállszélességnél kicsivel szélesebbre, a könyökeidet tartsd a testedhez nagyjából 30-45 fokra, a testedet pedig tartsd egy egyenes vonalban. Engedd magad olyan közel a falhoz, amennyire csak tudod, majd told ki magad.';
+
+  @override
+  String get tablePushDesc =>
+      'Helyezd a kezeidet mondjuk egy stabil asztalra, vagy ágyra, vállszélességnél kicsivel szélesebbre, a könyökeidet tartsd a testedhez nagyjából 30-45 fokra, a testedet pedig tartsd egy egyenes vonalban. Engedd le magad olyan mélyre, amennyire csak tudod, majd nyomd ki magad. Minél alacsonyabban van a kezed, annál nehezebb.';
+
+  @override
+  String get kneePushDesc =>
+      'Térdelj le valami puha dologra. Helyezd a kezeidet vállszélességnél kicsivel szélesebbre, a könyökeidet tartsd a testedhez nagyjából 30-45 fokra, a testedet pedig tartsd egy egyenes vonalban. Engedd le magad olyan mélyre, amennyire csak tudod, majd nyomd ki magad.';
+
+  @override
+  String get pushUpDesc =>
+      'Helyezd a kezeidet vállszélességnél kicsivel szélesebbre, a könyökeidet tartsd a testedhez nagyjából 30-45 fokra, a testedet pedig tartsd egy egyenes vonalban. Engedd le magad olyan mélyre, amennyire csak tudod, majd nyomd ki magad.';
+
+  @override
+  String get declinePushDesc =>
+      'Helyezd a lábaidat valami magasabb dologra, a kezeidet a földre, vállszélességnél kicsivel szélesebbre, a könyökeidet tartsd a testedhez nagyjából 30-45 fokra, a testedet pedig tartsd egy egyenes vonalban. Engedd le magad olyan mélyre, amennyire csak tudod, majd nyomd ki magad.';
+
+  @override
+  String get clapPushDesc =>
+      'Fekvőtámasz közben lökd el magad a földtől, és ha tudsz, amíg a kezeiod a levegőben vannak, tapsolj egyet.';
+
+  @override
+  String get archerPushDesc =>
+      'Tedd a kezeidet szélesre, fordítsd ki a kézfejed nagyjából 45 fokkal, majd az egyik karodat hajlítva ereszkedj le, miközben egy picit a másik könyököd hajlítva marad, végül nyomd ki magad. Csináld meg mindkétz oldalra.';
+
+  @override
+  String get dipPushDesc =>
+      'Fogd meg a rudakat úgy, hogy a tenyered közepe legyen fölötte. Szorítsd le a vállad, tarsd is úgy egész végig. Ereszkedj le, legalább amíg 90 fokba be nem hajlott a könyököd, majd nyomd ki magad.';
+
+  @override
+  String get bagPullDesc => '';
+
+  @override
+  String get bwPullDesc => '';
+
+  @override
+  String get pullupDesc => '';
+
+  @override
+  String get squat1Desc => '';
+
+  @override
+  String get lunge1Desc => '';
+
+  @override
+  String get squat2Desc => '';
+
+  @override
+  String get lunge2Desc => '';
+
+  @override
+  String get squat3Desc => '';
+
+  @override
+  String get lunge3Desc => '';
+
+  @override
+  String get squat4Desc => '';
+
+  @override
+  String get lunge4Desc => '';
+
+  @override
+  String get squat5Desc => '';
+
+  @override
+  String get lunge5Desc => '';
+
+  @override
+  String get core1Desc => '';
+
+  @override
+  String get core2Desc => '';
 
   @override
   String get lightBagPull => 'Táskás/Súlyzós Evezés kisebb súllyal';
