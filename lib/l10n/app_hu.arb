@@ -78,8 +78,8 @@
     "howWasTheWorkout": "Milyen volt az edzés?",
     "feedback": "Visszajelzés",
 
-    "workoutReminderTitle": "Egy kis edzés",
-    "workoutReminderBody": "Tegyés ma is magadért, nyomj le egy gyors edzést ;)",
+    "workoutReminderTitle": "Egy kis edzés? 💪",
+    "workoutReminderBody": "Épp egy új szokást építesz ki - Nyomjad!",
 
     "notis": "Értesítések",
     "notisAreImportant": "Az emlékeztető értesítések segítenek rászokni az edzésre.",
@@ -88,7 +88,8 @@
     "testDescription": "-desc154\n-desc\n-desc",
 
     "lightBagPull": "Táskás/Súlyzós Evezés kisebb súllyal",
-    "warmupDesc": "Bemelegítés leírása"
+    "warmupDesc": "Bemelegítés leírása",
+    "warmup": "Bemelegítés"
 
 
 }

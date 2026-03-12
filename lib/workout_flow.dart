@@ -163,6 +163,7 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
             reps: "${currentExercise['reps']!} ${AppLocalizations.of(context)!.reps}",
             description: _getLocalizedExerciseName(currentExercise['descriptionKey']!, context),
             buttonText: isLastWorkout ? AppLocalizations.of(context)!.finish : AppLocalizations.of(context)!.next,
+            label: AppLocalizations.of(context)!.workout,
             onNextPressed: isLastWorkout ? _finishWorkout : _goToNext,
             onPreviousPressed: _goToPrevious,
             currentIndex: _currentIndex,

@@ -89,5 +89,7 @@
     "testDescription": "-desc123\n-desc\n-desc",
 
     "lightBagPull": "One Hand Bag Rows with less weight",
-    "warmupDesc": "Warmup Description"
+    "warmupDesc": "Warmup Description",
+    "warmup": "Warmup"
+
 }

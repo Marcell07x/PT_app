@@ -174,11 +174,10 @@ class AppLocalizationsHu extends AppLocalizations {
   String get feedback => 'Visszajelzés';
 
   @override
-  String get workoutReminderTitle => 'Egy kis edzés';
+  String get workoutReminderTitle => 'Egy kis edzés? 💪';
 
   @override
-  String get workoutReminderBody =>
-      'Tegyés ma is magadért, nyomj le egy gyors edzést ;)';
+  String get workoutReminderBody => 'Épp egy új szokást építesz ki - Nyomjad!';
 
   @override
   String get notis => 'Értesítések';
@@ -198,4 +197,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get warmupDesc => 'Bemelegítés leírása';
+
+  @override
+  String get warmup => 'Bemelegítés';
 }

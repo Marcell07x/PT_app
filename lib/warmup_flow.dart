@@ -108,6 +108,7 @@ class _WarmupFlowState extends State<WarmupFlow> {
             reps: "12 ${AppLocalizations.of(context)!.reps}",
             description: AppLocalizations.of(context)!.warmupDesc,
             buttonText: isLastWarmup ? AppLocalizations.of(context)!.finish : AppLocalizations.of(context)!.next,
+            label: AppLocalizations.of(context)!.warmup,
             onNextPressed: isLastWarmup ? _finishWarmup : _goToNext,
             onPreviousPressed: _goToPrevious,
             currentIndex: _currentIndex,

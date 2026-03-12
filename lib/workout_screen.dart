@@ -9,6 +9,7 @@ class WorkoutScreen extends StatefulWidget {
     final String reps;
     final String description;
     final String buttonText;
+    final String label;
     final VoidCallback onNextPressed;
     final VoidCallback onPreviousPressed;
     final int currentIndex;
@@ -21,6 +22,7 @@ class WorkoutScreen extends StatefulWidget {
         required this.reps,
         required this.description,
         required this.buttonText,
+        required this.label,
         required this.onNextPressed,
         required this.onPreviousPressed,
         required this.currentIndex,
@@ -85,7 +87,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
             home: Scaffold(
                 appBar: AppBar(
                     title: Text(
-                        '${AppLocalizations.of(context)!.workout} ' '(${widget.currentIndex + 1}/${widget.totalWorkouts})',
+                        '${widget.label} ' '(${widget.currentIndex + 1}/${widget.totalWorkouts})',
                         style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
@@ -187,7 +189,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                                 Spacer(),
                                 Row(
                                     children: [
-                                        if (widget.currentIndex > 0)
+                                        if (widget.currentIndex > 0 || widget.label == AppLocalizations.of(context)!.workout)
                                             Expanded(
                                                 child: ElevatedButton(
                                                     onPressed: widget.onPreviousPressed,

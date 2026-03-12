@@ -475,6 +475,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Warmup Description'**
   String get warmupDesc;
+
+  /// No description provided for @warmup.
+  ///
+  /// In en, this message translates to:
+  /// **'Warmup'**
+  String get warmup;
 }
 
 class _AppLocalizationsDelegate

@@ -197,4 +197,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get warmupDesc => 'Warmup Description';
+
+  @override
+  String get warmup => 'Warmup';
 }
