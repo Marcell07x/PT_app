@@ -42,9 +42,9 @@ class Warmup {
 
         if(_levelE > 129 && _levelE < 150) {
             warmup_parts = [{..._pushex}, {..._lightpullex}];
-        } else if (_levelE > 150 && _switch == 1) {
+        } else if (_levelE >= 150 && _switch == 1) {
             warmup_parts = [{..._pushex}, {..._lightpullex}, {..._legsex}];
-        } else if (_levelE > 150 && _switch == (-1)) {
+        } else if (_levelE >= 150 && _switch == (-1)) {
             warmup_parts = [{..._pushex}, {..._lightpullex}, {..._legsexl}];
         }
     }

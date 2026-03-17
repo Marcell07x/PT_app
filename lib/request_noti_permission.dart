@@ -109,10 +109,16 @@ class _RequestNotiPermissionState extends State<RequestNotiPermission> {
                         children: [
                             Expanded(
                                 child: Center(
-                                    child: Text(
-                                        AppLocalizations.of(context)!.notisAreImportant,
-                                        style: const TextStyle(fontSize: 18),
-                                        textAlign: TextAlign.center, 
+                                    child: Padding(
+                                        padding: const EdgeInsets.only(bottom: 150),
+                                        child: Text(
+                                            AppLocalizations.of(context)!.notisAreImportant,
+                                            style: const TextStyle(
+                                                fontSize: 22,
+                                                fontWeight: FontWeight.bold,
+                                            ),
+                                            textAlign: TextAlign.center, 
+                                        ),
                                     ),
                                 ),
                             ),

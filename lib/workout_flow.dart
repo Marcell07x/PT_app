@@ -13,6 +13,7 @@ import 'workout_signal.dart';
 import 'workout_feedback.dart';
 import 'workoutsthisweek.dart';
 import 'schedule_noti.dart';
+import 'warmup_flow.dart';
 
 class WorkoutFlow extends StatefulWidget {
     const WorkoutFlow({super.key});
@@ -163,7 +164,9 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
                 _currentIndex--;
             });
         } else {
-            Navigator.of(context).pop();
+            Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => WarmupFlow()),
+            );
         }
     }
 

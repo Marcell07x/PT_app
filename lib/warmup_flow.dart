@@ -96,7 +96,7 @@ class _WarmupFlowState extends State<WarmupFlow> {
     }
 
     Future<void> _finishWarmup() async {
-        Navigator.of(context).push(
+        Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (context) => WorkoutFlow()),
         );
     }
@@ -129,7 +129,7 @@ class _WarmupFlowState extends State<WarmupFlow> {
             exerciseName: _getLocalizedExerciseName(currentExercise['nameKey']!, context),
             reps: "12 ${AppLocalizations.of(context)!.reps}",
             description: AppLocalizations.of(context)!.warmupDesc,
-            buttonText: isLastWarmup ? AppLocalizations.of(context)!.finish : AppLocalizations.of(context)!.next,
+            buttonText: AppLocalizations.of(context)!.next,
             label: AppLocalizations.of(context)!.warmup,
             onNextPressed: isLastWarmup ? _finishWarmup : _goToNext,
             onPreviousPressed: _goToPrevious,

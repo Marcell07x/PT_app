@@ -22,7 +22,7 @@ class _Question7PageState extends State<Question7Page> {
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             home: Scaffold(
-                appBar: AppBar(title: Text('6. ${AppLocalizations.of(context)!.question}')),
+                appBar: AppBar(title: Text('6/6 ${AppLocalizations.of(context)!.question}')),
                 body: Padding(
                     padding: EdgeInsets.all(16),
                     child: Column(

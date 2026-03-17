@@ -191,23 +191,23 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get wallPushDesc =>
-      ' Állj egy lépésre a faltól. Helyezd a kezeidet vállszélességnél kicsivel szélesebbre, a könyökeidet tartsd a testedhez nagyjából 30-45 fokra, a testedet pedig tartsd egy egyenes vonalban. Engedd magad olyan közel a falhoz, amennyire csak tudod, majd told ki magad.';
+      ' Állj egy lépésre a faltól. Helyezd a kezeidet vállszélességnél kicsivel szélesebbre, a könyökeidet tartsd a testedtől nagyjából 30-45 fokra, a testedet pedig tartsd egy egyenes vonalban. Engedd magad olyan közel a falhoz, amennyire csak tudod, majd told ki magad.';
 
   @override
   String get tablePushDesc =>
-      'Helyezd a kezeidet mondjuk egy stabil asztalra, vagy ágyra, vállszélességnél kicsivel szélesebbre, a könyökeidet tartsd a testedhez nagyjából 30-45 fokra, a testedet pedig tartsd egy egyenes vonalban. Engedd le magad olyan mélyre, amennyire csak tudod, majd nyomd ki magad. Minél alacsonyabban van a kezed, annál nehezebb.';
+      'Helyezd a kezeidet mondjuk egy stabil asztalra, vagy ágyra, vállszélességnél kicsivel szélesebbre, a könyökeidet tartsd a testedtől nagyjából 30-45 fokra, a testedet pedig tartsd egy egyenes vonalban. Engedd le magad olyan mélyre, amennyire csak tudod, majd nyomd ki magad. Minél alacsonyabban van a kezed, annál nehezebb.';
 
   @override
   String get kneePushDesc =>
-      'Térdelj le valami puha dologra. Helyezd a kezeidet vállszélességnél kicsivel szélesebbre, a könyökeidet tartsd a testedhez nagyjából 30-45 fokra, a testedet pedig tartsd egy egyenes vonalban. Engedd le magad olyan mélyre, amennyire csak tudod, majd nyomd ki magad.';
+      'Térdelj le valami puha dologra. Helyezd a kezeidet vállszélességnél kicsivel szélesebbre, a könyökeidet tartsd a testedtől nagyjából 30-45 fokra, a testedet pedig tartsd egy egyenes vonalban. Engedd le magad olyan mélyre, amennyire csak tudod, majd nyomd ki magad.';
 
   @override
   String get pushUpDesc =>
-      'Helyezd a kezeidet vállszélességnél kicsivel szélesebbre, a könyökeidet tartsd a testedhez nagyjából 30-45 fokra, a testedet pedig tartsd egy egyenes vonalban. Engedd le magad olyan mélyre, amennyire csak tudod, majd nyomd ki magad.';
+      'Helyezd a kezeidet vállszélességnél kicsivel szélesebbre, a könyökeidet tartsd a testedtől nagyjából 30-45 fokra, a testedet pedig tartsd egy egyenes vonalban. Engedd le magad olyan mélyre, amennyire csak tudod, majd nyomd ki magad.';
 
   @override
   String get declinePushDesc =>
-      'Helyezd a lábaidat valami magasabb dologra, a kezeidet a földre, vállszélességnél kicsivel szélesebbre, a könyökeidet tartsd a testedhez nagyjából 30-45 fokra, a testedet pedig tartsd egy egyenes vonalban. Engedd le magad olyan mélyre, amennyire csak tudod, majd nyomd ki magad.';
+      'Helyezd a lábaidat valami magasabb dologra (mondjuk kanapéra), a kezeidet a földre, vállszélességnél kicsivel szélesebbre, a könyökeidet tartsd a testedtől nagyjából 30-45 fokra, a testedet pedig tartsd egy egyenes vonalban. Engedd le magad olyan mélyre, amennyire csak tudod, majd nyomd ki magad.';
 
   @override
   String get clapPushDesc =>

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'l10n/app_localizations.dart';
 import 'questionaire.dart';
@@ -16,6 +17,7 @@ import 'questionaire.dart';
 
 void main() async {
     WidgetsFlutterBinding.ensureInitialized();
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     ScheduleNotifications.initNotification();
     await StreakManager.init(); 
     await WorkoutSignal.setSignalTrue();
@@ -90,13 +92,11 @@ class _MyHomePageState extends State<MyHomePage> {
     @override
     Widget build(BuildContext context) {
         return Scaffold(
-            appBar: AppBar(
-                title: Text('${StreakManager.streak}'),
-            ),
             body: Center(
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                        SizedBox(height: 150),
                         ElevatedButton(
                             onPressed: () async {
                                 WorkoutSignal.debugSetSignalTrue();
@@ -131,7 +131,21 @@ class _MyHomePageState extends State<MyHomePage> {
                                     );
                                 }
                             } : null,  
-                            child: Text(AppLocalizations.of(context)!.startWorkout)
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.blue,
+                                minimumSize: Size(280, 120),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                ),
+                            ),
+                            child: Text(
+                                AppLocalizations.of(context)!.startWorkout,
+                                style: TextStyle(
+                                    fontSize: 32,
+                                    fontWeight: FontWeight.w900,
+                                    color: Colors.white,
+                                ),
+                            ),
                         ),
                         TextButton(
                             onPressed: () {

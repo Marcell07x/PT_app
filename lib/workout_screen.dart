@@ -173,7 +173,12 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                                     ),
                                     textAlign: TextAlign.center,
                                 ),
-                                SizedBox(height: 25),
+                                SizedBox(height: 10),
+                                Container(
+                                    height: 4,
+                                    color: Colors.blue,
+                                ),
+                                SizedBox(height: 15),
                                 Container(
                                     width: double.infinity,
                                     padding: EdgeInsets.only(left: 16),
@@ -209,7 +214,8 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                                                     ),
                                                 ),
                                             ),
-                                        if (widget.currentIndex > 0) SizedBox(width: 10),
+                                        if (widget.currentIndex > 0 || widget.label == AppLocalizations.of(context)!.workout) 
+                                            SizedBox(width: 10),
                                         Expanded(
                                             flex: 2,
                                             child: SizedBox(
