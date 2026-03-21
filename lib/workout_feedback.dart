@@ -59,12 +59,13 @@ class _WorkoutFeedbackState extends State<WorkoutFeedback> {
                                 SizedBox(height: 20),
                                 Text(
                                     AppLocalizations.of(context)!.howWasTheWorkout,
-                                        style: TextStyle(
-                                            fontSize: 28,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontSize: 28,
                                             fontWeight: FontWeight.bold,
-                                            color: Colors.black,
-                                        ),
+                                        color: Colors.black,
                                     ),
+                                ),
                                 Expanded(
                                     child: Column(
                                         mainAxisAlignment: MainAxisAlignment.center,
@@ -79,9 +80,9 @@ class _WorkoutFeedbackState extends State<WorkoutFeedback> {
                                                 child: Column(
                                                     children: [
                                                         Text(
-                                                            'RPE: ${_rpeValue.round()}',
+                                                            '${_rpeValue.round()}',
                                                             style: TextStyle(
-                                                                fontSize: 32,
+                                                                fontSize: 40,
                                                                 fontWeight: FontWeight.bold,
                                                                 color: Colors.white,
                                                             ),

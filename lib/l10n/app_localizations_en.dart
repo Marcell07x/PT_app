@@ -87,6 +87,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get reps => 'Repetitions';
 
   @override
+  String get seconds => 'Seconds';
+
+  @override
   String get next => 'Next';
 
   @override
@@ -168,7 +171,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get rpe910 => 'Very Intense Activity';
 
   @override
-  String get howWasTheWorkout => 'How was the workout?';
+  String get howWasTheWorkout => 'How hard was the workout?';
 
   @override
   String get feedback => 'Feedback';
@@ -262,6 +265,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get lightBagPull => 'One Hand Bag Rows with less weight';
+
+  @override
+  String get runInPlace => 'Running In Place';
 
   @override
   String get warmupDesc => 'Warmup Description';

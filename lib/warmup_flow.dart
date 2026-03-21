@@ -47,6 +47,7 @@ class _WarmupFlowState extends State<WarmupFlow> {
             case 'core1': return loc.core1;
             case 'core2': return loc.core2;
             case 'lightBagPull': return loc.lightBagPull;
+            case 'runInPlace': return loc.runInPlace;
             case 'wallPushDesc': return loc.wallPushDesc;
             case 'tablePushDesc': return loc.tablePushDesc;
             case 'kneePushDesc': return loc.kneePushDesc;
@@ -123,18 +124,20 @@ class _WarmupFlowState extends State<WarmupFlow> {
 
         final isLastWarmup = _currentIndex == warmupParts.length - 1;
         final currentExercise = warmupParts[_currentIndex];
+        final isRunInPlace = currentExercise['nameKey'] == 'runInPlace';
         
         return WorkoutScreen(
             videoPath: currentExercise['videoPath']!,
             exerciseName: _getLocalizedExerciseName(currentExercise['nameKey']!, context),
-            reps: "12 ${AppLocalizations.of(context)!.reps}",
-            description: AppLocalizations.of(context)!.warmupDesc,
+            reps: isRunInPlace ? '20 ${AppLocalizations.of(context)!.seconds}' : "12 ${AppLocalizations.of(context)!.reps}",
+            description: isRunInPlace ? '' : AppLocalizations.of(context)!.warmupDesc,
             buttonText: AppLocalizations.of(context)!.next,
             label: AppLocalizations.of(context)!.warmup,
             onNextPressed: isLastWarmup ? _finishWarmup : _goToNext,
             onPreviousPressed: _goToPrevious,
             currentIndex: _currentIndex,
             totalWorkouts: warmupParts.length,
+            level: 0,
         );
     }
 

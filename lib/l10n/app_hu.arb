@@ -33,6 +33,7 @@
 
     "workout": "Edzés",
     "reps": "Ismétlés",
+    "seconds": "Másodperc",
     "next": "Következő",
     "goback": "Előző",
     "startWorkout": "Edzés Kezdése",
@@ -75,7 +76,7 @@
     "rpe78": "Megerőltető",
     "rpe910": "Nagyon Megerőltető",
 
-    "howWasTheWorkout": "Milyen volt az edzés?",
+    "howWasTheWorkout": "Milyen nehéz volt az edzés?",
     "feedback": "Visszajelzés",
 
     "workoutReminderTitle": "Egy kis edzés? 💪",
@@ -110,6 +111,7 @@
     "core2Desc": "",
 
     "lightBagPull": "Táskás/Súlyzós Evezés kisebb súllyal",
+    "runInPlace": "Helyben Futás",
     "warmupDesc": "Bemelegítés leírása",
     "warmup": "Bemelegítés"
 

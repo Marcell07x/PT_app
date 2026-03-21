@@ -154,5 +154,9 @@ class Exercises {
             'videoPath': 'assets/videos/test1.mp4',
             'nameKey': 'lightBagPull',
         },
+        2: {
+            'videoPath': 'assets/videos/test2.mp4',
+            'nameKey': 'runInPlace',
+        },
     };
 }

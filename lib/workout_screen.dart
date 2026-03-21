@@ -14,6 +14,7 @@ class WorkoutScreen extends StatefulWidget {
     final VoidCallback onPreviousPressed;
     final int currentIndex;
     final int totalWorkouts;
+    final int level;
 
     const WorkoutScreen({
         super.key,
@@ -27,6 +28,7 @@ class WorkoutScreen extends StatefulWidget {
         required this.onPreviousPressed,
         required this.currentIndex,
         required this.totalWorkouts,
+        required this.level,
     });
 
     @override
@@ -96,7 +98,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                     backgroundColor: Colors.blue,
                     leading: IconButton(
                         icon: Icon(
-                            Icons.home,
+                            Icons.close,
                             color: Colors.white,
                         ),
                         onPressed: () { Navigator.of(context).pushAndRemoveUntil(
@@ -194,7 +196,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                                 Spacer(),
                                 Row(
                                     children: [
-                                        if (widget.currentIndex > 0 || widget.label == AppLocalizations.of(context)!.workout)
+                                        if (widget.currentIndex > 0 || (widget.label == AppLocalizations.of(context)!.workout && widget.level >= 130))
                                             Expanded(
                                                 child: ElevatedButton(
                                                     onPressed: widget.onPreviousPressed,
@@ -214,7 +216,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                                                     ),
                                                 ),
                                             ),
-                                        if (widget.currentIndex > 0 || widget.label == AppLocalizations.of(context)!.workout) 
+                                        if (widget.currentIndex > 0 || (widget.label == AppLocalizations.of(context)!.workout && widget.level >= 130)) 
                                             SizedBox(width: 10),
                                         Expanded(
                                             flex: 2,

@@ -254,6 +254,12 @@ abstract class AppLocalizations {
   /// **'Repetitions'**
   String get reps;
 
+  /// No description provided for @seconds.
+  ///
+  /// In en, this message translates to:
+  /// **'Seconds'**
+  String get seconds;
+
   /// No description provided for @next.
   ///
   /// In en, this message translates to:
@@ -419,7 +425,7 @@ abstract class AppLocalizations {
   /// No description provided for @howWasTheWorkout.
   ///
   /// In en, this message translates to:
-  /// **'How was the workout?'**
+  /// **'How hard was the workout?'**
   String get howWasTheWorkout;
 
   /// No description provided for @feedback.
@@ -601,6 +607,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'One Hand Bag Rows with less weight'**
   String get lightBagPull;
+
+  /// No description provided for @runInPlace.
+  ///
+  /// In en, this message translates to:
+  /// **'Running In Place'**
+  String get runInPlace;
 
   /// No description provided for @warmupDesc.
   ///

@@ -193,6 +193,7 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
             onPreviousPressed: _goToPrevious,
             currentIndex: _currentIndex,
             totalWorkouts: workouts.length,
+            level: workoutLevel.level,
         );
     }
 }

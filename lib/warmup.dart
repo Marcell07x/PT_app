@@ -21,6 +21,7 @@ class Warmup {
     late var _legsex;
     late var _legsexl;
     late var _lightpullex;
+    late var _runinplace;
 
     Future<void> setWarmup() async {
         await legSwitch.getSwitch();
@@ -36,12 +37,22 @@ class Warmup {
 
         _pushex = exercises.push[_pushe]!;
         _pullex = exercises.pull[_pulle]!;
-        _legsex = exercises.legs[_legse]!;
-        _legsexl = exercises.legs[_legse+1]!;
+
+        if (_legse >= 3) {       
+            _legsex = exercises.legs[3]!;
+            _legsexl = exercises.legs[4]!;
+        } else {
+            _legsex = exercises.legs[1];
+            _legsexl = exercises.legs[2];
+        }
+
         _lightpullex = exercises.warmUpExer[1];
+        _runinplace = exercises.warmUpExer[2];
 
         if(_levelE > 129 && _levelE < 150) {
             warmup_parts = [{..._pushex}, {..._lightpullex}];
+        } else if (_levelE > 129 && _levelE < 270 && _legse == 1) {
+            warmup_parts = [{..._pushex}, {..._lightpullex}, {..._runinplace}];
         } else if (_levelE >= 150 && _switch == 1) {
             warmup_parts = [{..._pushex}, {..._lightpullex}, {..._legsex}];
         } else if (_levelE >= 150 && _switch == (-1)) {

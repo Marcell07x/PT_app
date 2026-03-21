@@ -87,6 +87,9 @@ class AppLocalizationsHu extends AppLocalizations {
   String get reps => 'Ismétlés';
 
   @override
+  String get seconds => 'Másodperc';
+
+  @override
   String get next => 'Következő';
 
   @override
@@ -168,7 +171,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get rpe910 => 'Nagyon Megerőltető';
 
   @override
-  String get howWasTheWorkout => 'Milyen volt az edzés?';
+  String get howWasTheWorkout => 'Milyen nehéz volt az edzés?';
 
   @override
   String get feedback => 'Visszajelzés';
@@ -268,6 +271,9 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get lightBagPull => 'Táskás/Súlyzós Evezés kisebb súllyal';
+
+  @override
+  String get runInPlace => 'Helyben Futás';
 
   @override
   String get warmupDesc => 'Bemelegítés leírása';
