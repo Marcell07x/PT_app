@@ -60,7 +60,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get squat3 => 'Backpack Squats';
 
   @override
-  String get lunge3 => 'Step Ups';
+  String get lunge3 => 'Backpack Lunges';
 
   @override
   String get squat4 => 'Jumping Squats';
@@ -72,13 +72,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get squat5 => 'Archer Squats';
 
   @override
-  String get lunge5 => 'Half Leg Lunges';
+  String get lunge5 => 'Weighted Elevated Lunges';
 
   @override
-  String get core1 => 'Situps';
+  String get core1 => 'Lying Leg Raises';
 
   @override
-  String get core2 => 'Supermans';
+  String get core2 => 'Back Extensions';
 
   @override
   String get workout => 'Workout';
@@ -193,13 +193,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get enableNotis => 'Enable Notifications';
 
   @override
-  String get wallPushDesc => '';
+  String get wallPushDesc =>
+      'Stand about one step away from the wall. Place your hands a bit wider than your shoulders, keep your elbows roughly 30-45 degrees from your body, and keep your body in a straight line. Go as close to the wall as you can, then push yourself back.';
 
   @override
-  String get tablePushDesc => '';
+  String get tablePushDesc =>
+      'Place your hands on a stable table or bed, and a bit wider than your shoulders, keep your elbows roughly 30-45 degrees from your body, and keep your body in a straight line. Go as deep as you can, then push yourself up.';
 
   @override
-  String get kneePushDesc => '';
+  String get kneePushDesc =>
+      'Kneel on something soft. Place your hands a bit wider than your shoulders, keep your elbows roughly 30-45 degrees from your body, and keep your body in a straight line. Go as deep as you can, then push yourself up.';
 
   @override
   String get pushUpDesc =>
@@ -210,16 +213,20 @@ class AppLocalizationsEn extends AppLocalizations {
       'Place your legs onto an elevated surface (like a bed) and your hands a bit wider than your shoulders. Keep your elbows roughly 30-45 degrees from your body, and keep your body in a straight line. Go as deep as you can, then push yourself up.';
 
   @override
-  String get clapPushDesc => '';
+  String get clapPushDesc =>
+      'During a pushup, push yourself off the ground and, if you can, clap your hands while in mid-air.';
 
   @override
-  String get archerPushDesc => '';
+  String get archerPushDesc =>
+      'Put your hands wide and rotate your palms out about 45 degrees. Bend one arm to lower yourself, keeping the other elbow slightly bent, then push back up. Do the same on the other side.';
 
   @override
-  String get dipPushDesc => '';
+  String get dipPushDesc =>
+      'Hold the bars with the center of your palms on top. Keep your shoulders pressed down and maintain that position throughout. Lower yourself until your elbows reach at least a 90-degree bend, then push back up.';
 
   @override
-  String get bagPullDesc => '';
+  String get bagPullDesc =>
+      'Fill a bag with books or small weights, aiming for at least 5–10 kg (11–22 lbs). Support yourself with one hand, keeping your torso straight and roughly horizontal. When you lower your hand, try to keep the bag off the ground. During the lift, keep your shoulders pressed down—don’t let them rise toward your ears. Don’t bend your arm more than 90°. If it feels too easy, increase the weight, lower it more slowly, or do more repetitions. Repeat on both sides.';
 
   @override
   String get bwPullDesc => '';
@@ -228,40 +235,52 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pullupDesc => '';
 
   @override
-  String get squat1Desc => '';
+  String get squat1Desc =>
+      'Hold onto something stable with one or both hands for support. Stand with your feet shoulder-width apart, toes slightly turned out. Start by pushing your knees slightly forward, then lower yourself in a controlled manner to about a 90° bend. Keep your torso straight throughout.';
 
   @override
-  String get lunge1Desc => '';
+  String get lunge1Desc =>
+      'Hold onto something stable with one or both hands for support. Step back, keeping your front shin vertical. Your thigh should point forward. Lean forward slightly so the focus is on the back of your front leg.';
 
   @override
-  String get squat2Desc => '';
+  String get squat2Desc =>
+      'Stand with your feet shoulder-width apart, toes slightly turned out. Start by pushing your knees slightly forward, then lower yourself in a controlled manner to about a 90° bend. Keep your torso straight throughout.';
 
   @override
-  String get lunge2Desc => '';
+  String get lunge2Desc =>
+      'Step back, keeping your front shin vertical. Your thigh should point forward. Lean forward slightly so the focus is on the back of your front leg.';
 
   @override
-  String get squat3Desc => '';
+  String get squat3Desc =>
+      'Fill a bag with books or other weights. Stand with your feet shoulder-width apart, toes slightly turned out. Start by pushing your knees slightly forward, then lower yourself in a controlled manner to about a 90° bend. Keep your torso straight throughout.';
 
   @override
-  String get lunge3Desc => '';
+  String get lunge3Desc =>
+      'Fill a bag with books or other weights. Step back, keeping your front shin vertical. Your thigh should point forward. Lean forward slightly so the focus is on the back of your front leg.';
 
   @override
-  String get squat4Desc => '';
+  String get squat4Desc =>
+      'Jump while doing a squat. Stand with your feet shoulder-width apart, toes slightly turned out. Start by pushing your knees slightly forward, then lower yourself in a controlled manner to about a 90° bend. Keep your torso straight throughout. If you want, wear a backpack filled with weights.';
 
   @override
-  String get lunge4Desc => '';
+  String get lunge4Desc =>
+      'Place your back leg on a chair. Keep your front shin vertical and your thigh pointing forward. Lean forward slightly so the weight is on the back of your front leg.';
 
   @override
-  String get squat5Desc => '';
+  String get squat5Desc =>
+      'Stand with your feet apart, toes slightly turned out. Start the descent by bending one knee. Keep your upper body as upright as possible.';
 
   @override
-  String get lunge5Desc => '';
+  String get lunge5Desc =>
+      'Fill a bag with books or other weights. Place your back leg on a chair. Keep your front shin vertical and your thigh pointing forward. Lean forward slightly so the weight is on the back of your front leg.';
 
   @override
-  String get core1Desc => '';
+  String get core1Desc =>
+      'Place your hands under your hips and lift your head. Tighten your core and raise your legs, but not all the way vertical. Lower your legs in a controlled manner, keeping them off the ground between repetitions. Bending your knees makes it easier.';
 
   @override
-  String get core2Desc => '';
+  String get core2Desc =>
+      'Lie face down on a chair and hold onto its legs. With your knees bent, lift your legs behind you as high as you can.';
 
   @override
   String get lightBagPull => 'One Hand Bag Rows with less weight';
@@ -270,7 +289,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get runInPlace => 'Running In Place';
 
   @override
-  String get warmupDesc => 'Warmup Description';
+  String get warmupDesc =>
+      'Perform the exercise in a controlled manner. Make sure to use proper form.';
 
   @override
   String get warmup => 'Warmup';

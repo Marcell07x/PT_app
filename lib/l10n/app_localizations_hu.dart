@@ -60,7 +60,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get squat3 => 'Táskás Guggolás';
 
   @override
-  String get lunge3 => 'Fellépések';
+  String get lunge3 => 'Táskás Kitörés';
 
   @override
   String get squat4 => 'Guggolásból Ugrás';
@@ -72,13 +72,13 @@ class AppLocalizationsHu extends AppLocalizations {
   String get squat5 => 'Oldalas Guggolás';
 
   @override
-  String get lunge5 => 'Féllábas kitörés';
+  String get lunge5 => 'Féllábas Kitörés Táskával';
 
   @override
-  String get core1 => 'Hasprés';
+  String get core1 => 'Fekvő Lábemelések';
 
   @override
-  String get core2 => 'Superman';
+  String get core2 => 'Hátsó Lábemelések';
 
   @override
   String get workout => 'Edzés';
@@ -194,7 +194,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get wallPushDesc =>
-      ' Állj egy lépésre a faltól. Helyezd a kezeidet vállszélességnél kicsivel szélesebbre, a könyökeidet tartsd a testedtől nagyjából 30-45 fokra, a testedet pedig tartsd egy egyenes vonalban. Engedd magad olyan közel a falhoz, amennyire csak tudod, majd told ki magad.';
+      'Állj egy lépésre a faltól. Helyezd a kezeidet vállszélességnél kicsivel szélesebbre, a könyökeidet tartsd a testedtől nagyjából 30-45 fokra, a testedet pedig tartsd egy egyenes vonalban. Engedd magad olyan közel a falhoz, amennyire csak tudod, majd told ki magad.';
 
   @override
   String get tablePushDesc =>
@@ -218,14 +218,15 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get archerPushDesc =>
-      'Tedd a kezeidet szélesre, fordítsd ki a kézfejed nagyjából 45 fokkal, majd az egyik karodat hajlítva ereszkedj le, miközben egy picit a másik könyököd hajlítva marad, végül nyomd ki magad. Csináld meg mindkétz oldalra.';
+      'Tedd a kezeidet szélesre, fordítsd ki a kézfejed nagyjából 45 fokkal, majd az egyik karodat hajlítva ereszkedj le, miközben egy picit a másik könyököd hajlítva marad, végül nyomd ki magad. Csináld meg mindkét oldalra.';
 
   @override
   String get dipPushDesc =>
       'Fogd meg a rudakat úgy, hogy a tenyered közepe legyen fölötte. Szorítsd le a vállad, tarsd is úgy egész végig. Ereszkedj le, legalább amíg 90 fokba be nem hajlott a könyököd, majd nyomd ki magad.';
 
   @override
-  String get bagPullDesc => '';
+  String get bagPullDesc =>
+      'Pakolj tele egy táskát könyvekkel, kis súlyzókkal, érzésre legalább 5-10 kg legyen a táska. Egyik kézzel támaszkodj, a törzsed legyen egyenes, és nagyjából vízszintes. Ha leengeded a kezed, a táska lehetőleg a levegőben legyen. Felhúzásnál a válladat szorítsd le, ne menjen a füledhez. A karod 90°-nál ne hajlítsd be jobban. Ha túl könnyű, növeld a súlyt, engedd le lassabban, vagy csinálj belőle többet. Csináld meg mindkét oldalra.';
 
   @override
   String get bwPullDesc => '';
@@ -234,40 +235,52 @@ class AppLocalizationsHu extends AppLocalizations {
   String get pullupDesc => '';
 
   @override
-  String get squat1Desc => '';
+  String get squat1Desc =>
+      'Támaszkodj/kapaszkodj valami stabil dologba az egyik vagy mindkét oldaladon. Vállszéles terpeszben a lábfejeid kicsit kifele nézzenek. Kezd kicsit előrevinni a térdeidet, majd kontrollált tempóban ereszkedj le nagyjából 90° mélységébe. Tartsd a törzsed egyenesen.';
 
   @override
-  String get lunge1Desc => '';
+  String get lunge1Desc =>
+      'Támaszkodj/kapaszkodj valami stabil dologba az egyik vagy mindkét oldaladon. Lépj hátra, miközpen az elülső sípcsintod függőlegesen marad. A combod mutasson előre. Kicsit dőlj előre, hogy az elülső lábad hátsó részén legyen a hangsúly.';
 
   @override
-  String get squat2Desc => '';
+  String get squat2Desc =>
+      'Vállszéles terpeszben a lábfejeid kicsit kifele nézzenek. Kezd kicsit előrevinni a térdeidet, majd kontrollált tempóban ereszkedj le nagyjából 90° mélységébe. Tartsd a törzsed egyenesen.';
 
   @override
-  String get lunge2Desc => '';
+  String get lunge2Desc =>
+      'Lépj hátra, miközpen az elülső sípcsintod függőlegesen marad. A combod mutasson előre. Kicsit dőlj előre, hogy az elülső lábad hátsó részén legyen a hangsúly.';
 
   @override
-  String get squat3Desc => '';
+  String get squat3Desc =>
+      'Tölts meg egy táskát könyvekkel, vagy más súlyokkal. Vállszéles terpeszben a lábfejeid kicsit kifele nézzenek. Kezd kicsit előrevinni a térdeidet, majd kontrollált tempóban ereszkedj le nagyjából 90° mélységébe. Tartsd a törzsed egyenesen.';
 
   @override
-  String get lunge3Desc => '';
+  String get lunge3Desc =>
+      'Tölts meg egy táskát könyvekkel, vagy más súlyokkal. Lépj hátra, miközpen az elülső sípcsintod függőlegesen marad. A combod mutasson előre. Kicsit dőlj előre, hogy az elülső lábad hátsó részén legyen a hangsúly.';
 
   @override
-  String get squat4Desc => '';
+  String get squat4Desc =>
+      'Guggolás közben ugorj egyet. Vállszéles terpeszben a lábfejeid kicsit kifele nézzenek. Kezd kicsit előrevinni a térdeidet, majd kontrollált tempóban ereszkedj le nagyjából 90° mélységébe. Tartsd a törzsed egyenesen. Ha gondolod, vegyél fel egy súlyokkal megpakolt hátizsákot.';
 
   @override
-  String get lunge4Desc => '';
+  String get lunge4Desc =>
+      'A hátsó lábad tedd fel mondjuk egy székre. Tarsd az elülső sípcsintod függőlegesen. A combod mutasson előre. Kicsit dőlj előre, hogy az elülső lábad hátsó részén legyen a hangsúly.';
 
   @override
-  String get squat5Desc => '';
+  String get squat5Desc =>
+      'Állj terpeszben, kicsit nézzenek kifelé a lábfejeid. Kezd a leereszkedést az egyik térded behajlításával. Tartsd a felsőtesded merőlegesen, amennyire tudod.';
 
   @override
-  String get lunge5Desc => '';
+  String get lunge5Desc =>
+      'Vegyél fel egy könyvekkel telepakolt táskát. A hátsó lábad tedd fel mondjuk egy székre. Tarsd az elülső sípcsintod függőlegesen. A combod mutasson előre. Kicsit dőlj előre, hogy az elülső lábad hátsó részén legyen a hangsúly.';
 
   @override
-  String get core1Desc => '';
+  String get core1Desc =>
+      'Tedd be a kezeid a feneked alá. Emeld fel a fejed. Feszítsd a hasad, és emeld fel a lábaid, de ne teljesen függőlegesig. Kontrolláltan engedd ke a lábaid, ismétlések között ne engedd le a földre. Térdhajlítással könnyebb.';
 
   @override
-  String get core2Desc => '';
+  String get core2Desc =>
+      'Feküdj hassal egy székre, és kapaszkodj a lábaiba. Hajlított térdel emeld fel hátul a lábaid, amennyire tudod.';
 
   @override
   String get lightBagPull => 'Táskás/Súlyzós Evezés kisebb súllyal';
@@ -276,7 +289,8 @@ class AppLocalizationsHu extends AppLocalizations {
   String get runInPlace => 'Helyben Futás';
 
   @override
-  String get warmupDesc => 'Bemelegítés leírása';
+  String get warmupDesc =>
+      'Végezd a gyakorlatot kontrolláltan. Figyelj, hogy helyes technikával csináld.';
 
   @override
   String get warmup => 'Bemelegítés';

@@ -184,13 +184,21 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                                 Container(
                                     width: double.infinity,
                                     padding: EdgeInsets.only(left: 16),
-                                    child: Text(
-                                        widget.description,
-                                        style: TextStyle(
-                                            fontSize: 16,
-                                            color: Colors.black87,
+                                    child: SizedBox(
+                                        height: 200,
+                                        child: Scrollbar(
+                                            thumbVisibility: true,
+                                            child: SingleChildScrollView(
+                                                child: Text(
+                                                    widget.description,
+                                                    style: TextStyle(
+                                                        fontSize: 16,
+                                                        color: Colors.black87,
+                                                    ),
+                                                    textAlign: TextAlign.left,
+                                                ),
+                                            ),
                                         ),
-                                        textAlign: TextAlign.left,
                                     ),
                                 ),
                                 Spacer(),

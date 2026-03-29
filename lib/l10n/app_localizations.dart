@@ -203,7 +203,7 @@ abstract class AppLocalizations {
   /// No description provided for @lunge3.
   ///
   /// In en, this message translates to:
-  /// **'Step Ups'**
+  /// **'Backpack Lunges'**
   String get lunge3;
 
   /// No description provided for @squat4.
@@ -227,19 +227,19 @@ abstract class AppLocalizations {
   /// No description provided for @lunge5.
   ///
   /// In en, this message translates to:
-  /// **'Half Leg Lunges'**
+  /// **'Weighted Elevated Lunges'**
   String get lunge5;
 
   /// No description provided for @core1.
   ///
   /// In en, this message translates to:
-  /// **'Situps'**
+  /// **'Lying Leg Raises'**
   String get core1;
 
   /// No description provided for @core2.
   ///
   /// In en, this message translates to:
-  /// **'Supermans'**
+  /// **'Back Extensions'**
   String get core2;
 
   /// No description provided for @workout.
@@ -467,19 +467,19 @@ abstract class AppLocalizations {
   /// No description provided for @wallPushDesc.
   ///
   /// In en, this message translates to:
-  /// **''**
+  /// **'Stand about one step away from the wall. Place your hands a bit wider than your shoulders, keep your elbows roughly 30-45 degrees from your body, and keep your body in a straight line. Go as close to the wall as you can, then push yourself back.'**
   String get wallPushDesc;
 
   /// No description provided for @tablePushDesc.
   ///
   /// In en, this message translates to:
-  /// **''**
+  /// **'Place your hands on a stable table or bed, and a bit wider than your shoulders, keep your elbows roughly 30-45 degrees from your body, and keep your body in a straight line. Go as deep as you can, then push yourself up.'**
   String get tablePushDesc;
 
   /// No description provided for @kneePushDesc.
   ///
   /// In en, this message translates to:
-  /// **''**
+  /// **'Kneel on something soft. Place your hands a bit wider than your shoulders, keep your elbows roughly 30-45 degrees from your body, and keep your body in a straight line. Go as deep as you can, then push yourself up.'**
   String get kneePushDesc;
 
   /// No description provided for @pushUpDesc.
@@ -497,25 +497,25 @@ abstract class AppLocalizations {
   /// No description provided for @clapPushDesc.
   ///
   /// In en, this message translates to:
-  /// **''**
+  /// **'During a pushup, push yourself off the ground and, if you can, clap your hands while in mid-air.'**
   String get clapPushDesc;
 
   /// No description provided for @archerPushDesc.
   ///
   /// In en, this message translates to:
-  /// **''**
+  /// **'Put your hands wide and rotate your palms out about 45 degrees. Bend one arm to lower yourself, keeping the other elbow slightly bent, then push back up. Do the same on the other side.'**
   String get archerPushDesc;
 
   /// No description provided for @dipPushDesc.
   ///
   /// In en, this message translates to:
-  /// **''**
+  /// **'Hold the bars with the center of your palms on top. Keep your shoulders pressed down and maintain that position throughout. Lower yourself until your elbows reach at least a 90-degree bend, then push back up.'**
   String get dipPushDesc;
 
   /// No description provided for @bagPullDesc.
   ///
   /// In en, this message translates to:
-  /// **''**
+  /// **'Fill a bag with books or small weights, aiming for at least 5–10 kg (11–22 lbs). Support yourself with one hand, keeping your torso straight and roughly horizontal. When you lower your hand, try to keep the bag off the ground. During the lift, keep your shoulders pressed down—don’t let them rise toward your ears. Don’t bend your arm more than 90°. If it feels too easy, increase the weight, lower it more slowly, or do more repetitions. Repeat on both sides.'**
   String get bagPullDesc;
 
   /// No description provided for @bwPullDesc.
@@ -533,73 +533,73 @@ abstract class AppLocalizations {
   /// No description provided for @squat1Desc.
   ///
   /// In en, this message translates to:
-  /// **''**
+  /// **'Hold onto something stable with one or both hands for support. Stand with your feet shoulder-width apart, toes slightly turned out. Start by pushing your knees slightly forward, then lower yourself in a controlled manner to about a 90° bend. Keep your torso straight throughout.'**
   String get squat1Desc;
 
   /// No description provided for @lunge1Desc.
   ///
   /// In en, this message translates to:
-  /// **''**
+  /// **'Hold onto something stable with one or both hands for support. Step back, keeping your front shin vertical. Your thigh should point forward. Lean forward slightly so the focus is on the back of your front leg.'**
   String get lunge1Desc;
 
   /// No description provided for @squat2Desc.
   ///
   /// In en, this message translates to:
-  /// **''**
+  /// **'Stand with your feet shoulder-width apart, toes slightly turned out. Start by pushing your knees slightly forward, then lower yourself in a controlled manner to about a 90° bend. Keep your torso straight throughout.'**
   String get squat2Desc;
 
   /// No description provided for @lunge2Desc.
   ///
   /// In en, this message translates to:
-  /// **''**
+  /// **'Step back, keeping your front shin vertical. Your thigh should point forward. Lean forward slightly so the focus is on the back of your front leg.'**
   String get lunge2Desc;
 
   /// No description provided for @squat3Desc.
   ///
   /// In en, this message translates to:
-  /// **''**
+  /// **'Fill a bag with books or other weights. Stand with your feet shoulder-width apart, toes slightly turned out. Start by pushing your knees slightly forward, then lower yourself in a controlled manner to about a 90° bend. Keep your torso straight throughout.'**
   String get squat3Desc;
 
   /// No description provided for @lunge3Desc.
   ///
   /// In en, this message translates to:
-  /// **''**
+  /// **'Fill a bag with books or other weights. Step back, keeping your front shin vertical. Your thigh should point forward. Lean forward slightly so the focus is on the back of your front leg.'**
   String get lunge3Desc;
 
   /// No description provided for @squat4Desc.
   ///
   /// In en, this message translates to:
-  /// **''**
+  /// **'Jump while doing a squat. Stand with your feet shoulder-width apart, toes slightly turned out. Start by pushing your knees slightly forward, then lower yourself in a controlled manner to about a 90° bend. Keep your torso straight throughout. If you want, wear a backpack filled with weights.'**
   String get squat4Desc;
 
   /// No description provided for @lunge4Desc.
   ///
   /// In en, this message translates to:
-  /// **''**
+  /// **'Place your back leg on a chair. Keep your front shin vertical and your thigh pointing forward. Lean forward slightly so the weight is on the back of your front leg.'**
   String get lunge4Desc;
 
   /// No description provided for @squat5Desc.
   ///
   /// In en, this message translates to:
-  /// **''**
+  /// **'Stand with your feet apart, toes slightly turned out. Start the descent by bending one knee. Keep your upper body as upright as possible.'**
   String get squat5Desc;
 
   /// No description provided for @lunge5Desc.
   ///
   /// In en, this message translates to:
-  /// **''**
+  /// **'Fill a bag with books or other weights. Place your back leg on a chair. Keep your front shin vertical and your thigh pointing forward. Lean forward slightly so the weight is on the back of your front leg.'**
   String get lunge5Desc;
 
   /// No description provided for @core1Desc.
   ///
   /// In en, this message translates to:
-  /// **''**
+  /// **'Place your hands under your hips and lift your head. Tighten your core and raise your legs, but not all the way vertical. Lower your legs in a controlled manner, keeping them off the ground between repetitions. Bending your knees makes it easier.'**
   String get core1Desc;
 
   /// No description provided for @core2Desc.
   ///
   /// In en, this message translates to:
-  /// **''**
+  /// **'Lie face down on a chair and hold onto its legs. With your knees bent, lift your legs behind you as high as you can.'**
   String get core2Desc;
 
   /// No description provided for @lightBagPull.
@@ -617,7 +617,7 @@ abstract class AppLocalizations {
   /// No description provided for @warmupDesc.
   ///
   /// In en, this message translates to:
-  /// **'Warmup Description'**
+  /// **'Perform the exercise in a controlled manner. Make sure to use proper form.'**
   String get warmupDesc;
 
   /// No description provided for @warmup.
