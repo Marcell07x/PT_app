@@ -107,25 +107,25 @@ abstract class AppLocalizations {
   /// No description provided for @wallPush.
   ///
   /// In en, this message translates to:
-  /// **'Wall Push Ups'**
+  /// **'Wall Push-Ups'**
   String get wallPush;
 
   /// No description provided for @tablePush.
   ///
   /// In en, this message translates to:
-  /// **'Table Push Ups'**
+  /// **'Table Push-Ups'**
   String get tablePush;
 
   /// No description provided for @kneePush.
   ///
   /// In en, this message translates to:
-  /// **'Knee Push Ups'**
+  /// **'Knee Push-Ups'**
   String get kneePush;
 
   /// No description provided for @pushUp.
   ///
   /// In en, this message translates to:
-  /// **'Pushups'**
+  /// **'Push-Ups'**
   String get pushUp;
 
   /// No description provided for @declinePush.

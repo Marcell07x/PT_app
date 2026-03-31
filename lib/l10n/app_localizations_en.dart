@@ -12,16 +12,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get form => 'Here is the form';
 
   @override
-  String get wallPush => 'Wall Push Ups';
+  String get wallPush => 'Wall Push-Ups';
 
   @override
-  String get tablePush => 'Table Push Ups';
+  String get tablePush => 'Table Push-Ups';
 
   @override
-  String get kneePush => 'Knee Push Ups';
+  String get kneePush => 'Knee Push-Ups';
 
   @override
-  String get pushUp => 'Pushups';
+  String get pushUp => 'Push-Ups';
 
   @override
   String get declinePush => 'Decline Push Ups';
