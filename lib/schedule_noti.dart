@@ -17,7 +17,7 @@ class ScheduleNotifications {
     static Future<void> initNotification() async {
         // initialise the plugin. app_icon needs to be a added as a drawable resource to the Android head project
         const AndroidInitializationSettings initializationSettingsAndroid =
-            AndroidInitializationSettings('@mipmap/ic_launcher');
+            AndroidInitializationSettings('@mipmap/app_logo');
         final DarwinInitializationSettings initializationSettingsDarwin =
             DarwinInitializationSettings(
                 requestAlertPermission: true,
@@ -115,6 +115,26 @@ class ScheduleNotifications {
             ),
             androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
             matchDateTimeComponents: DateTimeComponents.time,
+        );
+    }
+
+    static Future<void> testNoti() async {
+        const NotificationDetails platformChannelSpecifics = NotificationDetails(
+            android: AndroidNotificationDetails(
+                'test_channel_id',
+                'test_channel_name',
+                channelDescription: 'Test notifications',
+                importance: Importance.max,
+                priority: Priority.high,
+            ),
+            iOS: DarwinNotificationDetails(),
+        );
+
+        await flutterLocalNotificationsPlugin.show(
+            id: 0,
+            title: 'Test Notification',
+            body: 'Description for the test',
+            notificationDetails: platformChannelSpecifics,
         );
     }
 
