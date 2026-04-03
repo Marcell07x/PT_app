@@ -181,11 +181,25 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
 
         final isLastWorkout = _currentIndex == workouts.length - 1;
         final currentExercise = workouts[_currentIndex];
+        final isSimpleLunge = (currentExercise['nameKey']! == 'lunge1' || currentExercise['nameKey']! == 'lunge2' || currentExercise['nameKey']! == 'lunge3');
         
+        String repetitions = currentExercise['reps']!;
+
+        if (isSimpleLunge && repetitions != "10-15") {
+            int repetitions1 = int.parse(currentExercise['reps']!);
+            double repetitions2 = repetitions1 * 1.5;
+            int repetitions3 = repetitions2.floor();
+            int repetitions4 = repetitions3.isOdd ? repetitions3 - 1 : repetitions3;
+            repetitions = repetitions4.toString();
+        } else if (isSimpleLunge && repetitions == "10-15") {
+            repetitions = "15-20";
+        }
+        
+
         return WorkoutScreen(
             videoPath: currentExercise['videoPath']!,
             exerciseName: _getLocalizedExerciseName(currentExercise['nameKey']!, context),
-            reps: "${currentExercise['reps']!} ${AppLocalizations.of(context)!.reps}",
+            reps: "${repetitions} ${AppLocalizations.of(context)!.reps}",
             description: _getLocalizedExerciseName(currentExercise['descriptionKey']!, context),
             buttonText: isLastWorkout ? AppLocalizations.of(context)!.finish : AppLocalizations.of(context)!.next,
             label: AppLocalizations.of(context)!.workout,

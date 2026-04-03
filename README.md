@@ -1,3 +1,3 @@
-# telefon_app
+# InShap
 
-A new Flutter project.
+Makes working out a habit

@@ -264,7 +264,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get lunge4Desc =>
-      'Place your back leg on a chair. Keep your front shin vertical and your thigh pointing forward. Lean forward slightly so the weight is on the back of your front leg.';
+      'Place your back leg on a chair. Keep your front shin vertical and your thigh pointing forward. Lean forward slightly so the weight is on the back of your front leg. Perform on both sides.';
 
   @override
   String get squat5Desc =>
@@ -272,7 +272,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get lunge5Desc =>
-      'Fill a bag with books or other weights. Place your back leg on a chair. Keep your front shin vertical and your thigh pointing forward. Lean forward slightly so the weight is on the back of your front leg.';
+      'Fill a bag with books or other weights. Place your back leg on a chair. Keep your front shin vertical and your thigh pointing forward. Lean forward slightly so the weight is on the back of your front leg. Perform on both sides.';
 
   @override
   String get core1Desc =>

@@ -575,7 +575,7 @@ abstract class AppLocalizations {
   /// No description provided for @lunge4Desc.
   ///
   /// In en, this message translates to:
-  /// **'Place your back leg on a chair. Keep your front shin vertical and your thigh pointing forward. Lean forward slightly so the weight is on the back of your front leg.'**
+  /// **'Place your back leg on a chair. Keep your front shin vertical and your thigh pointing forward. Lean forward slightly so the weight is on the back of your front leg. Perform on both sides.'**
   String get lunge4Desc;
 
   /// No description provided for @squat5Desc.
@@ -587,7 +587,7 @@ abstract class AppLocalizations {
   /// No description provided for @lunge5Desc.
   ///
   /// In en, this message translates to:
-  /// **'Fill a bag with books or other weights. Place your back leg on a chair. Keep your front shin vertical and your thigh pointing forward. Lean forward slightly so the weight is on the back of your front leg.'**
+  /// **'Fill a bag with books or other weights. Place your back leg on a chair. Keep your front shin vertical and your thigh pointing forward. Lean forward slightly so the weight is on the back of your front leg. Perform on both sides.'**
   String get lunge5Desc;
 
   /// No description provided for @core1Desc.

@@ -264,7 +264,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get lunge4Desc =>
-      'A hátsó lábad tedd fel mondjuk egy székre. Tartsd az elülső sípcsintod függőlegesen. A combod mutasson előre. Kicsit dőlj előre, hogy az elülső lábad hátsó részén legyen a hangsúly.';
+      'A hátsó lábad tedd fel mondjuk egy székre. Tartsd az elülső sípcsintod függőlegesen. A combod mutasson előre. Kicsit dőlj előre, hogy az elülső lábad hátsó részén legyen a hangsúly. Mindkét lábaddal elől csináld meg.';
 
   @override
   String get squat5Desc =>
@@ -272,7 +272,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get lunge5Desc =>
-      'Vegyél fel egy könyvekkel telepakolt táskát. A hátsó lábad tedd fel mondjuk egy székre. Tartsd az elülső sípcsintod függőlegesen. A combod mutasson előre. Kicsit dőlj előre, hogy az elülső lábad hátsó részén legyen a hangsúly.';
+      'Vegyél fel egy könyvekkel telepakolt táskát. A hátsó lábad tedd fel mondjuk egy székre. Tartsd az elülső sípcsintod függőlegesen. A combod mutasson előre. Kicsit dőlj előre, hogy az elülső lábad hátsó részén legyen a hangsúly. Mindkét lábaddal elől csináld meg.';
 
   @override
   String get core1Desc =>
