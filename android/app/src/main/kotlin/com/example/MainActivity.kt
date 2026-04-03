@@ -1,4 +1,4 @@
-package com.example.telefon_app
+package app.bodnarm.inshap
 
 import io.flutter.embedding.android.FlutterActivity
 
