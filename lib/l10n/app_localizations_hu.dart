@@ -240,7 +240,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get lunge1Desc =>
-      'Támaszkodj/kapaszkodj valami stabil dologba az egyik vagy mindkét oldaladon. Lépj hátra, miközben az elülső sípcsintod függőlegesen marad. A combod mutasson előre. Kicsit dőlj előre, hogy az elülső lábad hátsó részén legyen a hangsúly.';
+      'A két lábra összesen számold az ismétléseket, ne lábanként külön. Támaszkodj/kapaszkodj valami stabil dologba az egyik vagy mindkét oldaladon. Lépj hátra, miközben az elülső sípcsintod függőlegesen marad. A combod mutasson előre. Kicsit dőlj előre, hogy az elülső lábad hátsó részén legyen a hangsúly.';
 
   @override
   String get squat2Desc =>
@@ -248,7 +248,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get lunge2Desc =>
-      'Lépj hátra, miközben az elülső sípcsintod függőlegesen marad. A combod mutasson előre. Kicsit dőlj előre, hogy az elülső lábad hátsó részén legyen a hangsúly.';
+      'A két lábra összesen számold az ismétléseket, ne lábanként külön. Lépj hátra, miközben az elülső sípcsintod függőlegesen marad. A combod mutasson előre. Kicsit dőlj előre, hogy az elülső lábad hátsó részén legyen a hangsúly.';
 
   @override
   String get squat3Desc =>
@@ -256,7 +256,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get lunge3Desc =>
-      'Tölts meg egy táskát könyvekkel, vagy más súlyokkal. Lépj hátra, miközben az elülső sípcsintod függőlegesen marad. A combod mutasson előre. Kicsit dőlj előre, hogy az elülső lábad hátsó részén legyen a hangsúly.';
+      'A két lábra összesen számold az ismétléseket, ne lábanként külön. Tölts meg egy táskát könyvekkel, vagy más súlyokkal. Lépj hátra, miközben az elülső sípcsintod függőlegesen marad. A combod mutasson előre. Kicsit dőlj előre, hogy az elülső lábad hátsó részén legyen a hangsúly.';
 
   @override
   String get squat4Desc =>
@@ -276,7 +276,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get core1Desc =>
-      'Tedd be a kezeid a feneked alá. Emeld fel a fejed. Feszítsd a hasad, és emeld fel a lábaid, de ne teljesen függőlegesig. Kontrolláltan engedd le a lábaid, ismétlések között ne engedd le a földre. Térdhajlítással könnyebb.';
+      'Tedd be a kezeid a feneked alá. Emeld fel a fejed. Feszítsd a hasad, és emeld fel a lábaid, de ne teljesen függőlegesig. Kontrolláltan engedd le a lábaid, és ismétlések között ne pihentesd lent a földön. Térdhajlítással könnyebb.';
 
   @override
   String get core2Desc =>

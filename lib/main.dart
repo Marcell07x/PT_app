@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'l10n/app_localizations.dart';
 import 'questionaire.dart';
@@ -18,7 +19,7 @@ import 'questionaire.dart';
 void main() async {
     WidgetsFlutterBinding.ensureInitialized();
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-    ScheduleNotifications.initNotification();
+    await ScheduleNotifications.initNotification();
     await StreakManager.init(); 
     await WorkoutSignal.setSignalTrue();
     await prefsInit();
@@ -96,22 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                        SizedBox(height: 150),
-                        ElevatedButton(
-                            onPressed: () async {
-                                WorkoutSignal.debugSetSignalTrue();
-                                //await prefs?.setInt('workoutsThisWeek', 0);
-                                await ScheduleNotifications.testNoti();
-                                setState(() {});
-                                int? newLevel = await ManuallySetLevel.showLevelInputDialog(context);
-                                if (newLevel != null) {
-                                    await ManuallySetLevel.saveLevelToPrefs(newLevel);
-                                    ManuallySetLevel.showSuccess(context, 'Level set: $newLevel');
-                                    setState(() {});
-                                }
-                            }, 
-                            child: const Text('Set Level')
-                        ),
+                        const SizedBox(height: 150),
                         ElevatedButton(
                             onPressed: _isButtonEnabled ? () async {
                                 await StreakManager.incrementStreak();
@@ -134,33 +120,55 @@ class _MyHomePageState extends State<MyHomePage> {
                             } : null,  
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.blue,
-                                minimumSize: Size(280, 120),
+                                minimumSize: const Size(280, 120),
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10),
                                 ),
                             ),
                             child: Text(
                                 AppLocalizations.of(context)!.startWorkout,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 32,
                                     fontWeight: FontWeight.w900,
                                     color: Colors.white,
                                 ),
                             ),
                         ),
-                        TextButton(
-                            onPressed: () {
-                                Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                        builder: (context) => Question2Page(data: QuestionnaireData()),
-                                    ),
-                                );
-                            },
-                            child: Text(AppLocalizations.of(context)!.form)
-                        ),
+
+                        if (kDebugMode) ...[
+                            const SizedBox(height: 20),
+                            
+                            ElevatedButton(
+                                onPressed: () async {
+                                    WorkoutSignal.debugSetSignalTrue();
+                                    await ScheduleNotifications.testNoti();
+                                    setState(() {});
+                                    int? newLevel = await ManuallySetLevel.showLevelInputDialog(context);
+                                    if (newLevel != null) {
+                                        await ManuallySetLevel.saveLevelToPrefs(newLevel);
+                                        ManuallySetLevel.showSuccess(context, 'Level set: $newLevel');
+                                        setState(() {});
+                                    }
+                                }, 
+                                child: const Text('Set Level'),
+                            ),
+                            
+                            const SizedBox(height: 10),
+                            
+                            TextButton(
+                                onPressed: () {
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) => Question2Page(data: QuestionnaireData()),
+                                        ),
+                                    );
+                                },
+                                child: Text(AppLocalizations.of(context)!.form),
+                            ),
+                        ],
                     ],
-                )
-            )
+                ),
+            ),
         );
     }
 }

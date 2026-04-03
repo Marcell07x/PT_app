@@ -240,7 +240,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get lunge1Desc =>
-      'Hold onto something stable with one or both hands for support. Step back, keeping your front shin vertical. Your thigh should point forward. Lean forward slightly so the focus is on the back of your front leg.';
+      'Alternate legs—count total reps, not per leg. Hold onto something stable with one or both hands for support. Step back, keeping your front shin vertical. Your thigh should point forward. Lean forward slightly so the focus is on the back of your front leg.';
 
   @override
   String get squat2Desc =>
@@ -248,7 +248,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get lunge2Desc =>
-      'Step back, keeping your front shin vertical. Your thigh should point forward. Lean forward slightly so the focus is on the back of your front leg.';
+      'Alternate legs—count total reps, not per leg. Step back, keeping your front shin vertical. Your thigh should point forward. Lean forward slightly so the focus is on the back of your front leg.';
 
   @override
   String get squat3Desc =>
@@ -256,7 +256,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get lunge3Desc =>
-      'Fill a bag with books or other weights. Step back, keeping your front shin vertical. Your thigh should point forward. Lean forward slightly so the focus is on the back of your front leg.';
+      'Alternate legs—count total reps, not per leg. Fill a bag with books or other weights. Step back, keeping your front shin vertical. Your thigh should point forward. Lean forward slightly so the focus is on the back of your front leg.';
 
   @override
   String get squat4Desc =>
@@ -276,7 +276,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get core1Desc =>
-      'Place your hands under your hips and lift your head. Tighten your core and raise your legs, but not all the way vertical. Lower your legs in a controlled manner, keeping them off the ground between repetitions. Bending your knees makes it easier.';
+      'Place your hands under your hips and lift your head. Tighten your core and raise your legs, but not all the way to vertical. Lower your legs in a controlled manner, and don’t let them rest on the ground between reps. Bending your knees makes it easier.';
 
   @override
   String get core2Desc =>
