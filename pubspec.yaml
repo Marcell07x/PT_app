@@ -1,7 +1,7 @@
 name: InShap
 description: "Getting You In Shape."
 publish_to: 'none'
-version: 0.1.0
+version: 0.1.2+2
 
 environment:
   sdk: ^3.8.1

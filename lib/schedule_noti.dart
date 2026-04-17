@@ -20,9 +20,9 @@ class ScheduleNotifications {
             AndroidInitializationSettings('@mipmap/ic_launcher');
         final DarwinInitializationSettings initializationSettingsDarwin =
             DarwinInitializationSettings(
-                requestAlertPermission: true,
-                requestBadgePermission: true,
-                requestSoundPermission: true,
+                requestAlertPermission: false,
+                requestBadgePermission: false,
+                requestSoundPermission: false,
             );
         final LinuxInitializationSettings initializationSettingsLinux =
             LinuxInitializationSettings(

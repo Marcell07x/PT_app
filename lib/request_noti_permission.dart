@@ -49,6 +49,7 @@ class _RequestNotiPermissionState extends State<RequestNotiPermission> {
 
     Future<void> _requestNotificationPermission() async {
         print(_isPermissionGranted);
+
         if (Platform.isAndroid) {
             if (_isPermissionGranted == false) {
                 final androidPlugin = _notificationsPlugin
@@ -56,6 +57,30 @@ class _RequestNotiPermissionState extends State<RequestNotiPermission> {
                         AndroidFlutterLocalNotificationsPlugin>();
                 
                 final bool? granted = await androidPlugin?.requestNotificationsPermission();
+                
+                setState(() {
+                    _isPermissionGranted = granted == true;
+                });
+                
+                if (granted == true) {
+                    _goToHomePage();
+                }
+            } else {
+                _goToHomePage();
+            }
+        }
+
+        else if (Platform.isIOS) {
+            if (_isPermissionGranted == false) {
+                final iosPlugin = _notificationsPlugin
+                    .resolvePlatformSpecificImplementation<
+                        IOSFlutterLocalNotificationsPlugin>();
+                
+                final bool? granted = await iosPlugin?.requestPermissions(
+                    alert: true,
+                    badge: true,
+                    sound: true,
+                );
                 
                 setState(() {
                     _isPermissionGranted = granted == true;
@@ -81,6 +106,18 @@ class _RequestNotiPermissionState extends State<RequestNotiPermission> {
             final bool? granted = await androidPlugin.areNotificationsEnabled();
             return granted == true;
         }
+
+        else if (Platform.isIOS) {
+            final iosPlugin = _notificationsPlugin
+                .resolvePlatformSpecificImplementation<
+                    IOSFlutterLocalNotificationsPlugin>();
+            
+            if (iosPlugin == null) return false;
+            
+            final bool? granted = await iosPlugin?.getNotificationSettings();
+            return granted?.authorizationStatus == AuthorizationStatus.authorized;
+        }
+        
         return false;
     }
 
