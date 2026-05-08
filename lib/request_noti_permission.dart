@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'dart:io' show Platform;
+import 'package:permission_handler/permission_handler.dart';
 import 'l10n/app_localizations.dart';
 import 'main.dart';
 
@@ -108,14 +109,8 @@ class _RequestNotiPermissionState extends State<RequestNotiPermission> {
         }
 
         else if (Platform.isIOS) {
-            final iosPlugin = _notificationsPlugin
-                .resolvePlatformSpecificImplementation<
-                    IOSFlutterLocalNotificationsPlugin>();
-            
-            if (iosPlugin == null) return false;
-            
-            final bool? granted = await iosPlugin?.getNotificationSettings();
-            return granted?.authorizationStatus == AuthorizationStatus.authorized;
+            final status = await Permission.notification.status;
+            return status == PermissionStatus.granted;
         }
         
         return false;
