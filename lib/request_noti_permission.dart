@@ -119,6 +119,7 @@ class _RequestNotiPermissionState extends State<RequestNotiPermission> {
     @override
     Widget build(BuildContext context) {
         return MaterialApp(
+            debugShowCheckedModeBanner: false,
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             home: Scaffold(

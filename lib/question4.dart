@@ -16,6 +16,7 @@ class _Question4PageState extends State<Question4Page> {
     @override
     Widget build(BuildContext context) {
         return MaterialApp(
+            debugShowCheckedModeBanner: false,
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             home: Scaffold(
