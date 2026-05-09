@@ -1,0 +1,175 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter/foundation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'l10n/app_localizations.dart';
+import 'questionaire.dart';
+import 'streak.dart';
+import 'question1.dart';
+import 'question2.dart';
+import 'workout_flow.dart';
+import 'warmup_flow.dart';
+import 'level.dart';
+import 'manuallysetlevel.dart';
+import 'workout_signal.dart';
+import 'schedule_noti.dart';
+import 'checkdata.dart';
+import 'questionaire.dart';
+
+void main() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+    await ScheduleNotifications.initNotification();
+    await StreakManager.init(); 
+    await WorkoutSignal.setSignalTrue();
+    await prefsInit();
+    bool hasData = await CheckData.checkData();
+    if (hasData) {
+        runApp(const MyApp());
+    } else {
+        final _qdata = QuestionnaireData();
+        runApp(
+            MaterialApp(
+                localizationsDelegates: AppLocalizations.localizationsDelegates,
+                supportedLocales: AppLocalizations.supportedLocales,
+                home: Question2Page(data: _qdata),
+                ),
+            );
+    }
+}
+
+class MyApp extends StatefulWidget {
+    const MyApp({super.key});
+
+    @override
+    State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+    @override
+    Widget build(BuildContext context) {
+        return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+
+            home: MyHomePage(),
+        );
+    }
+}
+
+class MyHomePage extends StatefulWidget {
+    const MyHomePage({super.key});
+
+    @override
+    State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+    late bool _isButtonEnabled;
+
+    @override
+    void initState() {
+        super.initState();
+        _checkWorkout();
+        WorkoutSignal.onSignalChanged = _checkWorkout;
+    }
+    
+    @override
+    void dispose() {
+        WorkoutSignal.onSignalChanged = null;
+        super.dispose();
+    }
+
+    Future<void> _checkWorkout() async {
+         if (!mounted) return;
+
+        final prefs = await SharedPreferences.getInstance();
+        final boolValue = prefs.getBool('signal') ?? true;
+        setState(() {
+           _isButtonEnabled = boolValue;
+        });
+    }
+    
+    @override
+    Widget build(BuildContext context) {
+        return Scaffold(
+            body: Center(
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                        const SizedBox(height: 150),
+                        ElevatedButton(
+                            onPressed: _isButtonEnabled ? () async {
+                                await StreakManager.incrementStreak();
+                                final prefs = await SharedPreferences.getInstance();
+                                int wlevel = prefs.getInt('level') ?? 1;
+                                setState(() {});
+                                if (wlevel <= 129) {
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) => WorkoutFlow(),
+                                        ),
+                                    );
+                                } else {
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) => WarmupFlow(),
+                                        ),
+                                    );
+                                }
+                            } : null,  
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.blue,
+                                minimumSize: const Size(280, 120),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                ),
+                            ),
+                            child: Text(
+                                AppLocalizations.of(context)!.startWorkout,
+                                style: const TextStyle(
+                                    fontSize: 32,
+                                    fontWeight: FontWeight.w900,
+                                    color: Colors.white,
+                                ),
+                            ),
+                        ),
+
+                        if (kDebugMode) ...[
+                            const SizedBox(height: 20),
+                            
+                            ElevatedButton(
+                                onPressed: () async {
+                                    WorkoutSignal.debugSetSignalTrue();
+                                    await ScheduleNotifications.testNoti();
+                                    setState(() {});
+                                    int? newLevel = await ManuallySetLevel.showLevelInputDialog(context);
+                                    if (newLevel != null) {
+                                        await ManuallySetLevel.saveLevelToPrefs(newLevel);
+                                        ManuallySetLevel.showSuccess(context, 'Level set: $newLevel');
+                                        setState(() {});
+                                    }
+                                }, 
+                                child: const Text('Set Level'),
+                            ),
+                            
+                            const SizedBox(height: 10),
+                            
+                            TextButton(
+                                onPressed: () {
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) => Question2Page(data: QuestionnaireData()),
+                                        ),
+                                    );
+                                },
+                                child: Text(AppLocalizations.of(context)!.form),
+                            ),
+                        ],
+                    ],
+                ),
+            ),
+        );
+    }
+}

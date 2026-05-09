@@ -1,0 +1,213 @@
+import 'package:flutter/material.dart';
+import 'l10n/app_localizations.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'workout_screen.dart';
+import 'workout_done_screen.dart';
+import 'workouta.dart';
+import 'workouta_reps.dart';
+import 'workoutb_home.dart';
+import 'workoutb_reps.dart';
+import 'legswitch.dart';
+import 'level.dart';
+import 'workout_signal.dart';
+import 'workout_feedback.dart';
+import 'workoutsthisweek.dart';
+import 'schedule_noti.dart';
+import 'warmup_flow.dart';
+
+class WorkoutFlow extends StatefulWidget {
+    const WorkoutFlow({super.key});
+
+    @override
+    _WorkoutFlowState createState() => _WorkoutFlowState();
+}
+
+class _WorkoutFlowState extends State<WorkoutFlow> {
+    WorkoutA workouta = WorkoutA();
+    WorkoutAReps workoutareps = WorkoutAReps();
+    WorkoutBHome workoutBHome = WorkoutBHome();
+    WorkoutBReps workoutBReps = WorkoutBReps();
+    LegSwitch legSwitch = LegSwitch();
+    WorkoutLevel workoutLevel = WorkoutLevel();
+
+    final List<Map<String, String>> workouts = [];
+    int _currentIndex = 0;
+
+    String _getLocalizedExerciseName(String localizationKey, BuildContext context) {
+        final loc = AppLocalizations.of(context)!;
+        switch (localizationKey) {
+            case 'wallPush': return loc.wallPush;
+            case 'tablePush': return loc.tablePush;
+            case 'kneePush': return loc.kneePush;
+            case 'pushUp': return loc.pushUp;
+            case 'declinePush': return loc.declinePush;
+            case 'clapPush': return loc.clapPush;
+            case 'archerPush': return loc.archerPush;
+            case 'dipPush': return loc.dipPush;
+            case 'bagPull': return loc.bagPull;
+            case 'bwPull': return loc.bwPull;
+            case 'pullup': return loc.pullup;
+            case 'squat1': return loc.squat1;
+            case 'lunge1': return loc.lunge1;
+            case 'squat2': return loc.squat2;
+            case 'lunge2': return loc.lunge2;
+            case 'squat3': return loc.squat3;
+            case 'lunge3': return loc.lunge3;
+            case 'squat4': return loc.squat4;
+            case 'lunge4': return loc.lunge4;
+            case 'squat5': return loc.squat5;
+            case 'lunge5': return loc.lunge5;
+            case 'core1': return loc.core1;
+            case 'core2': return loc.core2;
+            case 'wallPushDesc': return loc.wallPushDesc;
+            case 'tablePushDesc': return loc.tablePushDesc;
+            case 'kneePushDesc': return loc.kneePushDesc;
+            case 'pushUpDesc': return loc.pushUpDesc;
+            case 'declinePushDesc': return loc.declinePushDesc;
+            case 'clapPushDesc': return loc.clapPushDesc;
+            case 'archerPushDesc': return loc.archerPushDesc;
+            case 'dipPushDesc': return loc.dipPushDesc;
+            case 'bagPullDesc': return loc.bagPullDesc;
+            case 'bwPullDesc': return loc.bwPullDesc;
+            case 'pullupDesc': return loc.pullupDesc;
+            case 'squat1Desc': return loc.squat1Desc;
+            case 'lunge1Desc': return loc.lunge1Desc;
+            case 'squat2Desc': return loc.squat2Desc;
+            case 'lunge2Desc': return loc.lunge2Desc;
+            case 'squat3Desc': return loc.squat3Desc;
+            case 'lunge3Desc': return loc.lunge3Desc;
+            case 'squat4Desc': return loc.squat4Desc;
+            case 'lunge4Desc': return loc.lunge4Desc;
+            case 'squat5Desc': return loc.squat5Desc;
+            case 'lunge5Desc': return loc.lunge5Desc;
+            case 'core1Desc': return loc.core1Desc;
+            case 'core2Desc': return loc.core2Desc;  
+          default: return localizationKey;
+        }
+    }
+
+    @override
+    void initState() {
+        super.initState();
+        _initializeData();
+    }
+
+    void _initializeData() async {
+        await workoutLevel.getLevel();
+        if (workoutLevel.level < 150) {
+            await workouta.SetExerA();
+            await workoutareps.SetRepsA(workouta.workout_partsA);
+            setState(() {
+                workouts.addAll(workouta.workout_partsA);
+            });
+        }  else {
+            await workoutBHome.SetExerBHome();
+            await workoutBReps.SetRepsB(workoutBHome.workout_partsBHome);
+            setState(() {
+                workouts.addAll(workoutBHome.workout_partsBHome);
+            });
+        }   
+    }
+
+    void _goToNext() {
+        if (_currentIndex < workouts.length - 1) {
+            setState(() {
+                _currentIndex++;
+            });
+        }
+    }
+
+    Future<void> _toggleLegSwitch() async {
+        await legSwitch.getSwitch();
+        await legSwitch.setSwitch();
+    }
+
+    Future<void> _finishWorkout() async {
+        final prefs = await SharedPreferences.getInstance();
+        await WorkoutsThisWeek.checkAndResetWeek();
+
+        int levelF = prefs.getInt('level') ?? 1;
+        int workoutCount = prefs.getInt('workoutsThisWeek') ?? 0;
+
+        await _toggleLegSwitch();
+        await WorkoutSignal.setSignalFalse();
+
+        workoutCount++;
+        await prefs.setInt('workoutsThisWeek', workoutCount);
+
+        if (workoutCount == 4) {
+            int inc = prefs.getInt('incspeed')!;
+            inc++;
+            await prefs.setInt('incspeed', inc);
+        }
+
+        await workoutLevel.setLevel();
+        await ScheduleNotifications.laterNoti(context);
+
+        if (!mounted) return;
+
+        if (levelF > 149 || (workoutCount == 4 && levelF > 100)) {
+            Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => WorkoutFeedback()),
+            );
+        } else {
+            Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => CongratulationsScreen()),
+            );
+        }
+
+    }
+
+    void _goToPrevious() {
+        if (_currentIndex > 0) {
+            setState(() {
+                _currentIndex--;
+            });
+        } else {
+            Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => WarmupFlow()),
+            );
+        }
+    }
+
+    @override
+    Widget build(BuildContext context) {
+        if (workouts.isEmpty) {
+            return Scaffold(
+                appBar: AppBar(title: Text('Workout')),
+                body: Center(child: Text('No Exercises Error')),
+            );
+        }
+
+        final isLastWorkout = _currentIndex == workouts.length - 1;
+        final currentExercise = workouts[_currentIndex];
+        final isSimpleLunge = (currentExercise['nameKey']! == 'lunge1' || currentExercise['nameKey']! == 'lunge2' || currentExercise['nameKey']! == 'lunge3');
+        
+        String repetitions = currentExercise['reps']!;
+
+        if (isSimpleLunge && repetitions != "10-15") {
+            int repetitions1 = int.parse(currentExercise['reps']!);
+            double repetitions2 = repetitions1 * 1.5;
+            int repetitions3 = repetitions2.floor();
+            int repetitions4 = repetitions3.isOdd ? repetitions3 - 1 : repetitions3;
+            repetitions = repetitions4.toString();
+        } else if (isSimpleLunge && repetitions == "10-15") {
+            repetitions = "15-20";
+        }
+        
+
+        return WorkoutScreen(
+            videoPath: currentExercise['videoPath']!,
+            exerciseName: _getLocalizedExerciseName(currentExercise['nameKey']!, context),
+            reps: "${repetitions} ${AppLocalizations.of(context)!.reps}",
+            description: _getLocalizedExerciseName(currentExercise['descriptionKey']!, context),
+            buttonText: isLastWorkout ? AppLocalizations.of(context)!.finish : AppLocalizations.of(context)!.next,
+            label: AppLocalizations.of(context)!.workout,
+            onNextPressed: isLastWorkout ? _finishWorkout : _goToNext,
+            onPreviousPressed: _goToPrevious,
+            currentIndex: _currentIndex,
+            totalWorkouts: workouts.length,
+            level: workoutLevel.level,
+        );
+    }
+}

@@ -1,4 +1,4 @@
-package app.bodnarm.getshap
+package app.bodnarm.inshap
 
 import io.flutter.embedding.android.FlutterActivity
 
