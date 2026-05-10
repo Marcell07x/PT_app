@@ -32,6 +32,7 @@
     "core2": "Back Extensions",
 
     "workout": "Workout",
+    "noWorkout": "No more workouts for today :)",
     "reps": "Repetitions",
     "seconds": "Seconds",
     "next": "Next",

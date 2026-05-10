@@ -84,6 +84,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get workout => 'Workout';
 
   @override
+  String get noWorkout => 'No more workouts for today :)';
+
+  @override
   String get reps => 'Repetitions';
 
   @override

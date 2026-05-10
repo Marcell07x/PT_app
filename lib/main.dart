@@ -15,6 +15,7 @@ import 'workout_signal.dart';
 import 'schedule_noti.dart';
 import 'checkdata.dart';
 import 'questionaire.dart';
+import 'no_workout_page.dart';
 
 void main() async {
     WidgetsFlutterBinding.ensureInitialized();
@@ -105,20 +106,25 @@ class _MyHomePageState extends State<MyHomePage> {
                                 final prefs = await SharedPreferences.getInstance();
                                 int wlevel = prefs.getInt('level') ?? 1;
                                 setState(() {});
-                                if (wlevel <= 129) {
+                                if (wlevel <= 129 && _isButtonEnabled) {
                                     Navigator.of(context).push(
                                         MaterialPageRoute(
                                             builder: (context) => WorkoutFlow(),
                                         ),
                                     );
-                                } else {
+                                } else if (_isButtonEnabled && wlevel > 129){
                                     Navigator.of(context).push(
                                         MaterialPageRoute(
                                             builder: (context) => WarmupFlow(),
                                         ),
                                     );
+                                } else {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => const NoWorkout()),
+                                    );
                                 }
-                            } : null,  
+                            } : null,   
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.blue,
                                 minimumSize: const Size(280, 120),

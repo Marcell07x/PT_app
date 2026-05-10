@@ -248,6 +248,12 @@ abstract class AppLocalizations {
   /// **'Workout'**
   String get workout;
 
+  /// No description provided for @noWorkout.
+  ///
+  /// In en, this message translates to:
+  /// **'No more workouts for today :)'**
+  String get noWorkout;
+
   /// No description provided for @reps.
   ///
   /// In en, this message translates to:

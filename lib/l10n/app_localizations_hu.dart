@@ -84,6 +84,9 @@ class AppLocalizationsHu extends AppLocalizations {
   String get workout => 'Edzés';
 
   @override
+  String get noWorkout => 'Mára nincs több edzés :)';
+
+  @override
   String get reps => 'Ismétlés';
 
   @override

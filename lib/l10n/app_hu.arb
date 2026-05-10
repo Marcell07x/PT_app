@@ -32,6 +32,7 @@
     "core2": "Hátsó Lábemelések",
 
     "workout": "Edzés",
+    "noWorkout": "Mára nincs több edzés :)",
     "reps": "Ismétlés",
     "seconds": "Másodperc",
     "next": "Következő",
