@@ -95,7 +95,7 @@
     "clapPushDesc": "Fekvőtámasz közben lökd el magad a földtől, és ha tudsz, amíg a kezeid a levegőben vannak, tapsolj egyet.",
     "archerPushDesc": "Tedd a kezeidet szélesre, fordítsd ki a kézfejed nagyjából 45 fokkal, majd az egyik karodat hajlítva ereszkedj le, miközben egy picit a másik könyököd hajlítva marad, végül nyomd ki magad. Csináld meg mindkét oldalra.",
     "dipPushDesc": "Fogd meg a rudakat úgy, hogy a tenyered közepe legyen fölötte. Szorítsd le a vállad, tartsd is úgy egész végig. Ereszkedj le, legalább amíg 90 fokba be nem hajlott a könyököd, majd nyomd ki magad.",
-    "bagPullDesc": "Pakolj tele egy táskát könyvekkel, kis súlyzókkal, érzésre legalább 5-10 kg legyen a táska. Egyik kézzel támaszkodj, a törzsed legyen egyenes, és nagyjából vízszintes. Ha leengeded a kezed, a táska lehetőleg a levegőben legyen. Felhúzásnál a válladat szorítsd le, ne menjen a füledhez. A karod 90°-nál ne hajlítsd be jobban. Ha túl könnyű, növeld a súlyt, engedd le lassabban, vagy csinálj belőle többet. Csináld meg mindkét oldalra.",
+    "bagPullDesc": "Pakolj tele egy táskát könyvekkel, kis súlyzókkal, érzésre legalább 5-10 kg legyen a táska. \nEgyik kézzel támaszkodj, a törzsed legyen egyenes, és nagyjából vízszintes. Ha leengeded a kezed, a táska lehetőleg a levegőben legyen. Felhúzásnál a válladat szorítsd le, ne menjen föl a füledhez. A karod kb. 90°-ig hajlítsd be. \nHa túl könnyű, növeld a súlyt, engedd le lassabban, vagy csinálj belőle többet. \nCsináld meg mindkét oldalra.",
     "bwPullDesc": "",
     "pullupDesc": "",
     "squat1Desc": "Támaszkodj/kapaszkodj valami stabil dologba az egyik vagy mindkét oldaladon. Vállszéles terpeszben a lábfejeid kicsit kifele nézzenek. Kezd kicsit előrevinni a térdeidet, majd kontrollált tempóban ereszkedj le nagyjából 90° mélységébe. Tartsd a törzsed egyenesen.",
@@ -114,7 +114,11 @@
     "lightBagPull": "Táskás/Súlyzós Evezés kisebb súllyal",
     "runInPlace": "Helyben Futás",
     "warmupDesc": "Végezd a gyakorlatot kontrolláltan. Figyelj, hogy helyes technikával csináld.",
-    "warmup": "Bemelegítés"
+    "warmup": "Bemelegítés",
+
+    "understand": "Értem",
+    "important": "Fontos",
+    "finishWarning": "Az appban edzésnél csak akkor nyomd meg a 'Befejezés' gombot, ha tényleg befejezted az edzést. \n\nEz egy visszajelzés az appnak."
 
 
 }

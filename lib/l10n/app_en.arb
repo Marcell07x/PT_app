@@ -96,7 +96,7 @@
     "clapPushDesc": "During a pushup, push yourself off the ground and, if you can, clap your hands while in mid-air.",
     "archerPushDesc": "Put your hands wide and rotate your palms out about 45 degrees. Bend one arm to lower yourself, keeping the other elbow slightly bent, then push back up. Do the same on the other side.",
     "dipPushDesc": "Hold the bars with the center of your palms on top. Keep your shoulders pressed down and maintain that position throughout. Lower yourself until your elbows reach at least a 90-degree bend, then push back up.",
-    "bagPullDesc": "Fill a bag with books or small weights, aiming for at least 5–10 kg (11–22 lbs). Support yourself with one hand, keeping your torso straight and roughly horizontal. When you lower your hand, try to keep the bag off the ground. During the lift, keep your shoulders pressed down—don’t let them rise toward your ears. Don’t bend your arm more than 90°. If it feels too easy, increase the weight, lower it more slowly, or do more repetitions. Repeat on both sides.",
+    "bagPullDesc": "Fill a bag with books or small weights, aiming for at least 5–10 kg (11–22 lbs). Support yourself with one hand, keeping your torso straight and roughly horizontal. When you lower your hand, try to keep the bag off the ground. During the lift, keep your shoulders pressed down—don’t let them rise toward your ears. Bend your arm to about 90°. If it feels too easy, increase the weight, lower it more slowly, or do more repetitions. Repeat on both sides.",
     "bwPullDesc": "",
     "pullupDesc": "",
     "squat1Desc": "Hold onto something stable with one or both hands for support. Stand with your feet shoulder-width apart, toes slightly turned out. Start by pushing your knees slightly forward, then lower yourself in a controlled manner to about a 90° bend. Keep your torso straight throughout.",
@@ -115,6 +115,10 @@
     "lightBagPull": "One Hand Bag Rows with less weight",
     "runInPlace": "Running In Place",
     "warmupDesc": "Perform the exercise in a controlled manner. Make sure to use proper form.",
-    "warmup": "Warmup"
+    "warmup": "Warmup",
+
+    "understand": "I Understand",
+    "important": "Important",
+    "finishWarning": "Only press the ‘Finish’ button once you have actually completed the workout.\n\nThis serves as feedback for the app."
 
 }

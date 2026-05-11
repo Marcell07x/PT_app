@@ -229,7 +229,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get bagPullDesc =>
-      'Fill a bag with books or small weights, aiming for at least 5–10 kg (11–22 lbs). Support yourself with one hand, keeping your torso straight and roughly horizontal. When you lower your hand, try to keep the bag off the ground. During the lift, keep your shoulders pressed down—don’t let them rise toward your ears. Don’t bend your arm more than 90°. If it feels too easy, increase the weight, lower it more slowly, or do more repetitions. Repeat on both sides.';
+      'Fill a bag with books or small weights, aiming for at least 5–10 kg (11–22 lbs). Support yourself with one hand, keeping your torso straight and roughly horizontal. When you lower your hand, try to keep the bag off the ground. During the lift, keep your shoulders pressed down—don’t let them rise toward your ears. Bend your arm to about 90°. If it feels too easy, increase the weight, lower it more slowly, or do more repetitions. Repeat on both sides.';
 
   @override
   String get bwPullDesc => '';
@@ -297,4 +297,14 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get warmup => 'Warmup';
+
+  @override
+  String get understand => 'I Understand';
+
+  @override
+  String get important => 'Important';
+
+  @override
+  String get finishWarning =>
+      'Only press the ‘Finish’ button once you have actually completed the workout.\n\nThis serves as feedback for the app.';
 }

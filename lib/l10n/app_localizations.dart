@@ -521,7 +521,7 @@ abstract class AppLocalizations {
   /// No description provided for @bagPullDesc.
   ///
   /// In en, this message translates to:
-  /// **'Fill a bag with books or small weights, aiming for at least 5–10 kg (11–22 lbs). Support yourself with one hand, keeping your torso straight and roughly horizontal. When you lower your hand, try to keep the bag off the ground. During the lift, keep your shoulders pressed down—don’t let them rise toward your ears. Don’t bend your arm more than 90°. If it feels too easy, increase the weight, lower it more slowly, or do more repetitions. Repeat on both sides.'**
+  /// **'Fill a bag with books or small weights, aiming for at least 5–10 kg (11–22 lbs). Support yourself with one hand, keeping your torso straight and roughly horizontal. When you lower your hand, try to keep the bag off the ground. During the lift, keep your shoulders pressed down—don’t let them rise toward your ears. Bend your arm to about 90°. If it feels too easy, increase the weight, lower it more slowly, or do more repetitions. Repeat on both sides.'**
   String get bagPullDesc;
 
   /// No description provided for @bwPullDesc.
@@ -631,6 +631,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Warmup'**
   String get warmup;
+
+  /// No description provided for @understand.
+  ///
+  /// In en, this message translates to:
+  /// **'I Understand'**
+  String get understand;
+
+  /// No description provided for @important.
+  ///
+  /// In en, this message translates to:
+  /// **'Important'**
+  String get important;
+
+  /// No description provided for @finishWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'Only press the ‘Finish’ button once you have actually completed the workout.\n\nThis serves as feedback for the app.'**
+  String get finishWarning;
 }
 
 class _AppLocalizationsDelegate

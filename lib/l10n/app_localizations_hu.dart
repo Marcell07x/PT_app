@@ -229,7 +229,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get bagPullDesc =>
-      'Pakolj tele egy táskát könyvekkel, kis súlyzókkal, érzésre legalább 5-10 kg legyen a táska. Egyik kézzel támaszkodj, a törzsed legyen egyenes, és nagyjából vízszintes. Ha leengeded a kezed, a táska lehetőleg a levegőben legyen. Felhúzásnál a válladat szorítsd le, ne menjen a füledhez. A karod 90°-nál ne hajlítsd be jobban. Ha túl könnyű, növeld a súlyt, engedd le lassabban, vagy csinálj belőle többet. Csináld meg mindkét oldalra.';
+      'Pakolj tele egy táskát könyvekkel, kis súlyzókkal, érzésre legalább 5-10 kg legyen a táska. \nEgyik kézzel támaszkodj, a törzsed legyen egyenes, és nagyjából vízszintes. Ha leengeded a kezed, a táska lehetőleg a levegőben legyen. Felhúzásnál a válladat szorítsd le, ne menjen föl a füledhez. A karod kb. 90°-ig hajlítsd be. \nHa túl könnyű, növeld a súlyt, engedd le lassabban, vagy csinálj belőle többet. \nCsináld meg mindkét oldalra.';
 
   @override
   String get bwPullDesc => '';
@@ -297,4 +297,14 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get warmup => 'Bemelegítés';
+
+  @override
+  String get understand => 'Értem';
+
+  @override
+  String get important => 'Fontos';
+
+  @override
+  String get finishWarning =>
+      'Az appban edzésnél csak akkor nyomd meg a \'Befejezés\' gombot, ha tényleg befejezted az edzést. \n\nEz egy visszajelzés az appnak.';
 }
