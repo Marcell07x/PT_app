@@ -156,7 +156,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get congrat => 'Gratulálok!';
 
   @override
-  String get congratMessage => 'Megcsináltad az edzésed!';
+  String get congratMessage => 'Megcsináltad a mai edzésed!';
 
   @override
   String get rpe1 => 'Nagyon Könnyed';

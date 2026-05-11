@@ -43,35 +43,6 @@ class ScheduleNotifications {
             settings: initializationSettings
             );   
         tz.initializeTimeZones();
-
-        await _checkExactAlarmPermission();
-    }
-
-    static Future<bool> _checkExactAlarmPermission() async {
-        if (await Permission.scheduleExactAlarm.isGranted) {
-            return true;
-        } else {
-            final status = await Permission.scheduleExactAlarm.request();
-            return status.isGranted;
-        }
-    }
-
-    //it's not needed
-    static tz.TZDateTime _nextInstanceOfTime(int time) {
-        final location = tz.getLocation('Europe/Budapest');
-        final tz.TZDateTime now = tz.TZDateTime.now(location);  
-
-        tz.TZDateTime scheduledDate = tz.TZDateTime(
-            location,
-            now.year,
-            now.month,
-            now.day,
-            time,
-        );
-        if (scheduledDate.isBefore(now)) {
-            scheduledDate = scheduledDate.add(const Duration(days: 1));
-        }
-        return scheduledDate;
     }
 
     static Future<void> laterNoti(BuildContext context) async {
@@ -113,8 +84,7 @@ class ScheduleNotifications {
                     channelDescription: 'Reminds users to work out',
                 ),
             ),
-            androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-            matchDateTimeComponents: DateTimeComponents.time,
+            androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
         );
     }
 

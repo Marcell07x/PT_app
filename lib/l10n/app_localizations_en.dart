@@ -156,7 +156,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get congrat => 'Congratulations!';
 
   @override
-  String get congratMessage => 'Workout complete!';
+  String get congratMessage => 'You\'ve completed today\'s workout!';
 
   @override
   String get rpe1 => 'Very Light Activity';

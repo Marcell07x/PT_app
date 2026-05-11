@@ -3,6 +3,7 @@ import 'l10n/app_localizations.dart';
 
 class CongratulationsScreen extends StatelessWidget {
   const CongratulationsScreen({super.key});
+  static int workoutIsDone = 0;
 
     @override
     Widget build(BuildContext context) {
@@ -42,6 +43,7 @@ class CongratulationsScreen extends StatelessWidget {
                             SizedBox(height: 40),
                             ElevatedButton(
                                 onPressed: () {
+                                    workoutIsDone = 1;
                                     Navigator.popUntil(context, (route) => route.isFirst);
                                 },
                                 style: ElevatedButton.styleFrom(

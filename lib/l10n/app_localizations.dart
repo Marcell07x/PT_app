@@ -395,7 +395,7 @@ abstract class AppLocalizations {
   /// No description provided for @congratMessage.
   ///
   /// In en, this message translates to:
-  /// **'Workout complete!'**
+  /// **'You\'ve completed today\'s workout!'**
   String get congratMessage;
 
   /// No description provided for @rpe1.

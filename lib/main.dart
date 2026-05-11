@@ -16,6 +16,7 @@ import 'schedule_noti.dart';
 import 'checkdata.dart';
 import 'questionaire.dart';
 import 'no_workout_page.dart';
+import 'workout_done_screen.dart';
 
 void main() async {
     WidgetsFlutterBinding.ensureInitialized();
@@ -108,14 +109,15 @@ class _MyHomePageState extends State<MyHomePage> {
                                 await StreakManager.incrementStreak();
                                 final prefs = await SharedPreferences.getInstance();
                                 int wlevel = prefs.getInt('level') ?? 1;
+                                int workoutDone = CongratulationsScreen.workoutIsDone;
                                 setState(() {});
-                                if (wlevel <= 129 && _isButtonEnabled) {
+                                if (wlevel <= 129 && workoutDone == 0) {
                                     Navigator.of(context).push(
                                         MaterialPageRoute(
                                             builder: (context) => WorkoutFlow(),
                                         ),
                                     );
-                                } else if (_isButtonEnabled && wlevel > 129){
+                                } else if (workoutDone == 0 && wlevel > 129){
                                     Navigator.of(context).push(
                                         MaterialPageRoute(
                                             builder: (context) => WarmupFlow(),
