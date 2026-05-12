@@ -58,80 +58,80 @@ class WorkoutBHome {
         _legsexpp = exercises.legs[_legse+4]!;
         _legsexlpp = exercises.legs[_legse+5]!;
 
-        if (_levelE < 230 && _switch == 1) {
+        if (_levelE < 310 && _switch == 1) {
             workout_partsBHome = [
                 {..._pushexp}, {..._pullex}, {..._legsex}, 
                 {..._pushexp},{..._pullex}, {..._legsex}, 
                 {..._pushex}, {..._pullex}, {..._legsex}
             ];
-        } else if (_levelE < 230 && _switch == (-1)) {
+        } else if (_levelE < 310 && _switch == (-1)) {
             workout_partsBHome = [
                 {..._pushexp}, {..._pullex}, {..._legsexl},
                 {..._pushexp}, {..._pullex}, {..._legsexl}, 
                 {..._pushex}, {..._pullex}, {..._legsexl}
             ];
-        } else if (_levelE < 250 && _switch == 1) {
+        } else if (_levelE < 350 && _switch == 1) {
             workout_partsBHome = [
+                {..._pushexp}, {..._pullex}, {..._legsex},
+                {..._pushexp}, {..._pullex}, {..._legsex},
+                {..._pushexp}, {..._pullex}, {..._legsex}
+            ];
+        } else if (_levelE < 350 && _switch == (-1)) {
+            workout_partsBHome = [
+                {..._pushexp}, {..._pullex}, {..._legsexl},
+                {..._pushexp}, {..._pullex}, {..._legsexl},
+                {..._pushexp}, {..._pullex}, {..._legsexl}
+            ];
+        } else if (_levelE < 390 && _switch == 1) {
+            workout_partsBHome = [
+                {..._pushexp}, {..._pullex}, {..._legsex},
                 {..._pushexp}, {..._pullex}, {..._legsex},
                 {..._pushexp}, {..._pullex}, {..._legsex},
                 {..._pushex}, {..._pullex}, {..._legsex}
             ];
-        } else if (_levelE < 250 && _switch == (-1)) {
-            workout_partsBHome = [
-                {..._pushexp}, {..._pullex}, {..._legsexl},
-                {..._pushexp}, {..._pullex}, {..._legsexl},
-                {..._pushex}, {..._pullex}, {..._legsexl}
-            ];
-        } else if (_levelE < 270 && _switch == 1) {
-            workout_partsBHome = [
-                {..._pushexp}, {..._pullex}, {..._legsex},
-                {..._pushexp}, {..._pullex}, {..._legsex},
-                {..._pushexp}, {..._pullex}, {..._legsex},
-                {..._pushex}, {..._pullex}, {..._legsex}
-            ];
-        } else if (_levelE < 270 && _switch == (-1)) {
+        } else if (_levelE < 390 && _switch == (-1)) {
             workout_partsBHome = [
                 {..._pushexp}, {..._pullex}, {..._legsexl},
                 {..._pushexp}, {..._pullex}, {..._legsexl},
                 {..._pushexp}, {..._pullex}, {..._legsexl},
                 {..._pushex}, {..._pullex}, {..._legsexl}
             ];
-        } else if (_levelE < 290 && _switch == 1) {
+        } else if (_levelE < 430 && _switch == 1) {
             workout_partsBHome = [
                 {..._pushexp}, {..._pullex}, {..._legsexp},
                 {..._pushexp}, {..._pullex}, {..._legsexp},
                 {..._pushexp}, {..._pullex}, {..._legsexp},
                 {..._pushex}, {..._pullex}, {..._legsexp}
             ];
-        } else if (_levelE < 290 && _switch == (-1)) {
+        } else if (_levelE < 430 && _switch == (-1)) {
             workout_partsBHome = [
                 {..._pushexp}, {..._pullex}, {..._legsexlp},
                 {..._pushexp}, {..._pullex}, {..._legsexlp},
                 {..._pushexp}, {..._pullex}, {..._legsexlp},
                 {..._pushex}, {..._pullex}, {..._legsexlp}
             ];
-        } else if (_levelE < 310 && _switch == 1) {
+        } else if (_levelE < 470 && _switch == 1) {
             workout_partsBHome = [
                 {..._pushexp}, {..._pullex}, {..._legsexp}, {..._lowerBack},
                 {..._pushexp}, {..._pullex}, {..._legsexp}, {..._lowerBack},
                 {..._pushexp}, {..._pullex}, {..._legsexp},
                 {..._pushexp}, {..._pullex}, {..._legsex}
             ];
-        } else if (_levelE < 310 && _switch == (-1)) {
+        } else if (_levelE < 470 && _switch == (-1)) {
             workout_partsBHome = [
                 {..._pushexp}, {..._pullex}, {..._legsexlp}, {..._abs},
                 {..._pushexp}, {..._pullex}, {..._legsexlp}, {..._abs},
                 {..._pushexp}, {..._pullex}, {..._legsexlp},
                 {..._pushexp}, {..._pullex}, {..._legsexlp}
             ];
-        } else if (_levelE < 330 && _switch == 1) {
+        } else if (_levelE < 510 && _switch == 1) {
             workout_partsBHome = [
                 {..._pushexp}, {..._pullex}, {..._legsexp}, {..._lowerBack},
                 {..._pushexpp}, {..._pullex}, {..._legsexpp}, {..._lowerBack},
                 {..._pushexp}, {..._pullex}, {..._legsexp},
                 {..._pushexp}, {..._pullex}, {..._legsexp}
             ];
-        } else if (_levelE < 330 && _switch == (-1)) {
+        } else if (_levelE < 510 && _switch == (-1)) {
             workout_partsBHome = [
                 {..._pushexp}, {..._pullex}, {..._legsexlp}, {..._abs},
                 {..._pushexpp}, {..._pullex}, {..._legsexlpp}, {..._abs},

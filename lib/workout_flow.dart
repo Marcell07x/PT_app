@@ -134,13 +134,16 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
 
         workoutCount++;
         await prefs.setInt('workoutsThisWeek', workoutCount);
+        int inc = prefs.getInt('incspeed')!;
 
         if (workoutCount == 4) {
-            int inc = prefs.getInt('incspeed')!;
             inc++;
             await prefs.setInt('incspeed', inc);
+        } else if (workoutCount == 7) {
+            inc += 2;
+            await prefs.setInt('incspeed', inc);
         }
-
+        print("the value of incspeed: ${inc}");
         await workoutLevel.setLevel();
         await ScheduleNotifications.laterNoti(context);
 

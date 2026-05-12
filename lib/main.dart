@@ -93,6 +93,8 @@ class _MyHomePageState extends State<MyHomePage> {
         });
     }
     
+    late int workoutDone;
+    
     @override
     Widget build(BuildContext context) {
         return Scaffold(
@@ -109,7 +111,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                 await StreakManager.incrementStreak();
                                 final prefs = await SharedPreferences.getInstance();
                                 int wlevel = prefs.getInt('level') ?? 1;
-                                int workoutDone = CongratulationsScreen.workoutIsDone;
+                                //for testing, you should make the line below a comment
+                                workoutDone = CongratulationsScreen.workoutIsDone;
                                 setState(() {});
                                 if (wlevel <= 129 && workoutDone == 0) {
                                     Navigator.of(context).push(
@@ -152,6 +155,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             
                             ElevatedButton(
                                 onPressed: () async {
+                                    workoutDone = 0;
                                     WorkoutSignal.debugSetSignalTrue();
                                     await ScheduleNotifications.testNoti();
                                     setState(() {});
