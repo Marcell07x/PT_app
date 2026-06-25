@@ -312,7 +312,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get tip => 'Tipp';
 
   @override
-  String get principles1 => '';
+  String get principles1 => 'Tesztelés';
 
   @override
   String get principles2 => '';

@@ -19,6 +19,8 @@ import 'workout_done_screen.dart';
 import 'tip_detail_screen.dart';
 import 'side_menu.dart';
 import 'debug_buttons.dart';
+import 'tip_manager.dart';
+import 'tips_data.dart';
 
 void main() async {
     WidgetsFlutterBinding.ensureInitialized();
@@ -71,13 +73,38 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
     late bool _isButtonEnabled;
-    String currentTip = "Ide jön majd a napi tipp szövege. Ez egy hosszabb teszt szöveg, ami remélhetőleg több sort is igénybe fog venni a dobozban. Ha a szöveg nem fér ki, akkor a dobozra kattintva egy új oldalon lehet elolvasni a teljes tippet.";
+    bool _isTipLoading = true;
+    Color _tipBackgroundColor = Colors.white;
 
     @override
     void initState() {
         super.initState();
         _checkWorkout();
         WorkoutSignal.onSignalChanged = _checkWorkout;
+        _initTipManager();
+    }
+
+    Future<void> _initTipManager() async {
+        await TipManager().initialize();
+        if (mounted) {
+            setState(() {
+                _isTipLoading = false;
+                if (TipManager().isNewTipForSession) {
+                    _tipBackgroundColor = const Color(0xFFFFF9C4); // pale yellow
+                }
+            });
+        }
+    }
+
+    String _getTipText(BuildContext context) {
+        final tipId = TipManager().currentTipId;
+        if (tipId != null) {
+            final tipItem = TipsData.getTipById(tipId);
+            if (tipItem != null) {
+                return tipItem.getText(context);
+            }
+        }
+        return "...";
     }
     
     @override
@@ -127,9 +154,10 @@ class _MyHomePageState extends State<MyHomePage> {
                         const SizedBox(height: 30),
                         GestureDetector(
                             onTap: () {
+                                if (_isTipLoading) return;
                                 Navigator.of(context).push(
                                     MaterialPageRoute(
-                                        builder: (context) => TipDetailScreen(tip: currentTip),
+                                        builder: (context) => TipDetailScreen(tip: _getTipText(context)),
                                     ),
                                 );
                             },
@@ -138,14 +166,14 @@ class _MyHomePageState extends State<MyHomePage> {
                                 height: 140,
                                 padding: const EdgeInsets.all(12.0),
                                 decoration: BoxDecoration(
-                                    color: Colors.white,
+                                    color: _tipBackgroundColor,
                                     border: Border.all(
                                         color: const Color.fromRGBO(22, 95, 239, 1),
                                         width: 2.0,
                                     ),
                                     borderRadius: BorderRadius.circular(10),
                                 ),
-                                child: Column(
+                                child: _isTipLoading ? const Center(child: CircularProgressIndicator()) : Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                         Text(
@@ -159,7 +187,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         const SizedBox(height: 8),
                                         Expanded(
                                             child: Text(
-                                                currentTip,
+                                                _getTipText(context),
                                                 maxLines: 4,
                                                 overflow: TextOverflow.ellipsis,
                                                 style: const TextStyle(
