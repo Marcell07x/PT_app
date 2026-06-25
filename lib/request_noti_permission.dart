@@ -125,7 +125,7 @@ class _RequestNotiPermissionState extends State<RequestNotiPermission> {
             home: Scaffold(
                 appBar: AppBar(
                     title: Text(AppLocalizations.of(context)!.notis),
-                    backgroundColor: Colors.blue,
+                    backgroundColor: Color.fromRGBO(22, 95, 239, 1),
                     foregroundColor: Colors.white,
                     actions: [
                         IconButton(
@@ -162,7 +162,7 @@ class _RequestNotiPermissionState extends State<RequestNotiPermission> {
                                         _requestNotificationPermission();
                                     },
                                     style: ElevatedButton.styleFrom(
-                                        backgroundColor: Colors.blue,
+                                        backgroundColor: Color.fromRGBO(22, 95, 239, 1),
                                         foregroundColor: Colors.white,
                                         padding: const EdgeInsets.symmetric(vertical: 16),
                                     ),

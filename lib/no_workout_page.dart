@@ -26,7 +26,7 @@ class NoWorkout extends StatelessWidget {
                             color: Colors.white,
                         ),
                     ),
-                    backgroundColor: Colors.blue,
+                    backgroundColor: Color.fromRGBO(22, 95, 239, 1),
                 ),
                 body: Center(
                     child: SizedBox(

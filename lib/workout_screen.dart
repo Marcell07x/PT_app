@@ -96,7 +96,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                             fontWeight: FontWeight.bold,
                         ),
                     ),
-                    backgroundColor: Colors.blue,
+                    backgroundColor: Color.fromRGBO(22, 95, 239, 1),
                     leading: IconButton(
                         icon: Icon(
                             Icons.close,
@@ -119,7 +119,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                                 LinearProgressIndicator(
                                     value: (widget.currentIndex + 1) / widget.totalWorkouts,
                                     backgroundColor: Colors.grey[300],
-                                    valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+                                    valueColor: AlwaysStoppedAnimation<Color>(Color.fromRGBO(22, 95, 239, 1)),
                                 ),
                                 SizedBox(height: 20),
                                 Container(
@@ -179,7 +179,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                                 SizedBox(height: 10),
                                 Container(
                                     height: 4,
-                                    color: Colors.blue,
+                                    color: Color.fromRGBO(22, 95, 239, 1),
                                 ),
                                 SizedBox(height: 15),
                                 Container(
@@ -234,7 +234,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                                                 child: ElevatedButton(
                                                     onPressed: widget.onNextPressed,
                                                     style: ElevatedButton.styleFrom(
-                                                        backgroundColor: Colors.blue,
+                                                        backgroundColor: Color.fromRGBO(22, 95, 239, 1),
                                                         shape: RoundedRectangleBorder(
                                                             borderRadius: BorderRadius.circular(25),
                                                         ),

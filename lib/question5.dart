@@ -64,7 +64,7 @@ class _Question5PageState extends State<Question5Page> {
                 width: double.infinity,
                 padding: EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                    color: _selected == value ? Colors.blue : Colors.grey[200],
+                    color: _selected == value ? Color.fromRGBO(22, 95, 239, 1) : Colors.grey[200],
                     borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(text),

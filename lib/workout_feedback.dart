@@ -186,7 +186,7 @@ class _WorkoutFeedbackState extends State<WorkoutFeedback> {
                                                 );
                                             },
                                             style: ElevatedButton.styleFrom(
-                                                backgroundColor: Colors.blue,
+                                                backgroundColor: Color.fromRGBO(22, 95, 239, 1),
                                                 shape: RoundedRectangleBorder(
                                                     borderRadius: BorderRadius.circular(25),
                                                 ),

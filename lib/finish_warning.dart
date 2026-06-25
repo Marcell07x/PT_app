@@ -12,7 +12,7 @@ class FinishWarning extends StatelessWidget {
             supportedLocales: AppLocalizations.supportedLocales,
             home: Scaffold(
                 appBar: AppBar(
-                    backgroundColor: Colors.blue,
+                    backgroundColor: Color.fromRGBO(22, 95, 239, 1),
                     title: Text(
                       AppLocalizations.of(context)!.important,
                       style: const TextStyle(
@@ -44,7 +44,7 @@ class FinishWarning extends StatelessWidget {
                             height: 50.0,
                             child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.blue,
+                                    backgroundColor: Color.fromRGBO(22, 95, 239, 1),
                                     foregroundColor: Colors.white,
                                     textStyle: const TextStyle(
                                         fontWeight: FontWeight.bold,

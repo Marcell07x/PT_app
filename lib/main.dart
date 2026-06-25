@@ -99,7 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
     Widget build(BuildContext context) {
         return Scaffold(
             appBar: AppBar(
-                backgroundColor: Colors.blue,
+                backgroundColor: Color.fromRGBO(22, 95, 239, 1),
             ),
             body: Center(
                 child: Column(
@@ -134,7 +134,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 }
                             } : null,   
                             style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.blue,
+                                backgroundColor: Color.fromRGBO(22, 95, 239, 1),
                                 minimumSize: const Size(280, 120),
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10),
