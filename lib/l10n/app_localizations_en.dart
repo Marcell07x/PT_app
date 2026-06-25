@@ -307,4 +307,52 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get finishWarning =>
       'Only press the ‘Finish’ button once you have actually completed the workout.\n\nThis serves as feedback for the app.';
+
+  @override
+  String get tip => 'Tip';
+
+  @override
+  String get principles1 => '';
+
+  @override
+  String get principles2 => '';
+
+  @override
+  String get principles3 => '';
+
+  @override
+  String get beginnerWorkout1 => '';
+
+  @override
+  String get beginnerWorkout2 => '';
+
+  @override
+  String get beginnerWorkout3 => '';
+
+  @override
+  String get beginnerDiet1 => '';
+
+  @override
+  String get beginnerDiet2 => '';
+
+  @override
+  String get beginnerDiet3 => '';
+
+  @override
+  String get advancedWorkout1 => '';
+
+  @override
+  String get advancedWorkout2 => '';
+
+  @override
+  String get advancedWorkout3 => '';
+
+  @override
+  String get advancedDiet1 => '';
+
+  @override
+  String get advancedDiet2 => '';
+
+  @override
+  String get advancedDiet3 => '';
 }

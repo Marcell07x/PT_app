@@ -118,7 +118,22 @@
 
     "understand": "Értem",
     "important": "Fontos",
-    "finishWarning": "Az appban edzésnél csak akkor nyomd meg a 'Befejezés' gombot, ha tényleg befejezted az edzést. \n\nEz egy visszajelzés az appnak."
-
-
+    "finishWarning": "Az appban edzésnél csak akkor nyomd meg a 'Befejezés' gombot, ha tényleg befejezted az edzést. \n\nEz egy visszajelzés az appnak.",
+    "tip": "Tipp",
+    
+    "principles1": "",
+    "principles2": "",
+    "principles3": "",
+    "beginnerWorkout1": "",
+    "beginnerWorkout2": "",
+    "beginnerWorkout3": "",
+    "beginnerDiet1": "",
+    "beginnerDiet2": "",
+    "beginnerDiet3": "",
+    "advancedWorkout1": "",
+    "advancedWorkout2": "",
+    "advancedWorkout3": "",
+    "advancedDiet1": "",
+    "advancedDiet2": "",
+    "advancedDiet3": ""
 }

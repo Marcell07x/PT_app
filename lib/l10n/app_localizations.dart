@@ -649,6 +649,102 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Only press the ‘Finish’ button once you have actually completed the workout.\n\nThis serves as feedback for the app.'**
   String get finishWarning;
+
+  /// No description provided for @tip.
+  ///
+  /// In en, this message translates to:
+  /// **'Tip'**
+  String get tip;
+
+  /// No description provided for @principles1.
+  ///
+  /// In en, this message translates to:
+  /// **''**
+  String get principles1;
+
+  /// No description provided for @principles2.
+  ///
+  /// In en, this message translates to:
+  /// **''**
+  String get principles2;
+
+  /// No description provided for @principles3.
+  ///
+  /// In en, this message translates to:
+  /// **''**
+  String get principles3;
+
+  /// No description provided for @beginnerWorkout1.
+  ///
+  /// In en, this message translates to:
+  /// **''**
+  String get beginnerWorkout1;
+
+  /// No description provided for @beginnerWorkout2.
+  ///
+  /// In en, this message translates to:
+  /// **''**
+  String get beginnerWorkout2;
+
+  /// No description provided for @beginnerWorkout3.
+  ///
+  /// In en, this message translates to:
+  /// **''**
+  String get beginnerWorkout3;
+
+  /// No description provided for @beginnerDiet1.
+  ///
+  /// In en, this message translates to:
+  /// **''**
+  String get beginnerDiet1;
+
+  /// No description provided for @beginnerDiet2.
+  ///
+  /// In en, this message translates to:
+  /// **''**
+  String get beginnerDiet2;
+
+  /// No description provided for @beginnerDiet3.
+  ///
+  /// In en, this message translates to:
+  /// **''**
+  String get beginnerDiet3;
+
+  /// No description provided for @advancedWorkout1.
+  ///
+  /// In en, this message translates to:
+  /// **''**
+  String get advancedWorkout1;
+
+  /// No description provided for @advancedWorkout2.
+  ///
+  /// In en, this message translates to:
+  /// **''**
+  String get advancedWorkout2;
+
+  /// No description provided for @advancedWorkout3.
+  ///
+  /// In en, this message translates to:
+  /// **''**
+  String get advancedWorkout3;
+
+  /// No description provided for @advancedDiet1.
+  ///
+  /// In en, this message translates to:
+  /// **''**
+  String get advancedDiet1;
+
+  /// No description provided for @advancedDiet2.
+  ///
+  /// In en, this message translates to:
+  /// **''**
+  String get advancedDiet2;
+
+  /// No description provided for @advancedDiet3.
+  ///
+  /// In en, this message translates to:
+  /// **''**
+  String get advancedDiet3;
 }
 
 class _AppLocalizationsDelegate

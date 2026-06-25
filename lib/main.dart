@@ -10,13 +10,15 @@ import 'question2.dart';
 import 'workout_flow.dart';
 import 'warmup_flow.dart';
 import 'level.dart';
-import 'manuallysetlevel.dart';
 import 'workout_signal.dart';
 import 'schedule_noti.dart';
 import 'checkdata.dart';
 import 'questionaire.dart';
 import 'no_workout_page.dart';
 import 'workout_done_screen.dart';
+import 'tip_detail_screen.dart';
+import 'side_menu.dart';
+import 'debug_buttons.dart';
 
 void main() async {
     WidgetsFlutterBinding.ensureInitialized();
@@ -69,6 +71,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
     late bool _isButtonEnabled;
+    String currentTip = "Ide jön majd a napi tipp szövege. Ez egy hosszabb teszt szöveg, ami remélhetőleg több sort is igénybe fog venni a dobozban. Ha a szöveg nem fér ki, akkor a dobozra kattintva egy új oldalon lehet elolvasni a teljes tippet.";
 
     @override
     void initState() {
@@ -99,13 +102,77 @@ class _MyHomePageState extends State<MyHomePage> {
     Widget build(BuildContext context) {
         return Scaffold(
             appBar: AppBar(
-                backgroundColor: Color.fromRGBO(22, 95, 239, 1),
+                backgroundColor: const Color.fromRGBO(22, 95, 239, 1),
+                actions: [
+                    Builder(
+                        builder: (context) => IconButton(
+                            icon: const Icon(Icons.menu, color: Colors.white),
+                            onPressed: () => Scaffold.of(context).openEndDrawer(),
+                        ),
+                    ),
+                ],
+            ),
+            endDrawer: SideMenu(
+                onSetLevelPressed: () => DebugButtonsLogic.handleSetLevelPressed(
+                    context: context,
+                    updateState: () => setState(() {}),
+                    setWorkoutDone: (val) => workoutDone = val,
+                ),
+                onFormPressed: () => DebugButtonsLogic.handleFormPressed(context),
             ),
             body: Center(
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                        const SizedBox(height: 150),
+                        const SizedBox(height: 30),
+                        GestureDetector(
+                            onTap: () {
+                                Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                        builder: (context) => TipDetailScreen(tip: currentTip),
+                                    ),
+                                );
+                            },
+                            child: Container(
+                                width: 280,
+                                height: 140,
+                                padding: const EdgeInsets.all(12.0),
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    border: Border.all(
+                                        color: const Color.fromRGBO(22, 95, 239, 1),
+                                        width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                        Text(
+                                            AppLocalizations.of(context)!.tip,
+                                            style: const TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                color: Color.fromRGBO(22, 95, 239, 1),
+                                                fontSize: 16,
+                                            ),
+                                        ),
+                                        const SizedBox(height: 8),
+                                        Expanded(
+                                            child: Text(
+                                                currentTip,
+                                                maxLines: 4,
+                                                overflow: TextOverflow.ellipsis,
+                                                style: const TextStyle(
+                                                    color: Colors.black87,
+                                                    fontSize: 14,
+                                                ),
+                                            ),
+                                        ),
+                                    ],
+                                ),
+                            ),
+                        ),
+                        const SizedBox(height: 30),
                         ElevatedButton(
                             onPressed: _isButtonEnabled ? () async {
                                 await StreakManager.incrementStreak();
@@ -134,7 +201,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 }
                             } : null,   
                             style: ElevatedButton.styleFrom(
-                                backgroundColor: Color.fromRGBO(22, 95, 239, 1),
+                                backgroundColor: const Color.fromRGBO(22, 95, 239, 1),
                                 minimumSize: const Size(280, 120),
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10),
@@ -149,39 +216,6 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ),
                             ),
                         ),
-
-                        if (kDebugMode) ...[
-                            const SizedBox(height: 20),
-                            
-                            ElevatedButton(
-                                onPressed: () async {
-                                    workoutDone = 0;
-                                    WorkoutSignal.debugSetSignalTrue();
-                                    await ScheduleNotifications.testNoti();
-                                    setState(() {});
-                                    int? newLevel = await ManuallySetLevel.showLevelInputDialog(context);
-                                    if (newLevel != null) {
-                                        await ManuallySetLevel.saveLevelToPrefs(newLevel);
-                                        ManuallySetLevel.showSuccess(context, 'Level set: $newLevel');
-                                        setState(() {});
-                                    }
-                                }, 
-                                child: const Text('Set Level'),
-                            ),
-                            
-                            const SizedBox(height: 10),
-                            
-                            TextButton(
-                                onPressed: () {
-                                    Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (context) => Question2Page(data: QuestionnaireData()),
-                                        ),
-                                    );
-                                },
-                                child: Text(AppLocalizations.of(context)!.form),
-                            ),
-                        ],
                     ],
                 ),
             ),

@@ -307,4 +307,52 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get finishWarning =>
       'Az appban edzésnél csak akkor nyomd meg a \'Befejezés\' gombot, ha tényleg befejezted az edzést. \n\nEz egy visszajelzés az appnak.';
+
+  @override
+  String get tip => 'Tipp';
+
+  @override
+  String get principles1 => '';
+
+  @override
+  String get principles2 => '';
+
+  @override
+  String get principles3 => '';
+
+  @override
+  String get beginnerWorkout1 => '';
+
+  @override
+  String get beginnerWorkout2 => '';
+
+  @override
+  String get beginnerWorkout3 => '';
+
+  @override
+  String get beginnerDiet1 => '';
+
+  @override
+  String get beginnerDiet2 => '';
+
+  @override
+  String get beginnerDiet3 => '';
+
+  @override
+  String get advancedWorkout1 => '';
+
+  @override
+  String get advancedWorkout2 => '';
+
+  @override
+  String get advancedWorkout3 => '';
+
+  @override
+  String get advancedDiet1 => '';
+
+  @override
+  String get advancedDiet2 => '';
+
+  @override
+  String get advancedDiet3 => '';
 }
