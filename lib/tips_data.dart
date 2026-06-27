@@ -16,30 +16,33 @@ class TipsData {
         TipItem('principles1', (context) => AppLocalizations.of(context)!.principles1),
         TipItem('principles2', (context) => AppLocalizations.of(context)!.principles2),
         TipItem('principles3', (context) => AppLocalizations.of(context)!.principles3),
+        TipItem('principles4', (context) => AppLocalizations.of(context)!.principles4),
     ];
 
     static final List<TipItem> beginnerWorkout = [
         TipItem('beginnerWorkout1', (context) => AppLocalizations.of(context)!.beginnerWorkout1),
         TipItem('beginnerWorkout2', (context) => AppLocalizations.of(context)!.beginnerWorkout2),
-        TipItem('beginnerWorkout3', (context) => AppLocalizations.of(context)!.beginnerWorkout3),
     ];
 
     static final List<TipItem> beginnerDiet = [
         TipItem('beginnerDiet1', (context) => AppLocalizations.of(context)!.beginnerDiet1),
         TipItem('beginnerDiet2', (context) => AppLocalizations.of(context)!.beginnerDiet2),
-        TipItem('beginnerDiet3', (context) => AppLocalizations.of(context)!.beginnerDiet3),
     ];
 
     static final List<TipItem> advancedWorkout = [
         TipItem('advancedWorkout1', (context) => AppLocalizations.of(context)!.advancedWorkout1),
         TipItem('advancedWorkout2', (context) => AppLocalizations.of(context)!.advancedWorkout2),
         TipItem('advancedWorkout3', (context) => AppLocalizations.of(context)!.advancedWorkout3),
+        TipItem('advancedWorkout4', (context) => AppLocalizations.of(context)!.advancedWorkout4),
     ];
 
     static final List<TipItem> advancedDiet = [
         TipItem('advancedDiet1', (context) => AppLocalizations.of(context)!.advancedDiet1),
         TipItem('advancedDiet2', (context) => AppLocalizations.of(context)!.advancedDiet2),
         TipItem('advancedDiet3', (context) => AppLocalizations.of(context)!.advancedDiet3),
+        TipItem('advancedDiet4', (context) => AppLocalizations.of(context)!.advancedDiet4),
+        TipItem('advancedDiet5', (context) => AppLocalizations.of(context)!.advancedDiet5),
+        TipItem('advancedDiet6', (context) => AppLocalizations.of(context)!.advancedDiet6),
     ];
 
     // A consolidated Map to make programmatic selection easier later

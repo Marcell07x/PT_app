@@ -14,6 +14,7 @@ class TipManager {
 
     String? currentTipId;
     bool isNewTipForSession = false;
+    bool seenBegTipsOnce = 
 
     // Singleton pattern
     static final TipManager _instance = TipManager._internal();
@@ -25,21 +26,22 @@ class TipManager {
         int currentLevel = prefs.getInt('level') ?? 1;
         
         currentTipId = prefs.getString(_keyLastTipId);
-        final lastChangeTime = prefs.getInt(_keyLastTipChangeTime) ?? 0;
-        final now = DateTime.now().millisecondsSinceEpoch;
-        final threeDaysInMillis = 3 * 24 * 60 * 60 * 1000;
+        // Store days since epoch instead of milliseconds
+        final lastChangeDay = prefs.getInt(_keyLastTipChangeTime) ?? 0;
+        final today = DateTime.now().millisecondsSinceEpoch ~/ (24 * 60 * 60 * 1000);
         
         bool shouldChangeTip = false;
-        if (currentTipId == null || (now - lastChangeTime >= threeDaysInMillis)) {
+        if (currentTipId == null || (today - lastChangeDay >= 3)) {
             shouldChangeTip = true;
         }
 
         if (shouldChangeTip) {
             currentTipId = _calculateNextTipId(prefs, currentLevel);
             await prefs.setString(_keyLastTipId, currentTipId!);
-            await prefs.setInt(_keyLastTipChangeTime, now);
+            // Store days since epoch
+            await prefs.setInt(_keyLastTipChangeTime, today);
         }
-        
+          
         final lastOpenedTipId = prefs.getString(_keyLastOpenedTipId);
         if (lastOpenedTipId != currentTipId) {
             isNewTipForSession = true;
@@ -89,8 +91,10 @@ class TipManager {
         List<TipItem> dietList = TipsData.beginnerDiet.where((t) => !seenTipsA.contains(t.id)).toList();
 
         // 3. If all seen
+        //not working properly: if it starts to show the beginner tips again, but the user reaches 150, it still shows beginner tips
         if (workoutList.isEmpty && dietList.isEmpty) {
             if (currentLevel < 150) {
+                
                 seenTipsA.clear();
                 prefs.setStringList(_keySeenTipsA, seenTipsA);
                 if (TipsData.principles.isNotEmpty) {

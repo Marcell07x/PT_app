@@ -321,22 +321,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get principles3 => '';
 
   @override
+  String get principles4 => '';
+
+  @override
   String get beginnerWorkout1 => '';
 
   @override
   String get beginnerWorkout2 => '';
 
   @override
-  String get beginnerWorkout3 => '';
-
-  @override
   String get beginnerDiet1 => '';
 
   @override
   String get beginnerDiet2 => '';
-
-  @override
-  String get beginnerDiet3 => '';
 
   @override
   String get advancedWorkout1 => '';
@@ -348,6 +345,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get advancedWorkout3 => '';
 
   @override
+  String get advancedWorkout4 => '';
+
+  @override
   String get advancedDiet1 => '';
 
   @override
@@ -355,4 +355,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get advancedDiet3 => '';
+
+  @override
+  String get advancedDiet4 => '';
+
+  @override
+  String get advancedDiet5 => '';
+
+  @override
+  String get advancedDiet6 => '';
 }

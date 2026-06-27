@@ -674,6 +674,12 @@ abstract class AppLocalizations {
   /// **''**
   String get principles3;
 
+  /// No description provided for @principles4.
+  ///
+  /// In en, this message translates to:
+  /// **''**
+  String get principles4;
+
   /// No description provided for @beginnerWorkout1.
   ///
   /// In en, this message translates to:
@@ -686,12 +692,6 @@ abstract class AppLocalizations {
   /// **''**
   String get beginnerWorkout2;
 
-  /// No description provided for @beginnerWorkout3.
-  ///
-  /// In en, this message translates to:
-  /// **''**
-  String get beginnerWorkout3;
-
   /// No description provided for @beginnerDiet1.
   ///
   /// In en, this message translates to:
@@ -703,12 +703,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **''**
   String get beginnerDiet2;
-
-  /// No description provided for @beginnerDiet3.
-  ///
-  /// In en, this message translates to:
-  /// **''**
-  String get beginnerDiet3;
 
   /// No description provided for @advancedWorkout1.
   ///
@@ -728,6 +722,12 @@ abstract class AppLocalizations {
   /// **''**
   String get advancedWorkout3;
 
+  /// No description provided for @advancedWorkout4.
+  ///
+  /// In en, this message translates to:
+  /// **''**
+  String get advancedWorkout4;
+
   /// No description provided for @advancedDiet1.
   ///
   /// In en, this message translates to:
@@ -745,6 +745,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **''**
   String get advancedDiet3;
+
+  /// No description provided for @advancedDiet4.
+  ///
+  /// In en, this message translates to:
+  /// **''**
+  String get advancedDiet4;
+
+  /// No description provided for @advancedDiet5.
+  ///
+  /// In en, this message translates to:
+  /// **''**
+  String get advancedDiet5;
+
+  /// No description provided for @advancedDiet6.
+  ///
+  /// In en, this message translates to:
+  /// **''**
+  String get advancedDiet6;
 }
 
 class _AppLocalizationsDelegate
