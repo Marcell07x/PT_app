@@ -12,6 +12,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get form => 'Here is the form';
 
   @override
+  String get info => 'Info';
+
+  @override
+  String get infoIntro => 'Made by Marcell Bodnár.\nFeel free to reach out:';
+
+  @override
+  String get instagramLink => 'Instagram: @bodnar__marcell';
+
+  @override
+  String get emailLink => 'Email: bmarci891@gmail.com';
+
+  @override
   String get wallPush => 'Wall Push-Ups';
 
   @override

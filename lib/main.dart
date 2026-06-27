@@ -76,6 +76,22 @@ class _MyHomePageState extends State<MyHomePage> {
     bool _isTipLoading = true;
     Color _tipBackgroundColor = Colors.white;
 
+    final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+    // Whether the side menu currently shows the info page instead of the list.
+    bool _showInfo = false;
+    // Whether the end drawer (side menu) is currently open.
+    bool _isEndDrawerOpen = false;
+
+    // Handles the Android system back button while the side menu is open:
+    // info page -> menu list -> close drawer (back to home).
+    void _handleBack() {
+        if (_showInfo) {
+            setState(() => _showInfo = false);
+        } else {
+            _scaffoldKey.currentState?.closeEndDrawer();
+        }
+    }
+
     @override
     void initState() {
         super.initState();
@@ -127,7 +143,23 @@ class _MyHomePageState extends State<MyHomePage> {
     
     @override
     Widget build(BuildContext context) {
-        return Scaffold(
+        return PopScope(
+            // When the drawer is open we intercept back to step through
+            // info -> menu -> home instead of letting the app exit.
+            canPop: !_isEndDrawerOpen,
+            onPopInvokedWithResult: (didPop, result) {
+                if (didPop) return;
+                _handleBack();
+            },
+            child: Scaffold(
+            key: _scaffoldKey,
+            onEndDrawerChanged: (isOpen) {
+                setState(() {
+                    _isEndDrawerOpen = isOpen;
+                    // Always reopen on the menu list, never the info page.
+                    if (!isOpen) _showInfo = false;
+                });
+            },
             appBar: AppBar(
                 backgroundColor: const Color.fromRGBO(22, 95, 239, 1),
                 actions: [
@@ -140,6 +172,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
             ),
             endDrawer: SideMenu(
+                showInfo: _showInfo,
+                onShowInfoPressed: () => setState(() => _showInfo = true),
+                onBackToMenuPressed: () => setState(() => _showInfo = false),
                 onSetLevelPressed: () => DebugButtonsLogic.handleSetLevelPressed(
                     context: context,
                     updateState: () => setState(() {}),
@@ -246,6 +281,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                     ],
                 ),
+            ),
             ),
         );
     }

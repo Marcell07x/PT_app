@@ -12,6 +12,18 @@ class AppLocalizationsHu extends AppLocalizations {
   String get form => 'kérdőív';
 
   @override
+  String get info => 'Info';
+
+  @override
+  String get infoIntro => 'Készítette: Bodnár Marcell. \nKeress bátran:';
+
+  @override
+  String get instagramLink => 'Instagram: @bodnar__marcell';
+
+  @override
+  String get emailLink => 'Email: bmarci891@gmail.com';
+
+  @override
   String get wallPush => 'Fal Fekvőtámasz';
 
   @override

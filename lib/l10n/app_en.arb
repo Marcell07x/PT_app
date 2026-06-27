@@ -1,6 +1,11 @@
 {
     "form": "Here is the form",
 
+    "info": "Info",
+    "infoIntro": "Made by Marcell Bodnár.\nFeel free to reach out:",
+    "instagramLink": "Instagram: @bodnar__marcell",
+    "emailLink": "Email: bmarci891@gmail.com",
+
 
     "@@comment": "exercises:",
 

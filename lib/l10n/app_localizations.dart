@@ -104,6 +104,30 @@ abstract class AppLocalizations {
   /// **'Here is the form'**
   String get form;
 
+  /// No description provided for @info.
+  ///
+  /// In en, this message translates to:
+  /// **'Info'**
+  String get info;
+
+  /// No description provided for @infoIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Made by Marcell Bodnár.\nFeel free to reach out:'**
+  String get infoIntro;
+
+  /// No description provided for @instagramLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Instagram: @bodnar__marcell'**
+  String get instagramLink;
+
+  /// No description provided for @emailLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Email: bmarci891@gmail.com'**
+  String get emailLink;
+
   /// No description provided for @wallPush.
   ///
   /// In en, this message translates to:
