@@ -11,10 +11,11 @@ class TipManager {
     static const String _keyAdvancedWorkoutIndex = 'advancedWorkoutIndex';
     static const String _keyAdvancedDietIndex = 'advancedDietIndex';
     static const String _keyLastOpenedTipId = 'lastOpenedTipId';
+    // New key to track if all tips have been seen at least once
+    static const String _keyHasCompletedFullCycle = 'hasCompletedFullCycle';
 
     String? currentTipId;
     bool isNewTipForSession = false;
-    bool seenBegTipsOnce = 
 
     // Singleton pattern
     static final TipManager _instance = TipManager._internal();
@@ -54,16 +55,18 @@ class TipManager {
     String _calculateNextTipId(SharedPreferences prefs, int currentLevel) {
         bool hasFinishedA = prefs.getBool(_keyHasFinishedSectionA) ?? false;
         
+        // Check if we should transition to advanced tips
         if (!hasFinishedA && currentLevel >= 150) {
-            List<String> seenTipsA = prefs.getStringList(_keySeenTipsA) ?? [];
-            bool allPrinciplesSeen = TipsData.principles.every((t) => seenTipsA.contains(t.id));
-            bool allBeginnerWorkoutSeen = TipsData.beginnerWorkout.every((t) => seenTipsA.contains(t.id));
-            bool allBeginnerDietSeen = TipsData.beginnerDiet.every((t) => seenTipsA.contains(t.id));
+            bool hasCompletedFullCycle = prefs.getBool(_keyHasCompletedFullCycle) ?? false;
             
-            if (allPrinciplesSeen && allBeginnerWorkoutSeen && allBeginnerDietSeen) {
+            if (hasCompletedFullCycle) {
+                // User has seen all tips at least once AND reached level 150
+                // Immediately switch to advanced tips
                 hasFinishedA = true;
                 prefs.setBool(_keyHasFinishedSectionA, true);
                 prefs.remove(_keySeenTipsA);
+                prefs.remove(_keyHasCompletedFullCycle); // Clean up
+                return _getNextSectionBTip(prefs);
             }
         }
 
@@ -77,7 +80,37 @@ class TipManager {
     String _getNextSectionATip(SharedPreferences prefs, int currentLevel) {
         List<String> seenTipsA = prefs.getStringList(_keySeenTipsA) ?? [];
 
-        // 1. Principles
+        // Check if all beginner tips have been seen at least once
+        bool allPrinciplesSeen = TipsData.principles.every((t) => seenTipsA.contains(t.id));
+        bool allBeginnerWorkoutSeen = TipsData.beginnerWorkout.every((t) => seenTipsA.contains(t.id));
+        bool allBeginnerDietSeen = TipsData.beginnerDiet.every((t) => seenTipsA.contains(t.id));
+        bool allTipsSeen = allPrinciplesSeen && allBeginnerWorkoutSeen && allBeginnerDietSeen;
+
+        // If user has completed a full cycle, mark it
+        if (allTipsSeen) {
+            // This is the key fix: mark that user has completed at least one full cycle
+            prefs.setBool(_keyHasCompletedFullCycle, true);
+            
+            // If user has also reached level 150, this will be caught on next tip change
+            // by _calculateNextTipId, which will immediately switch to advanced
+            
+            // Reset seen tips to start the cycle over
+            seenTipsA.clear();
+            
+            // Start fresh with the first principle tip
+            if (TipsData.principles.isNotEmpty) {
+                _markAsSeen(prefs, TipsData.principles.first.id, seenTipsA);
+                return TipsData.principles.first.id;
+            }
+            
+            // Fallback: return first workout tip if principles is empty
+            if (TipsData.beginnerWorkout.isNotEmpty) {
+                _markAsSeen(prefs, TipsData.beginnerWorkout.first.id, seenTipsA);
+                return TipsData.beginnerWorkout.first.id;
+            }
+        }
+
+        // 1. Principles - show unseen principles first
         for (var tip in TipsData.principles) {
             if (!seenTipsA.contains(tip.id)) {
                 _markAsSeen(prefs, tip.id, seenTipsA);
@@ -85,50 +118,35 @@ class TipManager {
             }
         }
 
-        // 2. Beginner (alternating)
+        // 2. Beginner (alternating workout and diet)
         String nextType = prefs.getString(_keyNextBeginnerType) ?? 'workout';
         List<TipItem> workoutList = TipsData.beginnerWorkout.where((t) => !seenTipsA.contains(t.id)).toList();
         List<TipItem> dietList = TipsData.beginnerDiet.where((t) => !seenTipsA.contains(t.id)).toList();
 
-        // 3. If all seen
-        //not working properly: if it starts to show the beginner tips again, but the user reaches 150, it still shows beginner tips
-        if (workoutList.isEmpty && dietList.isEmpty) {
-            if (currentLevel < 150) {
-                
-                seenTipsA.clear();
-                prefs.setStringList(_keySeenTipsA, seenTipsA);
-                if (TipsData.principles.isNotEmpty) {
-                    _markAsSeen(prefs, TipsData.principles.first.id, seenTipsA);
-                    return TipsData.principles.first.id;
-                }
-            } else {
-                prefs.setBool(_keyHasFinishedSectionA, true);
-                prefs.remove(_keySeenTipsA);
-                return _getNextSectionBTip(prefs);
-            }
-        }
-
-        if (nextType == 'workout') {
-            if (workoutList.isNotEmpty) {
-                prefs.setString(_keyNextBeginnerType, 'diet');
-                _markAsSeen(prefs, workoutList.first.id, seenTipsA);
-                return workoutList.first.id;
-            } else if (dietList.isNotEmpty) {
-                _markAsSeen(prefs, dietList.first.id, seenTipsA);
-                return dietList.first.id;
-            }
-        } else {
-            if (dietList.isNotEmpty) {
-                prefs.setString(_keyNextBeginnerType, 'workout');
-                _markAsSeen(prefs, dietList.first.id, seenTipsA);
-                return dietList.first.id;
-            } else if (workoutList.isNotEmpty) {
-                _markAsSeen(prefs, workoutList.first.id, seenTipsA);
-                return workoutList.first.id;
-            }
+        // If one category is completely seen but the other isn't, just serve from the available one
+        if (workoutList.isEmpty && dietList.isNotEmpty) {
+            _markAsSeen(prefs, dietList.first.id, seenTipsA);
+            return dietList.first.id;
         }
         
-        return TipsData.principles.isNotEmpty ? TipsData.principles.first.id : 'fallback';
+        if (dietList.isEmpty && workoutList.isNotEmpty) {
+            _markAsSeen(prefs, workoutList.first.id, seenTipsA);
+            return workoutList.first.id;
+        }
+
+        // Normal alternation when both categories have unseen tips
+        if (nextType == 'workout' && workoutList.isNotEmpty) {
+            prefs.setString(_keyNextBeginnerType, 'diet');
+            _markAsSeen(prefs, workoutList.first.id, seenTipsA);
+            return workoutList.first.id;
+        } else if (nextType == 'diet' && dietList.isNotEmpty) {
+            prefs.setString(_keyNextBeginnerType, 'workout');
+            _markAsSeen(prefs, dietList.first.id, seenTipsA);
+            return dietList.first.id;
+        }
+        
+        // This shouldn't be reached, but just in case
+        return TipsData.principles.isNotEmpty ? TipsData.principles.first.id : '';
     }
 
     void _markAsSeen(SharedPreferences prefs, String id, List<String> seenTipsA) {
@@ -160,6 +178,6 @@ class TipManager {
                 return TipsData.advancedDiet[idx].id;
             }
         }
-        return TipsData.advancedWorkout.isNotEmpty ? TipsData.advancedWorkout.first.id : 'fallback';
+        return TipsData.advancedWorkout.isNotEmpty ? TipsData.advancedWorkout.first.id : '';
     }
 }

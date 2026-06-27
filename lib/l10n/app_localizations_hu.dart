@@ -313,7 +313,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get principles1 =>
-      'Legfőbb cél: Soha ne hagyd teljesen abba - akkor biztosan eléred a célod';
+      'Legfőbb cél: Soha ne hagyd teljesen abba - akkor biztosan eléred, amit szeretnél';
 
   @override
   String get principles2 =>
@@ -361,7 +361,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get advancedDiet1 =>
-      'Edzés előtt nagyjából 2 órával érdemes az egyik étkezésedet időzíteni - ha egy nagy ebéd után edzenél, ez lehet több idő is';
+      'Egyik étkezésed után nagyjából 2 órával érdemes edzeni - ha egy nagy ebéd után edzenél, ez lehet több idő is';
 
   @override
   String get advancedDiet2 =>
