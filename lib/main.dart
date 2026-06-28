@@ -72,7 +72,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-    late bool _isButtonEnabled;
+    bool _isButtonEnabled = true;
     bool _isTipLoading = true;
     Color _tipBackgroundColor = Colors.white;
 

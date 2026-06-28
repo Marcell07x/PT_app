@@ -46,37 +46,38 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
     }
 
     void _initializeVideo() {
-        _controller = VideoPlayerController.asset(widget.videoPath)
-            ..initialize().then((_) {
-                if (_controller.value.isInitialized) {
-                    setState(() {
-                        _videoAspectRatio = _controller.value.aspectRatio;
-                    });
-                }
-                _controller.setLooping(true);
-                _controller.setVolume(0.0);
-                _controller.play();
-            });
+        // Capture the controller locally so the initialize callback always acts
+        // on this exact instance, never on one that was later replaced/disposed.
+        final controller = VideoPlayerController.asset(widget.videoPath);
+        _controller = controller;
 
-        _controller.addListener(() {
-            if (_controller.value.position >= _controller.value.duration) {
-                _controller.seekTo(Duration.zero);
-            }
+        controller.initialize().then((_) {
+            if (!mounted || controller != _controller) return;
+            setState(() {
+                _videoAspectRatio = controller.value.aspectRatio;
+            });
+            controller.setLooping(true);
+            controller.setVolume(0.0);
+            controller.play();
         });
+    }
+
+    void _disposeController() {
+        _controller.dispose();
     }
 
     @override
     void didUpdateWidget(WorkoutScreen oldWidget) {
         super.didUpdateWidget(oldWidget);
         if (oldWidget.videoPath != widget.videoPath) {
-            _controller.dispose();
+            _disposeController();
             _initializeVideo();
         }
     }
 
     @override
     void dispose() {
-        _controller.dispose();
+        _disposeController();
         super.dispose();
     }
 
