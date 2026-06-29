@@ -2,31 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'l10n/app_localizations.dart';
-import 'questionaire.dart';
-import 'streak.dart';
-import 'question1.dart';
-import 'question2.dart';
-import 'workout_flow.dart';
-import 'warmup_flow.dart';
-import 'level.dart';
-import 'workout_signal.dart';
-import 'schedule_noti.dart';
-import 'checkdata.dart';
-import 'questionaire.dart';
-import 'no_workout_page.dart';
-import 'workout_done_screen.dart';
-import 'tip_detail_screen.dart';
-import 'side_menu.dart';
-import 'debug_buttons.dart';
-import 'tip_manager.dart';
-import 'tips_data.dart';
+import 'package:getshap/l10n/app_localizations.dart';
+import 'package:getshap/onboarding/questionaire.dart';
+import 'package:getshap/onboarding/question1.dart';
+import 'package:getshap/onboarding/question_gender.dart';
+import 'package:getshap/workout/workout_flow.dart';
+import 'package:getshap/warmup/warmup_flow.dart';
+import 'package:getshap/core/level.dart';
+import 'package:getshap/core/workout_signal.dart';
+import 'package:getshap/notifications/schedule_noti.dart';
+import 'package:getshap/core/checkdata.dart';
+import 'package:getshap/onboarding/questionaire.dart';
+import 'package:getshap/workout/no_workout_page.dart';
+import 'package:getshap/workout/workout_done_screen.dart';
+import 'package:getshap/tips/tip_detail_screen.dart';
+import 'package:getshap/common/side_menu.dart';
+import 'package:getshap/dev/debug_buttons.dart';
+import 'package:getshap/tips/tip_manager.dart';
+import 'package:getshap/tips/tips_data.dart';
 
 void main() async {
     WidgetsFlutterBinding.ensureInitialized();
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     await ScheduleNotifications.initNotification();
-    await StreakManager.init(); 
     await WorkoutSignal.setSignalTrue();
     await prefsInit();
     bool hasData = await CheckData.checkData();
@@ -38,7 +36,7 @@ void main() async {
             MaterialApp(
                 localizationsDelegates: AppLocalizations.localizationsDelegates,
                 supportedLocales: AppLocalizations.supportedLocales,
-                home: Question2Page(data: _qdata),
+                home: QuestionGenderPage(data: _qdata),
                 ),
             );
     }
@@ -238,7 +236,6 @@ class _MyHomePageState extends State<MyHomePage> {
                         const SizedBox(height: 30),
                         ElevatedButton(
                             onPressed: _isButtonEnabled ? () async {
-                                await StreakManager.incrementStreak();
                                 final prefs = await SharedPreferences.getInstance();
                                 int wlevel = prefs.getInt('level') ?? 1;
                                 //for testing, you should make the line below a comment

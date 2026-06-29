@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'l10n/app_localizations.dart';
+import 'package:getshap/l10n/app_localizations.dart';
 
 //sometimes the Start Workout button doesn't get disabled, so we need this page
 

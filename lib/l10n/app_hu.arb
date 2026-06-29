@@ -53,6 +53,10 @@
     "weightLoss": "Fogyás", 
     "muscleBuild": "Izomosodás",
 
+    "genderQuestion": "Mi a nemed?",
+    "male": "Férfi",
+    "female": "Nő",
+
     "maxKneePush": "Hány térdelő fekvőtámaszt tudsz?",
 
     "maxSquats": "Hány guggolást tudsz?",

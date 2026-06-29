@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'workout_signal.dart';
-import 'schedule_noti.dart';
-import 'manuallysetlevel.dart';
-import 'question2.dart';
-import 'questionaire.dart';
+import 'package:getshap/core/workout_signal.dart';
+import 'package:getshap/notifications/schedule_noti.dart';
+import 'package:getshap/dev/manuallysetlevel.dart';
+import 'package:getshap/onboarding/question_gender.dart';
+import 'package:getshap/onboarding/questionaire.dart';
 
 class DebugButtonsLogic {
     static Future<void> handleSetLevelPressed({
@@ -28,7 +28,7 @@ class DebugButtonsLogic {
         Navigator.of(context).pop();
         Navigator.of(context).push(
             MaterialPageRoute(
-                builder: (context) => Question2Page(data: QuestionnaireData()),
+                builder: (context) => QuestionGenderPage(data: QuestionnaireData()),
             ),
         );
     }

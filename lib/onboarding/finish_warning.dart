@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'l10n/app_localizations.dart';
-import 'request_noti_permission.dart';
+import 'package:getshap/l10n/app_localizations.dart';
+import 'package:getshap/notifications/request_noti_permission.dart';
 
 class FinishWarning extends StatelessWidget {
     const FinishWarning({super.key});

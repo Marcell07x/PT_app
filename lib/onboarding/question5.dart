@@ -1,7 +1,7 @@
-import 'questionaire.dart';
+import 'package:getshap/onboarding/questionaire.dart';
 import 'package:flutter/material.dart';
-import 'question6.dart';
-import 'l10n/app_localizations.dart';
+import 'package:getshap/onboarding/question6.dart';
+import 'package:getshap/l10n/app_localizations.dart';
 
 class Question5Page extends StatefulWidget {
     final QuestionnaireData data;
@@ -20,7 +20,7 @@ class _Question5PageState extends State<Question5Page> {
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             home: Scaffold(
-                appBar: AppBar(title: Text('4/6 ${AppLocalizations.of(context)!.question}')),
+                appBar: AppBar(title: Text('5/7 ${AppLocalizations.of(context)!.question}')),
                 body: Padding(
                     padding: EdgeInsets.all(16),
                     child: Column(

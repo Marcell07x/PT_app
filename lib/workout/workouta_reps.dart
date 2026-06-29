@@ -1,4 +1,4 @@
-import 'level.dart';
+import 'package:getshap/core/level.dart';
 
 class WorkoutAReps{
     var _Reps = [];

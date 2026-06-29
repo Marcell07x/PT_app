@@ -132,6 +132,15 @@ class AppLocalizationsHu extends AppLocalizations {
   String get muscleBuild => 'Izomosodás';
 
   @override
+  String get genderQuestion => 'Mi a nemed?';
+
+  @override
+  String get male => 'Férfi';
+
+  @override
+  String get female => 'Nő';
+
+  @override
   String get maxKneePush => 'Hány térdelő fekvőtámaszt tudsz?';
 
   @override

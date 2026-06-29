@@ -1,10 +1,10 @@
-import 'main.dart';
-import 'questionaire.dart';
+import 'package:getshap/main.dart';
+import 'package:getshap/onboarding/questionaire.dart';
 import 'package:flutter/material.dart';
-import 'l10n/app_localizations.dart';
-import "questionaire_converter.dart";
-import "exercises.dart";
-import 'finish_warning.dart';
+import 'package:getshap/l10n/app_localizations.dart';
+import 'package:getshap/onboarding/questionaire_converter.dart';
+import 'package:getshap/workout/exercises.dart';
+import 'package:getshap/onboarding/finish_warning.dart';
 
 class Question7Page extends StatefulWidget {
     final QuestionnaireData data;
@@ -23,7 +23,7 @@ class _Question7PageState extends State<Question7Page> {
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             home: Scaffold(
-                appBar: AppBar(title: Text('6/6 ${AppLocalizations.of(context)!.question}')),
+                appBar: AppBar(title: Text('7/7 ${AppLocalizations.of(context)!.question}')),
                 body: Padding(
                     padding: EdgeInsets.all(16),
                     child: Column(

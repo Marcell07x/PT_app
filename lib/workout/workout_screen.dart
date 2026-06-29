@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'l10n/app_localizations.dart';
+import 'package:getshap/l10n/app_localizations.dart';
 import 'package:video_player/video_player.dart';
-import 'main.dart';
+import 'package:getshap/main.dart';
 
 class WorkoutScreen extends StatefulWidget {
     final String videoPath;

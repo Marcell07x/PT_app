@@ -344,6 +344,24 @@ abstract class AppLocalizations {
   /// **'Building Muscle'**
   String get muscleBuild;
 
+  /// No description provided for @genderQuestion.
+  ///
+  /// In en, this message translates to:
+  /// **'What is your gender?'**
+  String get genderQuestion;
+
+  /// No description provided for @male.
+  ///
+  /// In en, this message translates to:
+  /// **'Male'**
+  String get male;
+
+  /// No description provided for @female.
+  ///
+  /// In en, this message translates to:
+  /// **'Female'**
+  String get female;
+
   /// No description provided for @maxKneePush.
   ///
   /// In en, this message translates to:

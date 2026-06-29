@@ -1,5 +1,5 @@
 import 'package:shared_preferences/shared_preferences.dart';
-import 'tips_data.dart';
+import 'package:getshap/tips/tips_data.dart';
 
 class TipManager {
     static const String _keySeenTipsA = 'seenTipsA';

@@ -54,6 +54,10 @@
     "weightLoss": "Weight Loss", 
     "muscleBuild": "Building Muscle",
 
+    "genderQuestion": "What is your gender?",
+    "male": "Male",
+    "female": "Female",
+
     "maxKneePush": "How many knee pushups can you do?",
 
     "maxSquats": "How many squats can you do?",

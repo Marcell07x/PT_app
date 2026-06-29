@@ -1,7 +1,7 @@
-import 'exercises.dart';
-import 'level.dart';
+import 'package:getshap/workout/exercises.dart';
+import 'package:getshap/core/level.dart';
 import "package:shared_preferences/shared_preferences.dart";
-import 'legswitch.dart';
+import 'package:getshap/workout/legswitch.dart';
 
 class WorkoutBHome {
     late int _levelE;

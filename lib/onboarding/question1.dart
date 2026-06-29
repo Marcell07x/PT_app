@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'questionaire.dart';
-import 'question2.dart';
-import 'l10n/app_localizations.dart';
+import 'package:getshap/onboarding/questionaire.dart';
+import 'package:getshap/onboarding/question2.dart';
+import 'package:getshap/l10n/app_localizations.dart';
 
 //this question is not being used for now
 class Question1Page extends StatefulWidget {

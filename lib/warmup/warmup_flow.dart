@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'l10n/app_localizations.dart';
+import 'package:getshap/l10n/app_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'workout_flow.dart';
-import 'workout_screen.dart';
-import 'level.dart';
-import 'warmup.dart';
+import 'package:getshap/workout/workout_flow.dart';
+import 'package:getshap/workout/workout_screen.dart';
+import 'package:getshap/core/level.dart';
+import 'package:getshap/warmup/warmup.dart';
 
 class WarmupFlow extends StatefulWidget {
     const WarmupFlow({super.key});

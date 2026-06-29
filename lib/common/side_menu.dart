@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'l10n/app_localizations.dart';
+import 'package:getshap/l10n/app_localizations.dart';
 
 class SideMenu extends StatelessWidget {
     final VoidCallback onSetLevelPressed;

@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'l10n/app_localizations.dart';
+import 'package:getshap/l10n/app_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'workout_screen.dart';
-import 'workout_done_screen.dart';
-import 'workouta.dart';
-import 'workouta_reps.dart';
-import 'workoutb_home.dart';
-import 'workoutb_reps.dart';
-import 'legswitch.dart';
-import 'level.dart';
-import 'workout_signal.dart';
-import 'workout_feedback.dart';
-import 'workoutsthisweek.dart';
-import 'schedule_noti.dart';
-import 'warmup_flow.dart';
+import 'package:getshap/workout/workout_screen.dart';
+import 'package:getshap/workout/workout_done_screen.dart';
+import 'package:getshap/workout/workouta.dart';
+import 'package:getshap/workout/workouta_reps.dart';
+import 'package:getshap/workout/workoutb_home.dart';
+import 'package:getshap/workout/workoutb_reps.dart';
+import 'package:getshap/workout/legswitch.dart';
+import 'package:getshap/core/level.dart';
+import 'package:getshap/core/workout_signal.dart';
+import 'package:getshap/workout/workout_feedback.dart';
+import 'package:getshap/workout/workoutsthisweek.dart';
+import 'package:getshap/notifications/schedule_noti.dart';
+import 'package:getshap/warmup/warmup_flow.dart';
 
 class WorkoutFlow extends StatefulWidget {
     const WorkoutFlow({super.key});

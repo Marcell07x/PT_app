@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'l10n/app_localizations.dart';
-import 'workout_done_screen.dart';
-import 'feedback_execution.dart';
+import 'package:getshap/l10n/app_localizations.dart';
+import 'package:getshap/workout/workout_done_screen.dart';
+import 'package:getshap/workout/feedback_execution.dart';
 
 class WorkoutFeedback extends StatefulWidget {
   const WorkoutFeedback({super.key});

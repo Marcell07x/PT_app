@@ -132,6 +132,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get muscleBuild => 'Building Muscle';
 
   @override
+  String get genderQuestion => 'What is your gender?';
+
+  @override
+  String get male => 'Male';
+
+  @override
+  String get female => 'Female';
+
+  @override
   String get maxKneePush => 'How many knee pushups can you do?';
 
   @override

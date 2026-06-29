@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'dart:io' show Platform;
 import 'package:permission_handler/permission_handler.dart';
-import 'l10n/app_localizations.dart';
-import 'main.dart';
+import 'package:getshap/l10n/app_localizations.dart';
+import 'package:getshap/main.dart';
 
 class RequestNotiPermission extends StatefulWidget {
     const RequestNotiPermission({super.key});
