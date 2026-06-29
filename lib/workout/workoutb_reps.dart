@@ -10,15 +10,19 @@ class WorkoutBReps{
         _levelR = workoutLevel.level; 
 
         if (_levelR < 190) {
-            _Reps = [15, '10-15', 10, 10, '10-15', 10, 10, '10-15', 10];
+            // 150–189: base push only (harder variation enters at 190).
+            _Reps = [20, '10-15', 10, 18, '10-15', 10, 16, '10-15', 10];
         } else if (_levelR < 230) {
-            _Reps = [15, '10-15', 15, 12, '10-15', 10, 10, '10-15', 10];
+            // 190+: harder push (7 reps) sits in the second push slot (idx3),
+            // led into by a base-push set in the first slot.
+            _Reps = [18, '10-15', 15, 7, '10-15', 10, 16, '10-15', 10];
         } else if (_levelR < 270) {
-            _Reps = [15, '10-15', 15, 12, '10-15', 12, 15, '10-15', 10];
+            // 230+: second harder set enters low; first ramps up.
+            _Reps = [10, '10-15', 15, 7, '10-15', 12, 16, '10-15', 10];
         } else if (_levelR < 310) {
-            _Reps = [15, '10-15', 15, 12, '10-15', 15, 15, '10-15', 10];
+            _Reps = [12, '10-15', 15, 10, '10-15', 15, 16, '10-15', 10];
         } else if (_levelR < 350) {
-            _Reps = [15, '10-15', 15, 12, '10-15', 15, 10, '10-15', 15];
+            _Reps = [13, '10-15', 15, 12, '10-15', 15, 10, '10-15', 15];
         } else if (_levelR < 430) {
             _Reps = ['10-15', '10-15', '10-15', '10-15', '10-15', '10-15', 
                      '10-15', '10-15', '10-15', '10-15', '10-15', '10-15'];

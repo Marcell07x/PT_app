@@ -43,18 +43,18 @@ class WorkoutA {
         } else if (_levelE < 90) {
             workout_partsA = [{..._pushex}, {..._pullex}, {..._pushex}, {..._pullex}];
         } else if (_levelE < 110) {
-            workout_partsA = [{..._pushex}, {..._pullex}, {...exercises.push[_pushe+1]!}, {..._pullex}];
+            workout_partsA = [{..._pushex}, {..._pullex}, {..._pushex}, {..._pullex}];
         } else if (_levelE < 115) {
-            workout_partsA = [{..._pushex}, {..._pullex}, {...exercises.push[_pushe+1]!}, {..._pullex}, {..._pushex}];
+            workout_partsA = [{..._pushex}, {..._pullex}, {..._pushex}, {..._pullex}, {..._pushex}];
         } else if (_levelE < 130) {
-            workout_partsA = [{..._pushex}, {..._pullex}, {...exercises.push[_pushe+1]!}, {..._pullex}, {..._pushex}, {..._pullex},];
+            workout_partsA = [{..._pushex}, {..._pullex}, {..._pushex}, {..._pullex}, {..._pushex}, {..._pullex},];
         } else if (_levelE < 135) {
-            workout_partsA = [{...exercises.push[_pushe+1]!}, {..._pullex}, {...exercises.push[_pushe+1]!}, {..._pullex}, {..._pushex}, {..._pullex},];
+            workout_partsA = [{..._pushex}, {..._pullex}, {..._pushex}, {..._pullex}, {..._pushex}, {..._pullex},];
         } else if (_levelE < 150 && legSwitch.switchState == 1) {
-            workout_partsA = [{...exercises.push[_pushe+1]!}, {..._pullex}, {..._legsex}, {...exercises.push[_pushe+1]!},
+            workout_partsA = [{..._pushex}, {..._pullex}, {..._legsex}, {..._pushex},
                              {..._pullex}, {..._legsex}, {..._pushex}, {..._pullex}, {..._legsex}];
         } else if (_levelE < 150 && legSwitch.switchState == (-1)) {
-            workout_partsA = [{...exercises.push[_pushe+1]!}, {..._pullex}, {...exercises.legs[_legse+1]!}, {...exercises.push[_pushe+1]!},
+            workout_partsA = [{..._pushex}, {..._pullex}, {...exercises.legs[_legse+1]!}, {..._pushex},
                              {..._pullex}, {...exercises.legs[_legse+1]!}, {..._pushex}, {..._pullex}, {...exercises.legs[_legse+1]!}];
         }
     }

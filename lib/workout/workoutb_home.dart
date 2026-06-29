@@ -58,16 +58,44 @@ class WorkoutBHome {
         _legsexpp = exercises.legs[_legse+4]!;
         _legsexlpp = exercises.legs[_legse+5]!;
 
-        if (_levelE < 310 && _switch == 1) {
+        if (_levelE < 190 && _switch == 1) {
+            // 150–189: harder push not introduced yet — base push only.
             workout_partsBHome = [
-                {..._pushexp}, {..._pullex}, {..._legsex}, 
-                {..._pushexp},{..._pullex}, {..._legsex}, 
+                {..._pushex}, {..._pullex}, {..._legsex},
+                {..._pushex}, {..._pullex}, {..._legsex},
+                {..._pushex}, {..._pullex}, {..._legsex}
+            ];
+        } else if (_levelE < 190 && _switch == (-1)) {
+            workout_partsBHome = [
+                {..._pushex}, {..._pullex}, {..._legsexl},
+                {..._pushex}, {..._pullex}, {..._legsexl},
+                {..._pushex}, {..._pullex}, {..._legsexl}
+            ];
+        } else if (_levelE < 230 && _switch == 1) {
+            // 190+: harder push enters as a single set, placed SECOND (idx3) so a
+            // base-push set leads into it — extra ramp-up for the hard variation.
+            workout_partsBHome = [
+                {..._pushex}, {..._pullex}, {..._legsex},
+                {..._pushexp}, {..._pullex}, {..._legsex},
+                {..._pushex}, {..._pullex}, {..._legsex}
+            ];
+        } else if (_levelE < 230 && _switch == (-1)) {
+            workout_partsBHome = [
+                {..._pushex}, {..._pullex}, {..._legsexl},
+                {..._pushexp}, {..._pullex}, {..._legsexl},
+                {..._pushex}, {..._pullex}, {..._legsexl}
+            ];
+        } else if (_levelE < 310 && _switch == 1) {
+            // 230+: second harder-push set added.
+            workout_partsBHome = [
+                {..._pushexp}, {..._pullex}, {..._legsex},
+                {..._pushexp}, {..._pullex}, {..._legsex},
                 {..._pushex}, {..._pullex}, {..._legsex}
             ];
         } else if (_levelE < 310 && _switch == (-1)) {
             workout_partsBHome = [
                 {..._pushexp}, {..._pullex}, {..._legsexl},
-                {..._pushexp}, {..._pullex}, {..._legsexl}, 
+                {..._pushexp}, {..._pullex}, {..._legsexl},
                 {..._pushex}, {..._pullex}, {..._legsexl}
             ];
         } else if (_levelE < 350 && _switch == 1) {
