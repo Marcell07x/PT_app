@@ -817,6 +817,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Streak freeze'**
   String get streakFreeze;
+
+  /// No description provided for @updateReadyMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'An update has been downloaded.'**
+  String get updateReadyMessage;
+
+  /// No description provided for @updateRestart.
+  ///
+  /// In en, this message translates to:
+  /// **'Restart'**
+  String get updateRestart;
 }
 
 class _AppLocalizationsDelegate

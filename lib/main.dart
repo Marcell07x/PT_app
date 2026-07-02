@@ -10,6 +10,7 @@ import 'package:getshap/workout/workout_flow.dart';
 import 'package:getshap/warmup/warmup_flow.dart';
 import 'package:getshap/core/level.dart';
 import 'package:getshap/core/workout_signal.dart';
+import 'package:getshap/core/app_update.dart';
 import 'package:getshap/core/streak/streak_manager.dart';
 import 'package:getshap/core/streak/streak_flame.dart';
 import 'package:getshap/core/streak/streak_page.dart';
@@ -101,6 +102,11 @@ class _MyHomePageState extends State<MyHomePage> {
         _checkWorkout();
         WorkoutSignal.onSignalChanged = _checkWorkout;
         _initTipManager();
+        // After the first frame (so a Scaffold/ScaffoldMessenger exists), check
+        // Google Play for a newer version and offer a background update.
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+            if (mounted) AppUpdater.checkForFlexibleUpdate(context);
+        });
     }
 
     Future<void> _initTipManager() async {

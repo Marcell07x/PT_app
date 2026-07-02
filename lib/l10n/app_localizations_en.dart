@@ -408,4 +408,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get streakFreeze => 'Streak freeze';
+
+  @override
+  String get updateReadyMessage => 'An update has been downloaded.';
+
+  @override
+  String get updateRestart => 'Restart';
 }

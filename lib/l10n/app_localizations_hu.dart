@@ -409,4 +409,10 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get streakFreeze => 'Streak freeze';
+
+  @override
+  String get updateReadyMessage => 'Egy frissítés letöltődött.';
+
+  @override
+  String get updateRestart => 'Újraindítás';
 }

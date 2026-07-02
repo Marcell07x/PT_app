@@ -149,5 +149,7 @@
     "advancedDiet5": "Ha fogynál, mérd minden nap nagyjából ugyanabban az időben a súlyod - evés, hidratáltság, nagydolog intézése mind hozzájárul, hogy pár órán akár belül kilókat változzon a súlyod, annélkül, hogy égetnél zsírt.",
     "advancedDiet6": "Ha fogynál, a megmért tömegedet jegyezd le valahova, lehetőleg Excel-be, vagy Google Táblázatokba - ahol heti átlagot könnyen tudsz számolni - Ha a súlyod az utóbbi hetekben nem haladt lefelé, figyelj, hogy több gyümölcsöt, zöltséget és kevesebb cukros dolgot egyél, vagy kocogj többet.",
     "workoutStreak": "edzés streak",
-    "streakFreeze": "Streak freeze"
+    "streakFreeze": "Streak freeze",
+    "updateReadyMessage": "Egy frissítés letöltődött.",
+    "updateRestart": "Újraindítás"
 }

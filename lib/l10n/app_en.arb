@@ -150,5 +150,7 @@
     "advancedDiet5": "If you're trying to lose weight, weigh yourself every day at roughly the same time — eating, hydration, and using the bathroom can all shift your weight by a few kgs or lbs within hours, without any actual fat being burned.",
     "advancedDiet6": "If you're trying to lose weight, log your weight somewhere — ideally in Excel or Google Sheets where you can easily calculate weekly averages. If your weight hasn't been trending down over the past few weeks, try eating more fruits and veggies, cutting back on sugary foods, or adding more jogging.",
     "workoutStreak": "workout streak",
-    "streakFreeze": "Streak freeze"
+    "streakFreeze": "Streak freeze",
+    "updateReadyMessage": "An update has been downloaded.",
+    "updateRestart": "Restart"
 }
