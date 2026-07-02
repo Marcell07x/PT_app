@@ -10,6 +10,9 @@ import 'package:getshap/workout/workout_flow.dart';
 import 'package:getshap/warmup/warmup_flow.dart';
 import 'package:getshap/core/level.dart';
 import 'package:getshap/core/workout_signal.dart';
+import 'package:getshap/core/streak/streak_manager.dart';
+import 'package:getshap/core/streak/streak_flame.dart';
+import 'package:getshap/core/streak/streak_page.dart';
 import 'package:getshap/notifications/schedule_noti.dart';
 import 'package:getshap/core/checkdata.dart';
 import 'package:getshap/onboarding/questionaire.dart';
@@ -25,6 +28,7 @@ void main() async {
     WidgetsFlutterBinding.ensureInitialized();
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     await ScheduleNotifications.initNotification();
+    await StreakManager.checkStreak();
     await WorkoutSignal.setSignalTrue();
     await prefsInit();
     bool hasData = await CheckData.checkData();
@@ -72,6 +76,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
     bool _isButtonEnabled = true;
     bool _isTipLoading = true;
+    int _streak = 0;
     Color _tipBackgroundColor = Colors.white;
 
     final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -130,10 +135,16 @@ class _MyHomePageState extends State<MyHomePage> {
     Future<void> _checkWorkout() async {
          if (!mounted) return;
 
+        await StreakManager.checkStreak();
+
         final prefs = await SharedPreferences.getInstance();
         final boolValue = prefs.getBool('signal') ?? true;
+        final streakValue = prefs.getInt('streak') ?? 0;
+
+        if (!mounted) return;
         setState(() {
            _isButtonEnabled = boolValue;
+           _streak = streakValue;
         });
     }
     
@@ -160,6 +171,16 @@ class _MyHomePageState extends State<MyHomePage> {
             },
             appBar: AppBar(
                 backgroundColor: const Color.fromRGBO(22, 95, 239, 1),
+                title: StreakFlame(
+                    //lit: there is a streak and no workout is waiting for today
+                    streak: _streak,
+                    lit: _streak > 0 && !_isButtonEnabled,
+                    onTap: () {
+                        Navigator.of(context).push(
+                            MaterialPageRoute(builder: (context) => const StreakPage()),
+                        );
+                    },
+                ),
                 actions: [
                     Builder(
                         builder: (context) => IconButton(

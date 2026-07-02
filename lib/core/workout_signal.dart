@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:getshap/workout/workoutsthisweek.dart';
 
 //goal: to make a variable, that is set true the secound day after 
-//it was set to false, and to do it a maximum amount of 3 times a week
+//      it was set to false, and to do it a maximum amount of 3 times a week
 class WorkoutSignal {
     static Future<void> _saveTodayAsDays() async {
         final prefs = await SharedPreferences.getInstance();

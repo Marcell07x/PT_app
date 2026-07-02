@@ -334,73 +334,79 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get principles1 =>
-      'Legfőbb cél: Soha ne hagyd teljesen abba - akkor biztosan eléred, amit szeretnél';
+      'Legfőbb cél: Soha ne hagyd teljesen abba - akkor biztosan eléred, amit szeretnél.';
 
   @override
   String get principles2 =>
-      'Inkább legyen az edzés nagyon könnyű, minthogy ne edz rendszeresen';
+      'Inkább legyen az edzés nagyon könnyű, minthogy ne edz rendszeresen.';
 
   @override
   String get principles3 =>
-      'Ha az edzés kezd a szokásoddá válni, akkor finoman tovább lehet építeni';
+      'Ha az edzés kezd a szokásoddá válni, akkor finoman tovább lehet építeni.';
 
   @override
   String get principles4 =>
-      'Egy sportosabb test jót tesz a mentális és a fizikai egészségnek is';
+      'Egy sportosabb test jót tesz a mentális és a fizikai egészségnek is.';
 
   @override
   String get beginnerWorkout1 =>
-      'Gyakorlatoknál a borzalmas forma sérüléshez vezethet - csináld legalább tűrhető formában';
+      'Gyakorlatoknál a borzalmas forma sérüléshez vezethet - csináld legalább tűrhető formában.';
 
   @override
   String get beginnerWorkout2 =>
-      'Tarts 1-2 perc szünetet két gyakorlat között - 5 precnél mindenképp kevesebbet';
+      'Tarts 30mp és 2 perc közötti szünetet két gyakorlat között.';
 
   @override
   String get beginnerDiet1 =>
-      'Ha fogynál, vásárolj édesítőszeres üdítőket - édességek helyett, amennyire tudod, ezt igyad';
+      'Ha fogynál, vásárolj édesítőszeres üdítőket - édességek helyett, amennyire tudod, ezt igyad.';
 
   @override
   String get beginnerDiet2 =>
-      'Ha fogynál, vásárolj több gyümölcsöt, zöldséget, amiket szeretsz - kevés kalóriát tartalmaznak, de sok helyet foglalnak a gyomrodban';
+      'Ha fogynál, vásárolj több gyümölcsöt, zöldséget, amiket szeretsz - kevés kalóriát tartalmaznak, de sok helyet foglalnak a gyomrodban.';
 
   @override
   String get advancedWorkout1 =>
-      'Négy fő izomcsoport: toló-, húzó-, törzs- és lábizmok';
+      'Négy fő izomcsoport: toló-, húzó-, törzs- és lábizmok.';
 
   @override
   String get advancedWorkout2 =>
-      'A bemelegítés növeli a teljesítményedet, és csökkenti a sérülés veszélyét';
+      'A bemelegítés növeli a teljesítményedet, és csökkenti a sérülés veszélyét.';
 
   @override
   String get advancedWorkout3 =>
-      'Ha a fogyás fontosabb az izomépítésnél: kocogással is helyettesítheted a lábgyakorlatokat, vagy mindkettőt is csinálhatod ';
+      'Ha a fogyás fontosabb az izomépítésnél: kocogással is helyettesítheted a lábgyakorlatokat, vagy mindkettőt is csinálhatod.';
 
   @override
   String get advancedWorkout4 =>
-      'Bemelegítésnél figyelj a gyakorlatok technikájára - Ilyenkor próbáld a lehető legtökéletesebb formában végrehajtani őket';
+      'Bemelegítésnél figyelj a gyakorlatok technikájára - Ilyenkor próbáld a lehető legtökéletesebb formában végrehajtani őket.';
 
   @override
   String get advancedDiet1 =>
-      'Egyik étkezésed után nagyjából 2 órával érdemes edzeni - ha egy nagy ebéd után edzenél, ez lehet több idő is';
+      'Egyik étkezésed után nagyjából 2 órával érdemes edzeni - ha egy nagy ebéd után edzenél, ez lehet több idő is.';
 
   @override
   String get advancedDiet2 =>
-      'Kalóriák be, kalóriák ki - Ha többet égetsz, mint amennyit beviszel, fogyni fogsz';
+      'Kalóriák be, kalóriák ki - Ha többet égetsz, mint amennyit beviszel, fogyni fogsz.';
 
   @override
   String get advancedDiet3 =>
-      'Több fehérje fogyasztása izomépítésnél és fogyásnál: segít, hogy több izmot építs, és fogyásnál ne veszíts az izomzatodból';
+      'Több fehérje fogyasztása izomépítésnél és fogyásnál: segít, hogy több izmot építs, és fogyásnál ne veszíts az izomzatodból.';
 
   @override
   String get advancedDiet4 =>
-      'Ne vidd túlzásba a diétázást - ne kényszertíts magadra olyan diétát, amit szerinted nem tudnál hosszú távon tartani';
+      'Ne vidd túlzásba a diétázást - ne kényszertíts magadra olyan diétát, amit szerinted nem tudnál hosszú távon tartani.';
 
   @override
   String get advancedDiet5 =>
-      'Ha fogynál, mérd minden nap nagyjából ugyanabban az időben a súlyod - evés, hidratáltság, nagydolog intézése mind hozzájárul, hogy pár órán akár belül kilókat változzon a súlyod, annélkül, hogy égetnél zsírt';
+      'Ha fogynál, mérd minden nap nagyjából ugyanabban az időben a súlyod - evés, hidratáltság, nagydolog intézése mind hozzájárul, hogy pár órán akár belül kilókat változzon a súlyod, annélkül, hogy égetnél zsírt.';
 
   @override
   String get advancedDiet6 =>
       'Ha fogynál, a megmért tömegedet jegyezd le valahova, lehetőleg Excel-be, vagy Google Táblázatokba - ahol heti átlagot könnyen tudsz számolni - Ha a súlyod az utóbbi hetekben nem haladt lefelé, figyelj, hogy több gyümölcsöt, zöltséget és kevesebb cukros dolgot egyél, vagy kocogj többet.';
+
+  @override
+  String get workoutStreak => 'edzés streak';
+
+  @override
+  String get streakFreeze => 'Streak freeze';
 }

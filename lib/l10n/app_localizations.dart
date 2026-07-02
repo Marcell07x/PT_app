@@ -701,37 +701,37 @@ abstract class AppLocalizations {
   /// No description provided for @principles1.
   ///
   /// In en, this message translates to:
-  /// **'Main goal: Never quit completely — that\'s the one sure way to get where you want to be'**
+  /// **'Main goal: Never quit completely — that\'s the one sure way to get where you want to be.'**
   String get principles1;
 
   /// No description provided for @principles2.
   ///
   /// In en, this message translates to:
-  /// **'An easy workout beats skipping it entirely'**
+  /// **'An easy workout beats skipping it entirely.'**
   String get principles2;
 
   /// No description provided for @principles3.
   ///
   /// In en, this message translates to:
-  /// **'Once working out starts to feel like a habit, you can slowly start building on it'**
+  /// **'Once working out starts to feel like a habit, you can slowly start building on it.'**
   String get principles3;
 
   /// No description provided for @principles4.
   ///
   /// In en, this message translates to:
-  /// **'A fitter body is great for both your mental and physical health'**
+  /// **'A fitter body is great for both your mental and physical health.'**
   String get principles4;
 
   /// No description provided for @beginnerWorkout1.
   ///
   /// In en, this message translates to:
-  /// **'Terrible form on exercises can lead to injuries — try to do them at least decently'**
+  /// **'Terrible form on exercises can lead to injuries — try to do them at least decently.'**
   String get beginnerWorkout1;
 
   /// No description provided for @beginnerWorkout2.
   ///
   /// In en, this message translates to:
-  /// **'Rest 1–2 minutes between exercises — and definitely keep it under 5 minutes'**
+  /// **'Rest 30 seconds to 2 minutes between exercises.'**
   String get beginnerWorkout2;
 
   /// No description provided for @beginnerDiet1.
@@ -743,61 +743,61 @@ abstract class AppLocalizations {
   /// No description provided for @beginnerDiet2.
   ///
   /// In en, this message translates to:
-  /// **'If you\'re trying to lose weight, stock up on fruits and veggies you actually like — they\'re low in calories but really fill you up'**
+  /// **'If you\'re trying to lose weight, stock up on fruits and veggies you actually like — they\'re low in calories but really fill you up.'**
   String get beginnerDiet2;
 
   /// No description provided for @advancedWorkout1.
   ///
   /// In en, this message translates to:
-  /// **'Four main muscle groups: push, pull, core, and legs'**
+  /// **'Four main muscle groups: push, pull, core, and legs.'**
   String get advancedWorkout1;
 
   /// No description provided for @advancedWorkout2.
   ///
   /// In en, this message translates to:
-  /// **'Warming up boosts your performance and lowers the risk of injury'**
+  /// **'Warming up boosts your performance and lowers the risk of injury.'**
   String get advancedWorkout2;
 
   /// No description provided for @advancedWorkout3.
   ///
   /// In en, this message translates to:
-  /// **'If losing weight matters more to you than building muscle: you can swap leg exercises for jogging — or do both'**
+  /// **'If losing weight matters more to you than building muscle: you can swap leg exercises for jogging — or do both.'**
   String get advancedWorkout3;
 
   /// No description provided for @advancedWorkout4.
   ///
   /// In en, this message translates to:
-  /// **'During warm-up, pay attention to your form — use this time to execute the movements as perfectly as you can'**
+  /// **'During warm-up, pay attention to your form — use this time to execute the movements as perfectly as you can.'**
   String get advancedWorkout4;
 
   /// No description provided for @advancedDiet1.
   ///
   /// In en, this message translates to:
-  /// **'Aim to work out about 2 hours after a meal — after a big lunch, you might want to wait even longer'**
+  /// **'Aim to work out about 2 hours after a meal — after a big lunch, you might want to wait even longer.'**
   String get advancedDiet1;
 
   /// No description provided for @advancedDiet2.
   ///
   /// In en, this message translates to:
-  /// **'Calories in, calories out — if you burn more than you take in, you\'ll lose weight'**
+  /// **'Calories in, calories out — if you burn more than you take in, you\'ll lose weight.'**
   String get advancedDiet2;
 
   /// No description provided for @advancedDiet3.
   ///
   /// In en, this message translates to:
-  /// **'Eating more protein helps with both muscle building and weight loss — it supports muscle growth and helps you hold onto muscle while cutting'**
+  /// **'Eating more protein helps with both muscle building and weight loss — it supports muscle growth and helps you hold onto muscle while cutting.'**
   String get advancedDiet3;
 
   /// No description provided for @advancedDiet4.
   ///
   /// In en, this message translates to:
-  /// **'Don\'t overdo the dieting — don\'t force yourself into a diet you don\'t think you could stick to long-term'**
+  /// **'Don\'t overdo the dieting — don\'t force yourself into a diet you don\'t think you could stick to long-term.'**
   String get advancedDiet4;
 
   /// No description provided for @advancedDiet5.
   ///
   /// In en, this message translates to:
-  /// **'If you\'re trying to lose weight, weigh yourself every day at roughly the same time — eating, hydration, and using the bathroom can all shift your weight by a few kgs or lbs within hours, without any actual fat being burned'**
+  /// **'If you\'re trying to lose weight, weigh yourself every day at roughly the same time — eating, hydration, and using the bathroom can all shift your weight by a few kgs or lbs within hours, without any actual fat being burned.'**
   String get advancedDiet5;
 
   /// No description provided for @advancedDiet6.
@@ -805,6 +805,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'If you\'re trying to lose weight, log your weight somewhere — ideally in Excel or Google Sheets where you can easily calculate weekly averages. If your weight hasn\'t been trending down over the past few weeks, try eating more fruits and veggies, cutting back on sugary foods, or adding more jogging.'**
   String get advancedDiet6;
+
+  /// No description provided for @workoutStreak.
+  ///
+  /// In en, this message translates to:
+  /// **'workout streak'**
+  String get workoutStreak;
+
+  /// No description provided for @streakFreeze.
+  ///
+  /// In en, this message translates to:
+  /// **'Streak freeze'**
+  String get streakFreeze;
 }
 
 class _AppLocalizationsDelegate

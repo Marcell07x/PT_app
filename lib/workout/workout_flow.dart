@@ -10,6 +10,7 @@ import 'package:getshap/workout/workoutb_reps.dart';
 import 'package:getshap/workout/legswitch.dart';
 import 'package:getshap/core/level.dart';
 import 'package:getshap/core/workout_signal.dart';
+import 'package:getshap/core/streak/streak_manager.dart';
 import 'package:getshap/workout/workout_feedback.dart';
 import 'package:getshap/workout/workoutsthisweek.dart';
 import 'package:getshap/notifications/schedule_noti.dart';
@@ -130,6 +131,10 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
         int workoutCount = prefs.getInt('workoutsThisWeek') ?? 0;
 
         await _toggleLegSwitch();
+        //before setSignalFalse, so the home screen refresh already sees
+        //the increased streak; before setLevel, so today counts in the
+        //phase the workout was done in
+        await StreakManager.onWorkoutCompleted();
         await WorkoutSignal.setSignalFalse();
 
         workoutCount++;

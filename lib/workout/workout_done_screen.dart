@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:getshap/l10n/app_localizations.dart';
+import 'package:getshap/core/streak/streak_increase.dart';
 
 class CongratulationsScreen extends StatelessWidget {
     const CongratulationsScreen({super.key});
@@ -17,11 +18,7 @@ class CongratulationsScreen extends StatelessWidget {
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                            Icon(
-                                Icons.celebration,
-                                size: 100,
-                                color: Colors.green,
-                            ),
+                            StreakIncrease(),
                             SizedBox(height: 30),
                             Text(
                                 AppLocalizations.of(context)!.congrat,
