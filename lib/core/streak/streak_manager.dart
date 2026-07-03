@@ -46,6 +46,7 @@ class StreakManager {
             state.streak++;
             state.weekCount++;
             state.lastStreakDate = today;
+            state.workoutDays.add(today);
             if (state.streak == 1) {
                 state.startDate = today;
             }
@@ -133,6 +134,7 @@ class StreakManager {
             state.streak = 0;
             state.startDate = 0;
             state.freezeDays.clear();
+            state.workoutDays.clear();
         }
     }
 }

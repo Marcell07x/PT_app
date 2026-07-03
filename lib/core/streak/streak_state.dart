@@ -14,6 +14,8 @@ class StreakState {
     int startDate;
     //days on which a freeze was used up (belongs to the current streak)
     List<int> freezeDays;
+    //days with an actual workout (belongs to the current streak)
+    List<int> workoutDays;
     //Monday of the week the processing is currently in
     int weekStart;
     //workouts done in that week
@@ -31,6 +33,7 @@ class StreakState {
         required this.lastStreakDate,
         required this.startDate,
         required this.freezeDays,
+        required this.workoutDays,
         required this.weekStart,
         required this.weekCount,
         required this.weekReq,
@@ -57,6 +60,7 @@ class StreakState {
             lastStreakDate: prefs.getInt('lastStreakDate') ?? prefs.getInt('lastWorkoutDate') ?? (today - 1),
             startDate: prefs.getInt('streakStartDate') ?? 0,
             freezeDays: (prefs.getStringList('streakFreezeDays') ?? []).map(int.parse).toList(),
+            workoutDays: (prefs.getStringList('streakWorkoutDays') ?? []).map(int.parse).toList(),
             weekStart: prefs.getInt('streakWeekStart') ?? currentWeekStart,
             weekCount: prefs.getInt('streakWorkoutsWeek') ?? firstRunWeekCount,
             weekReq: prefs.getInt('streakWeekReq') ?? 3,
@@ -71,6 +75,7 @@ class StreakState {
         await prefs.setInt('lastStreakDate', lastStreakDate);
         await prefs.setInt('streakStartDate', startDate);
         await prefs.setStringList('streakFreezeDays', freezeDays.map((d) => d.toString()).toList());
+        await prefs.setStringList('streakWorkoutDays', workoutDays.map((d) => d.toString()).toList());
         await prefs.setInt('streakWeekStart', weekStart);
         await prefs.setInt('streakWorkoutsWeek', weekCount);
         await prefs.setInt('streakWeekReq', weekReq);

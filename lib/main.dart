@@ -131,7 +131,7 @@ class _MyHomePageState extends State<MyHomePage> {
         }
         return "...";
     }
-    
+
     @override
     void dispose() {
         WorkoutSignal.onSignalChanged = null;

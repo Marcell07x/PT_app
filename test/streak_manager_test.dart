@@ -27,6 +27,10 @@ void main() {
             await StreakManager.onWorkoutCompleted(now: day(1));
             expect(prefs.getInt('streak'), 2);
             expect(prefs.getInt('streakStartDate'), StreakDateUtils.dayNum(day(0)));
+            expect(prefs.getStringList('streakWorkoutDays'), [
+                StreakDateUtils.dayNum(day(0)).toString(),
+                StreakDateUtils.dayNum(day(1)).toString(),
+            ]);
         });
 
         test('one missed day without freeze resets the streak', () async {
@@ -37,6 +41,7 @@ void main() {
             await StreakManager.checkStreak(now: day(3));
             expect(prefs.getInt('streak'), 0);
             expect(prefs.getInt('streakStartDate'), 0);
+            expect(prefs.getStringList('streakWorkoutDays'), isEmpty);
         });
 
         test('one missed day with freeze keeps the streak', () async {

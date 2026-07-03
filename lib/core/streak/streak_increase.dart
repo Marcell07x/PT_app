@@ -31,7 +31,7 @@ class _StreakIncreaseState extends State<StreakIncrease> {
             _shown = streak > 0 ? streak - 1 : 0;
         });
 
-        await Future.delayed(const Duration(milliseconds: 900));
+        await Future.delayed(const Duration(milliseconds: 200));
         if (!mounted) return;
         setState(() {
             _shown = streak;

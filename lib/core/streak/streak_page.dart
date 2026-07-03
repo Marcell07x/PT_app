@@ -20,7 +20,9 @@ class _StreakPageState extends State<StreakPage> {
     bool _lit = false;
     bool _hasFreeze = false;
     int _startDate = 0;
+    bool _todayPending = true;
     Set<int> _freezeDays = {};
+    Set<int> _workoutDays = {};
 
     @override
     void initState() {
@@ -38,7 +40,9 @@ class _StreakPageState extends State<StreakPage> {
             _hasFreeze = (prefs.getInt('streakFreeze') ?? 0) == 1;
             _startDate = prefs.getInt('streakStartDate') ?? 0;
             _freezeDays = (prefs.getStringList('streakFreezeDays') ?? []).map(int.parse).toSet();
-            _lit = _streak > 0 && !(prefs.getBool('signal') ?? true);
+            _workoutDays = (prefs.getStringList('streakWorkoutDays') ?? []).map(int.parse).toSet();
+            _todayPending = prefs.getBool('signal') ?? true;
+            _lit = _streak > 0 && !_todayPending;
             _loading = false;
         });
     }
@@ -92,6 +96,8 @@ class _StreakPageState extends State<StreakPage> {
                                     streak: _streak,
                                     startDate: _startDate,
                                     freezeDays: _freezeDays,
+                                    workoutDays: _workoutDays,
+                                    todayPending: _todayPending,
                                 ),
                             ),
                             const Spacer(),
