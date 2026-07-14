@@ -37,7 +37,7 @@ class TipManager {
         }
 
         if (shouldChangeTip) {
-            currentTipId = _calculateNextTipId(prefs, currentLevel);
+            currentTipId = await _calculateNextTipId(prefs, currentLevel);
             await prefs.setString(_keyLastTipId, currentTipId!);
             // Store days since epoch
             await prefs.setInt(_keyLastTipChangeTime, today);
@@ -52,7 +52,7 @@ class TipManager {
         }
     }
 
-    String _calculateNextTipId(SharedPreferences prefs, int currentLevel) {
+    Future<String> _calculateNextTipId(SharedPreferences prefs, int currentLevel) async {
         bool hasFinishedA = prefs.getBool(_keyHasFinishedSectionA) ?? false;
         
         // Check if we should transition to advanced tips
@@ -63,21 +63,21 @@ class TipManager {
                 // User has seen all tips at least once AND reached level 150
                 // Immediately switch to advanced tips
                 hasFinishedA = true;
-                prefs.setBool(_keyHasFinishedSectionA, true);
-                prefs.remove(_keySeenTipsA);
-                prefs.remove(_keyHasCompletedFullCycle); // Clean up
-                return _getNextSectionBTip(prefs);
+                await prefs.setBool(_keyHasFinishedSectionA, true);
+                await prefs.remove(_keySeenTipsA);
+                await prefs.remove(_keyHasCompletedFullCycle); // Clean up
+                return await _getNextSectionBTip(prefs);
             }
         }
 
         if (hasFinishedA) {
-            return _getNextSectionBTip(prefs);
+            return await _getNextSectionBTip(prefs);
         } else {
-            return _getNextSectionATip(prefs, currentLevel);
+            return await _getNextSectionATip(prefs, currentLevel);
         }
     }
 
-    String _getNextSectionATip(SharedPreferences prefs, int currentLevel) {
+    Future<String> _getNextSectionATip(SharedPreferences prefs, int currentLevel) async {
         List<String> seenTipsA = prefs.getStringList(_keySeenTipsA) ?? [];
 
         // Check if all beginner tips have been seen at least once
@@ -89,7 +89,7 @@ class TipManager {
         // If user has completed a full cycle, mark it
         if (allTipsSeen) {
             // This is the key fix: mark that user has completed at least one full cycle
-            prefs.setBool(_keyHasCompletedFullCycle, true);
+            await prefs.setBool(_keyHasCompletedFullCycle, true);
             
             // If user has also reached level 150, this will be caught on next tip change
             // by _calculateNextTipId, which will immediately switch to advanced
@@ -99,13 +99,13 @@ class TipManager {
             
             // Start fresh with the first principle tip
             if (TipsData.principles.isNotEmpty) {
-                _markAsSeen(prefs, TipsData.principles.first.id, seenTipsA);
+                await _markAsSeen(prefs, TipsData.principles.first.id, seenTipsA);
                 return TipsData.principles.first.id;
             }
             
             // Fallback: return first workout tip if principles is empty
             if (TipsData.beginnerWorkout.isNotEmpty) {
-                _markAsSeen(prefs, TipsData.beginnerWorkout.first.id, seenTipsA);
+                await _markAsSeen(prefs, TipsData.beginnerWorkout.first.id, seenTipsA);
                 return TipsData.beginnerWorkout.first.id;
             }
         }
@@ -113,7 +113,7 @@ class TipManager {
         // 1. Principles - show unseen principles first
         for (var tip in TipsData.principles) {
             if (!seenTipsA.contains(tip.id)) {
-                _markAsSeen(prefs, tip.id, seenTipsA);
+                await _markAsSeen(prefs, tip.id, seenTipsA);
                 return tip.id;
             }
         }
@@ -125,23 +125,23 @@ class TipManager {
 
         // If one category is completely seen but the other isn't, just serve from the available one
         if (workoutList.isEmpty && dietList.isNotEmpty) {
-            _markAsSeen(prefs, dietList.first.id, seenTipsA);
+            await _markAsSeen(prefs, dietList.first.id, seenTipsA);
             return dietList.first.id;
         }
         
         if (dietList.isEmpty && workoutList.isNotEmpty) {
-            _markAsSeen(prefs, workoutList.first.id, seenTipsA);
+            await _markAsSeen(prefs, workoutList.first.id, seenTipsA);
             return workoutList.first.id;
         }
 
         // Normal alternation when both categories have unseen tips
         if (nextType == 'workout' && workoutList.isNotEmpty) {
-            prefs.setString(_keyNextBeginnerType, 'diet');
-            _markAsSeen(prefs, workoutList.first.id, seenTipsA);
+            await prefs.setString(_keyNextBeginnerType, 'diet');
+            await _markAsSeen(prefs, workoutList.first.id, seenTipsA);
             return workoutList.first.id;
         } else if (nextType == 'diet' && dietList.isNotEmpty) {
-            prefs.setString(_keyNextBeginnerType, 'workout');
-            _markAsSeen(prefs, dietList.first.id, seenTipsA);
+            await prefs.setString(_keyNextBeginnerType, 'workout');
+            await _markAsSeen(prefs, dietList.first.id, seenTipsA);
             return dietList.first.id;
         }
         
@@ -149,20 +149,20 @@ class TipManager {
         return TipsData.principles.isNotEmpty ? TipsData.principles.first.id : '';
     }
 
-    void _markAsSeen(SharedPreferences prefs, String id, List<String> seenTipsA) {
+    Future<void> _markAsSeen(SharedPreferences prefs, String id, List<String> seenTipsA) async {
         seenTipsA.add(id);
-        prefs.setStringList(_keySeenTipsA, seenTipsA);
+        await prefs.setStringList(_keySeenTipsA, seenTipsA);
     }
 
-    String _getNextSectionBTip(SharedPreferences prefs) {
+    Future<String> _getNextSectionBTip(SharedPreferences prefs) async {
         String nextType = prefs.getString(_keyNextAdvancedType) ?? 'workout';
         
         if (nextType == 'workout') {
             int idx = prefs.getInt(_keyAdvancedWorkoutIndex) ?? 0;
             if (idx >= TipsData.advancedWorkout.length) idx = 0;
             
-            prefs.setInt(_keyAdvancedWorkoutIndex, idx + 1);
-            prefs.setString(_keyNextAdvancedType, 'diet');
+            await prefs.setInt(_keyAdvancedWorkoutIndex, idx + 1);
+            await prefs.setString(_keyNextAdvancedType, 'diet');
             
             if (TipsData.advancedWorkout.isNotEmpty) {
                 return TipsData.advancedWorkout[idx].id;
@@ -171,8 +171,8 @@ class TipManager {
             int idx = prefs.getInt(_keyAdvancedDietIndex) ?? 0;
             if (idx >= TipsData.advancedDiet.length) idx = 0;
             
-            prefs.setInt(_keyAdvancedDietIndex, idx + 1);
-            prefs.setString(_keyNextAdvancedType, 'workout');
+            await prefs.setInt(_keyAdvancedDietIndex, idx + 1);
+            await prefs.setString(_keyNextAdvancedType, 'workout');
             
             if (TipsData.advancedDiet.isNotEmpty) {
                 return TipsData.advancedDiet[idx].id;
