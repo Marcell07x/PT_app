@@ -171,6 +171,8 @@ void main() {
 
         test('a 2/3 week that stayed possible until Sunday costs one freeze at rollover', () async {
             final prefs = await setup({'level': 200, 'streakFreeze': 1});
+            //phase B seen a week earlier, so this week is a full phase B week
+            await StreakManager.checkStreak(now: day(-7));
             await StreakManager.onWorkoutCompleted(now: day(0));
             await StreakManager.onWorkoutCompleted(now: day(2));
             //the 3rd workout never happens, but stays possible until Sunday
@@ -201,7 +203,68 @@ void main() {
         });
     });
 
+    group('walkthrough', () {
+        test('phase B: Mon/Wed/Fri for 5 weeks, print streak after each workout', () async {
+            final prefs = await setup({'level': 200});
+            const weekdayName = {0: 'Mon', 2: 'Wed', 4: 'Fri'};
+
+            for (int week = 0; week < 5; week++) {
+                for (final offset in [0, 2, 4]) {
+                    int d = week * 7 + offset;
+                    await StreakManager.onWorkoutCompleted(now: day(d));
+                    int streak = prefs.getInt('streak') ?? 0;
+                    // ignore: avoid_print
+                    print('week ${week + 1} ${weekdayName[offset]}: streak = $streak');
+                }
+            }
+
+            expect(prefs.getInt('streak'), 15);
+        });
+    });
+
     group('phase change', () {
+        test('crossing into phase B on Saturday: the forced Sunday rest is not punished', () async {
+            //phase A daily workouts on Friday and Saturday, the Saturday one
+            //crosses level 150. Sunday is a rest day the app itself blocks
+            //(no workout allowed the day after one), so the week ends with 2.
+            final prefs = await setup({'level': 148});
+            await StreakManager.onWorkoutCompleted(now: day(4));
+            await prefs.setInt('level', 149);
+            await StreakManager.onWorkoutCompleted(now: day(5));
+            await prefs.setInt('level', 150);
+
+            await StreakManager.checkStreak(now: day(6));
+            expect(prefs.getInt('streak'), 2, reason: 'Sunday could not be used anyway');
+            //the transition week must not be judged by the weekly rule
+            await StreakManager.checkStreak(now: day(7));
+            expect(prefs.getInt('streak'), 2, reason: 'the mixed week gets no weekly penalty');
+            expect(prefs.getInt('streakFreeze'), 0, reason: 'no freeze was burned either');
+        });
+
+        test('the first full phase B week is judged normally again', () async {
+            final prefs = await setup({'level': 150});
+            //week 1 is the transition week
+            await StreakManager.onWorkoutCompleted(now: day(0));
+            await StreakManager.onWorkoutCompleted(now: day(2));
+            await StreakManager.onWorkoutCompleted(now: day(4));
+            //week 2 starts after phaseBSince -> the weekly rule applies
+            await StreakManager.checkStreak(now: day(10));
+            expect(prefs.getInt('streak'), 0, reason: 'Thursday with 0 workouts still fails');
+        });
+
+        test('an empty week after the transition week is still punished', () async {
+            //crossing into phase B on Saturday, then the app is only opened
+            //on Thursday of the next week with no workouts at all
+            final prefs = await setup({'level': 149});
+            await StreakManager.onWorkoutCompleted(now: day(4));
+            await StreakManager.onWorkoutCompleted(now: day(5));
+            await prefs.setInt('level', 150);
+
+            await StreakManager.checkStreak(now: day(10));
+            expect(prefs.getInt('streak'), 0,
+                reason: 'week 2 was fully phase B, the empty week must not slip through');
+        });
+
         test('a mixed week is judged by the current phase at the rollover', () async {
             //daily workouts Mon-Sun at level 149, level crosses 150 mid-week
             final prefs = await setup({'level': 149});

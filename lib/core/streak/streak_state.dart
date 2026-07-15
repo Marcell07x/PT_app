@@ -26,6 +26,9 @@ class StreakState {
     int qualWeeks;
     //last day the day-by-day processing has handled
     int lastProcessed;
+    //first day phase B was seen (0 = still phase A). Weeks that started
+    //earlier were (partly) phase A, the weekly rule must not hit them.
+    int phaseBSince;
 
     StreakState({
         required this.streak,
@@ -39,6 +42,7 @@ class StreakState {
         required this.weekReq,
         required this.qualWeeks,
         required this.lastProcessed,
+        required this.phaseBSince,
     });
 
     static StreakState load(SharedPreferences prefs, int today, int currentWeekStart) {
@@ -66,6 +70,7 @@ class StreakState {
             weekReq: prefs.getInt('streakWeekReq') ?? 3,
             qualWeeks: prefs.getInt('streakQualWeeks') ?? 0,
             lastProcessed: prefs.getInt('streakLastProcessed') ?? today,
+            phaseBSince: prefs.getInt('streakPhaseBSince') ?? 0,
         );
     }
 
@@ -81,5 +86,6 @@ class StreakState {
         await prefs.setInt('streakWeekReq', weekReq);
         await prefs.setInt('streakQualWeeks', qualWeeks);
         await prefs.setInt('streakLastProcessed', lastProcessed);
+        await prefs.setInt('streakPhaseBSince', phaseBSince);
     }
 }

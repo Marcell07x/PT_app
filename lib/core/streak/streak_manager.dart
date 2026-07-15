@@ -62,6 +62,12 @@ class StreakManager {
 
         final state = StreakState.load(prefs, today, currentWeekStart);
 
+        //the first day the weekly rule can apply: everything up to
+        //lastProcessed already ran under the daily rules
+        if (level >= _phaseBLevel && state.phaseBSince == 0) {
+            state.phaseBSince = state.lastProcessed + 1;
+        }
+
         for (int d = state.lastProcessed + 1; d <= today; d++) {
             //d is the first day of a new week: close the finished week
             if (d - state.weekStart >= 7) {
@@ -78,7 +84,7 @@ class StreakManager {
                         state.lastStreakDate = d - 1;
                     }
                 }
-            } else {
+            } else if (_fullPhaseBWeek(state)) {
                 //phase B: penalty as soon as the weekly goal cannot be
                 //reached anymore, then the goal drops to what still fits
                 int lastDayOfWeek = state.weekStart + 6;
@@ -96,6 +102,13 @@ class StreakManager {
             state.lastProcessed = today;
         }
         return state;
+    }
+
+    //true if the week held in weekStart was already fully inside phase B.
+    //The transition week is part phase A, so its 3-workout goal could be
+    //impossible to reach (phase A days can block phase B workouts).
+    static bool _fullPhaseBWeek(StreakState state) {
+        return state.phaseBSince > 0 && state.weekStart >= state.phaseBSince;
     }
 
     //closes the week that ended right before newWeekStart
@@ -116,7 +129,10 @@ class StreakManager {
         }
 
         //phase B: the closed week had to reach its (possibly lowered) goal
-        if (level >= _phaseBLevel && state.streak > 0 && state.weekCount < state.weekReq) {
+        if (level >= _phaseBLevel &&
+            _fullPhaseBWeek(state) &&
+            state.streak > 0 &&
+            state.weekCount < state.weekReq) {
             _fail(state, newWeekStart - 1);
         }
 
