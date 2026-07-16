@@ -74,11 +74,16 @@ void main() {
             }
             await StreakManager.checkStreak(now: day(5));
             expect(prefs.getInt('streak'), 0);
-            //week 2: Mon-Thu again
+            //week 2: Mon-Thu again, the 4th workout grants right away
             for (int i = 7; i <= 10; i++) {
                 await StreakManager.onWorkoutCompleted(now: day(i));
             }
-            //Monday of week 3: both weeks had 4 workouts
+            expect(prefs.getInt('streakFreeze'), 1, reason: 'granted at the 4th workout already');
+            //training continues, so nothing burns the fresh freeze
+            for (int i = 11; i <= 13; i++) {
+                await StreakManager.onWorkoutCompleted(now: day(i));
+            }
+            //Monday of week 3: the rollover does not count the pair again
             await StreakManager.checkStreak(now: day(14));
             expect(prefs.getInt('streakFreeze'), 1);
             expect(prefs.getInt('streakQualWeeks'), 0);
@@ -120,6 +125,21 @@ void main() {
             expect(prefs.getInt('streak'), 6);
         });
 
+        test('the freeze shows up right at the workout completing the 2nd good week', () async {
+            final prefs = await setup({'level': 200});
+            for (final i in [0, 2, 4, 7, 9]) {
+                await StreakManager.onWorkoutCompleted(now: day(i));
+            }
+            expect(prefs.getInt('streakFreeze'), 0, reason: 'week 2 has only 2 workouts yet');
+            //Friday of week 2: the 3rd workout completes the pair
+            await StreakManager.onWorkoutCompleted(now: day(11));
+            expect(prefs.getInt('streakFreeze'), 1, reason: 'granted before any rollover');
+            //the rollover must not count the same pair again
+            await StreakManager.checkStreak(now: day(14));
+            expect(prefs.getInt('streakFreeze'), 1);
+            expect(prefs.getInt('streakQualWeeks'), 0, reason: 'pair is spent, next one needs two new weeks');
+        });
+
         test('0 workouts by Thursday: freeze is used, 2 workouts save the week', () async {
             final prefs = await setup({'level': 200, 'streakFreeze': 1});
             await StreakManager.onWorkoutCompleted(now: day(0));
@@ -131,9 +151,13 @@ void main() {
             expect(prefs.getInt('streakFreeze'), 0);
             expect(prefs.getInt('streakWeekReq'), 2, reason: 'goal lowered to 2');
             expect(prefs.getStringList('streakFreezeDays'),
-                [StreakDateUtils.dayNum(day(10)).toString()]);
+                [StreakDateUtils.dayNum(day(9)).toString()],
+                reason: 'snowflake on Wednesday, the last day that could have saved the goal');
             //Thursday + Saturday reach the lowered goal
             await StreakManager.onWorkoutCompleted(now: day(10));
+            expect(prefs.getStringList('streakWorkoutDays'),
+                contains(StreakDateUtils.dayNum(day(10)).toString()),
+                reason: 'the fail day itself can hold a workout, on its own cell');
             await StreakManager.onWorkoutCompleted(now: day(12));
             await StreakManager.checkStreak(now: day(14));
             expect(prefs.getInt('streak'), 5, reason: 'no penalty at the rollover');

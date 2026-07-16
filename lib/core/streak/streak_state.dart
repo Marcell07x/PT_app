@@ -29,6 +29,9 @@ class StreakState {
     //first day phase B was seen (0 = still phase A). Weeks that started
     //earlier were (partly) phase A, the weekly rule must not hit them.
     int phaseBSince;
+    //week whose freeze grant already happened right after a workout
+    //(0 = none), so the rollover does not count the same pair again
+    int grantedWeekStart;
 
     StreakState({
         required this.streak,
@@ -43,6 +46,7 @@ class StreakState {
         required this.qualWeeks,
         required this.lastProcessed,
         required this.phaseBSince,
+        required this.grantedWeekStart,
     });
 
     static StreakState load(SharedPreferences prefs, int today, int currentWeekStart) {
@@ -71,6 +75,7 @@ class StreakState {
             qualWeeks: prefs.getInt('streakQualWeeks') ?? 0,
             lastProcessed: prefs.getInt('streakLastProcessed') ?? today,
             phaseBSince: prefs.getInt('streakPhaseBSince') ?? 0,
+            grantedWeekStart: prefs.getInt('streakGrantedWeek') ?? 0,
         );
     }
 
@@ -87,5 +92,6 @@ class StreakState {
         await prefs.setInt('streakQualWeeks', qualWeeks);
         await prefs.setInt('streakLastProcessed', lastProcessed);
         await prefs.setInt('streakPhaseBSince', phaseBSince);
+        await prefs.setInt('streakGrantedWeek', grantedWeekStart);
     }
 }

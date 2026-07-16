@@ -19,7 +19,9 @@ import 'package:getshap/core/streak/streak_state.dart';
 //
 //      freeze recharge: two consecutive weeks with at least 4 (phase A)
 //      or 3 (phase B) workouts refill the empty freeze slot - this only
-//      looks at the weekly workout counts, not at the streak
+//      looks at the weekly workout counts, not at the streak. The grant
+//      happens right at the workout that completes the second week, so
+//      the freeze is visible the moment it is earned
 //
 //      the days since the last check are replayed one by one, so the
 //      result is the same as if the app had been opened every day
@@ -49,6 +51,17 @@ class StreakManager {
             state.workoutDays.add(today);
             if (state.streak == 1) {
                 state.startDate = today;
+            }
+
+            //freeze recharge right when it is earned: this workout made the
+            //week reach the target and the previous week qualified too
+            int level = prefs.getInt('level') ?? 1;
+            if (state.weekCount >= _rechargeNeed(level) &&
+                state.qualWeeks >= 1 &&
+                state.freeze == 0 &&
+                state.grantedWeekStart != state.weekStart) {
+                state.freeze = 1;
+                state.grantedWeekStart = state.weekStart;
             }
         }
 
@@ -91,7 +104,10 @@ class StreakManager {
                 int maxRemaining = (lastDayOfWeek - d + 2) ~/ 2;
                 if (state.weekCount + maxRemaining < state.weekReq) {
                     if (state.streak > 0) {
-                        _fail(state, d);
+                        //the snowflake goes on d - 1: the last day a workout
+                        //could still have kept the goal reachable (d itself
+                        //may still get a workout towards the lowered goal)
+                        _fail(state, d - 1);
                     }
                     state.weekReq = state.weekCount + maxRemaining;
                 }
@@ -102,6 +118,11 @@ class StreakManager {
             state.lastProcessed = today;
         }
         return state;
+    }
+
+    //weekly workout count needed for the freeze recharge
+    static int _rechargeNeed(int level) {
+        return level < _phaseBLevel ? 4 : _weeklyTarget;
     }
 
     //true if the week held in weekStart was already fully inside phase B.
@@ -115,9 +136,13 @@ class StreakManager {
     static void _rollWeek(StreakState state, int level, int newWeekStart) {
         //freeze recharge: two consecutive weeks reaching the recharge
         //target refill the empty freeze slot
-        int rechargeNeed = level < _phaseBLevel ? 4 : _weeklyTarget;
-        if (state.weekCount >= rechargeNeed) {
-            state.qualWeeks++;
+        if (state.weekCount >= _rechargeNeed(level)) {
+            if (state.grantedWeekStart == state.weekStart) {
+                //the grant of this pair already happened after a workout
+                state.qualWeeks = 0;
+            } else {
+                state.qualWeeks++;
+            }
         } else {
             state.qualWeeks = 0;
         }
