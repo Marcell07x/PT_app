@@ -246,6 +246,27 @@ void main() {
         });
     });
 
+    group('concurrency', () {
+        test('a workout and a concurrent check do not corrupt the state', () async {
+            final prefs = await setup({'level': 200});
+            await StreakManager.onWorkoutCompleted(now: day(0));
+
+            //fire both without awaiting the first: they must be serialized,
+            //so the workout stays consistent across streak/weekCount/workoutDays
+            final f1 = StreakManager.onWorkoutCompleted(now: day(2));
+            final f2 = StreakManager.checkStreak(now: day(2));
+            final f3 = StreakManager.checkStreak(now: day(2));
+            await Future.wait([f1, f2, f3]);
+
+            expect(prefs.getInt('streak'), 2);
+            expect(prefs.getInt('streakWorkoutsWeek'), 2, reason: 'weekCount matches the streak');
+            expect(prefs.getStringList('streakWorkoutDays'), [
+                StreakDateUtils.dayNum(day(0)).toString(),
+                StreakDateUtils.dayNum(day(2)).toString(),
+            ], reason: 'today is present in the calendar list');
+        });
+    });
+
     group('phase change', () {
         test('crossing into phase B on Saturday: the forced Sunday rest is not punished', () async {
             //phase A daily workouts on Friday and Saturday, the Saturday one

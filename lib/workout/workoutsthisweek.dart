@@ -1,9 +1,10 @@
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:getshap/core/debug_clock.dart';
 
 class WorkoutsThisWeek {
     static Future<void> checkAndResetWeek() async {
         final prefs = await SharedPreferences.getInstance();
-        final now = DateTime.now();
+        final now = DebugClock.now();
 
         final currentWeekStart = DateTime(now.year, now.month, now.day - (now.weekday - 1));
 

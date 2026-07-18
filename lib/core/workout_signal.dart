@@ -1,5 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/foundation.dart';
+import 'package:getshap/core/debug_clock.dart';
 import 'package:getshap/workout/workoutsthisweek.dart';
 
 //goal: to make a variable, that is set true the secound day after 
@@ -8,7 +9,7 @@ class WorkoutSignal {
     static Future<void> _saveTodayAsDays() async {
         final prefs = await SharedPreferences.getInstance();
 
-        DateTime now1 = DateTime.now();
+        DateTime now1 = DebugClock.now();
         DateTime date1 = DateTime(now1.year, now1.month, now1.day);
         DateTime date2 = DateTime(2020, 01, 01);
         int todayInNum = date1.difference(date2).inDays;
@@ -42,7 +43,7 @@ class WorkoutSignal {
         int levelA = prefs.getInt('level') ?? 1; // this ?? 1; might be a temporary solution
 
         if (levelA < 150) {
-            DateTime now1 = DateTime.now();
+            DateTime now1 = DebugClock.now();
             DateTime date1 = DateTime(now1.year, now1.month, now1.day);
             DateTime date2 = DateTime(2020, 01, 01);
             int todayInNum = date1.difference(date2).inDays;
@@ -62,7 +63,7 @@ class WorkoutSignal {
         await WorkoutsThisWeek.checkAndResetWeek();
 
         if (levelA > 149 && workoutCount < 3) { 
-            DateTime now1 = DateTime.now();
+            DateTime now1 = DebugClock.now();
             DateTime date1 = DateTime(now1.year, now1.month, now1.day);
             DateTime date2 = DateTime(2020, 01, 01);
             int todayInNum = date1.difference(date2).inDays;

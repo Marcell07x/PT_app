@@ -1,4 +1,5 @@
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:getshap/core/debug_clock.dart';
 import 'package:getshap/core/streak/streak_date_utils.dart';
 import 'package:getshap/core/streak/streak_state.dart';
 
@@ -29,18 +30,33 @@ class StreakManager {
     static const int _phaseBLevel = 150;
     static const int _weeklyTarget = 3;
 
+    //serialize every load-process-save so two operations (e.g. a workout
+    //completion and a concurrent home refresh) can never interleave their
+    //key-by-key save() and leave the stored state inconsistent
+    static Future<void> _opChain = Future.value();
+    static Future<void> _run(Future<void> Function() action) {
+        final done = _opChain.then((_) => action());
+        //swallow errors on the chain so a failed op does not block later
+        //ones, while the returned future still reports the error
+        _opChain = done.catchError((_) {});
+        return done;
+    }
+
     //call on app start / home screen refresh: handles missed workouts
     //(now is only meant to be overridden by tests)
-    static Future<void> checkStreak({DateTime? now}) async {
-        final prefs = await SharedPreferences.getInstance();
-        final state = _loadAndProcess(prefs, now ?? DateTime.now());
-        await state.save(prefs);
+    static Future<void> checkStreak({DateTime? now}) {
+        return _run(() async {
+            final prefs = await SharedPreferences.getInstance();
+            final state = _loadAndProcess(prefs, now ?? DebugClock.now());
+            await state.save(prefs);
+        });
     }
 
     //call when a workout is finished: credits today to the streak
-    static Future<void> onWorkoutCompleted({DateTime? now}) async {
+    static Future<void> onWorkoutCompleted({DateTime? now}) {
+        return _run(() async {
         final prefs = await SharedPreferences.getInstance();
-        final DateTime current = now ?? DateTime.now();
+        final DateTime current = now ?? DebugClock.now();
         final state = _loadAndProcess(prefs, current);
 
         int today = StreakDateUtils.dayNum(current);
@@ -66,6 +82,7 @@ class StreakManager {
         }
 
         await state.save(prefs);
+        });
     }
 
     static StreakState _loadAndProcess(SharedPreferences prefs, DateTime now) {

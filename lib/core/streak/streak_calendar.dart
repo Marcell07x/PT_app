@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:getshap/core/debug_clock.dart';
 import 'package:getshap/core/streak/streak_date_utils.dart';
 
 //goal: month calendar for the streak page, Duolingo style: the days of
@@ -38,7 +39,7 @@ class _StreakCalendarState extends State<StreakCalendar> {
     @override
     void initState() {
         super.initState();
-        final now = DateTime.now();
+        final now = DebugClock.now();
         _month = DateTime(now.year, now.month, 1);
     }
 
@@ -58,7 +59,7 @@ class _StreakCalendarState extends State<StreakCalendar> {
     //inMonth = false: a cell of the neighbouring month, only the band shows
     Widget _dayCell(DateTime date, bool inMonth) {
         int dayN = StreakDateUtils.dayNum(date);
-        int today = StreakDateUtils.dayNum(DateTime.now());
+        int today = StreakDateUtils.dayNum(DebugClock.now());
 
         bool inStreak = _inSpan(dayN, today);
         bool bandLeft = inStreak && _inSpan(dayN - 1, today);

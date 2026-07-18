@@ -33,6 +33,9 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
 
     final List<Map<String, String>> workouts = [];
     int _currentIndex = 0;
+    //guards against a fast / double tap on the finish button running the
+    //whole finish routine twice (which doubled counters and raced the save)
+    bool _finishing = false;
 
     String _getLocalizedExerciseName(String localizationKey, BuildContext context) {
         final loc = AppLocalizations.of(context)!;
@@ -124,6 +127,9 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
     }
 
     Future<void> _finishWorkout() async {
+        if (_finishing) return;
+        _finishing = true;
+
         final prefs = await SharedPreferences.getInstance();
         await WorkoutsThisWeek.checkAndResetWeek();
 

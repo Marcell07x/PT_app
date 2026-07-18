@@ -5,6 +5,8 @@ import 'package:getshap/l10n/app_localizations.dart';
 
 class SideMenu extends StatelessWidget {
     final VoidCallback onSetLevelPressed;
+    final VoidCallback onAdvanceDayPressed;
+    final VoidCallback onDumpStatePressed;
     final VoidCallback onFormPressed;
     // The info page is shown inside this same drawer. The parent owns the
     // toggle so the Android back button can step Info -> menu -> home.
@@ -15,6 +17,8 @@ class SideMenu extends StatelessWidget {
     const SideMenu({
         super.key,
         required this.onSetLevelPressed,
+        required this.onAdvanceDayPressed,
+        required this.onDumpStatePressed,
         required this.onFormPressed,
         required this.showInfo,
         required this.onShowInfoPressed,
@@ -69,6 +73,16 @@ class SideMenu extends StatelessWidget {
                         leading: const Icon(Icons.settings),
                         title: const Text('Set Level'),
                         onTap: onSetLevelPressed,
+                    ),
+                    ListTile(
+                        leading: const Icon(Icons.fast_forward),
+                        title: const Text('Advance day(s)'),
+                        onTap: onAdvanceDayPressed,
+                    ),
+                    ListTile(
+                        leading: const Icon(Icons.bug_report),
+                        title: const Text('Dump streak state'),
+                        onTap: onDumpStatePressed,
                     ),
                     ListTile(
                         leading: const Icon(Icons.assignment),

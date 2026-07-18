@@ -14,6 +14,7 @@ import 'package:getshap/core/app_update.dart';
 import 'package:getshap/core/streak/streak_manager.dart';
 import 'package:getshap/core/streak/streak_flame.dart';
 import 'package:getshap/core/streak/streak_page.dart';
+import 'package:getshap/core/debug_clock.dart';
 import 'package:getshap/notifications/schedule_noti.dart';
 import 'package:getshap/core/checkdata.dart';
 import 'package:getshap/onboarding/questionaire.dart';
@@ -29,6 +30,7 @@ void main() async {
     WidgetsFlutterBinding.ensureInitialized();
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     await ScheduleNotifications.initNotification();
+    await DebugClock.load();
     await StreakManager.checkStreak();
     await WorkoutSignal.setSignalTrue();
     await prefsInit();
@@ -205,6 +207,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     updateState: () => setState(() {}),
                     setWorkoutDone: (val) => workoutDone = val,
                 ),
+                onAdvanceDayPressed: () => DebugButtonsLogic.handleAdvanceDayPressed(
+                    context: context,
+                    refresh: _checkWorkout,
+                ),
+                onDumpStatePressed: () => DebugButtonsLogic.handleDumpStatePressed(context),
                 onFormPressed: () => DebugButtonsLogic.handleFormPressed(context),
             ),
             body: Center(

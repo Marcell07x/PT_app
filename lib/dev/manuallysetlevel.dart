@@ -46,6 +46,50 @@ class ManuallySetLevel {
         );
     }
 
+    static Future<int?> showDaysInputDialog(BuildContext context) async {
+        TextEditingController controller = TextEditingController(text: '2');
+
+        return await showDialog<int>(
+            context: context,
+            builder: (context) {
+                return AlertDialog(
+                    title: Text('Advance days'),
+                    content: TextField(
+                        controller: controller,
+                        keyboardType: TextInputType.number,
+                        autofocus: true,
+                        decoration: InputDecoration(
+                            hintText: 'How many days forward?',
+                            border: OutlineInputBorder(),
+                        ),
+                    ),
+                    actions: [
+                        TextButton(
+                            onPressed: () => Navigator.pop(context),
+                            child: Text('Cancel'),
+                        ),
+                        ElevatedButton(
+                            onPressed: () {
+                                try {
+                                    int days = int.parse(controller.text);
+                                    Navigator.pop(context, days);
+                                } catch (e) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                        SnackBar(
+                                            content: Text('Invalid number!'),
+                                            backgroundColor: Colors.red,
+                                        ),
+                                    );
+                                }
+                            },
+                            child: Text('OK'),
+                        ),
+                    ],
+                );
+            },
+        );
+    }
+
     static Future<void> saveLevelToPrefs(int level) async {
         final prefs = await SharedPreferences.getInstance();
         await prefs.setInt('level', level);
