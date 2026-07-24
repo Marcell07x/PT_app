@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:getshap/l10n/app_localizations.dart';
 import 'package:video_player/video_player.dart';
 import 'package:getshap/main.dart';
+import 'package:getshap/common/pressable_button.dart';
 
 class WorkoutScreen extends StatefulWidget {
     final String videoPath;
@@ -207,46 +208,31 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                                 Row(
                                     children: [
                                         if (widget.currentIndex > 0 || (widget.label == AppLocalizations.of(context)!.workout && widget.level >= 130))
-                                            Expanded(
-                                                child: ElevatedButton(
-                                                    onPressed: widget.onPreviousPressed,
-                                                    style: ElevatedButton.styleFrom(
-                                                        backgroundColor: Colors.grey,
-                                                        shape: RoundedRectangleBorder(
-                                                            borderRadius: BorderRadius.circular(25),
-                                                        ),
-                                                    ),
-                                                    child: Text(
-                                                        AppLocalizations.of(context)!.goback,
-                                                        style: TextStyle(
-                                                            fontSize: 18,
-                                                            fontWeight: FontWeight.bold,
-                                                            color: Colors.white,
-                                                        ),
-                                                    ),
+                                            Pressable3DButton(
+                                                color: Colors.grey,
+                                                width: 56,
+                                                height: 50,
+                                                onPressed: widget.onPreviousPressed,
+                                                child: const Icon(
+                                                    Icons.arrow_back_rounded,
+                                                    color: Colors.white,
+                                                    size: 26,
                                                 ),
                                             ),
                                         if (widget.currentIndex > 0 || (widget.label == AppLocalizations.of(context)!.workout && widget.level >= 130)) 
                                             SizedBox(width: 10),
                                         Expanded(
                                             flex: 2,
-                                            child: SizedBox(
+                                            child: Pressable3DButton(
+                                                color: const Color.fromRGBO(22, 95, 239, 1),
                                                 height: 50,
-                                                child: ElevatedButton(
-                                                    onPressed: widget.onNextPressed,
-                                                    style: ElevatedButton.styleFrom(
-                                                        backgroundColor: Color.fromRGBO(22, 95, 239, 1),
-                                                        shape: RoundedRectangleBorder(
-                                                            borderRadius: BorderRadius.circular(25),
-                                                        ),
-                                                    ),
-                                                    child: Text(
-                                                        widget.buttonText,
-                                                        style: TextStyle(
-                                                            fontSize: 18,
-                                                            fontWeight: FontWeight.bold,
-                                                            color: Colors.white,
-                                                        ),
+                                                onPressed: widget.onNextPressed,
+                                                child: Text(
+                                                    widget.buttonText,
+                                                    style: const TextStyle(
+                                                        fontSize: 18,
+                                                        fontWeight: FontWeight.bold,
+                                                        color: Colors.white,
                                                     ),
                                                 ),
                                             ),

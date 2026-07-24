@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:getshap/l10n/app_localizations.dart';
 import 'package:getshap/workout/workout_done_screen.dart';
 import 'package:getshap/workout/feedback_execution.dart';
+import 'package:getshap/common/pressable_button.dart';
 
 /// Brand blue used across the app.
 const Color _kBrandBlue = Color.fromRGBO(22, 95, 239, 1);
@@ -235,48 +236,38 @@ class _WorkoutFeedbackState extends State<WorkoutFeedback> {
                                     const SizedBox(height: 20),
 
                                     // ---- Continue button ----------------------------
-                                    SizedBox(
+                                    Pressable3DButton(
+                                        color: _kBrandBlue,
                                         height: 56,
                                         width: double.infinity,
-                                        child: ElevatedButton(
-                                            onPressed: () async {
-                                                final navigator = Navigator.of(context);
-                                                final prefs = await SharedPreferences.getInstance();
-                                                await prefs.setInt('rpe_value', _rpeValue.round());
+                                        onPressed: () async {
+                                            final navigator = Navigator.of(context);
+                                            final prefs = await SharedPreferences.getInstance();
+                                            await prefs.setInt('rpe_value', _rpeValue.round());
 
-                                                await FeedbackExecution.executeOnFeedback();
+                                            await FeedbackExecution.executeOnFeedback();
 
-                                                if (!mounted) return;
-                                                navigator.pushReplacement(
-                                                    MaterialPageRoute(
-                                                        builder: (context) => CongratulationsScreen(),
-                                                    ),
-                                                );
-                                            },
-                                            style: ElevatedButton.styleFrom(
-                                                backgroundColor: _kBrandBlue,
-                                                foregroundColor: Colors.white,
-                                                elevation: 2,
-                                                shadowColor: _kBrandBlue.withOpacity(0.4),
-                                                shape: RoundedRectangleBorder(
-                                                    borderRadius: BorderRadius.circular(28),
+                                            if (!mounted) return;
+                                            navigator.pushReplacement(
+                                                MaterialPageRoute(
+                                                    builder: (context) => CongratulationsScreen(),
                                                 ),
-                                            ),
-                                            child: Row(
-                                                mainAxisAlignment: MainAxisAlignment.center,
-                                                children: [
-                                                    Text(
-                                                        l10n.next,
-                                                        style: const TextStyle(
-                                                            fontSize: 18,
-                                                            fontWeight: FontWeight.bold,
-                                                            color: Colors.white,
-                                                        ),
+                                            );
+                                        },
+                                        child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                                Text(
+                                                    l10n.next,
+                                                    style: const TextStyle(
+                                                        fontSize: 18,
+                                                        fontWeight: FontWeight.bold,
+                                                        color: Colors.white,
                                                     ),
-                                                    const SizedBox(width: 8),
-                                                    const Icon(Icons.arrow_forward_rounded, size: 22),
-                                                ],
-                                            ),
+                                                ),
+                                                const SizedBox(width: 8),
+                                                const Icon(Icons.arrow_forward_rounded, size: 22, color: Colors.white),
+                                            ],
                                         ),
                                     ),
                                 ],
