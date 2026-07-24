@@ -3,6 +3,8 @@ import 'package:getshap/l10n/app_localizations.dart';
 import 'package:video_player/video_player.dart';
 import 'package:getshap/main.dart';
 import 'package:getshap/common/pressable_button.dart';
+import 'package:getshap/common/checkered_background.dart';
+import 'package:getshap/common/outlined_text.dart';
 
 class WorkoutScreen extends StatefulWidget {
     final String videoPath;
@@ -113,7 +115,8 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                         },
                     ),
                 ),
-                body: SafeArea(
+                body: CheckeredBackground(
+                    child: SafeArea(
                     child: Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: Column(
@@ -159,24 +162,16 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                                     ),
                                 ),
                                 SizedBox(height: 25),
-                                Text(
+                                OutlinedText(
                                     widget.exerciseName,
-                                    style: TextStyle(
-                                        fontSize: 25,
-                                        fontWeight: FontWeight.w500,
-                                        color: Colors.black87,
-                                    ),
-                                    textAlign: TextAlign.center,
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.w700,
                                 ),
                                 SizedBox(height: 15),
-                                Text(
+                                OutlinedText(
                                     widget.reps,
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black87,
-                                    ),
-                                    textAlign: TextAlign.center,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
                                 ),
                                 SizedBox(height: 10),
                                 Container(
@@ -186,7 +181,11 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                                 SizedBox(height: 15),
                                 Container(
                                     width: double.infinity,
-                                    padding: EdgeInsets.only(left: 16),
+                                    padding: const EdgeInsets.fromLTRB(16, 12, 8, 12),
+                                    decoration: BoxDecoration(
+                                        color: const Color(0x8C141C2E),
+                                        borderRadius: BorderRadius.circular(14),
+                                    ),
                                     child: SizedBox(
                                         height: 200,
                                         child: Scrollbar(
@@ -194,9 +193,10 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                                             child: SingleChildScrollView(
                                                 child: Text(
                                                     widget.description,
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                         fontSize: 16,
-                                                        color: Colors.black87,
+                                                        color: Colors.white,
+                                                        height: 1.35,
                                                     ),
                                                     textAlign: TextAlign.left,
                                                 ),
@@ -242,6 +242,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                             ],
                         ),
                     ),
+                ),
                 ),
             ),
         );

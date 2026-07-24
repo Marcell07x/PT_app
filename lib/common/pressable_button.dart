@@ -20,6 +20,10 @@ class Pressable3DButton extends StatefulWidget {
     /// Face colour when [onPressed] is null.
     final Color disabledColor;
 
+    /// Optional gradient for the enabled face. Overrides [color] when set
+    /// (the disabled state still uses the solid [disabledColor]).
+    final Gradient? gradient;
+
     /// Height of the 3D ledge (how far the button travels when pressed).
     final double depth;
 
@@ -35,6 +39,7 @@ class Pressable3DButton extends StatefulWidget {
         required this.color,
         this.edgeColor,
         this.disabledColor = const Color(0xFFBDBDBD),
+        this.gradient,
         this.depth = 4,
         this.borderRadius = 18,
         this.width,
@@ -69,6 +74,8 @@ class _Pressable3DButtonState extends State<Pressable3DButton> {
         final Widget content =
             _enabled ? widget.child : Opacity(opacity: 0.75, child: widget.child);
 
+        final bool useGradient = _enabled && widget.gradient != null;
+
         return GestureDetector(
             onTapDown: (_) => _setPressed(true),
             onTapCancel: () => _setPressed(false),
@@ -83,7 +90,8 @@ class _Pressable3DButtonState extends State<Pressable3DButton> {
                 padding: widget.padding,
                 transform: Matrix4.translationValues(0, _pressed ? widget.depth : 0, 0),
                 decoration: BoxDecoration(
-                    color: _face,
+                    color: useGradient ? null : _face,
+                    gradient: useGradient ? widget.gradient : null,
                     borderRadius: BorderRadius.circular(widget.borderRadius),
                     boxShadow: [
                         BoxShadow(

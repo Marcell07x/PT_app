@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:getshap/common/pressable_button.dart';
+import 'package:getshap/common/checkered_background.dart';
 import 'package:getshap/l10n/app_localizations.dart';
 import 'package:getshap/onboarding/questionaire.dart';
 import 'package:getshap/onboarding/question1.dart';
@@ -180,7 +181,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 });
             },
             appBar: AppBar(
-                backgroundColor: const Color.fromRGBO(22, 95, 239, 1),
+                backgroundColor: const Color(0xFF2E6BF0),
+                elevation: 0,
+                scrolledUnderElevation: 0,
                 title: StreakFlame(
                     //lit: there is a streak and no workout is waiting for today
                     streak: _streak,
@@ -219,101 +222,142 @@ class _MyHomePageState extends State<MyHomePage> {
                 onDumpStatePressed: () => DebugButtonsLogic.handleDumpStatePressed(context),
                 onFormPressed: () => DebugButtonsLogic.handleFormPressed(context),
             ),
-            body: Center(
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                        const SizedBox(height: 30),
-                        GestureDetector(
-                            onTap: () {
-                                if (_isTipLoading) return;
-                                Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                        builder: (context) => TipDetailScreen(tip: _getTipText(context)),
-                                    ),
-                                );
-                            },
-                            child: Container(
-                                width: 280,
-                                height: 140,
-                                padding: const EdgeInsets.all(12.0),
-                                decoration: BoxDecoration(
-                                    color: _tipBackgroundColor,
-                                    border: Border.all(
-                                        color: const Color.fromRGBO(22, 95, 239, 1),
-                                        width: 2.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: _isTipLoading ? const Center(child: CircularProgressIndicator()) : Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                        Text(
-                                            AppLocalizations.of(context)!.tip,
-                                            style: const TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                color: Color.fromRGBO(22, 95, 239, 1),
-                                                fontSize: 16,
-                                            ),
+            body: CheckeredBackground(
+                gradientColors: const [Color(0xFFD8ECEA), Color(0xFF14403D)],
+                child: Center(
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                            // ---- Daily tip panel (nudged up a little; the
+                            // button stays centred) ----
+                            Transform.translate(
+                                offset: const Offset(0, -40),
+                                child: GestureDetector(
+                                onTap: () {
+                                    if (_isTipLoading) return;
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) => TipDetailScreen(tip: _getTipText(context)),
                                         ),
-                                        const SizedBox(height: 8),
-                                        Expanded(
-                                            child: Text(
-                                                _getTipText(context),
-                                                maxLines: 4,
-                                                overflow: TextOverflow.ellipsis,
-                                                style: const TextStyle(
-                                                    color: Colors.black87,
-                                                    fontSize: 14,
+                                    );
+                                },
+                                child: Container(
+                                    width: 300,
+                                    // White tip panel raised out of a thick black
+                                    // 3D frame: the frame shows on the sides and
+                                    // (thicker) at the bottom, but not at the top
+                                    // where the panel pops out of it.
+                                    decoration: BoxDecoration(
+                                        color: _tipBackgroundColor,
+                                        borderRadius: BorderRadius.circular(16),
+                                        boxShadow: const [
+                                            BoxShadow(
+                                                color: Color(0xFF2C3E6E),
+                                                offset: Offset(0, 7),
+                                                spreadRadius: 7,
+                                                blurRadius: 0,
+                                            ),
+                                        ],
+                                    ),
+                                    child: _isTipLoading
+                                        ? const SizedBox(
+                                            height: 150,
+                                            child: Center(child: CircularProgressIndicator()),
+                                        )
+                                        : Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                                Padding(
+                                                    padding: const EdgeInsets.fromLTRB(16, 14, 16, 10),
+                                                    child: Text(
+                                                        AppLocalizations.of(context)!.tip.toUpperCase(),
+                                                        style: const TextStyle(
+                                                            fontWeight: FontWeight.w800,
+                                                            color: Color(0xFF16408C),
+                                                            fontSize: 16,
+                                                            letterSpacing: 0.5,
+                                                        ),
+                                                    ),
                                                 ),
+                                                Container(height: 1, color: const Color(0x1A16408C)),
+                                                Padding(
+                                                    padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
+                                                    child: Text(
+                                                        _getTipText(context),
+                                                        maxLines: 4,
+                                                        overflow: TextOverflow.ellipsis,
+                                                        style: const TextStyle(
+                                                            color: Color(0xFF3A3F52),
+                                                            fontSize: 14,
+                                                            height: 1.4,
+                                                        ),
+                                                    ),
+                                                ),
+                                            ],
+                                        ),
+                                ),
+                            ),
+                            ),
+                            const SizedBox(height: 44),
+                            // ---- Start-workout button (battle-button style) ----
+                            Pressable3DButton(
+                                width: 280,
+                                height: 120,
+                                borderRadius: 16,
+                                depth: 7,
+                                color: const Color(0xFFF5A623),
+                                edgeColor: const Color(0xFFC0770A),
+                                gradient: const LinearGradient(
+                                    begin: Alignment.topCenter,
+                                    end: Alignment.bottomCenter,
+                                    colors: [Color(0xFFFFD23F), Color(0xFFF5A623)],
+                                ),
+                                onPressed: _isButtonEnabled ? () async {
+                                    final prefs = await SharedPreferences.getInstance();
+                                    int wlevel = prefs.getInt('level') ?? 1;
+                                    //for testing, you should make the line below a comment
+                                    workoutDone = CongratulationsScreen.workoutIsDone;
+                                    setState(() {});
+                                    if (wlevel <= 129 && workoutDone == 0) {
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (context) => WorkoutFlow(),
                                             ),
-                                        ),
-                                    ],
+                                        );
+                                    } else if (workoutDone == 0 && wlevel > 129){
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (context) => WarmupFlow(),
+                                            ),
+                                        );
+                                    } else {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(builder: (context) => const NoWorkout()),
+                                        );
+                                    }
+                                } : null,
+                                child: Text(
+                                    AppLocalizations.of(context)!.startWorkout.toUpperCase(),
+                                    textAlign: TextAlign.center,
+                                    style: const TextStyle(
+                                        fontSize: 27,
+                                        fontWeight: FontWeight.w900,
+                                        color: Colors.white,
+                                        letterSpacing: 0.5,
+                                        shadows: [
+                                            Shadow(
+                                                color: Color(0x59000000),
+                                                offset: Offset(0, 2),
+                                                blurRadius: 2,
+                                            ),
+                                        ],
+                                    ),
                                 ),
                             ),
-                        ),
-                        const SizedBox(height: 30),
-                        Pressable3DButton(
-                            color: const Color.fromRGBO(22, 95, 239, 1),
-                            width: 280,
-                            height: 120,
-                            borderRadius: 10,
-                            depth: 6,
-                            onPressed: _isButtonEnabled ? () async {
-                                final prefs = await SharedPreferences.getInstance();
-                                int wlevel = prefs.getInt('level') ?? 1;
-                                //for testing, you should make the line below a comment
-                                workoutDone = CongratulationsScreen.workoutIsDone;
-                                setState(() {});
-                                if (wlevel <= 129 && workoutDone == 0) {
-                                    Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (context) => WorkoutFlow(),
-                                        ),
-                                    );
-                                } else if (workoutDone == 0 && wlevel > 129){
-                                    Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (context) => WarmupFlow(),
-                                        ),
-                                    );
-                                } else {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(builder: (context) => const NoWorkout()),
-                                    );
-                                }
-                            } : null,
-                            child: Text(
-                                AppLocalizations.of(context)!.startWorkout,
-                                style: const TextStyle(
-                                    fontSize: 32,
-                                    fontWeight: FontWeight.w900,
-                                    color: Colors.white,
-                                ),
-                            ),
-                        ),
-                    ],
+                        ],
+                    ),
                 ),
             ),
             ),

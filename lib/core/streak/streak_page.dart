@@ -4,6 +4,8 @@ import 'package:getshap/l10n/app_localizations.dart';
 import 'package:getshap/core/streak/streak_manager.dart';
 import 'package:getshap/core/streak/streak_calendar.dart';
 import 'package:getshap/core/streak/streak_freeze_slot.dart';
+import 'package:getshap/common/checkered_background.dart';
+import 'package:getshap/common/outlined_text.dart';
 
 //goal: the streak page: big streak number on top, the streak calendar
 //      below it and the freeze slot at the bottom
@@ -49,7 +51,7 @@ class _StreakPageState extends State<StreakPage> {
 
     @override
     Widget build(BuildContext context) {
-        final flameColor = _lit ? Colors.orange : Colors.black26;
+        final flameColor = _lit ? Colors.orange : const Color(0xFF8B93A1);
 
         return GestureDetector(
             // Swipe left-to-right from anywhere on the page (not just the very
@@ -60,7 +62,7 @@ class _StreakPageState extends State<StreakPage> {
                 }
             },
             child: Scaffold(
-            backgroundColor: Colors.white,
+            backgroundColor: const Color(0xFF14403D),
             appBar: AppBar(
                 backgroundColor: flameColor,
                 leading: IconButton(
@@ -68,7 +70,8 @@ class _StreakPageState extends State<StreakPage> {
                     onPressed: () => Navigator.of(context).pop(),
                 ),
             ),
-            body: _loading
+            body: CheckeredBackground(
+                child: _loading
                 ? const Center(child: CircularProgressIndicator())
                 : SafeArea(
                     child: Column(
@@ -77,29 +80,74 @@ class _StreakPageState extends State<StreakPage> {
                             Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                    Icon(Icons.local_fire_department, color: flameColor, size: 64),
+                                    Container(
+                                        decoration: _lit
+                                            ? const BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                boxShadow: [
+                                                    BoxShadow(
+                                                        color: Color(0x80FF9800),
+                                                        blurRadius: 36,
+                                                        spreadRadius: -2,
+                                                    ),
+                                                ],
+                                            )
+                                            : null,
+                                        child: _lit
+                                            ? ShaderMask(
+                                                blendMode: BlendMode.srcIn,
+                                                shaderCallback: (rect) => const LinearGradient(
+                                                    begin: Alignment.bottomCenter,
+                                                    end: Alignment.topCenter,
+                                                    colors: [
+                                                        Color(0xFFFFD54F),
+                                                        Color(0xFFFF9800),
+                                                        Color(0xFFF4511E),
+                                                    ],
+                                                ).createShader(rect),
+                                                child: const Icon(
+                                                    Icons.local_fire_department,
+                                                    color: Colors.white,
+                                                    size: 84,
+                                                ),
+                                            )
+                                            : Icon(
+                                                Icons.local_fire_department,
+                                                color: flameColor,
+                                                size: 84,
+                                            ),
+                                    ),
                                     const SizedBox(width: 8),
-                                    Text(
+                                    OutlinedText(
                                         '$_streak',
-                                        style: TextStyle(
-                                            fontSize: 64,
-                                            fontWeight: FontWeight.w900,
-                                            color: flameColor,
-                                        ),
+                                        fontSize: 84,
+                                        fontWeight: FontWeight.w900,
+                                        color: flameColor,
+                                        outlineWidth: 4.5,
                                     ),
                                 ],
                             ),
-                            Text(
+                            OutlinedText(
                                 AppLocalizations.of(context)!.workoutStreak,
-                                style: const TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black54,
-                                ),
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
                             ),
                             const SizedBox(height: 16),
-                            Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                            Container(
+                                margin: const EdgeInsets.symmetric(horizontal: 16.0),
+                                padding: const EdgeInsets.all(8.0),
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(18),
+                                    boxShadow: [
+                                        BoxShadow(
+                                            color: Colors.black.withOpacity(0.25),
+                                            blurRadius: 16,
+                                            offset: const Offset(0, 8),
+                                        ),
+                                    ],
+                                ),
                                 child: StreakCalendar(
                                     streak: _streak,
                                     startDate: _startDate,
@@ -114,6 +162,7 @@ class _StreakPageState extends State<StreakPage> {
                         ],
                     ),
                 ),
+            ),
         ),
         );
     }

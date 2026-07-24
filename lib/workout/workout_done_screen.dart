@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:getshap/l10n/app_localizations.dart';
 import 'package:getshap/core/streak/streak_increase.dart';
 import 'package:getshap/common/pressable_button.dart';
+import 'package:getshap/common/checkered_background.dart';
+import 'package:getshap/common/outlined_text.dart';
 
 class CongratulationsScreen extends StatelessWidget {
     const CongratulationsScreen({super.key});
@@ -13,60 +15,48 @@ class CongratulationsScreen extends StatelessWidget {
 
         return Scaffold(
             backgroundColor: Colors.transparent,
-            body: Container(
-                width: double.infinity,
-                height: double.infinity,
-                decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [Color(0xFFFFF3E0), Color(0xFFF6F7FB)],
-                        stops: [0.0, 0.55],
-                    ),
-                ),
+            body: CheckeredBackground(
                 child: SafeArea(
                     child: Padding(
                         padding: const EdgeInsets.fromLTRB(24, 16, 24, 24),
                         child: Column(
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
-                                const SizedBox(height: 8),
-                                Text(
-                                    l10n.congrat,
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(
-                                        fontSize: 34,
-                                        fontWeight: FontWeight.w800,
-                                        color: Color(0xFF2E9E5B),
-                                    ),
-                                ),
-
                                 Expanded(
                                     child: Column(
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
+                                            OutlinedText(
+                                                l10n.congrat,
+                                                fontSize: 36,
+                                                fontWeight: FontWeight.w800,
+                                                color: const Color(0xFF3AD17A),
+                                                outlineWidth: 5,
+                                                shadows: const [
+                                                    Shadow(
+                                                        color: Colors.black54,
+                                                        blurRadius: 10,
+                                                        offset: Offset(0, 3),
+                                                    ),
+                                                ],
+                                            ),
+                                            const SizedBox(height: 20),
                                             const StreakIncrease(),
                                             const SizedBox(height: 10),
-                                            Text(
+                                            OutlinedText(
                                                 l10n.workoutStreak.toUpperCase(),
-                                                textAlign: TextAlign.center,
-                                                style: const TextStyle(
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.w700,
-                                                    letterSpacing: 1.5,
-                                                    color: Color(0xFF9A6A2E),
-                                                ),
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w700,
+                                                letterSpacing: 1.5,
+                                                color: const Color(0xFFF3C969),
                                             ),
                                             const SizedBox(height: 30),
-                                            Text(
+                                            OutlinedText(
                                                 l10n.congratMessage,
-                                                textAlign: TextAlign.center,
-                                                style: const TextStyle(
-                                                    fontSize: 22,
-                                                    fontWeight: FontWeight.w600,
-                                                    height: 1.35,
-                                                    color: Color(0xFF4A4F63),
-                                                ),
+                                                fontSize: 22,
+                                                fontWeight: FontWeight.w600,
+                                                height: 1.35,
+                                                color: Colors.white,
                                             ),
                                         ],
                                     ),

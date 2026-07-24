@@ -34,7 +34,7 @@ class WorkoutAReps{
         } else if (_levelR < 60) {
             _Reps = [15, 10];
         } else if (_levelR < 65) {
-            _Reps = [15, 5, 10];
+            _Reps = [15, 7, 10];
         } else if (_levelR < 70) {
             _Reps = [15, 10, 10];
         } else if (_levelR < 75) {

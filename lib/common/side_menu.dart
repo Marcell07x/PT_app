@@ -41,7 +41,7 @@ class SideMenu extends StatelessWidget {
     @override
     Widget build(BuildContext context) {
         // Calculate the width to be 80% of the screen
-        final double menuWidth = MediaQuery.of(context).size.width * 0.8;
+        final double menuWidth = MediaQuery.of(context).size.width * 0.6;
         // Calculate the top margin to start from the bottom of the AppBar
         final double topMargin = MediaQuery.of(context).padding.top + kToolbarHeight;
 

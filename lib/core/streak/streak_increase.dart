@@ -73,8 +73,8 @@ class _StreakIncreaseState extends State<StreakIncrease> {
     Widget _flameBadge() {
         return AnimatedContainer(
             duration: const Duration(milliseconds: 400),
-            width: 160,
-            height: 160,
+            width: 190,
+            height: 190,
             decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 // Just a soft glow behind the flame — no solid disc/ring.
@@ -109,14 +109,14 @@ class _StreakIncreaseState extends State<StreakIncrease> {
                         child: const Icon(
                             Icons.local_fire_department,
                             color: Colors.white,
-                            size: 96,
+                            size: 118,
                         ),
                     )
                     : const Icon(
                         Icons.local_fire_department,
                         key: ValueKey(false),
                         color: Colors.black26,
-                        size: 96,
+                        size: 118,
                     ),
             ),
         );
@@ -127,7 +127,7 @@ class _StreakIncreaseState extends State<StreakIncrease> {
             '$_shown',
             key: ValueKey('$_shown-$_lit'),
             style: const TextStyle(
-                fontSize: 72,
+                fontSize: 94,
                 fontWeight: FontWeight.w900,
                 height: 1.0,
                 color: Colors.white,
@@ -155,7 +155,7 @@ class _StreakIncreaseState extends State<StreakIncrease> {
                     '$_shown',
                     key: ValueKey('dim-$_shown'),
                     style: const TextStyle(
-                        fontSize: 72,
+                        fontSize: 94,
                         fontWeight: FontWeight.w900,
                         height: 1.0,
                         color: Colors.black26,

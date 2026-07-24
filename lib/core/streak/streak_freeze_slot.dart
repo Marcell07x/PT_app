@@ -19,7 +19,7 @@ class StreakFreezeSlot extends StatelessWidget {
                     decoration: BoxDecoration(
                         color: hasFreeze ? const Color(0xFFE3F2FD) : Colors.transparent,
                         border: Border.all(
-                            color: hasFreeze ? Colors.lightBlue : Colors.black26,
+                            color: hasFreeze ? Colors.lightBlue : Colors.white54,
                             width: 2.0,
                         ),
                         borderRadius: BorderRadius.circular(12),
@@ -34,7 +34,7 @@ class StreakFreezeSlot extends StatelessWidget {
                     style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black87,
+                        color: Colors.white,
                     ),
                 ),
             ],
