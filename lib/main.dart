@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -184,8 +185,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     streak: _streak,
                     lit: _streak > 0 && !_isButtonEnabled,
                     onTap: () {
+                        // CupertinoPageRoute enables the interactive left-edge
+                        // swipe-back-to-pop gesture on Android too (not just iOS),
+                        // popping back to the home page.
                         Navigator.of(context).push(
-                            MaterialPageRoute(builder: (context) => const StreakPage()),
+                            CupertinoPageRoute(builder: (context) => const StreakPage()),
                         );
                     },
                 ),

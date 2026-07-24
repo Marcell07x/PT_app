@@ -72,7 +72,12 @@ class _WorkoutFeedbackState extends State<WorkoutFeedback> {
         final int rounded = _rpeValue.round();
         final Color effort = _colorForRPE(_rpeValue);
 
-        return MaterialApp(
+        return PopScope(
+            // Keep the user on the feedback screen until they tap Next.
+            // Placed on the outer route so it blocks BOTH Android's hardware
+            // back button and iOS's left-edge back-swipe.
+            canPop: false,
+            child: MaterialApp(
             debugShowCheckedModeBanner: false,
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
@@ -280,6 +285,7 @@ class _WorkoutFeedbackState extends State<WorkoutFeedback> {
                     ),
                 ),
             ),
+        ),
         );
     }
 }

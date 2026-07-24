@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:getshap/core/debug_clock.dart';
 import 'package:getshap/core/streak/streak_date_utils.dart';
 
-//goal: month calendar for the streak page, Duolingo style: the days of
+//goal: month calendar for the streak page: the days of
 //      the running streak are connected by an orange band, workout days
 //      get an orange circle, freeze days a snowflake, rest days only the
 //      band. The band runs squared into the neighbouring month's cells

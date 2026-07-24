@@ -31,7 +31,7 @@ class _StreakIncreaseState extends State<StreakIncrease> {
             _shown = streak > 0 ? streak - 1 : 0;
         });
 
-        await Future.delayed(const Duration(milliseconds: 200));
+        await Future.delayed(const Duration(milliseconds: 300));
         if (!mounted) return;
         setState(() {
             _shown = streak;
@@ -39,51 +39,128 @@ class _StreakIncreaseState extends State<StreakIncrease> {
             _pop = true;
         });
 
-        await Future.delayed(const Duration(milliseconds: 250));
+        await Future.delayed(const Duration(milliseconds: 500));
         if (!mounted) return;
         setState(() {
             _pop = false;
         });
     }
 
+    // Warm gradient used for the lit flame and streak number.
+    static const List<Color> _flameGradient = [
+        Color(0xFFFFD54F), // amber
+        Color(0xFFFF9800), // orange
+        Color(0xFFF4511E), // deep orange
+    ];
+
     @override
     Widget build(BuildContext context) {
-        final color = _lit ? Colors.orange : Colors.black26;
-
         return AnimatedScale(
-            scale: _pop ? 1.2 : 1.0,
+            scale: _pop ? 1.15 : 1.0,
             duration: const Duration(milliseconds: 250),
-            child: Row(
+            curve: Curves.easeOutBack,
+            child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                    AnimatedSwitcher(
-                        duration: const Duration(milliseconds: 300),
-                        child: Icon(
-                            Icons.local_fire_department,
-                            key: ValueKey(_lit),
-                            color: color,
-                            size: 90,
-                        ),
-                    ),
-                    const SizedBox(width: 8),
-                    AnimatedSwitcher(
-                        duration: const Duration(milliseconds: 400),
-                        transitionBuilder: (child, animation) => ScaleTransition(
-                            scale: animation,
-                            child: FadeTransition(opacity: animation, child: child),
-                        ),
-                        child: Text(
-                            '$_shown',
-                            key: ValueKey('$_shown-$_lit'),
-                            style: TextStyle(
-                                fontSize: 80,
-                                fontWeight: FontWeight.w900,
-                                color: color,
-                            ),
-                        ),
-                    ),
+                    _flameBadge(),
+                    const SizedBox(height: 14),
+                    _streakNumber(),
                 ],
             ),
+        );
+    }
+
+    Widget _flameBadge() {
+        return AnimatedContainer(
+            duration: const Duration(milliseconds: 400),
+            width: 160,
+            height: 160,
+            decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                // Just a soft glow behind the flame — no solid disc/ring.
+                gradient: _lit
+                    ? const RadialGradient(
+                        colors: [Color(0x80FF9800), Color(0x00FF9800)],
+                        stops: [0.0, 0.72],
+                    )
+                    : null,
+                boxShadow: _lit
+                    ? const [
+                        BoxShadow(
+                            color: Color(0x40FF9800),
+                            blurRadius: 40,
+                            spreadRadius: -4,
+                        ),
+                    ]
+                    : const [],
+            ),
+            alignment: Alignment.center,
+            child: AnimatedSwitcher(
+                duration: const Duration(milliseconds: 300),
+                child: _lit
+                    ? ShaderMask(
+                        key: const ValueKey(true),
+                        blendMode: BlendMode.srcIn,
+                        shaderCallback: (rect) => const LinearGradient(
+                            begin: Alignment.bottomCenter,
+                            end: Alignment.topCenter,
+                            colors: _flameGradient,
+                        ).createShader(rect),
+                        child: const Icon(
+                            Icons.local_fire_department,
+                            color: Colors.white,
+                            size: 96,
+                        ),
+                    )
+                    : const Icon(
+                        Icons.local_fire_department,
+                        key: ValueKey(false),
+                        color: Colors.black26,
+                        size: 96,
+                    ),
+            ),
+        );
+    }
+
+    Widget _streakNumber() {
+        final Widget number = Text(
+            '$_shown',
+            key: ValueKey('$_shown-$_lit'),
+            style: const TextStyle(
+                fontSize: 72,
+                fontWeight: FontWeight.w900,
+                height: 1.0,
+                color: Colors.white,
+            ),
+        );
+
+        return AnimatedSwitcher(
+            duration: const Duration(milliseconds: 400),
+            transitionBuilder: (child, animation) => ScaleTransition(
+                scale: animation,
+                child: FadeTransition(opacity: animation, child: child),
+            ),
+            child: _lit
+                ? ShaderMask(
+                    key: ValueKey('lit-$_shown'),
+                    blendMode: BlendMode.srcIn,
+                    shaderCallback: (rect) => const LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: _flameGradient,
+                    ).createShader(rect),
+                    child: number,
+                )
+                : Text(
+                    '$_shown',
+                    key: ValueKey('dim-$_shown'),
+                    style: const TextStyle(
+                        fontSize: 72,
+                        fontWeight: FontWeight.w900,
+                        height: 1.0,
+                        color: Colors.black26,
+                    ),
+                ),
         );
     }
 }

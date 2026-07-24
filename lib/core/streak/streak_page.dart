@@ -51,10 +51,18 @@ class _StreakPageState extends State<StreakPage> {
     Widget build(BuildContext context) {
         final flameColor = _lit ? Colors.orange : Colors.black26;
 
-        return Scaffold(
+        return GestureDetector(
+            // Swipe left-to-right from anywhere on the page (not just the very
+            // left edge) to pop back to the home page.
+            onHorizontalDragEnd: (details) {
+                if ((details.primaryVelocity ?? 0) > 250) {
+                    Navigator.of(context).pop();
+                }
+            },
+            child: Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(
-                backgroundColor: const Color.fromRGBO(22, 95, 239, 1),
+                backgroundColor: flameColor,
                 leading: IconButton(
                     icon: const Icon(Icons.close, color: Colors.white),
                     onPressed: () => Navigator.of(context).pop(),
@@ -106,6 +114,7 @@ class _StreakPageState extends State<StreakPage> {
                         ],
                     ),
                 ),
+        ),
         );
     }
 }
