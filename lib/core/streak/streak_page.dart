@@ -4,7 +4,7 @@ import 'package:getshap/l10n/app_localizations.dart';
 import 'package:getshap/core/streak/streak_manager.dart';
 import 'package:getshap/core/streak/streak_calendar.dart';
 import 'package:getshap/core/streak/streak_freeze_slot.dart';
-import 'package:getshap/common/checkered_background.dart';
+import 'package:getshap/common/bokeh_background.dart';
 import 'package:getshap/common/outlined_text.dart';
 
 //goal: the streak page: big streak number on top, the streak calendar
@@ -62,7 +62,7 @@ class _StreakPageState extends State<StreakPage> {
                 }
             },
             child: Scaffold(
-            backgroundColor: const Color(0xFF14403D),
+            backgroundColor: const Color(0xFF463B54),
             appBar: AppBar(
                 backgroundColor: flameColor,
                 leading: IconButton(
@@ -70,7 +70,7 @@ class _StreakPageState extends State<StreakPage> {
                     onPressed: () => Navigator.of(context).pop(),
                 ),
             ),
-            body: CheckeredBackground(
+            body: BokehBackground(
                 child: _loading
                 ? const Center(child: CircularProgressIndicator())
                 : SafeArea(

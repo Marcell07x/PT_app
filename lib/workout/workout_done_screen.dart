@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:getshap/l10n/app_localizations.dart';
 import 'package:getshap/core/streak/streak_increase.dart';
 import 'package:getshap/common/pressable_button.dart';
-import 'package:getshap/common/checkered_background.dart';
+import 'package:getshap/common/bokeh_background.dart';
 import 'package:getshap/common/outlined_text.dart';
 
 class CongratulationsScreen extends StatelessWidget {
@@ -15,7 +15,7 @@ class CongratulationsScreen extends StatelessWidget {
 
         return Scaffold(
             backgroundColor: Colors.transparent,
-            body: CheckeredBackground(
+            body: BokehBackground(
                 child: SafeArea(
                     child: Padding(
                         padding: const EdgeInsets.fromLTRB(24, 16, 24, 24),

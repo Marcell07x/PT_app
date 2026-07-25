@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:getshap/common/pressable_button.dart';
-import 'package:getshap/common/checkered_background.dart';
+import 'package:getshap/common/bokeh_background.dart';
 import 'package:getshap/l10n/app_localizations.dart';
 import 'package:getshap/onboarding/questionaire.dart';
 import 'package:getshap/onboarding/question1.dart';
@@ -222,8 +222,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 onDumpStatePressed: () => DebugButtonsLogic.handleDumpStatePressed(context),
                 onFormPressed: () => DebugButtonsLogic.handleFormPressed(context),
             ),
-            body: CheckeredBackground(
-                gradientColors: const [Color(0xFFD8ECEA), Color(0xFF14403D)],
+            body: BokehBackground(
                 child: Center(
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -252,7 +251,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         borderRadius: BorderRadius.circular(16),
                                         boxShadow: const [
                                             BoxShadow(
-                                                color: Color(0xFF2C3E6E),
+                                                color: Color(0xFF241B33),
                                                 offset: Offset(0, 7),
                                                 spreadRadius: 7,
                                                 blurRadius: 0,

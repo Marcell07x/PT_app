@@ -41,7 +41,7 @@ class SideMenu extends StatelessWidget {
     @override
     Widget build(BuildContext context) {
         // Calculate the width to be 80% of the screen
-        final double menuWidth = MediaQuery.of(context).size.width * 0.6;
+        final double menuWidth = MediaQuery.of(context).size.width * 0.7;
         // Calculate the top margin to start from the bottom of the AppBar
         final double topMargin = MediaQuery.of(context).padding.top + kToolbarHeight;
 
@@ -49,6 +49,7 @@ class SideMenu extends StatelessWidget {
             width: menuWidth,
             margin: EdgeInsets.only(top: topMargin),
             child: Drawer(
+                backgroundColor: const Color(0xFF2E6BF0),
                 shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.zero,
                 ),
@@ -58,7 +59,10 @@ class SideMenu extends StatelessWidget {
     }
 
     Widget _buildMenuView(BuildContext context) {
-        return ListView(
+        return ListTileTheme(
+            iconColor: Colors.white,
+            textColor: Colors.white,
+            child: ListView(
             padding: EdgeInsets.zero,
             children: [
                 ListTile(
@@ -91,12 +95,16 @@ class SideMenu extends StatelessWidget {
                     ),
                 ],
             ],
+            ),
         );
     }
 
     Widget _buildInfoView(BuildContext context) {
         final loc = AppLocalizations.of(context)!;
-        return ListView(
+        return ListTileTheme(
+            iconColor: Colors.white,
+            textColor: Colors.white,
+            child: ListView(
             padding: EdgeInsets.zero,
             children: [
                 ListTile(
@@ -104,12 +112,12 @@ class SideMenu extends StatelessWidget {
                     title: Text(loc.goback),
                     onTap: onBackToMenuPressed,
                 ),
-                const Divider(height: 1),
+                const Divider(height: 1, color: Colors.white30),
                 Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: Text(
                         loc.infoIntro,
-                        style: const TextStyle(fontSize: 16, height: 1.5),
+                        style: const TextStyle(fontSize: 16, height: 1.5, color: Colors.white),
                     ),
                 ),
                 ListTile(
@@ -117,7 +125,7 @@ class SideMenu extends StatelessWidget {
                     title: Text(
                         loc.instagramLink,
                         style: const TextStyle(
-                            color: Color.fromRGBO(22, 95, 239, 1),
+                            color: Colors.white,
                             decoration: TextDecoration.underline,
                         ),
                     ),
@@ -128,13 +136,14 @@ class SideMenu extends StatelessWidget {
                     title: Text(
                         loc.emailLink,
                         style: const TextStyle(
-                            color: Color.fromRGBO(22, 95, 239, 1),
+                            color: Colors.white,
                             decoration: TextDecoration.underline,
                         ),
                     ),
                     onTap: _openEmail,
                 ),
             ],
+            ),
         );
     }
 }

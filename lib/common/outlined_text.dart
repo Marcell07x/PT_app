@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 /// or dark, flat or patterned.
 ///
 /// Use it for short labels, headings, numbers and buttons that sit directly on
-/// the [CheckeredBackground]. For long paragraphs prefer a panel/scrim behind
-/// the text instead (outlining every letter of a paragraph looks heavy).
+/// a busy background. For long paragraphs prefer a panel/scrim behind the text
+/// instead (outlining every letter of a paragraph looks heavy).
 class OutlinedText extends StatelessWidget {
     final String text;
     final double fontSize;

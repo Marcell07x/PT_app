@@ -3,7 +3,7 @@ import 'package:getshap/l10n/app_localizations.dart';
 import 'package:video_player/video_player.dart';
 import 'package:getshap/main.dart';
 import 'package:getshap/common/pressable_button.dart';
-import 'package:getshap/common/checkered_background.dart';
+import 'package:getshap/common/bokeh_background.dart';
 import 'package:getshap/common/outlined_text.dart';
 
 class WorkoutScreen extends StatefulWidget {
@@ -115,7 +115,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                         },
                     ),
                 ),
-                body: CheckeredBackground(
+                body: BokehBackground(
                     child: SafeArea(
                     child: Padding(
                         padding: const EdgeInsets.all(16.0),
