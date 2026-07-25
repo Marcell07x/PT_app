@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:getshap/common/bokeh_background.dart';
 import 'package:getshap/l10n/app_localizations.dart';
 import 'package:getshap/notifications/request_noti_permission.dart';
 
@@ -11,6 +12,7 @@ class FinishWarning extends StatelessWidget {
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             home: Scaffold(
+                extendBody: true,
                 appBar: AppBar(
                     backgroundColor: Color.fromRGBO(22, 95, 239, 1),
                     title: Text(
@@ -21,7 +23,8 @@ class FinishWarning extends StatelessWidget {
                       ),
                     ),
                 ),
-                body: Center(
+                body: BokehBackground(
+                    child: Center(
                     child: Container(
                         decoration: BoxDecoration(
                             border: Border.all(
@@ -32,9 +35,10 @@ class FinishWarning extends StatelessWidget {
                         padding: const EdgeInsets.all(16.0),
                         child: Text(
                             AppLocalizations.of(context)!.finishWarning,
-                            style: TextStyle(fontSize: 18.0),
+                            style: TextStyle(fontSize: 18.0, color: Colors.white),
                         ),
                     ),
+                ),
                 ),
                 bottomNavigationBar: SafeArea(
                     child: Padding(

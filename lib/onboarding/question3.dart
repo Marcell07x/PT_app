@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:getshap/common/bokeh_background.dart';
 import 'package:getshap/onboarding/questionaire.dart';
 import 'package:getshap/onboarding/question4.dart';
 import 'package:getshap/l10n/app_localizations.dart';
@@ -21,13 +22,16 @@ class _Question3PageState extends State<Question3Page> {
             supportedLocales: AppLocalizations.supportedLocales,
 
             home: Scaffold(
-                appBar: AppBar(title: Text('3/7 ${AppLocalizations.of(context)!.question}')),
-                body: Padding(
+                appBar: AppBar(
+                    backgroundColor: const Color(0xFF2E6BF0),
+                    foregroundColor: Colors.white,title: Text('3/7 ${AppLocalizations.of(context)!.question}')),
+                body: BokehBackground(
+                    child: Padding(
                     padding: EdgeInsets.all(16),
                     child: Column(
                         children: [
                             Text(AppLocalizations.of(context)!.maxSquats,
-                                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white)),
                             SizedBox(height: 20),
                             _buildOption('< 10', 0),
                             SizedBox(height: 10),
@@ -52,6 +56,7 @@ class _Question3PageState extends State<Question3Page> {
                             ),
                         ],
                     ),
+                ),
                 ),
             ),
         );

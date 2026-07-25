@@ -22,6 +22,8 @@ class _QuestionGenderPageState extends State<QuestionGenderPage> {
             supportedLocales: AppLocalizations.supportedLocales,
             home: Scaffold(
                 appBar: AppBar(
+                    backgroundColor: const Color(0xFF2E6BF0),
+                    foregroundColor: Colors.white,
                     title: Text('1/7 ${AppLocalizations.of(context)!.question}'),
                     automaticallyImplyLeading: false,
                 ),

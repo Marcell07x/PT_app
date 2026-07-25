@@ -1,5 +1,6 @@
 import 'package:getshap/onboarding/questionaire.dart';
 import 'package:flutter/material.dart';
+import 'package:getshap/common/bokeh_background.dart';
 import 'package:getshap/onboarding/question7.dart';
 import 'package:getshap/l10n/app_localizations.dart';
 
@@ -20,13 +21,16 @@ class _Question6PageState extends State<Question6Page> {
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             home: Scaffold(
-                appBar: AppBar(title: Text('6/7 ${AppLocalizations.of(context)!.question}')),
-                body: Padding(
+                appBar: AppBar(
+                    backgroundColor: const Color(0xFF2E6BF0),
+                    foregroundColor: Colors.white,title: Text('6/7 ${AppLocalizations.of(context)!.question}')),
+                body: BokehBackground(
+                    child: Padding(
                     padding: EdgeInsets.all(16),
                     child: Column(
                         children: [
                             Text(AppLocalizations.of(context)!.motivation,
-                                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white)),
                             SizedBox(height: 20),
                             _buildOption(AppLocalizations.of(context)!.notAtAll, 0),
                             SizedBox(height: 10),
@@ -51,6 +55,7 @@ class _Question6PageState extends State<Question6Page> {
                             ),
                         ],
                     ),
+                ),
                 ),
             ),
         );
