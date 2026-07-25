@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:getshap/common/bokeh_background.dart';
 import 'package:getshap/onboarding/questionaire.dart';
 import 'package:getshap/onboarding/question2.dart';
 import 'package:getshap/l10n/app_localizations.dart';
@@ -24,12 +25,13 @@ class _QuestionGenderPageState extends State<QuestionGenderPage> {
                     title: Text('1/7 ${AppLocalizations.of(context)!.question}'),
                     automaticallyImplyLeading: false,
                 ),
-                body: Padding(
+                body: BokehBackground(
+                    child: Padding(
                     padding: EdgeInsets.all(16),
                     child: Column(
                         children: [
                             Text(AppLocalizations.of(context)!.genderQuestion,
-                                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white)),
                             SizedBox(height: 20),
                             _buildOption(AppLocalizations.of(context)!.male, 'male'),
                             SizedBox(height: 10),
@@ -52,6 +54,7 @@ class _QuestionGenderPageState extends State<QuestionGenderPage> {
                             ),
                         ],
                     ),
+                ),
                 ),
             ),
         );

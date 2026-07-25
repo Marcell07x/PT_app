@@ -4,6 +4,9 @@ import 'dart:io' show Platform;
 import 'package:permission_handler/permission_handler.dart';
 import 'package:getshap/l10n/app_localizations.dart';
 import 'package:getshap/main.dart';
+import 'package:getshap/common/bokeh_background.dart';
+import 'package:getshap/common/outlined_text.dart';
+import 'package:getshap/common/pressable_button.dart';
 
 class RequestNotiPermission extends StatefulWidget {
     const RequestNotiPermission({super.key});
@@ -136,47 +139,46 @@ class _RequestNotiPermissionState extends State<RequestNotiPermission> {
                         ),
                     ]
                 ),
-                body: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                        children: [
-                            Expanded(
-                                child: Center(
-                                    child: Padding(
-                                        padding: const EdgeInsets.only(bottom: 150),
-                                        child: Text(
-                                            AppLocalizations.of(context)!.notisAreImportant,
-                                            style: const TextStyle(
-                                                fontSize: 22,
-                                                fontWeight: FontWeight.bold,
+                body: BokehBackground(
+                    child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                            children: [
+                                Expanded(
+                                    child: Center(
+                                        child: Padding(
+                                            padding: const EdgeInsets.only(bottom: 150),
+                                            child: OutlinedText(
+                                                AppLocalizations.of(context)!.notisAreImportant,
+                                                fontSize: 23,
+                                                fontWeight: FontWeight.w700,
                                             ),
-                                            textAlign: TextAlign.center, 
+                                            
                                         ),
                                     ),
                                 ),
-                            ),
-                            SizedBox(
-                                width: double.infinity,
-                                child: ElevatedButton(
-                                    onPressed: () {
-                                        _requestNotificationPermission();
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                        backgroundColor: Color.fromRGBO(22, 95, 239, 1),
-                                        foregroundColor: Colors.white,
-                                        padding: const EdgeInsets.symmetric(vertical: 16),
-                                    ),
-                                    child: Text(
-                                        AppLocalizations.of(context)!.enableNotis,
-                                        style: TextStyle(fontSize: 18),
-                                    ),
+                                SizedBox(
+                                    width: double.infinity,
+                                    child: Pressable3DButton(
+                                                color: const Color.fromRGBO(22, 95, 239, 1),
+                                                height: 50,
+                                                onPressed: _requestNotificationPermission,
+                                                child: Text(
+                                                    AppLocalizations.of(context)!.enableNotis,
+                                                    style: const TextStyle(
+                                                        fontSize: 18,
+                                                        fontWeight: FontWeight.bold,
+                                                        color: Colors.white,
+                                                    ),
+                                                ),
+                                            ),
                                 ),
-                            ),
-                            const SizedBox(height: 40),
-                        ],  
-                        
+                                const SizedBox(height: 40),
+                            ],  
+                            
+                        ),
                     ),
-                ),
+                ),    
             ),
         );
     }
