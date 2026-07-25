@@ -1,82 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:getshap/common/bokeh_background.dart';
-import 'package:getshap/onboarding/questionaire.dart';
-import 'package:getshap/onboarding/question4.dart';
 import 'package:getshap/l10n/app_localizations.dart';
+import 'package:getshap/onboarding/questionaire.dart';
+import 'package:getshap/onboarding/question_template.dart';
+import 'package:getshap/onboarding/question4.dart';
 
-class Question3Page extends StatefulWidget {
+class Question3Page extends StatelessWidget {
     final QuestionnaireData data;
     const Question3Page({super.key, required this.data});
-    @override
-    _Question3PageState createState() => _Question3PageState();
-}
-
-class _Question3PageState extends State<Question3Page> {
-    int? _selected;
 
     @override
     Widget build(BuildContext context) {
-        return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            localizationsDelegates: AppLocalizations.localizationsDelegates,
-            supportedLocales: AppLocalizations.supportedLocales,
-
-            home: Scaffold(
-                appBar: AppBar(
-                    backgroundColor: const Color(0xFF2E6BF0),
-                    foregroundColor: Colors.white,title: Text('3/7 ${AppLocalizations.of(context)!.question}')),
-                body: BokehBackground(
-                    child: Padding(
-                    padding: EdgeInsets.all(16),
-                    child: Column(
-                        children: [
-                            Text(AppLocalizations.of(context)!.maxSquats,
-                                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white)),
-                            SizedBox(height: 20),
-                            _buildOption('< 10', 0),
-                            SizedBox(height: 10),
-                            _buildOption('10-20', 1),
-                            SizedBox(height: 10),
-                            _buildOption('20+', 2),
-                            SizedBox(height: 40),
-                            SizedBox(
-                                width: double.infinity,
-                                child: ElevatedButton(
-                                    onPressed: _selected != null
-                                        ? () {
-                                            prefs?.setInt('bw_squats', _selected!);
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (_) => Question4Page(data: widget.data)));
-                                        }
-                                        : null,
-                                    child: Text(AppLocalizations.of(context)!.nextq),
-                                ),
-                            ),
-                        ],
-                    ),
-                ),
-                ),
-            ),
-        );
-    }
-
-    Widget _buildOption(String text, int value) {
-        return InkWell(
-            onTap: () => setState(() {
-                _selected = value;
-                widget.data.bw_squats = value;
-            }),
-            child: Container(
-                width: double.infinity,
-                padding: EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                    color: _selected == value ? Color.fromRGBO(22, 95, 239, 1) : Colors.grey[200],
-                    borderRadius: BorderRadius.circular(8),
-                ),
-                child: Text(text),
-            ),
+        final l = AppLocalizations.of(context)!;
+        return QuestionTemplate(
+            progressLabel: '3/7',
+            title: l.maxSquats,
+            nextLabel: l.nextq,
+            options: const [
+                QuestionOption('< 10', 0),
+                QuestionOption('10-20', 1),
+                QuestionOption('20+', 2),
+            ],
+            onNext: (ctx, value) {
+                final v = value as int;
+                prefs?.setInt('bw_squats', v);
+                data.bw_squats = v;
+                Navigator.push(ctx,
+                    MaterialPageRoute(builder: (_) => Question4Page(data: data)));
+            },
         );
     }
 }

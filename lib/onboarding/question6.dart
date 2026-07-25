@@ -1,81 +1,32 @@
-import 'package:getshap/onboarding/questionaire.dart';
 import 'package:flutter/material.dart';
-import 'package:getshap/common/bokeh_background.dart';
-import 'package:getshap/onboarding/question7.dart';
 import 'package:getshap/l10n/app_localizations.dart';
+import 'package:getshap/onboarding/questionaire.dart';
+import 'package:getshap/onboarding/question_template.dart';
+import 'package:getshap/onboarding/question7.dart';
 
-class Question6Page extends StatefulWidget {
+class Question6Page extends StatelessWidget {
     final QuestionnaireData data;
     const Question6Page({super.key, required this.data});
-    @override
-    _Question6PageState createState() => _Question6PageState();
-}
-
-class _Question6PageState extends State<Question6Page> {
-    int? _selected;
 
     @override
     Widget build(BuildContext context) {
-        return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            localizationsDelegates: AppLocalizations.localizationsDelegates,
-            supportedLocales: AppLocalizations.supportedLocales,
-            home: Scaffold(
-                appBar: AppBar(
-                    backgroundColor: const Color(0xFF2E6BF0),
-                    foregroundColor: Colors.white,title: Text('6/7 ${AppLocalizations.of(context)!.question}')),
-                body: BokehBackground(
-                    child: Padding(
-                    padding: EdgeInsets.all(16),
-                    child: Column(
-                        children: [
-                            Text(AppLocalizations.of(context)!.motivation,
-                                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white)),
-                            SizedBox(height: 20),
-                            _buildOption(AppLocalizations.of(context)!.notAtAll, 0),
-                            SizedBox(height: 10),
-                            _buildOption(AppLocalizations.of(context)!.somewhat, 1),
-                            SizedBox(height: 10),
-                            _buildOption(AppLocalizations.of(context)!.motivated, 2),
-                            SizedBox(height: 40),
-                            SizedBox(
-                                width: double.infinity,
-                                child: ElevatedButton(
-                                    onPressed: _selected != null
-                                        ? () {
-                                            prefs?.setInt('motivation', _selected!);
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (_) => Question7Page(data: widget.data)));
-                                        }
-                                        : null,
-                                    child: Text(AppLocalizations.of(context)!.nextq),
-                                ),
-                            ),
-                        ],
-                    ),
-                ),
-                ),
-            ),
-        );
-    }
-
-    Widget _buildOption(String text, int value) {
-        return InkWell(
-            onTap: () => setState(() {
-                _selected = value;
-                widget.data.motivation = value;
-            }),
-            child: Container(
-                width: double.infinity,
-                padding: EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                    color: _selected == value ? Color.fromRGBO(22, 95, 239, 1) : Colors.grey[200],
-                    borderRadius: BorderRadius.circular(8),
-                ),
-                child: Text(text),
-            ),
+        final l = AppLocalizations.of(context)!;
+        return QuestionTemplate(
+            progressLabel: '6/7',
+            title: l.motivation,
+            nextLabel: l.nextq,
+            options: [
+                QuestionOption(l.notAtAll, 0),
+                QuestionOption(l.somewhat, 1),
+                QuestionOption(l.motivated, 2),
+            ],
+            onNext: (ctx, value) {
+                final v = value as int;
+                prefs?.setInt('motivation', v);
+                data.motivation = v;
+                Navigator.push(ctx,
+                    MaterialPageRoute(builder: (_) => Question7Page(data: data)));
+            },
         );
     }
 }
