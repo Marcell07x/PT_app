@@ -28,7 +28,7 @@ class _RequestNotiPermissionState extends State<RequestNotiPermission> {
     void _goToHomePage() {
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
-                builder: (context) => const MyApp(),
+                builder: (context) => const MyHomePage(),
             ),
             (Route<dynamic> route) => false,
         );

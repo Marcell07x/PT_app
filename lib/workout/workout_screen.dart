@@ -108,7 +108,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                         ),
                         onPressed: () { Navigator.of(context).pushAndRemoveUntil(
                                 MaterialPageRoute(
-                                    builder: (context) => const MyApp(),
+                                    builder: (context) => const MyHomePage(),
                                 ),
                                 (Route<dynamic> route) => false,
                             );

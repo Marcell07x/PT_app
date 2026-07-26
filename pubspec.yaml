@@ -32,6 +32,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/videos/
+    - assets/icon/logo_mark.png
 
 flutter_launcher_icons:
   android: "launcher_icon"

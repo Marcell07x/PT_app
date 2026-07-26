@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:getshap/common/pressable_button.dart';
 import 'package:getshap/common/bokeh_background.dart';
+import 'package:getshap/common/splash_screen.dart';
 import 'package:getshap/l10n/app_localizations.dart';
 import 'package:getshap/onboarding/questionaire.dart';
 import 'package:getshap/onboarding/question1.dart';
@@ -38,28 +39,15 @@ void main() async {
     await WorkoutSignal.setSignalTrue();
     await prefsInit();
     bool hasData = await CheckData.checkData();
-    if (hasData) {
-        runApp(const MyApp());
-    } else {
-        final _qdata = QuestionnaireData();
-        runApp(
-            MaterialApp(
-                localizationsDelegates: AppLocalizations.localizationsDelegates,
-                supportedLocales: AppLocalizations.supportedLocales,
-                home: QuestionGenderPage(data: _qdata),
-                ),
-            );
-    }
+    runApp(MyApp(hasData: hasData));
 }
 
-class MyApp extends StatefulWidget {
-    const MyApp({super.key});
+class MyApp extends StatelessWidget {
+    /// Whether the user already has saved data (skip onboarding after splash).
+    final bool hasData;
 
-    @override
-    State<MyApp> createState() => _MyAppState();
-}
+    const MyApp({super.key, required this.hasData});
 
-class _MyAppState extends State<MyApp> {
     @override
     Widget build(BuildContext context) {
         return MaterialApp(
@@ -67,7 +55,11 @@ class _MyAppState extends State<MyApp> {
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
 
-            home: MyHomePage(),
+            home: SplashScreen(
+                nextBuilder: (context) => hasData
+                    ? const MyHomePage()
+                    : QuestionGenderPage(data: QuestionnaireData()),
+            ),
         );
     }
 }
