@@ -26,6 +26,7 @@ import 'package:getshap/workout/no_workout_page.dart';
 import 'package:getshap/workout/workout_done_screen.dart';
 import 'package:getshap/tips/tip_detail_screen.dart';
 import 'package:getshap/common/side_menu.dart';
+import 'package:getshap/common/rounded_3d_app_bar.dart';
 import 'package:getshap/dev/debug_buttons.dart';
 import 'package:getshap/tips/tip_manager.dart';
 import 'package:getshap/tips/tips_data.dart';
@@ -165,6 +166,9 @@ class _MyHomePageState extends State<MyHomePage> {
             },
             child: Scaffold(
             key: _scaffoldKey,
+            // Matches the bokeh background base so the float gap around the
+            // rounded app bar blends into the page seamlessly.
+            backgroundColor: const Color(0xFF463B54),
             onEndDrawerChanged: (isOpen) {
                 setState(() {
                     _isEndDrawerOpen = isOpen;
@@ -172,10 +176,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     if (!isOpen) _showInfo = false;
                 });
             },
-            appBar: AppBar(
+            appBar: Rounded3DAppBar(
                 backgroundColor: const Color(0xFF2E6BF0),
-                elevation: 0,
-                scrolledUnderElevation: 0,
                 title: StreakFlame(
                     //lit: there is a streak and no workout is waiting for today
                     streak: _streak,
