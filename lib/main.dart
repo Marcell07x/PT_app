@@ -235,7 +235,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 onTap: () {
                                     if (_isTipLoading) return;
                                     Navigator.of(context).push(
-                                        MaterialPageRoute(
+                                        CupertinoPageRoute(
                                             builder: (context) => TipDetailScreen(tip: _getTipText(context)),
                                         ),
                                     );

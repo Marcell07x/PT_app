@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:getshap/common/bokeh_background.dart';
+import 'package:getshap/common/pressable_button.dart';
 import 'package:getshap/l10n/app_localizations.dart';
 
 /// One selectable answer: a display [label] and the [value] stored for it.
@@ -66,28 +67,54 @@ class _QuestionTemplateState extends State<QuestionTemplate> {
                         child: Padding(
                             padding: const EdgeInsets.all(16),
                             child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
-                                    Text(
-                                        widget.title,
-                                        style: const TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.white,
+                                    // Title + options are vertically centred in the
+                                    // free space; they scroll if they can't fit.
+                                    Expanded(
+                                        child: LayoutBuilder(
+                                            builder: (context, constraints) => SingleChildScrollView(
+                                                child: ConstrainedBox(
+                                                    constraints: BoxConstraints(
+                                                        minHeight: constraints.maxHeight,
+                                                    ),
+                                                    child: Column(
+                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                        children: [
+                                                            Text(
+                                                                widget.title,
+                                                                textAlign: TextAlign.center,
+                                                                style: const TextStyle(
+                                                                    fontSize: 27,
+                                                                    fontWeight: FontWeight.bold,
+                                                                    color: Colors.white,
+                                                                ),
+                                                            ),
+                                                            const SizedBox(height: 100),
+                                                            for (final option in widget.options) ...[
+                                                                _buildOption(option),
+                                                                const SizedBox(height: 14),
+                                                            ],
+                                                        ],
+                                                    ),
+                                                ),
+                                            ),
                                         ),
                                     ),
-                                    const SizedBox(height: 20),
-                                    for (final option in widget.options) ...[
-                                        _buildOption(option),
-                                        const SizedBox(height: 10),
-                                    ],
-                                    const SizedBox(height: 30),
-                                    SizedBox(
-                                        width: double.infinity,
-                                        child: ElevatedButton(
-                                            onPressed: _selected != null
-                                                ? () => widget.onNext(context, _selected!)
-                                                : null,
-                                            child: Text(widget.nextLabel),
+                                    const SizedBox(height: 12),
+                                    Pressable3DButton(
+                                        color: const Color(0xFF2E6BF0),
+                                        height: 58,
+                                        onPressed: _selected != null
+                                            ? () => widget.onNext(context, _selected!)
+                                            : null,
+                                        child: Text(
+                                            widget.nextLabel,
+                                            style: const TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.white,
+                                            ),
                                         ),
                                     ),
                                 ],
@@ -103,19 +130,22 @@ class _QuestionTemplateState extends State<QuestionTemplate> {
         final bool isSelected = _selected == option.value;
         return InkWell(
             onTap: () => setState(() => _selected = option.value),
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(12),
             child: Container(
                 width: double.infinity,
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 20),
                 decoration: BoxDecoration(
                     color: isSelected
                         ? const Color.fromRGBO(22, 95, 239, 1)
-                        : Colors.grey[200],
-                    borderRadius: BorderRadius.circular(8),
+                        : const Color(0xFFDCDFE4),
+                    borderRadius: BorderRadius.circular(12),
                 ),
                 child: Text(
                     option.label,
+                    textAlign: TextAlign.center,
                     style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.w600,
                         color: isSelected ? Colors.white : Colors.black87,
                     ),
                 ),
