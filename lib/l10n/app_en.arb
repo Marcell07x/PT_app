@@ -153,5 +153,9 @@
     "workoutStreak": "workout streak",
     "streakFreeze": "Streak freeze",
     "updateReadyMessage": "An update has been downloaded.",
-    "updateRestart": "Restart"
+    "updateRestart": "Restart",
+    "updateAvailableTitle": "Update available",
+    "updateAvailableMessage": "A new version of the app is available on the App Store.",
+    "updateNow": "Update",
+    "updateLater": "Later"
 }

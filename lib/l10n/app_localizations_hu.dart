@@ -415,4 +415,17 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get updateRestart => 'Újraindítás';
+
+  @override
+  String get updateAvailableTitle => 'Frissítés elérhető';
+
+  @override
+  String get updateAvailableMessage =>
+      'Az alkalmazás új verziója elérhető az App Store-ban.';
+
+  @override
+  String get updateNow => 'Frissítés';
+
+  @override
+  String get updateLater => 'Később';
 }

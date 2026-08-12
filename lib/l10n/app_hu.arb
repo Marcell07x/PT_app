@@ -152,5 +152,9 @@
     "workoutStreak": "edzés streak",
     "streakFreeze": "Streak freeze",
     "updateReadyMessage": "Egy frissítés letöltődött.",
-    "updateRestart": "Újraindítás"
+    "updateRestart": "Újraindítás",
+    "updateAvailableTitle": "Frissítés elérhető",
+    "updateAvailableMessage": "Az alkalmazás új verziója elérhető az App Store-ban.",
+    "updateNow": "Frissítés",
+    "updateLater": "Később"
 }

@@ -101,9 +101,10 @@ class _MyHomePageState extends State<MyHomePage> {
         WorkoutSignal.onSignalChanged = _checkWorkout;
         _initTipManager();
         // After the first frame (so a Scaffold/ScaffoldMessenger exists), check
-        // Google Play for a newer version and offer a background update.
+        // for a newer version: a background Play update on Android, or an App
+        // Store prompt on iOS.
         WidgetsBinding.instance.addPostFrameCallback((_) {
-            if (mounted) AppUpdater.checkForFlexibleUpdate(context);
+            if (mounted) AppUpdater.checkForUpdate(context);
         });
     }
 

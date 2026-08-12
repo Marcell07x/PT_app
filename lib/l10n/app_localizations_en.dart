@@ -414,4 +414,17 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get updateRestart => 'Restart';
+
+  @override
+  String get updateAvailableTitle => 'Update available';
+
+  @override
+  String get updateAvailableMessage =>
+      'A new version of the app is available on the App Store.';
+
+  @override
+  String get updateNow => 'Update';
+
+  @override
+  String get updateLater => 'Later';
 }
