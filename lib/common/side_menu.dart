@@ -38,22 +38,84 @@ class SideMenu extends StatelessWidget {
         await launchUrl(Uri(scheme: 'mailto', path: 'bmarci891@gmail.com'));
     }
 
+    /// Shared blue used by the app bar and this menu.
+    static const Color _blue = Color(0xFF2E6BF0);
+
     @override
     Widget build(BuildContext context) {
-        // Calculate the width to be 80% of the screen
         final double menuWidth = MediaQuery.of(context).size.width * 0.7;
-        // Calculate the top margin to start from the bottom of the AppBar
-        final double topMargin = MediaQuery.of(context).padding.top + kToolbarHeight;
+
+        // Full-height panel that reaches the top of the screen. Only the left
+        // corners are rounded (the right edge is the screen edge); the drawer's
+        // elevation casts a soft shadow onto the content for a subtle 3D edge,
+        // echoing the floating app bar.
+        return Drawer(
+            width: menuWidth,
+            backgroundColor: _blue,
+            elevation: 12,
+            clipBehavior: Clip.antiAlias,
+            shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(24),
+                    bottomLeft: Radius.circular(24),
+                ),
+            ),
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                    _buildHeader(context),
+                    Expanded(
+                        child: showInfo
+                            ? _buildInfoView(context)
+                            : _buildMenuView(context),
+                    ),
+                ],
+            ),
+        );
+    }
+
+    /// Branded header band at the top of the menu: the white logo mark and
+    /// wordmark on the same blue sheen as the app bar, with a soft depth shadow
+    /// separating it from the list below.
+    Widget _buildHeader(BuildContext context) {
+        final double topPad = MediaQuery.of(context).padding.top;
+        final Color lighter = Color.lerp(_blue, Colors.white, 0.14)!;
 
         return Container(
-            width: menuWidth,
-            margin: EdgeInsets.only(top: topMargin),
-            child: Drawer(
-                backgroundColor: const Color(0xFF2E6BF0),
-                shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.zero,
+            padding: EdgeInsets.fromLTRB(20, topPad + 18, 16, 18),
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [lighter, _blue],
                 ),
-                child: showInfo ? _buildInfoView(context) : _buildMenuView(context),
+                boxShadow: const [
+                    BoxShadow(
+                        color: Color(0x40000000),
+                        offset: Offset(0, 3),
+                        blurRadius: 8,
+                    ),
+                ],
+            ),
+            child: Row(
+                children: [
+                    Image.asset(
+                        'assets/icon/logo_mark.png',
+                        width: 34,
+                        height: 34,
+                        filterQuality: FilterQuality.high,
+                    ),
+                    const SizedBox(width: 12),
+                    const Text(
+                        'GetShap',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 22,
+                            fontWeight: FontWeight.w800,
+                            letterSpacing: 0.3,
+                        ),
+                    ),
+                ],
             ),
         );
     }
