@@ -358,11 +358,11 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get beginnerDiet1 =>
-      'Ha fogynál, vásárolj édesítőszeres üdítőket - édességek helyett, amennyire tudod, ezt igyad.';
+      'Ha fogyni szeretnél, vásárolj édesítőszeres üdítőket - édességek helyett, amennyire tudod, ezt igyad.';
 
   @override
   String get beginnerDiet2 =>
-      'Ha fogynál, vásárolj több gyümölcsöt, zöldséget, amiket szeretsz - kevés kalóriát tartalmaznak, de sok helyet foglalnak a gyomrodban.';
+      'Ha fogyni szeretnél, vásárolj több gyümölcsöt, zöldséget, amiket szeretsz - kevés kalóriát tartalmaznak, de sok helyet foglalnak a gyomrodban.';
 
   @override
   String get advancedWorkout1 =>
@@ -398,11 +398,11 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get advancedDiet5 =>
-      'Ha fogynál, mérd minden nap nagyjából ugyanabban az időben a súlyod - evés, hidratáltság, nagydolog intézése mind hozzájárul, hogy pár órán akár belül kilókat változzon a súlyod, annélkül, hogy égetnél zsírt.';
+      'Ha fogyni szeretnél, mérd minden nap nagyjából ugyanabban az időben a súlyod - evés, hidratáltság, nagydolog intézése mind hozzájárul, hogy pár órán akár belül kilókat változzon a súlyod, annélkül, hogy égetnél zsírt.';
 
   @override
   String get advancedDiet6 =>
-      'Ha fogynál, a megmért tömegedet jegyezd le valahova, lehetőleg Excel-be, vagy Google Táblázatokba - ahol heti átlagot könnyen tudsz számolni - Ha a súlyod az utóbbi hetekben nem haladt lefelé, figyelj, hogy több gyümölcsöt, zöltséget és kevesebb cukros dolgot egyél, vagy kocogj többet.';
+      'Ha fogyni szeretnél, a megmért tömegedet jegyezd le valahova, lehetőleg Excel-be, vagy Google Táblázatokba - ahol heti átlagot könnyen tudsz számolni - Ha a súlyod az utóbbi hetekben nem haladt lefelé, figyelj, hogy több gyümölcsöt, zöltséget és kevesebb cukros dolgot egyél, vagy kocogj többet.';
 
   @override
   String get workoutStreak => 'edzés streak';
