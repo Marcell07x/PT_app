@@ -1,7 +1,19 @@
 {
     "form": "Here is the form",
 
-    "info": "Info",
+    "consentTitle": "Before you start",
+    "consentIntro": "GetShap is here to help you come to enjoy regular exercise, and through that move towards your own physical goals. Three things before you begin:",
+    "consentPoint1": "You train at your own risk – exercise carries a risk of injury.",
+    "consentPoint2": "The app sets the difficulty from your answers – that is an automatic classification, not a professional assessment, and it does not account for your health. The content was not prepared by a healthcare professional.",
+    "consentPoint3": "If you have any health condition, ask your doctor first. Stop immediately if you feel pain, dizziness or chest discomfort.",
+    "consentCheckbox": "I have read and accept the Terms of Use and the Health Disclaimer, and I understand that I train at my own risk.",
+    "consentAccept": "Accept and start",
+    "consentTermsLink": "Terms of Use",
+    "consentHealthLink": "Health Disclaimer",
+    "consentPrivacyLink": "Privacy",
+
+    "contact": "Contact",
+    "legal": "Legal",
     "infoIntro": "Made by Marcell Bodnár.\nFeel free to reach out:",
     "instagramLink": "Instagram: @bodnar__marcell",
     "emailLink": "Email: bmarci891@gmail.com",

@@ -1,7 +1,19 @@
 {
     "form": "kérdőív",
 
-    "info": "Info",
+    "consentTitle": "Mielőtt belevágsz",
+    "consentIntro": "A GetShap célja, hogy megszeresd a rendszeres mozgást, és ezen keresztül haladj a saját testi céljaid felé. Három dolog, mielőtt belevágsz:",
+    "consentPoint1": "Az edzéseket saját felelősségedre végzed – a mozgás sérüléssel járó kockázatot hordoz.",
+    "consentPoint2": "A nehézséget a válaszaid alapján állítja be az app – ez automatikus besorolás, nem szakmai állapotfelmérés, és nem veszi figyelembe az egészségi állapotodat. A tartalmat nem egészségügyi szakember állította össze.",
+    "consentPoint3": "Ha egészségügyi problémád van, előbb kérdezd meg az orvosod. Fájdalom, szédülés vagy mellkasi panasz esetén azonnal hagyd abba.",
+    "consentCheckbox": "Elolvastam és elfogadom a Felhasználási feltételeket és az Egészségügyi tájékoztatót, és tudomásul veszem, hogy az edzéseket saját felelősségemre végzem.",
+    "consentAccept": "Elfogadom, kezdjük",
+    "consentTermsLink": "Felhasználási feltételek",
+    "consentHealthLink": "Egészségügyi tájékoztató",
+    "consentPrivacyLink": "Adatvédelem",
+
+    "contact": "Kapcsolat",
+    "legal": "Jogi tudnivalók",
     "infoIntro": "Készítette: Bodnár Marcell. \nKeress bátran:",
     "instagramLink": "Instagram: @bodnar__marcell",
     "emailLink": "Email: bmarci891@gmail.com",

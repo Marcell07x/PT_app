@@ -12,7 +12,45 @@ class AppLocalizationsHu extends AppLocalizations {
   String get form => 'kérdőív';
 
   @override
-  String get info => 'Info';
+  String get consentTitle => 'Mielőtt belevágsz';
+
+  @override
+  String get consentIntro =>
+      'A GetShap célja, hogy megszeresd a rendszeres mozgást, és ezen keresztül haladj a saját testi céljaid felé. Három dolog, mielőtt belevágsz:';
+
+  @override
+  String get consentPoint1 =>
+      'Az edzéseket saját felelősségedre végzed – a mozgás sérüléssel járó kockázatot hordoz.';
+
+  @override
+  String get consentPoint2 =>
+      'A nehézséget a válaszaid alapján állítja be az app – ez automatikus besorolás, nem szakmai állapotfelmérés, és nem veszi figyelembe az egészségi állapotodat. A tartalmat nem egészségügyi szakember állította össze.';
+
+  @override
+  String get consentPoint3 =>
+      'Ha egészségügyi problémád van, előbb kérdezd meg az orvosod. Fájdalom, szédülés vagy mellkasi panasz esetén azonnal hagyd abba.';
+
+  @override
+  String get consentCheckbox =>
+      'Elolvastam és elfogadom a Felhasználási feltételeket és az Egészségügyi tájékoztatót, és tudomásul veszem, hogy az edzéseket saját felelősségemre végzem.';
+
+  @override
+  String get consentAccept => 'Elfogadom, kezdjük';
+
+  @override
+  String get consentTermsLink => 'Felhasználási feltételek';
+
+  @override
+  String get consentHealthLink => 'Egészségügyi tájékoztató';
+
+  @override
+  String get consentPrivacyLink => 'Adatvédelem';
+
+  @override
+  String get contact => 'Kapcsolat';
+
+  @override
+  String get legal => 'Jogi tudnivalók';
 
   @override
   String get infoIntro => 'Készítette: Bodnár Marcell. \nKeress bátran:';

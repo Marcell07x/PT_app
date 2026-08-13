@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:getshap/core/legal.dart';
 import 'package:getshap/l10n/app_localizations.dart';
+
+/// Which page the side menu is currently showing.
+enum SideMenuView { menu, contact, legal }
 
 class SideMenu extends StatelessWidget {
     final VoidCallback onSetLevelPressed;
     final VoidCallback onAdvanceDayPressed;
     final VoidCallback onDumpStatePressed;
     final VoidCallback onFormPressed;
-    // The info page is shown inside this same drawer. The parent owns the
-    // toggle so the Android back button can step Info -> menu -> home.
-    final bool showInfo;
-    final VoidCallback onShowInfoPressed;
+    // The sub-pages are shown inside this same drawer. The parent owns the
+    // current view so the Android back button can step
+    // sub-page -> menu -> home.
+    final SideMenuView view;
+    final VoidCallback onContactPressed;
+    final VoidCallback onLegalPressed;
     final VoidCallback onBackToMenuPressed;
 
     const SideMenu({
@@ -20,8 +26,9 @@ class SideMenu extends StatelessWidget {
         required this.onAdvanceDayPressed,
         required this.onDumpStatePressed,
         required this.onFormPressed,
-        required this.showInfo,
-        required this.onShowInfoPressed,
+        required this.view,
+        required this.onContactPressed,
+        required this.onLegalPressed,
         required this.onBackToMenuPressed,
     });
 
@@ -64,14 +71,21 @@ class SideMenu extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                     _buildHeader(context),
-                    Expanded(
-                        child: showInfo
-                            ? _buildInfoView(context)
-                            : _buildMenuView(context),
-                    ),
+                    Expanded(child: _buildBody(context)),
                 ],
             ),
         );
+    }
+
+    Widget _buildBody(BuildContext context) {
+        switch (view) {
+            case SideMenuView.contact:
+                return _buildContactView(context);
+            case SideMenuView.legal:
+                return _buildLegalView(context);
+            case SideMenuView.menu:
+                return _buildMenuView(context);
+        }
     }
 
     /// Branded header band at the top of the menu: the white logo mark and
@@ -121,6 +135,7 @@ class SideMenu extends StatelessWidget {
     }
 
     Widget _buildMenuView(BuildContext context) {
+        final loc = AppLocalizations.of(context)!;
         return ListTileTheme(
             iconColor: Colors.white,
             textColor: Colors.white,
@@ -128,9 +143,14 @@ class SideMenu extends StatelessWidget {
             padding: EdgeInsets.zero,
             children: [
                 ListTile(
-                    leading: const Icon(Icons.info_outline),
-                    title: Text(AppLocalizations.of(context)!.info),
-                    onTap: onShowInfoPressed,
+                    leading: const Icon(Icons.person_outline),
+                    title: Text(loc.contact),
+                    onTap: onContactPressed,
+                ),
+                ListTile(
+                    leading: const Icon(Icons.policy_outlined),
+                    title: Text(loc.legal),
+                    onTap: onLegalPressed,
                 ),
                 // The menu is available in release mode but these options
                 // are only visible when in debug mode.
@@ -152,7 +172,7 @@ class SideMenu extends StatelessWidget {
                     ),
                     ListTile(
                         leading: const Icon(Icons.assignment),
-                        title: Text(AppLocalizations.of(context)!.form),
+                        title: Text(loc.form),
                         onTap: onFormPressed,
                     ),
                 ],
@@ -161,7 +181,7 @@ class SideMenu extends StatelessWidget {
         );
     }
 
-    Widget _buildInfoView(BuildContext context) {
+    Widget _buildContactView(BuildContext context) {
         final loc = AppLocalizations.of(context)!;
         return ListTileTheme(
             iconColor: Colors.white,
@@ -169,11 +189,7 @@ class SideMenu extends StatelessWidget {
             child: ListView(
             padding: EdgeInsets.zero,
             children: [
-                ListTile(
-                    leading: const Icon(Icons.arrow_back),
-                    title: Text(loc.goback),
-                    onTap: onBackToMenuPressed,
-                ),
+                _buildBackTile(loc),
                 const Divider(height: 1, color: Colors.white30),
                 Padding(
                     padding: const EdgeInsets.all(20.0),
@@ -182,30 +198,78 @@ class SideMenu extends StatelessWidget {
                         style: const TextStyle(fontSize: 16, height: 1.5, color: Colors.white),
                     ),
                 ),
-                ListTile(
-                    leading: const Icon(Icons.camera_alt_outlined),
-                    title: Text(
-                        loc.instagramLink,
-                        style: const TextStyle(
-                            color: Colors.white,
-                            decoration: TextDecoration.underline,
-                        ),
-                    ),
+                _buildLinkTile(
+                    icon: Icons.camera_alt_outlined,
+                    label: loc.instagramLink,
                     onTap: _openInstagram,
                 ),
-                ListTile(
-                    leading: const Icon(Icons.email_outlined),
-                    title: Text(
-                        loc.emailLink,
-                        style: const TextStyle(
-                            color: Colors.white,
-                            decoration: TextDecoration.underline,
-                        ),
-                    ),
+                _buildLinkTile(
+                    icon: Icons.email_outlined,
+                    label: loc.emailLink,
                     onTap: _openEmail,
                 ),
             ],
             ),
+        );
+    }
+
+    /// The documents have to stay reachable after onboarding, not just on the
+    /// screen where they were accepted — the App Store requires the privacy
+    /// policy to be linked from inside the app, and the terms have to remain
+    /// available in a form the user can store and retrieve.
+    Widget _buildLegalView(BuildContext context) {
+        final loc = AppLocalizations.of(context)!;
+        return ListTileTheme(
+            iconColor: Colors.white,
+            textColor: Colors.white,
+            child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+                _buildBackTile(loc),
+                const Divider(height: 1, color: Colors.white30),
+                _buildLinkTile(
+                    icon: Icons.description_outlined,
+                    label: loc.consentTermsLink,
+                    onTap: () => Legal.open(Legal.termsUrl(context)),
+                ),
+                _buildLinkTile(
+                    icon: Icons.favorite_outline,
+                    label: loc.consentHealthLink,
+                    onTap: () => Legal.open(Legal.healthUrl(context)),
+                ),
+                _buildLinkTile(
+                    icon: Icons.lock_outline,
+                    label: loc.consentPrivacyLink,
+                    onTap: () => Legal.open(Legal.privacyUrl(context)),
+                ),
+            ],
+            ),
+        );
+    }
+
+    Widget _buildBackTile(AppLocalizations loc) {
+        return ListTile(
+            leading: const Icon(Icons.arrow_back),
+            title: Text(loc.goback),
+            onTap: onBackToMenuPressed,
+        );
+    }
+
+    Widget _buildLinkTile({
+        required IconData icon,
+        required String label,
+        required VoidCallback onTap,
+    }) {
+        return ListTile(
+            leading: Icon(icon),
+            title: Text(
+                label,
+                style: const TextStyle(
+                    color: Colors.white,
+                    decoration: TextDecoration.underline,
+                ),
+            ),
+            onTap: onTap,
         );
     }
 }

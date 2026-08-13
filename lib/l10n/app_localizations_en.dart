@@ -12,7 +12,45 @@ class AppLocalizationsEn extends AppLocalizations {
   String get form => 'Here is the form';
 
   @override
-  String get info => 'Info';
+  String get consentTitle => 'Before you start';
+
+  @override
+  String get consentIntro =>
+      'GetShap is here to help you come to enjoy regular exercise, and through that move towards your own physical goals. Three things before you begin:';
+
+  @override
+  String get consentPoint1 =>
+      'You train at your own risk – exercise carries a risk of injury.';
+
+  @override
+  String get consentPoint2 =>
+      'The app sets the difficulty from your answers – that is an automatic classification, not a professional assessment, and it does not account for your health. The content was not prepared by a healthcare professional.';
+
+  @override
+  String get consentPoint3 =>
+      'If you have any health condition, ask your doctor first. Stop immediately if you feel pain, dizziness or chest discomfort.';
+
+  @override
+  String get consentCheckbox =>
+      'I have read and accept the Terms of Use and the Health Disclaimer, and I understand that I train at my own risk.';
+
+  @override
+  String get consentAccept => 'Accept and start';
+
+  @override
+  String get consentTermsLink => 'Terms of Use';
+
+  @override
+  String get consentHealthLink => 'Health Disclaimer';
+
+  @override
+  String get consentPrivacyLink => 'Privacy';
+
+  @override
+  String get contact => 'Contact';
+
+  @override
+  String get legal => 'Legal';
 
   @override
   String get infoIntro => 'Made by Marcell Bodnár.\nFeel free to reach out:';

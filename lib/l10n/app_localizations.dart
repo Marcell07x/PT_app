@@ -104,11 +104,77 @@ abstract class AppLocalizations {
   /// **'Here is the form'**
   String get form;
 
-  /// No description provided for @info.
+  /// No description provided for @consentTitle.
   ///
   /// In en, this message translates to:
-  /// **'Info'**
-  String get info;
+  /// **'Before you start'**
+  String get consentTitle;
+
+  /// No description provided for @consentIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'GetShap is here to help you come to enjoy regular exercise, and through that move towards your own physical goals. Three things before you begin:'**
+  String get consentIntro;
+
+  /// No description provided for @consentPoint1.
+  ///
+  /// In en, this message translates to:
+  /// **'You train at your own risk – exercise carries a risk of injury.'**
+  String get consentPoint1;
+
+  /// No description provided for @consentPoint2.
+  ///
+  /// In en, this message translates to:
+  /// **'The app sets the difficulty from your answers – that is an automatic classification, not a professional assessment, and it does not account for your health. The content was not prepared by a healthcare professional.'**
+  String get consentPoint2;
+
+  /// No description provided for @consentPoint3.
+  ///
+  /// In en, this message translates to:
+  /// **'If you have any health condition, ask your doctor first. Stop immediately if you feel pain, dizziness or chest discomfort.'**
+  String get consentPoint3;
+
+  /// No description provided for @consentCheckbox.
+  ///
+  /// In en, this message translates to:
+  /// **'I have read and accept the Terms of Use and the Health Disclaimer, and I understand that I train at my own risk.'**
+  String get consentCheckbox;
+
+  /// No description provided for @consentAccept.
+  ///
+  /// In en, this message translates to:
+  /// **'Accept and start'**
+  String get consentAccept;
+
+  /// No description provided for @consentTermsLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Terms of Use'**
+  String get consentTermsLink;
+
+  /// No description provided for @consentHealthLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Health Disclaimer'**
+  String get consentHealthLink;
+
+  /// No description provided for @consentPrivacyLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy'**
+  String get consentPrivacyLink;
+
+  /// No description provided for @contact.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact'**
+  String get contact;
+
+  /// No description provided for @legal.
+  ///
+  /// In en, this message translates to:
+  /// **'Legal'**
+  String get legal;
 
   /// No description provided for @infoIntro.
   ///

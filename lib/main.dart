@@ -10,6 +10,8 @@ import 'package:getshap/l10n/app_localizations.dart';
 import 'package:getshap/onboarding/questionaire.dart';
 import 'package:getshap/onboarding/question1.dart';
 import 'package:getshap/onboarding/question_gender.dart';
+import 'package:getshap/onboarding/consent_page.dart';
+import 'package:getshap/core/legal.dart';
 import 'package:getshap/workout/workout_flow.dart';
 import 'package:getshap/warmup/warmup_flow.dart';
 import 'package:getshap/core/level.dart';
@@ -39,14 +41,20 @@ void main() async {
     await WorkoutSignal.refreshSignal();
     await prefsInit();
     bool hasData = await CheckData.checkData();
-    runApp(MyApp(hasData: hasData));
+    bool gaveConsent = await Legal.hasGivenConsent();
+    runApp(MyApp(hasData: hasData, gaveConsent: gaveConsent));
 }
 
 class MyApp extends StatelessWidget {
     /// Whether the user already has saved data (skip onboarding after splash).
     final bool hasData;
 
-    const MyApp({super.key, required this.hasData});
+    /// Whether the terms have already been accepted. False for every install
+    /// made before the consent screen existed, which is what brings those
+    /// users to it once.
+    final bool gaveConsent;
+
+    const MyApp({super.key, required this.hasData, required this.gaveConsent});
 
     @override
     Widget build(BuildContext context) {
@@ -55,12 +63,29 @@ class MyApp extends StatelessWidget {
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
 
-            home: SplashScreen(
-                nextBuilder: (context) => hasData
-                    ? const MyHomePage()
-                    : QuestionGenderPage(data: QuestionnaireData()),
-            ),
+            home: SplashScreen(nextBuilder: _firstScreen),
         );
+    }
+
+    /// The consent screen comes before everything else, for new and existing
+    /// users alike.
+    ///
+    /// It sits ahead of the questionnaire rather than after it because the
+    /// questionnaire is already use of the app: it asks how many knee push-ups
+    /// and squats the user can do, and some people will try them to answer. The
+    /// warning has to come before any of that, and the terms have to be
+    /// accepted before the contract is concluded (Ptk. 6:78 §).
+    ///
+    /// Users who already have data never pass through the questionnaire, so
+    /// they would otherwise never be asked at all — the same screen catches
+    /// them here, and they cannot reach the home screen until they accept.
+    Widget _firstScreen(BuildContext context) {
+        WidgetBuilder afterConsent = hasData
+            ? (_) => const MyHomePage()
+            : (_) => QuestionGenderPage(data: QuestionnaireData());
+
+        if (!gaveConsent) return ConsentPage(nextBuilder: afterConsent);
+        return afterConsent(context);
     }
 }
 
@@ -78,16 +103,17 @@ class _MyHomePageState extends State<MyHomePage> {
     Color _tipBackgroundColor = Colors.white;
 
     final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-    // Whether the side menu currently shows the info page instead of the list.
-    bool _showInfo = false;
+    // Which page the side menu currently shows: the list itself, or one of its
+    // sub-pages.
+    SideMenuView _menuView = SideMenuView.menu;
     // Whether the end drawer (side menu) is currently open.
     bool _isEndDrawerOpen = false;
 
     // Handles the Android system back button while the side menu is open:
-    // info page -> menu list -> close drawer (back to home).
+    // sub-page -> menu list -> close drawer (back to home).
     void _handleBack() {
-        if (_showInfo) {
-            setState(() => _showInfo = false);
+        if (_menuView != SideMenuView.menu) {
+            setState(() => _menuView = SideMenuView.menu);
         } else {
             _scaffoldKey.currentState?.closeEndDrawer();
         }
@@ -170,8 +196,8 @@ class _MyHomePageState extends State<MyHomePage> {
             onEndDrawerChanged: (isOpen) {
                 setState(() {
                     _isEndDrawerOpen = isOpen;
-                    // Always reopen on the menu list, never the info page.
-                    if (!isOpen) _showInfo = false;
+                    // Always reopen on the menu list, never a sub-page.
+                    if (!isOpen) _menuView = SideMenuView.menu;
                 });
             },
             appBar: Rounded3DAppBar(
@@ -199,9 +225,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
             ),
             endDrawer: SideMenu(
-                showInfo: _showInfo,
-                onShowInfoPressed: () => setState(() => _showInfo = true),
-                onBackToMenuPressed: () => setState(() => _showInfo = false),
+                view: _menuView,
+                onContactPressed: () =>
+                    setState(() => _menuView = SideMenuView.contact),
+                onLegalPressed: () =>
+                    setState(() => _menuView = SideMenuView.legal),
+                onBackToMenuPressed: () =>
+                    setState(() => _menuView = SideMenuView.menu),
                 onSetLevelPressed: () => DebugButtonsLogic.handleSetLevelPressed(
                     context: context,
                     updateState: () => setState(() {}),
