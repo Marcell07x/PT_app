@@ -5,6 +5,7 @@ class Converter {
     late int _pulle;
     late int _legse;
     late int _coree;
+    int _level = 1;
     int _incSpeed = 1;
 
     Future<void> convert() async {
@@ -54,6 +55,11 @@ class Converter {
             _legse = 5;
         }
 
+        if (_incSpeed > 3 && _pushe >= 3) {
+            _level = 85;
+            _incSpeed = 2;
+        }
+
         _pulle = 1;
         _coree = 1;
 
@@ -62,5 +68,6 @@ class Converter {
         await prefs.setInt('pulle', _pulle);
         await prefs.setInt('coree', _coree);
         await prefs.setInt('incspeed', _incSpeed);
+        await prefs.setInt('level', _level);
     }
 }

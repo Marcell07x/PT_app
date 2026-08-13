@@ -44,15 +44,15 @@ class WorkoutAReps{
         } else if (_levelR < 85) {
             _Reps = [15, 15, 15];
         } else if (_levelR < 90) {
-            _Reps = [15, 15, 15, 5];
+            _Reps = [15, 15, 15, 7];
         } else if (_levelR < 95) {
-            _Reps = [16, 15, 16, 7];
+            _Reps = [16, 15, 15, 10];
         } else if (_levelR < 100) {
             _Reps = [16, 15, 16, 10];
         } else if (_levelR < 105) {
-            _Reps = [17, 15, 17, 10];
+            _Reps = [17, 15, 16, 12];
         } else if (_levelR < 110) {
-            _Reps = [18, '10-15', 18, '10-15'];
+            _Reps = [18, '10-15', 17, '10-15'];
         } else if (_levelR < 115) {
             _Reps = [18, '10-15', 18, '10-15', 10];
         } else if (_levelR < 120) {
