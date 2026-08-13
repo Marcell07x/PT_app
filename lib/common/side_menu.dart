@@ -147,7 +147,7 @@ class SideMenu extends StatelessWidget {
                     ),
                     ListTile(
                         leading: const Icon(Icons.bug_report),
-                        title: const Text('Dump streak state'),
+                        title: const Text('Dump state'),
                         onTap: onDumpStatePressed,
                     ),
                     ListTile(

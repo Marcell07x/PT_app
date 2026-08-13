@@ -278,6 +278,24 @@ abstract class AppLocalizations {
   /// **'No more workouts for today :)'**
   String get noWorkout;
 
+  /// No description provided for @nextWorkoutTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Next workout'**
+  String get nextWorkoutTitle;
+
+  /// No description provided for @nextWorkoutTomorrow.
+  ///
+  /// In en, this message translates to:
+  /// **'You can train again tomorrow!'**
+  String get nextWorkoutTomorrow;
+
+  /// No description provided for @nextWorkoutDays.
+  ///
+  /// In en, this message translates to:
+  /// **'{days} days until your next workout'**
+  String nextWorkoutDays(int days);
+
   /// No description provided for @reps.
   ///
   /// In en, this message translates to:

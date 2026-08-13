@@ -22,8 +22,7 @@ import 'package:getshap/core/debug_clock.dart';
 import 'package:getshap/notifications/schedule_noti.dart';
 import 'package:getshap/core/checkdata.dart';
 import 'package:getshap/onboarding/questionaire.dart';
-import 'package:getshap/workout/no_workout_page.dart';
-import 'package:getshap/workout/workout_done_screen.dart';
+import 'package:getshap/workout/next_workout_page.dart';
 import 'package:getshap/tips/tip_detail_screen.dart';
 import 'package:getshap/common/side_menu.dart';
 import 'package:getshap/common/rounded_3d_app_bar.dart';
@@ -37,7 +36,7 @@ void main() async {
     await ScheduleNotifications.initNotification();
     await DebugClock.load();
     await StreakManager.checkStreak();
-    await WorkoutSignal.setSignalTrue();
+    await WorkoutSignal.refreshSignal();
     await prefsInit();
     bool hasData = await CheckData.checkData();
     runApp(MyApp(hasData: hasData));
@@ -73,7 +72,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-    bool _isButtonEnabled = true;
+    bool _canWorkoutToday = true;
     bool _isTipLoading = true;
     int _streak = 0;
     Color _tipBackgroundColor = Colors.white;
@@ -142,18 +141,16 @@ class _MyHomePageState extends State<MyHomePage> {
 
         await StreakManager.checkStreak();
 
+        final canTrain = await WorkoutSignal.canWorkoutToday();
         final prefs = await SharedPreferences.getInstance();
-        final boolValue = prefs.getBool('signal') ?? true;
         final streakValue = prefs.getInt('streak') ?? 0;
 
         if (!mounted) return;
         setState(() {
-           _isButtonEnabled = boolValue;
+           _canWorkoutToday = canTrain;
            _streak = streakValue;
         });
     }
-    
-    late int workoutDone;
     
     @override
     Widget build(BuildContext context) {
@@ -182,7 +179,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 title: StreakFlame(
                     //lit: there is a streak and no workout is waiting for today
                     streak: _streak,
-                    lit: _streak > 0 && !_isButtonEnabled,
+                    lit: _streak > 0 && !_canWorkoutToday,
                     onTap: () {
                         // CupertinoPageRoute enables the interactive left-edge
                         // swipe-back-to-pop gesture on Android too (not just iOS),
@@ -208,7 +205,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 onSetLevelPressed: () => DebugButtonsLogic.handleSetLevelPressed(
                     context: context,
                     updateState: () => setState(() {}),
-                    setWorkoutDone: (val) => workoutDone = val,
                 ),
                 onAdvanceDayPressed: () => DebugButtonsLogic.handleAdvanceDayPressed(
                     context: context,
@@ -307,31 +303,39 @@ class _MyHomePageState extends State<MyHomePage> {
                                     end: Alignment.bottomCenter,
                                     colors: [Color(0xFFFFD23F), Color(0xFFF5A623)],
                                 ),
-                                onPressed: _isButtonEnabled ? () async {
+                                onPressed: () async {
                                     final prefs = await SharedPreferences.getInstance();
                                     int wlevel = prefs.getInt('level') ?? 1;
-                                    //for testing, you should make the line below a comment
-                                    workoutDone = CongratulationsScreen.workoutIsDone;
-                                    setState(() {});
-                                    if (wlevel <= 129 && workoutDone == 0) {
-                                        Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (context) => WorkoutFlow(),
-                                            ),
-                                        );
-                                    } else if (workoutDone == 0 && wlevel > 129){
-                                        Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (context) => WarmupFlow(),
-                                            ),
-                                        );
+                                    //button never greys out: decide here whether
+                                    //today is a workout day, else show the countdown
+                                    final canTrain = await WorkoutSignal.canWorkoutToday();
+                                    if (!context.mounted) return;
+                                    setState(() {
+                                        _canWorkoutToday = canTrain;
+                                    });
+                                    if (canTrain) {
+                                        if (wlevel <= 129) {
+                                            Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                    builder: (context) => WorkoutFlow(),
+                                                ),
+                                            );
+                                        } else {
+                                            Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                    builder: (context) => WarmupFlow(),
+                                                ),
+                                            );
+                                        }
                                     } else {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(builder: (context) => const NoWorkout()),
+                                        // CupertinoPageRoute: same as the streak
+                                        // page, so the left-edge swipe-back
+                                        // gesture works on Android too
+                                        Navigator.of(context).push(
+                                            CupertinoPageRoute(builder: (context) => const NextWorkoutPage()),
                                         );
                                     }
-                                } : null,
+                                },
                                 child: Text(
                                     AppLocalizations.of(context)!.startWorkout.toUpperCase(),
                                     textAlign: TextAlign.center,

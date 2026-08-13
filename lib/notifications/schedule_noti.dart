@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:getshap/l10n/app_localizations.dart';
+import 'package:getshap/core/workout_signal.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
@@ -49,17 +48,13 @@ class ScheduleNotifications {
         final location = tz.getLocation('Europe/Budapest');
         final tz.TZDateTime now = tz.TZDateTime.now(location);
 
-        final prefs = await SharedPreferences.getInstance();
+        final String reminderTitle = AppLocalizations.of(context)!.workoutReminderTitle;
+        final String reminderBody = AppLocalizations.of(context)!.workoutReminderBody;
 
-        int levelN = prefs.getInt('level') ?? 1;
-        int numOfWorkouts = prefs.getInt('workoutsThisWeek')!;
-        int hoursAdded = 24;
-        
-        if (levelN > 149 && numOfWorkouts == 3) {
-            hoursAdded = 72;
-        } else if (levelN > 149) {
-            hoursAdded = 48;
-        }
+        // schedule the reminder for the next possible workout day, so it never
+        // fires before the user can actually train (transition week included)
+        final int days = await WorkoutSignal.daysUntilNextWorkout();
+        final int hoursAdded = (days > 0 ? days : 1) * 24;
 
         tz.TZDateTime dayLaterTime = now.add(Duration(hours: hoursAdded));
 
@@ -68,9 +63,6 @@ class ScheduleNotifications {
         } else if (dayLaterTime.hour <= 6) {
             dayLaterTime = tz.TZDateTime(location, dayLaterTime.year, dayLaterTime.month, dayLaterTime.day, 6);
         }
-
-        final String reminderTitle = AppLocalizations.of(context)!.workoutReminderTitle;
-        final String reminderBody = AppLocalizations.of(context)!.workoutReminderBody;
 
         await flutterLocalNotificationsPlugin.zonedSchedule(
             id: 0,

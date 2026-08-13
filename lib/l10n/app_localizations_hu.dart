@@ -99,6 +99,17 @@ class AppLocalizationsHu extends AppLocalizations {
   String get noWorkout => 'Mára nincs több edzés :)';
 
   @override
+  String get nextWorkoutTitle => 'Következő edzés';
+
+  @override
+  String get nextWorkoutTomorrow => 'Holnap már edzhetsz!';
+
+  @override
+  String nextWorkoutDays(int days) {
+    return '$days nap múlva lesz edzés';
+  }
+
+  @override
   String get reps => 'Ismétlés';
 
   @override

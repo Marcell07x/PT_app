@@ -99,6 +99,17 @@ class AppLocalizationsEn extends AppLocalizations {
   String get noWorkout => 'No more workouts for today :)';
 
   @override
+  String get nextWorkoutTitle => 'Next workout';
+
+  @override
+  String get nextWorkoutTomorrow => 'You can train again tomorrow!';
+
+  @override
+  String nextWorkoutDays(int days) {
+    return '$days days until your next workout';
+  }
+
+  @override
   String get reps => 'Repetitions';
 
   @override

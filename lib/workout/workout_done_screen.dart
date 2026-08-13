@@ -7,7 +7,6 @@ import 'package:getshap/common/outlined_text.dart';
 
 class CongratulationsScreen extends StatelessWidget {
     const CongratulationsScreen({super.key});
-    static int workoutIsDone = 0;
 
     @override
     Widget build(BuildContext context) {
@@ -67,7 +66,6 @@ class CongratulationsScreen extends StatelessWidget {
                                     edgeColor: const Color(0xFF2E7D32),
                                     height: 58,
                                     onPressed: () {
-                                        workoutIsDone = 1;
                                         Navigator.popUntil(context, (route) => route.isFirst);
                                     },
                                     child: Text(

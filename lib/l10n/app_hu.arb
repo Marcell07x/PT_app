@@ -38,6 +38,9 @@
 
     "workout": "Edzés",
     "noWorkout": "Mára nincs több edzés :)",
+    "nextWorkoutTitle": "Következő edzés",
+    "nextWorkoutTomorrow": "Holnap már edzhetsz!",
+    "nextWorkoutDays": "{days} nap múlva lesz edzés",
     "reps": "Ismétlés",
     "seconds": "Másodperc",
     "next": "Következő",

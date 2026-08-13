@@ -137,11 +137,10 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
         int workoutCount = prefs.getInt('workoutsThisWeek') ?? 0;
 
         await _toggleLegSwitch();
-        //before setSignalFalse, so the home screen refresh already sees
-        //the increased streak; before setLevel, so today counts in the
-        //phase the workout was done in
+        //onWorkoutCompleted before onWorkoutFinished (which refreshes the home
+        //screen) so the refresh already sees the increased streak; before
+        //setLevel so today counts in the phase the workout was done in
         await StreakManager.onWorkoutCompleted();
-        await WorkoutSignal.setSignalFalse();
 
         workoutCount++;
         await prefs.setInt('workoutsThisWeek', workoutCount);
@@ -156,6 +155,12 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
         }
         print("the value of incspeed: ${inc}");
         await workoutLevel.setLevel();
+        //record the finished workout, maintain the transition-week bonus token
+        //and clear today's signal; needs the post-setLevel level to detect the
+        //150 crossing, and runs before laterNoti so the reminder uses the fresh
+        //next-workout day
+        final levelAfter = prefs.getInt('level') ?? levelF;
+        await WorkoutSignal.onWorkoutFinished(levelF, levelAfter);
         await ScheduleNotifications.laterNoti(context);
 
         if (!mounted) return;

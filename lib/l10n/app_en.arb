@@ -38,6 +38,14 @@
 
     "workout": "Workout",
     "noWorkout": "No more workouts for today :)",
+    "nextWorkoutTitle": "Next workout",
+    "nextWorkoutTomorrow": "You can train again tomorrow!",
+    "nextWorkoutDays": "{days} days until your next workout",
+    "@nextWorkoutDays": {
+        "placeholders": {
+            "days": { "type": "int" }
+        }
+    },
     "reps": "Repetitions",
     "seconds": "Seconds",
     "next": "Next",

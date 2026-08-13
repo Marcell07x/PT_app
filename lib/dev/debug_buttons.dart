@@ -8,16 +8,13 @@ import 'package:getshap/notifications/schedule_noti.dart';
 import 'package:getshap/dev/manuallysetlevel.dart';
 import 'package:getshap/onboarding/question_gender.dart';
 import 'package:getshap/onboarding/questionaire.dart';
-import 'package:getshap/workout/workout_done_screen.dart';
 
 class DebugButtonsLogic {
     static Future<void> handleSetLevelPressed({
         required BuildContext context,
         required VoidCallback updateState,
-        required void Function(int) setWorkoutDone,
     }) async {
         Navigator.of(context).pop();
-        setWorkoutDone(0);
         WorkoutSignal.debugSetSignalTrue();
         await ScheduleNotifications.testNoti();
         updateState();
@@ -40,10 +37,9 @@ class DebugButtonsLogic {
         if (days == null || days <= 0) return;
 
         await DebugClock.advance(days);
-        //a new day: today's workout can be done again, button re-enabled
-        CongratulationsScreen.workoutIsDone = 0;
+        //a new day: today's workout can be done again
         await StreakManager.checkStreak();
-        await WorkoutSignal.setSignalTrue();
+        await WorkoutSignal.refreshSignal();
         await refresh();
 
         if (!context.mounted) return;
@@ -75,7 +71,7 @@ class DebugButtonsLogic {
         int today = StreakDateUtils.dayNum(DebugClock.now());
         final lines = <String>[
             'today=$today  offset=${DebugClock.offsetDays}',
-            'level=${prefs.getInt('level')}  signal=${prefs.getBool('signal')}',
+            'level=${prefs.getInt('level')}  incspeed=${prefs.getInt('incspeed')}  signal=${prefs.getBool('signal')}',
             'streak=${prefs.getInt('streak')}  freeze=${prefs.getInt('streakFreeze')}',
             'startDate=${prefs.getInt('streakStartDate')}',
             'lastStreakDate=${prefs.getInt('lastStreakDate')}',
@@ -87,6 +83,7 @@ class DebugButtonsLogic {
             'grantedWeek=${prefs.getInt('streakGrantedWeek')}',
             'phaseBSince=${prefs.getInt('streakPhaseBSince')}',
             'workoutsThisWeek=${prefs.getInt('workoutsThisWeek')}',
+            'lastWorkout=${prefs.getInt('lastWorkoutDate')}  bonusWeek=${prefs.getInt('bonusWeek')}',
             'workoutDays=${daysToDates(prefs.getStringList('streakWorkoutDays'))}',
             'freezeDays=${daysToDates(prefs.getStringList('streakFreezeDays'))}',
         ];
@@ -95,7 +92,7 @@ class DebugButtonsLogic {
         await showDialog<void>(
             context: context,
             builder: (context) => AlertDialog(
-                title: const Text('Streak state'),
+                title: const Text('State'),
                 content: SingleChildScrollView(
                     child: SelectableText(lines.join('\n'), style: const TextStyle(fontSize: 13)),
                 ),
