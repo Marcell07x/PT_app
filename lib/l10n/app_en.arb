@@ -8,6 +8,8 @@
     "consentPoint3": "If you have any health condition, ask your doctor first. Stop immediately if you feel pain, dizziness or chest discomfort.",
     "consentCheckbox": "I have read and accept the Terms of Use and the Health Disclaimer, and I understand that I train at my own risk.",
     "consentAccept": "Accept and start",
+    "consentUpdatedTitle": "Our terms have changed",
+    "consentUpdatedBody": "The Terms of Use and the Health Disclaimer have been updated. Please read and accept them to continue.",
     "consentTermsLink": "Terms of Use",
     "consentHealthLink": "Health Disclaimer",
     "consentPrivacyLink": "Privacy",

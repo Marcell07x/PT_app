@@ -17,7 +17,17 @@ class ConsentPage extends StatefulWidget {
     /// Builds the screen shown once consent has been given.
     final WidgetBuilder nextBuilder;
 
-    const ConsentPage({super.key, required this.nextBuilder});
+    /// True when the user already accepted an earlier version of the documents
+    /// and is being asked again because they changed materially. The screen
+    /// then leads with what happened, so a returning user is not left guessing
+    /// why they are seeing this again.
+    final bool isUpdate;
+
+    const ConsentPage({
+        super.key,
+        required this.nextBuilder,
+        this.isUpdate = false,
+    });
 
     @override
     State<ConsentPage> createState() => _ConsentPageState();
@@ -58,7 +68,7 @@ class _ConsentPageState extends State<ConsentPage> {
                     foregroundColor: Colors.white,
                     automaticallyImplyLeading: false,
                     title: Text(
-                        l.consentTitle,
+                        widget.isUpdate ? l.consentUpdatedTitle : l.consentTitle,
                         style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                 ),
@@ -125,6 +135,10 @@ class _ConsentPageState extends State<ConsentPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
+                    if (widget.isUpdate) ...[
+                        _buildUpdateNotice(l),
+                        const SizedBox(height: 18),
+                    ],
                     Text(
                         l.consentIntro,
                         style: const TextStyle(
@@ -142,6 +156,27 @@ class _ConsentPageState extends State<ConsentPage> {
                     _buildLink(l.consentHealthLink, Legal.healthUrl(context)),
                     _buildLink(l.consentPrivacyLink, Legal.privacyUrl(context)),
                 ],
+            ),
+        );
+    }
+
+    /// Shown only on a re-acceptance: says plainly that the documents changed,
+    /// so the returning user knows this is not the app repeating itself.
+    Widget _buildUpdateNotice(AppLocalizations l) {
+        return Container(
+            padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
+            decoration: const BoxDecoration(
+                color: Color(0xFFEDF2FE),
+                border: Border(left: BorderSide(color: _blue, width: 4)),
+                borderRadius: BorderRadius.all(Radius.circular(6)),
+            ),
+            child: Text(
+                l.consentUpdatedBody,
+                style: const TextStyle(
+                    fontSize: 15,
+                    height: 1.4,
+                    color: Colors.black87,
+                ),
             ),
         );
     }

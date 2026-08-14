@@ -8,6 +8,8 @@
     "consentPoint3": "Ha egészségügyi problémád van, előbb kérdezd meg az orvosod. Fájdalom, szédülés vagy mellkasi panasz esetén azonnal hagyd abba.",
     "consentCheckbox": "Elolvastam és elfogadom a Felhasználási feltételeket és az Egészségügyi tájékoztatót, és tudomásul veszem, hogy az edzéseket saját felelősségemre végzem.",
     "consentAccept": "Elfogadom, kezdjük",
+    "consentUpdatedTitle": "Frissültek a feltételek",
+    "consentUpdatedBody": "Módosultak a Felhasználási feltételek és az Egészségügyi tájékoztató. Kérjük, olvasd el és fogadd el őket a folytatáshoz.",
     "consentTermsLink": "Felhasználási feltételek",
     "consentHealthLink": "Egészségügyi tájékoztató",
     "consentPrivacyLink": "Adatvédelem",

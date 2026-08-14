@@ -34,6 +34,9 @@ Changelog
 .pub/
 /build/
 
+# Generated legal pages (rebuild with: dart run legal/build_site.dart)
+/legal/site/
+
 # Symbolication related
 app.*.symbols
 

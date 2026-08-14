@@ -142,9 +142,40 @@ korábbi telepítés. Az elfogadáskor a flag mellé bekerül a `consentAccepted
 (időbélyeg) és a `consentVersion` is – ez utóbbi a `Legal.documentVersion`
 konstansból jön.
 
-**Ha módosítod a dokumentumokat:** emeld a `Legal.documentVersion` értékét, és
-ha lényeges a változás, a `gaveConsent` kulcsot is érdemes verzióhoz kötni,
-hogy újra kérje az elfogadást.
+## 6. Ha módosítod a dokumentumokat
+
+A `Legal.status()` összeveti a mentett `consentVersion`-t a jelenlegi
+`Legal.documentVersion`-nel, és háromféle választ ad:
+
+| Státusz | Mikor | Mi történik |
+|---|---|---|
+| `none` | Soha nem fogadott el semmit | Elfogadó képernyő, első használatra szabott szöveggel |
+| `outdated` | Korábbi verziót fogadott el | Ugyanaz a képernyő, „Frissültek a feltételek" fejléccel és egy magyarázó dobozzal |
+| `current` | A mostani verziót fogadta el | Semmi, megy tovább |
+
+**A `documentVersion` az érdemi változás jelzője.** Csak akkor emeld, ha a
+módosítás tényleg érdemi – ilyenkor minden korábbi felhasználót újra megkérdez
+az app a következő indításkor:
+
+- új vagy tágabb felelősségkorlátozás;
+- új kötelezettség vagy tiltás a felhasználó oldalán;
+- fizetős funkció bevezetése;
+- az adatkezelés érdemi változása;
+- új egészségügyi kockázat vagy figyelmeztetés;
+- joghatóság vagy alkalmazandó jog változása;
+- **a szerződő fél változása** (pl. ha a GetShap cég alá kerül) – ez a
+  legkönnyebben elfelejthető eset, pedig ilyenkor mindenkivel újra el kell
+  fogadtatni.
+
+**Ne emeld** elgépelés javításánál, érthetőbb fogalmazásnál, tagolásnál vagy egy
+javított linknél. Ezek nem változtatják meg, amihez a felhasználó hozzájárult, és
+ha minden apróságért újrakérdezel, a felhasználók megtanulják gépiesen elfogadni
+– pont akkor lesz értéktelen a képernyő, amikor egyszer tényleg számítana.
+
+Ilyen esetben a dokumentum fejlécében a dátumot frissítsd, a verziószámot ne, és
+elég a weboldalt újragenerálni (`dart run legal/build_site.dart`) és feltölteni.
+
+## 7. Ami még hátravan
 
 ## 6. Ami még hátravan
 

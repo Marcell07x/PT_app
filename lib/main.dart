@@ -41,20 +41,19 @@ void main() async {
     await WorkoutSignal.refreshSignal();
     await prefsInit();
     bool hasData = await CheckData.checkData();
-    bool gaveConsent = await Legal.hasGivenConsent();
-    runApp(MyApp(hasData: hasData, gaveConsent: gaveConsent));
+    ConsentStatus consent = await Legal.status();
+    runApp(MyApp(hasData: hasData, consent: consent));
 }
 
 class MyApp extends StatelessWidget {
     /// Whether the user already has saved data (skip onboarding after splash).
     final bool hasData;
 
-    /// Whether the terms have already been accepted. False for every install
-    /// made before the consent screen existed, which is what brings those
-    /// users to it once.
-    final bool gaveConsent;
+    /// Whether the terms have been accepted, and whether the accepted version
+    /// is still the current one.
+    final ConsentStatus consent;
 
-    const MyApp({super.key, required this.hasData, required this.gaveConsent});
+    const MyApp({super.key, required this.hasData, required this.consent});
 
     @override
     Widget build(BuildContext context) {
@@ -79,13 +78,21 @@ class MyApp extends StatelessWidget {
     /// Users who already have data never pass through the questionnaire, so
     /// they would otherwise never be asked at all — the same screen catches
     /// them here, and they cannot reach the home screen until they accept.
+    ///
+    /// The screen also comes back for anyone whose accepted version is no
+    /// longer the current one, since an earlier acceptance does not cover
+    /// materially changed terms.
     Widget _firstScreen(BuildContext context) {
         WidgetBuilder afterConsent = hasData
             ? (_) => const MyHomePage()
             : (_) => QuestionGenderPage(data: QuestionnaireData());
 
-        if (!gaveConsent) return ConsentPage(nextBuilder: afterConsent);
-        return afterConsent(context);
+        if (consent == ConsentStatus.current) return afterConsent(context);
+
+        return ConsentPage(
+            nextBuilder: afterConsent,
+            isUpdate: consent == ConsentStatus.outdated,
+        );
     }
 }
 

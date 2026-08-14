@@ -146,6 +146,18 @@ abstract class AppLocalizations {
   /// **'Accept and start'**
   String get consentAccept;
 
+  /// No description provided for @consentUpdatedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Our terms have changed'**
+  String get consentUpdatedTitle;
+
+  /// No description provided for @consentUpdatedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The Terms of Use and the Health Disclaimer have been updated. Please read and accept them to continue.'**
+  String get consentUpdatedBody;
+
   /// No description provided for @consentTermsLink.
   ///
   /// In en, this message translates to:

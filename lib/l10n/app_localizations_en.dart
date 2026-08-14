@@ -38,6 +38,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get consentAccept => 'Accept and start';
 
   @override
+  String get consentUpdatedTitle => 'Our terms have changed';
+
+  @override
+  String get consentUpdatedBody =>
+      'The Terms of Use and the Health Disclaimer have been updated. Please read and accept them to continue.';
+
+  @override
   String get consentTermsLink => 'Terms of Use';
 
   @override

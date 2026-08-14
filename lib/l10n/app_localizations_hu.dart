@@ -38,6 +38,13 @@ class AppLocalizationsHu extends AppLocalizations {
   String get consentAccept => 'Elfogadom, kezdjük';
 
   @override
+  String get consentUpdatedTitle => 'Frissültek a feltételek';
+
+  @override
+  String get consentUpdatedBody =>
+      'Módosultak a Felhasználási feltételek és az Egészségügyi tájékoztató. Kérjük, olvasd el és fogadd el őket a folytatáshoz.';
+
+  @override
   String get consentTermsLink => 'Felhasználási feltételek';
 
   @override
