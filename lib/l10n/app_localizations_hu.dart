@@ -60,7 +60,8 @@ class AppLocalizationsHu extends AppLocalizations {
   String get legal => 'Jogi tudnivalók';
 
   @override
-  String get infoIntro => 'Készítette: Bodnár Marcell. \nKeress bátran:';
+  String get infoIntro =>
+      'Készítette: Bodnár Marcell. \nKérdésekkel, visszajelzéssel keress bátran:';
 
   @override
   String get instagramLink => 'Instagram: @bodnar__marcell';

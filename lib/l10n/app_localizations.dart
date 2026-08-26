@@ -191,7 +191,7 @@ abstract class AppLocalizations {
   /// No description provided for @infoIntro.
   ///
   /// In en, this message translates to:
-  /// **'Made by Marcell Bodnár.\nFeel free to reach out:'**
+  /// **'Made by Marcell Bodnár.\nFeel free to ask questions or give feedback:'**
   String get infoIntro;
 
   /// No description provided for @instagramLink.

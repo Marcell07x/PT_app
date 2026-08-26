@@ -60,7 +60,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get legal => 'Legal';
 
   @override
-  String get infoIntro => 'Made by Marcell Bodnár.\nFeel free to reach out:';
+  String get infoIntro =>
+      'Made by Marcell Bodnár.\nFeel free to ask questions or give feedback:';
 
   @override
   String get instagramLink => 'Instagram: @bodnar__marcell';
