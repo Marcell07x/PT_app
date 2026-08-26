@@ -32,7 +32,9 @@ class WorkoutA {
 
         _pushex = exercises.push[_pushe]!;
         _pullex = exercises.pull[_pulle]!;
-        _legsex = exercises.legs[_legse]!;
+        //the three leg families sit next to each other in the legs map, so the
+        //switch state is itself the offset from the level base index
+        _legsex = exercises.legs[_legse + legSwitch.switchState - 1]!;
 
         if (_levelE < 30) {
             workout_partsA = [{..._pushex}];
@@ -50,12 +52,9 @@ class WorkoutA {
             workout_partsA = [{..._pushex}, {..._pullex}, {..._pushex}, {..._pullex}, {..._pushex}, {..._pullex},];
         } else if (_levelE < 135) {
             workout_partsA = [{..._pushex}, {..._pullex}, {..._pushex}, {..._pullex}, {..._pushex}, {..._pullex},];
-        } else if (_levelE < 150 && legSwitch.switchState == 1) {
+        } else if (_levelE < 150) {
             workout_partsA = [{..._pushex}, {..._pullex}, {..._legsex}, {..._pushex},
                              {..._pullex}, {..._legsex}, {..._pushex}, {..._pullex}, {..._legsex}];
-        } else if (_levelE < 150 && legSwitch.switchState == (-1)) {
-            workout_partsA = [{..._pushex}, {..._pullex}, {...exercises.legs[_legse+1]!}, {..._pushex},
-                             {..._pullex}, {...exercises.legs[_legse+1]!}, {..._pushex}, {..._pullex}, {...exercises.legs[_legse+1]!}];
         }
     }
 }

@@ -19,7 +19,6 @@ class Warmup {
     late var _pushex;
     late var _pullex;
     late var _legsex;
-    late var _legsexl;
     late var _lightpullex;
     late var _runinplace;
 
@@ -43,12 +42,13 @@ class Warmup {
         _pushex = exercises.push[warmupPushe]!;
         _pullex = exercises.pull[_pulle]!;
 
-        if (_legse >= 3) {       
-            _legsex = exercises.legs[3]!;
-            _legsexl = exercises.legs[4]!;
+        // Warm up one leg level below the working one (floored at the first),
+        // and in the same family the workout itself uses, so the switch state
+        // gives the offset from that level's base index.
+        if (_legse >= 7) {
+            _legsex = exercises.legs[3 + _switch]!;
         } else {
-            _legsex = exercises.legs[1];
-            _legsexl = exercises.legs[2];
+            _legsex = exercises.legs[_switch]!;
         }
 
         _lightpullex = exercises.warmUpExer[1];
@@ -56,12 +56,10 @@ class Warmup {
 
         if(_levelE > 129 && _levelE < 150) {
             warmup_parts = [{..._pushex}, {..._lightpullex}];
-        } else if (_levelE > 129 && _levelE < 270 && _legse == 1) {
+        } else if (_levelE >= 150 && _levelE < 270 && _legse == 1) {
             warmup_parts = [{..._pushex}, {..._lightpullex}, {..._runinplace}];
-        } else if (_levelE >= 150 && _switch == 1) {
+        } else if (_levelE >= 150) {
             warmup_parts = [{..._pushex}, {..._lightpullex}, {..._legsex}];
-        } else if (_levelE >= 150 && _switch == (-1)) {
-            warmup_parts = [{..._pushex}, {..._lightpullex}, {..._legsexl}];
         }
     }
 }

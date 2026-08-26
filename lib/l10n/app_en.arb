@@ -46,6 +46,11 @@
     "lunge4": "Elevated Lunges",
     "squat5": "Archer Squats",
     "lunge5": "Weighted Elevated Lunges",
+    "glute1": "TODO glute1",
+    "glute2": "TODO glute2",
+    "glute3": "TODO glute3",
+    "glute4": "TODO glute4",
+    "glute5": "TODO glute5",
 
     "core1": "Lying Leg Raises",
     "core2": "Back Extensions",
@@ -140,6 +145,11 @@
     "lunge4Desc": "Place your back leg on a chair. Have your rear foot on your toes, while your front foot points forward. Keep your feet slightly apart instead of in a straight line to maintain better balance. Keep your front shin vertical and your thigh pointing forward. Lean forward slightly so the weight is on the back of your front leg. Perform on both sides.",
     "squat5Desc": "Stand with your feet apart, toes slightly turned out. Start the descent by bending one knee. Keep your upper body as upright as possible.",
     "lunge5Desc": "Fill a bag with books or other weights. Place your back leg on a chair. Have your rear foot on your toes, while your front foot points forward. Keep your feet slightly apart instead of in a straight line to maintain better balance. Keep your front shin vertical and your thigh pointing forward. Lean forward slightly so the weight is on the back of your front leg. Perform on both sides.",
+    "glute1Desc": "TODO glute1Desc",
+    "glute2Desc": "TODO glute2Desc",
+    "glute3Desc": "TODO glute3Desc",
+    "glute4Desc": "TODO glute4Desc",
+    "glute5Desc": "TODO glute5Desc",
     "core1Desc": "Place your hands under your hips and lift your head. Tighten your core and raise your legs, but not all the way to vertical. Lower your legs in a controlled manner, and don’t let them rest on the ground between reps. Bending your knees makes it easier.",
     "core2Desc": "Lie face down on a chair and hold onto its legs. With your knees bent, lift your legs behind you as high as you can.",
 

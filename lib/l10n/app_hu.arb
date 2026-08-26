@@ -46,6 +46,11 @@
     "lunge4": "Bolgár Guggolás",
     "squat5": "Oldalas Guggolás",
     "lunge5": "Féllábas Kitörés Táskával",
+    "glute1": "TODO glute1",
+    "glute2": "TODO glute2",
+    "glute3": "TODO glute3",
+    "glute4": "TODO glute4",
+    "glute5": "TODO glute5",
 
     "core1": "Fekvő Lábemelések",
     "core2": "Hátsó Lábemelések",
@@ -134,6 +139,11 @@
     "lunge4Desc": "A hátsó lábad tedd fel mondjuk egy székre. A hátsó lábfejed lábujjadon támaszkodjon, az első nézzen előre. A két lábujj ne egy vonalban legyen, hogy stabilabban állj. Tartsd az elülső sípcsintod függőlegesen. A combod mutasson előre. Kicsit dőlj előre, hogy az elülső lábad hátsó részén legyen a hangsúly. Mindkét lábaddal elől csináld meg.",
     "squat5Desc": "Állj terpeszben, kicsit nézzenek kifelé a lábfejeid. Kezd a leereszkedést az egyik térded behajlításával. Tartsd a felsőtested merőlegesen, amennyire tudod.",
     "lunge5Desc": "Vegyél fel egy könyvekkel telepakolt táskát. A hátsó lábad tedd fel mondjuk egy székre. A hátsó lábfejed lábujjadon támaszkodjon, az első nézzen előre. A két lábujj ne egy vonalban legyen, hogy stabilabban állj. Tartsd az elülső sípcsintod függőlegesen. A combod mutasson előre. Kicsit dőlj előre, hogy az elülső lábad hátsó részén legyen a hangsúly. Mindkét lábaddal elől csináld meg.",
+    "glute1Desc": "TODO glute1Desc",
+    "glute2Desc": "TODO glute2Desc",
+    "glute3Desc": "TODO glute3Desc",
+    "glute4Desc": "TODO glute4Desc",
+    "glute5Desc": "TODO glute5Desc",
     "core1Desc": "Tedd be a kezeid a feneked alá. Emeld fel a fejed. Feszítsd a hasad, és emeld fel a lábaid, de ne teljesen függőlegesig. Kontrolláltan engedd le a lábaid, és ismétlések között ne pihentesd lent a földön. Térdhajlítással könnyebb.",
     "core2Desc": "Feküdj hassal egy székre, és kapaszkodj a lábaiba. Hajlított térdel emeld fel hátul a lábaid, amennyire tudod.",
 

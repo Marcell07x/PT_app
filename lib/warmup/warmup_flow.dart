@@ -44,6 +44,11 @@ class _WarmupFlowState extends State<WarmupFlow> {
             case 'lunge4': return loc.lunge4;
             case 'squat5': return loc.squat5;
             case 'lunge5': return loc.lunge5;
+            case 'glute1': return loc.glute1;
+            case 'glute2': return loc.glute2;
+            case 'glute3': return loc.glute3;
+            case 'glute4': return loc.glute4;
+            case 'glute5': return loc.glute5;
             case 'core1': return loc.core1;
             case 'core2': return loc.core2;
             case 'lightBagPull': return loc.lightBagPull;
@@ -69,6 +74,11 @@ class _WarmupFlowState extends State<WarmupFlow> {
             case 'lunge4Desc': return loc.lunge4Desc;
             case 'squat5Desc': return loc.squat5Desc;
             case 'lunge5Desc': return loc.lunge5Desc;
+            case 'glute1Desc': return loc.glute1Desc;
+            case 'glute2Desc': return loc.glute2Desc;
+            case 'glute3Desc': return loc.glute3Desc;
+            case 'glute4Desc': return loc.glute4Desc;
+            case 'glute5Desc': return loc.glute5Desc;
             case 'core1Desc': return loc.core1Desc;
             case 'core2Desc': return loc.core2Desc;
             default: return localizationKey;

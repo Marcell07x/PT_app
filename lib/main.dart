@@ -23,6 +23,7 @@ import 'package:getshap/core/streak/streak_page.dart';
 import 'package:getshap/core/debug_clock.dart';
 import 'package:getshap/notifications/schedule_noti.dart';
 import 'package:getshap/core/checkdata.dart';
+import 'package:getshap/core/prefs_migration.dart';
 import 'package:getshap/onboarding/questionaire.dart';
 import 'package:getshap/workout/next_workout_page.dart';
 import 'package:getshap/tips/tip_detail_screen.dart';
@@ -40,6 +41,9 @@ void main() async {
     await StreakManager.checkStreak();
     await WorkoutSignal.refreshSignal();
     await prefsInit();
+    //rewrites stored prefs whose meaning changed; must run before anything
+    //reads them
+    await PrefsMigration.run();
     bool hasData = await CheckData.checkData();
     ConsentStatus consent = await Legal.status();
     runApp(MyApp(hasData: hasData, consent: consent));

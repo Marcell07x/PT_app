@@ -132,6 +132,21 @@ class AppLocalizationsHu extends AppLocalizations {
   String get lunge5 => 'Féllábas Kitörés Táskával';
 
   @override
+  String get glute1 => 'TODO glute1';
+
+  @override
+  String get glute2 => 'TODO glute2';
+
+  @override
+  String get glute3 => 'TODO glute3';
+
+  @override
+  String get glute4 => 'TODO glute4';
+
+  @override
+  String get glute5 => 'TODO glute5';
+
+  @override
   String get core1 => 'Fekvő Lábemelések';
 
   @override
@@ -353,6 +368,21 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get lunge5Desc =>
       'Vegyél fel egy könyvekkel telepakolt táskát. A hátsó lábad tedd fel mondjuk egy székre. A hátsó lábfejed lábujjadon támaszkodjon, az első nézzen előre. A két lábujj ne egy vonalban legyen, hogy stabilabban állj. Tartsd az elülső sípcsintod függőlegesen. A combod mutasson előre. Kicsit dőlj előre, hogy az elülső lábad hátsó részén legyen a hangsúly. Mindkét lábaddal elől csináld meg.';
+
+  @override
+  String get glute1Desc => 'TODO glute1Desc';
+
+  @override
+  String get glute2Desc => 'TODO glute2Desc';
+
+  @override
+  String get glute3Desc => 'TODO glute3Desc';
+
+  @override
+  String get glute4Desc => 'TODO glute4Desc';
+
+  @override
+  String get glute5Desc => 'TODO glute5Desc';
 
   @override
   String get core1Desc =>

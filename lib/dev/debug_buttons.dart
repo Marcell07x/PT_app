@@ -72,6 +72,7 @@ class DebugButtonsLogic {
         final lines = <String>[
             'today=$today  offset=${DebugClock.offsetDays}',
             'level=${prefs.getInt('level')}  incspeed=${prefs.getInt('incspeed')}  signal=${prefs.getBool('signal')}',
+            'legse=${prefs.getInt('legse')}  switch=${prefs.getInt('switch')}  coreSwitch=${prefs.getInt('coreSwitch')}  prefsVersion=${prefs.getInt('prefsVersion')}',
             'streak=${prefs.getInt('streak')}  freeze=${prefs.getInt('streakFreeze')}',
             'startDate=${prefs.getInt('streakStartDate')}',
             'lastStreakDate=${prefs.getInt('lastStreakDate')}',

@@ -71,6 +71,9 @@ class Exercises {
         },
     };
 
+    // Three leg families sit next to each other at every level: squat, lunge,
+    // glute. One full level step is therefore 3 indices, and the workout's
+    // variation is the leg switch's offset from the level's base index.
     Map<int, Map<String, String>> legs = {
         1: {
             'videoPath': 'assets/videos/squat1.mp4',
@@ -85,51 +88,81 @@ class Exercises {
             'reps': ''
         },
         3: {
+            'videoPath': 'assets/videos/test1.mp4',
+            'nameKey': 'glute1',
+            'descriptionKey': 'glute1Desc',
+            'reps': ''
+        },
+        4: {
             'videoPath': 'assets/videos/squat2.mp4',
             'nameKey': 'squat2',
             'descriptionKey': 'squat2Desc',
             'reps': ''
         },
-        4: {
+        5: {
             'videoPath': 'assets/videos/lunge2.mp4',
             'nameKey': 'lunge2',
             'descriptionKey': 'lunge2Desc',
             'reps': ''
         },
-        5: {
+        6: {
+            'videoPath': 'assets/videos/test1.mp4',
+            'nameKey': 'glute2',
+            'descriptionKey': 'glute2Desc',
+            'reps': ''
+        },
+        7: {
             'videoPath': 'assets/videos/squat3.mp4',
             'nameKey': 'squat3',
             'descriptionKey': 'squat3Desc',
             'reps': ''
         },
-        6: {
+        8: {
             'videoPath': 'assets/videos/lunge3.mp4',
             'nameKey': 'lunge3',
             'descriptionKey': 'lunge3Desc',
             'reps': ''
         },
-        7: {
+        9: {
+            'videoPath': 'assets/videos/test1.mp4',
+            'nameKey': 'glute3',
+            'descriptionKey': 'glute3Desc',
+            'reps': ''
+        },
+        10: {
             'videoPath': 'assets/videos/squat4.mp4',
             'nameKey': 'squat4',
             'descriptionKey': 'squat4Desc',
             'reps': ''
         },
-        8: {
+        11: {
             'videoPath': 'assets/videos/lunge4.mp4',
             'nameKey': 'lunge4',
             'descriptionKey': 'lunge4Desc',
             'reps': ''
         },
-        9: {
+        12: {
+            'videoPath': 'assets/videos/test1.mp4',
+            'nameKey': 'glute4',
+            'descriptionKey': 'glute4Desc',
+            'reps': ''
+        },
+        13: {
             'videoPath': 'assets/videos/squat5.mp4',
             'nameKey': 'squat5',
             'descriptionKey': 'squat5Desc',
             'reps': ''
         },
-        10: {
+        14: {
             'videoPath': 'assets/videos/lunge5.mp4',
             'nameKey': 'lunge5',
             'descriptionKey': 'lunge5Desc',
+            'reps': ''
+        },
+        15: {
+            'videoPath': 'assets/videos/test1.mp4',
+            'nameKey': 'glute5',
+            'descriptionKey': 'glute5Desc',
             'reps': ''
         },
     };

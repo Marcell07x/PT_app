@@ -8,6 +8,7 @@ import 'package:getshap/workout/workouta_reps.dart';
 import 'package:getshap/workout/workoutb_home.dart';
 import 'package:getshap/workout/workoutb_reps.dart';
 import 'package:getshap/workout/legswitch.dart';
+import 'package:getshap/workout/coreswitch.dart';
 import 'package:getshap/core/level.dart';
 import 'package:getshap/core/workout_signal.dart';
 import 'package:getshap/core/streak/streak_manager.dart';
@@ -29,6 +30,7 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
     WorkoutBHome workoutBHome = WorkoutBHome();
     WorkoutBReps workoutBReps = WorkoutBReps();
     LegSwitch legSwitch = LegSwitch();
+    CoreSwitch coreSwitch = CoreSwitch();
     WorkoutLevel workoutLevel = WorkoutLevel();
 
     final List<Map<String, String>> workouts = [];
@@ -61,6 +63,11 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
             case 'lunge4': return loc.lunge4;
             case 'squat5': return loc.squat5;
             case 'lunge5': return loc.lunge5;
+            case 'glute1': return loc.glute1;
+            case 'glute2': return loc.glute2;
+            case 'glute3': return loc.glute3;
+            case 'glute4': return loc.glute4;
+            case 'glute5': return loc.glute5;
             case 'core1': return loc.core1;
             case 'core2': return loc.core2;
             case 'wallPushDesc': return loc.wallPushDesc;
@@ -84,6 +91,11 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
             case 'lunge4Desc': return loc.lunge4Desc;
             case 'squat5Desc': return loc.squat5Desc;
             case 'lunge5Desc': return loc.lunge5Desc;
+            case 'glute1Desc': return loc.glute1Desc;
+            case 'glute2Desc': return loc.glute2Desc;
+            case 'glute3Desc': return loc.glute3Desc;
+            case 'glute4Desc': return loc.glute4Desc;
+            case 'glute5Desc': return loc.glute5Desc;
             case 'core1Desc': return loc.core1Desc;
             case 'core2Desc': return loc.core2Desc;  
           default: return localizationKey;
@@ -121,9 +133,13 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
         }
     }
 
-    Future<void> _toggleLegSwitch() async {
+    //legs cycle squat -> lunge -> glute, the core alternates on its own
+    //two-state switch; both step once per finished workout
+    Future<void> _toggleSwitches() async {
         await legSwitch.getSwitch();
         await legSwitch.setSwitch();
+        await coreSwitch.getSwitch();
+        await coreSwitch.setSwitch();
     }
 
     Future<void> _finishWorkout() async {
@@ -136,7 +152,7 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
         int levelF = prefs.getInt('level') ?? 1;
         int workoutCount = prefs.getInt('workoutsThisWeek') ?? 0;
 
-        await _toggleLegSwitch();
+        await _toggleSwitches();
         //onWorkoutCompleted before onWorkoutFinished (which refreshes the home
         //screen) so the refresh already sees the increased streak; before
         //setLevel so today counts in the phase the workout was done in

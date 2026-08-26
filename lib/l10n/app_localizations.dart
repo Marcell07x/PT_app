@@ -332,6 +332,36 @@ abstract class AppLocalizations {
   /// **'Weighted Elevated Lunges'**
   String get lunge5;
 
+  /// No description provided for @glute1.
+  ///
+  /// In en, this message translates to:
+  /// **'TODO glute1'**
+  String get glute1;
+
+  /// No description provided for @glute2.
+  ///
+  /// In en, this message translates to:
+  /// **'TODO glute2'**
+  String get glute2;
+
+  /// No description provided for @glute3.
+  ///
+  /// In en, this message translates to:
+  /// **'TODO glute3'**
+  String get glute3;
+
+  /// No description provided for @glute4.
+  ///
+  /// In en, this message translates to:
+  /// **'TODO glute4'**
+  String get glute4;
+
+  /// No description provided for @glute5.
+  ///
+  /// In en, this message translates to:
+  /// **'TODO glute5'**
+  String get glute5;
+
   /// No description provided for @core1.
   ///
   /// In en, this message translates to:
@@ -733,6 +763,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Fill a bag with books or other weights. Place your back leg on a chair. Have your rear foot on your toes, while your front foot points forward. Keep your feet slightly apart instead of in a straight line to maintain better balance. Keep your front shin vertical and your thigh pointing forward. Lean forward slightly so the weight is on the back of your front leg. Perform on both sides.'**
   String get lunge5Desc;
+
+  /// No description provided for @glute1Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'TODO glute1Desc'**
+  String get glute1Desc;
+
+  /// No description provided for @glute2Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'TODO glute2Desc'**
+  String get glute2Desc;
+
+  /// No description provided for @glute3Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'TODO glute3Desc'**
+  String get glute3Desc;
+
+  /// No description provided for @glute4Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'TODO glute4Desc'**
+  String get glute4Desc;
+
+  /// No description provided for @glute5Desc.
+  ///
+  /// In en, this message translates to:
+  /// **'TODO glute5Desc'**
+  String get glute5Desc;
 
   /// No description provided for @core1Desc.
   ///

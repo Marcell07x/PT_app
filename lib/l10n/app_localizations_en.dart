@@ -132,6 +132,21 @@ class AppLocalizationsEn extends AppLocalizations {
   String get lunge5 => 'Weighted Elevated Lunges';
 
   @override
+  String get glute1 => 'TODO glute1';
+
+  @override
+  String get glute2 => 'TODO glute2';
+
+  @override
+  String get glute3 => 'TODO glute3';
+
+  @override
+  String get glute4 => 'TODO glute4';
+
+  @override
+  String get glute5 => 'TODO glute5';
+
+  @override
   String get core1 => 'Lying Leg Raises';
 
   @override
@@ -353,6 +368,21 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get lunge5Desc =>
       'Fill a bag with books or other weights. Place your back leg on a chair. Have your rear foot on your toes, while your front foot points forward. Keep your feet slightly apart instead of in a straight line to maintain better balance. Keep your front shin vertical and your thigh pointing forward. Lean forward slightly so the weight is on the back of your front leg. Perform on both sides.';
+
+  @override
+  String get glute1Desc => 'TODO glute1Desc';
+
+  @override
+  String get glute2Desc => 'TODO glute2Desc';
+
+  @override
+  String get glute3Desc => 'TODO glute3Desc';
+
+  @override
+  String get glute4Desc => 'TODO glute4Desc';
+
+  @override
+  String get glute5Desc => 'TODO glute5Desc';
 
   @override
   String get core1Desc =>

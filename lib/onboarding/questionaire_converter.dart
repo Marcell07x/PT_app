@@ -47,12 +47,14 @@ class Converter {
           }
         }
 
+        // Starting leg exercise: always a squat, and the three families sit
+        // next to each other, so a level step is 3 indices (1 / 4 / 7).
         if (bwSquats == 0) {
             _legse = 1;
         } else if (bwSquats == 1) {
-            _legse = 3;
+            _legse = 4;
         } else if (bwSquats == 2) {
-            _legse = 5;
+            _legse = 7;
         }
 
         if (_incSpeed > 3 && _pushe >= 3) {
