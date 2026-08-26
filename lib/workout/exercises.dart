@@ -59,11 +59,17 @@ class Exercises {
         },
         2: {
             'videoPath': 'assets/videos/test1.mp4',
+            'nameKey': 'reverseSnowAngel',
+            'descriptionKey': 'reverseSnowAngelDesc',
+            'reps': ''
+        },
+        3: {
+            'videoPath': 'assets/videos/test1.mp4',
             'nameKey': 'bwPull',
             'descriptionKey': 'bwPullDesc',
             'reps': ''
         },
-        3: {
+        4: {
             'videoPath': 'assets/videos/pullup.mp4',
             'nameKey': 'pullup',
             'descriptionKey': 'pullupDesc',

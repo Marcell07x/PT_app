@@ -260,6 +260,12 @@ abstract class AppLocalizations {
   /// **'One Hand Bag Rows'**
   String get bagPull;
 
+  /// No description provided for @reverseSnowAngel.
+  ///
+  /// In en, this message translates to:
+  /// **'Reverse Snow Angel'**
+  String get reverseSnowAngel;
+
   /// No description provided for @bwPull.
   ///
   /// In en, this message translates to:
@@ -691,6 +697,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Fill a bag with books or small weights, aiming for at least 5–10 kg (11–22 lbs). Support yourself with one hand, keeping your torso straight and roughly horizontal. When you lower your hand, try to keep the bag off the ground. During the lift, keep your shoulders pressed down—don’t let them rise toward your ears. Bend your arm to about 90°. \nIf it feels too easy:\n• increase the weight\n• lower it more slowly\n• do more repetitions\nRepeat on both sides.'**
   String get bagPullDesc;
+
+  /// No description provided for @reverseSnowAngelDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'TODO reverseSnowAngelDesc'**
+  String get reverseSnowAngelDesc;
 
   /// No description provided for @bwPullDesc.
   ///

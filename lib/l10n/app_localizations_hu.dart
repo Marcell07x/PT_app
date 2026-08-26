@@ -97,6 +97,9 @@ class AppLocalizationsHu extends AppLocalizations {
   String get bagPull => 'Táskás/Súlyzós Evezés';
 
   @override
+  String get reverseSnowAngel => 'TODO reverseSnowAngel';
+
+  @override
   String get bwPull => 'Alacsony Rudas Evezés';
 
   @override
@@ -323,6 +326,9 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get bagPullDesc =>
       'Pakolj tele egy táskát könyvekkel, kis súlyzókkal, érzésre legalább 5-10 kg legyen a táska. \nEgyik kézzel támaszkodj, a törzsed legyen egyenes, és nagyjából vízszintes. Ha leengeded a kezed, a táska lehetőleg a levegőben legyen. Felhúzásnál a válladat szorítsd le, ne menjen föl a füledhez. A karod kb. 90°-ig hajlítsd be. \nHa túl könnyű:\n• növeld a súlyt\n• engedd le lassabban\n• vagy csinálj belőle többet\nCsináld meg mindkét oldalra.';
+
+  @override
+  String get reverseSnowAngelDesc => 'TODO reverseSnowAngelDesc';
 
   @override
   String get bwPullDesc => '';

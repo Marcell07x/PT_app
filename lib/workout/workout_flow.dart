@@ -51,6 +51,7 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
             case 'archerPush': return loc.archerPush;
             case 'dipPush': return loc.dipPush;
             case 'bagPull': return loc.bagPull;
+            case 'reverseSnowAngel': return loc.reverseSnowAngel;
             case 'bwPull': return loc.bwPull;
             case 'pullup': return loc.pullup;
             case 'squat1': return loc.squat1;
@@ -79,6 +80,7 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
             case 'archerPushDesc': return loc.archerPushDesc;
             case 'dipPushDesc': return loc.dipPushDesc;
             case 'bagPullDesc': return loc.bagPullDesc;
+            case 'reverseSnowAngelDesc': return loc.reverseSnowAngelDesc;
             case 'bwPullDesc': return loc.bwPullDesc;
             case 'pullupDesc': return loc.pullupDesc;
             case 'squat1Desc': return loc.squat1Desc;

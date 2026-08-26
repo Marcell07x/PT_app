@@ -3,6 +3,7 @@ import 'package:getshap/core/level.dart';
 import "package:shared_preferences/shared_preferences.dart";
 import 'package:getshap/workout/legswitch.dart';
 import 'package:getshap/workout/coreswitch.dart';
+import 'package:getshap/workout/pullprogression.dart';
 
 class WorkoutBHome {
     late int _levelE;
@@ -46,7 +47,9 @@ class WorkoutBHome {
         final int legsV = legSwitch.switchState - 1;
 
         _pushex = exercises.push[_pushe]!;
-        _pullex = exercises.pull[_pulle]!;
+        //from 350 the pull steps up a variation, unless the user is 60+
+        final bool harderPullEx = await PullProgression.steppedUp(_levelE);
+        _pullex = exercises.pull[harderPullEx ? _pulle + 1 : _pulle]!;
         _legsex = exercises.legs[_legse + legsV]!;
 
         _pushexp = exercises.push[_pushe+1]!;
