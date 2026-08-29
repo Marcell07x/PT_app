@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:getshap/core/debug_clock.dart';
 import 'package:getshap/core/streak/streak_date_utils.dart';
+import 'package:getshap/theme/app_colors.dart';
+import 'package:getshap/theme/app_spacing.dart';
+import 'package:getshap/theme/app_typography.dart';
 
 //goal: month calendar for the streak page: the days of
 //      the running streak are connected by an orange band, workout days
@@ -73,10 +76,10 @@ class _StreakCalendarState extends State<StreakCalendar> {
                 height: 36,
                 width: double.infinity,
                 decoration: BoxDecoration(
-                    color: Colors.orange.shade200,
+                    color: AppColors.flameBand,
                     borderRadius: BorderRadius.horizontal(
-                        left: Radius.circular(bandLeft ? 0 : 18),
-                        right: Radius.circular(bandRight ? 0 : 18),
+                        left: Radius.circular(bandLeft ? 0 : AppRadius.lg),
+                        right: Radius.circular(bandRight ? 0 : AppRadius.lg),
                     ),
                 ),
             );
@@ -90,48 +93,40 @@ class _StreakCalendarState extends State<StreakCalendar> {
         bool isWorkoutDay = widget.workoutDays.contains(dayN);
         bool isPendingToday = inStreak && dayN == today && widget.todayPending;
 
+        // Five states, each with its own shape cue as well as its own colour:
+        // freeze = filled + snowflake, pending today = filled muted, workout =
+        // filled warm, rest day inside the streak = bare numeral on the band,
+        // today outside the streak = ring. Every white-on-colour pair here
+        // clears WCAG AA; the previous orange/grey fills did not.
         Color background = Colors.transparent;
         Border? border;
         Widget content = Text(
             '${date.day}',
-            style: const TextStyle(fontSize: 14, color: Colors.black87),
+            style: AppText.bodySmall.copyWith(color: AppColors.n600),
+        );
+
+        Widget numeral(Color color) => Text(
+            '${date.day}',
+            style: AppText.weight(
+                AppText.bodySmall.copyWith(color: color),
+                700,
+            ),
         );
 
         if (isFreezeDay) {
-            background = Colors.lightBlue;
-            content = const Icon(Icons.ac_unit, color: Colors.white, size: 18);
+            background = AppColors.freeze;
+            content = const Icon(Icons.ac_unit, color: AppColors.onBrand, size: 18);
         } else if (isPendingToday) {
-            background = Colors.grey;
-            content = Text(
-                '${date.day}',
-                style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                ),
-            );
+            background = AppColors.n500;
+            content = numeral(AppColors.onBrand);
         } else if (inStreak && isWorkoutDay) {
-            background = Colors.orange;
-            content = Text(
-                '${date.day}',
-                style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                ),
-            );
+            background = AppColors.flameInk;
+            content = numeral(AppColors.onBrand);
         } else if (inStreak) {
             //rest day: the band passes through, no circle
-            content = Text(
-                '${date.day}',
-                style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.deepOrange,
-                ),
-            );
+            content = numeral(AppColors.flameBandInk);
         } else if (dayN == today) {
-            border = Border.all(color: const Color.fromRGBO(22, 95, 239, 1), width: 2.0);
+            border = Border.all(color: AppColors.brand500, width: 2.0);
         }
 
         return Stack(
@@ -191,22 +186,25 @@ class _StreakCalendarState extends State<StreakCalendar> {
         return Column(
             children: [
                 Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                         IconButton(
-                            icon: const Icon(Icons.chevron_left, color: Colors.black54),
+                            icon: const Icon(Icons.chevron_left, color: AppColors.n500),
                             onPressed: () => _changeMonth(-1),
                         ),
-                        Text(
-                            DateFormat.yMMMM(locale).format(_month),
-                            style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black87,
+                        // Expanded rather than spaceBetween: a long month name
+                        // ("2026. augusztus") overflows a narrow phone once the
+                        // two 48px arrow buttons have taken their share.
+                        Expanded(
+                            child: Text(
+                                DateFormat.yMMMM(locale).format(_month),
+                                textAlign: TextAlign.center,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: AppText.titleSmall.copyWith(color: AppColors.n900),
                             ),
                         ),
                         IconButton(
-                            icon: const Icon(Icons.chevron_right, color: Colors.black54),
+                            icon: const Icon(Icons.chevron_right, color: AppColors.n500),
                             onPressed: () => _changeMonth(1),
                         ),
                     ],
@@ -218,11 +216,7 @@ class _StreakCalendarState extends State<StreakCalendar> {
                                 child: Center(
                                     child: Text(
                                         name,
-                                        style: const TextStyle(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.black54,
-                                        ),
+                                        style: AppText.labelSmall.copyWith(color: AppColors.n500),
                                     ),
                                 ),
                             ),

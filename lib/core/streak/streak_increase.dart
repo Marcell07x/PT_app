@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'package:getshap/theme/app_colors.dart';
+import 'package:getshap/theme/app_typography.dart';
+
 //goal: the streak counting up on the workout done screen: a dim flame
 //      with the old number that lights up, pops and switches to the
 //      new (already saved) streak value
@@ -115,7 +118,9 @@ class _StreakIncreaseState extends State<StreakIncrease> {
                     : const Icon(
                         Icons.local_fire_department,
                         key: ValueKey(false),
-                        color: Colors.black26,
+                        // Translucent white, not black: this sits on the blue
+                        // congratulations gradient.
+                        color: Color(0x4DFFFFFF),
                         size: 118,
                     ),
             ),
@@ -126,11 +131,10 @@ class _StreakIncreaseState extends State<StreakIncrease> {
         final Widget number = Text(
             '$_shown',
             key: ValueKey('$_shown-$_lit'),
-            style: const TextStyle(
-                fontSize: 94,
-                fontWeight: FontWeight.w900,
-                height: 1.0,
-                color: Colors.white,
+            // Tabular figures: the number counts up, and proportional digits
+            // would shift the layout as the width changes.
+            style: AppText.numeral(AppText.displayMedium).copyWith(
+                color: AppColors.onBrand,
             ),
         );
 
@@ -154,11 +158,8 @@ class _StreakIncreaseState extends State<StreakIncrease> {
                 : Text(
                     '$_shown',
                     key: ValueKey('dim-$_shown'),
-                    style: const TextStyle(
-                        fontSize: 94,
-                        fontWeight: FontWeight.w900,
-                        height: 1.0,
-                        color: Colors.black26,
+                    style: AppText.numeral(AppText.displayMedium).copyWith(
+                        color: const Color(0x4DFFFFFF),
                     ),
                 ),
         );

@@ -4,8 +4,11 @@ import 'package:getshap/l10n/app_localizations.dart';
 import 'package:getshap/core/streak/streak_manager.dart';
 import 'package:getshap/core/streak/streak_calendar.dart';
 import 'package:getshap/core/streak/streak_freeze_slot.dart';
-import 'package:getshap/common/bokeh_background.dart';
-import 'package:getshap/common/outlined_text.dart';
+import 'package:getshap/common/ui/app_card.dart';
+import 'package:getshap/common/ui/app_scaffold.dart';
+import 'package:getshap/theme/app_colors.dart';
+import 'package:getshap/theme/app_spacing.dart';
+import 'package:getshap/theme/app_typography.dart';
 
 //goal: the streak page: big streak number on top, the streak calendar
 //      below it and the freeze slot at the bottom
@@ -51,119 +54,103 @@ class _StreakPageState extends State<StreakPage> {
 
     @override
     Widget build(BuildContext context) {
-        final flameColor = _lit ? Colors.orange : const Color(0xFF8B93A1);
+        final AppLocalizations loc = AppLocalizations.of(context)!;
 
-        return GestureDetector(
-            // Swipe left-to-right from anywhere on the page (not just the very
-            // left edge) to pop back to the home page.
-            onHorizontalDragEnd: (details) {
-                if ((details.primaryVelocity ?? 0) > 250) {
-                    Navigator.of(context).pop();
-                }
-            },
-            child: Scaffold(
-            backgroundColor: const Color(0xFF463B54),
-            appBar: AppBar(
-                backgroundColor: flameColor,
-                leading: IconButton(
-                    icon: const Icon(Icons.close, color: Colors.white),
-                    onPressed: () => Navigator.of(context).pop(),
-                ),
+        return AppScaffold(
+            title: loc.workoutStreak,
+            swipeToPop: true,
+            leading: IconButton(
+                icon: const Icon(Icons.close),
+                onPressed: () => Navigator.of(context).pop(),
             ),
-            body: BokehBackground(
-                child: _loading
+            body: _loading
                 ? const Center(child: CircularProgressIndicator())
-                : SafeArea(
-                    child: Column(
-                        children: [
-                            const SizedBox(height: 24),
-                            Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                    Container(
-                                        decoration: _lit
-                                            ? const BoxDecoration(
-                                                shape: BoxShape.circle,
-                                                boxShadow: [
-                                                    BoxShadow(
-                                                        color: Color(0x80FF9800),
-                                                        blurRadius: 36,
-                                                        spreadRadius: -2,
-                                                    ),
-                                                ],
-                                            )
-                                            : null,
-                                        child: _lit
-                                            ? ShaderMask(
-                                                blendMode: BlendMode.srcIn,
-                                                shaderCallback: (rect) => const LinearGradient(
-                                                    begin: Alignment.bottomCenter,
-                                                    end: Alignment.topCenter,
-                                                    colors: [
-                                                        Color(0xFFFFD54F),
-                                                        Color(0xFFFF9800),
-                                                        Color(0xFFF4511E),
-                                                    ],
-                                                ).createShader(rect),
-                                                child: const Icon(
-                                                    Icons.local_fire_department,
-                                                    color: Colors.white,
-                                                    size: 84,
-                                                ),
-                                            )
-                                            : Icon(
-                                                Icons.local_fire_department,
-                                                color: flameColor,
-                                                size: 84,
-                                            ),
-                                    ),
-                                    const SizedBox(width: 8),
-                                    OutlinedText(
-                                        '$_streak',
-                                        fontSize: 84,
-                                        fontWeight: FontWeight.w900,
-                                        color: flameColor,
-                                        outlineWidth: 4.5,
-                                    ),
-                                ],
+                : Column(
+                    children: [
+                        const SizedBox(height: AppSpacing.xl),
+                        _buildHero(loc),
+                        const SizedBox(height: AppSpacing.xxl),
+                        AppCard(
+                            padding: const EdgeInsets.all(AppSpacing.md),
+                            shadow: AppShadows.md,
+                            child: StreakCalendar(
+                                streak: _streak,
+                                startDate: _startDate,
+                                freezeDays: _freezeDays,
+                                workoutDays: _workoutDays,
+                                todayPending: _todayPending,
                             ),
-                            OutlinedText(
-                                AppLocalizations.of(context)!.workoutStreak,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                            ),
-                            const SizedBox(height: 16),
-                            Container(
-                                margin: const EdgeInsets.symmetric(horizontal: 16.0),
-                                padding: const EdgeInsets.all(8.0),
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(18),
+                        ),
+                        const Spacer(),
+                        StreakFreezeSlot(hasFreeze: _hasFreeze),
+                        const SizedBox(height: AppSpacing.xxxl),
+                    ],
+                ),
+        );
+    }
+
+    /// The flame and the count. The flame carries all the colour — lit it gets
+    /// the warm gradient and a glow, unlit it is a quiet outline — while the
+    /// number stays in the page's text colour so it is always readable.
+    Widget _buildHero(AppLocalizations loc) {
+        return Column(
+            children: [
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                        Container(
+                            decoration: _lit
+                                ? const BoxDecoration(
+                                    shape: BoxShape.circle,
                                     boxShadow: [
                                         BoxShadow(
-                                            color: Colors.black.withOpacity(0.25),
-                                            blurRadius: 16,
-                                            offset: const Offset(0, 8),
+                                            color: Color(0x59FF9800),
+                                            blurRadius: 36,
+                                            spreadRadius: -2,
                                         ),
                                     ],
+                                )
+                                : null,
+                            child: _lit
+                                ? ShaderMask(
+                                    blendMode: BlendMode.srcIn,
+                                    shaderCallback: (rect) => const LinearGradient(
+                                        begin: Alignment.bottomCenter,
+                                        end: Alignment.topCenter,
+                                        colors: [
+                                            AppColors.flameA,
+                                            AppColors.flameB,
+                                            AppColors.flameC,
+                                        ],
+                                    ).createShader(rect),
+                                    child: const Icon(
+                                        Icons.local_fire_department,
+                                        // The mask's alpha source, not a colour choice.
+                                        color: Colors.white,
+                                        size: 84,
+                                    ),
+                                )
+                                : const Icon(
+                                    Icons.local_fire_department_outlined,
+                                    color: AppColors.n400,
+                                    size: 84,
                                 ),
-                                child: StreakCalendar(
-                                    streak: _streak,
-                                    startDate: _startDate,
-                                    freezeDays: _freezeDays,
-                                    workoutDays: _workoutDays,
-                                    todayPending: _todayPending,
-                                ),
+                        ),
+                        const SizedBox(width: AppSpacing.md),
+                        Text(
+                            '$_streak',
+                            style: AppText.numeral(AppText.displayLarge).copyWith(
+                                color: _lit ? AppColors.n900 : AppColors.n400,
                             ),
-                            const Spacer(),
-                            StreakFreezeSlot(hasFreeze: _hasFreeze),
-                            const SizedBox(height: 32),
-                        ],
-                    ),
+                        ),
+                    ],
                 ),
-            ),
-        ),
+                const SizedBox(height: AppSpacing.sm),
+                Text(
+                    loc.workoutStreak.toUpperCase(),
+                    style: AppText.eyebrow.copyWith(color: AppColors.n500),
+                ),
+            ],
         );
     }
 }

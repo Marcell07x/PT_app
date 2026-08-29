@@ -1,30 +1,30 @@
-// This is a basic Flutter widget test.
+// Smoke test for the app's very first frames: the splash renders, and once its
+// timer elapses it hands over to the screen `MyApp._firstScreen` picked.
 //
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
+// This is deliberately the *routing* decision rather than any pixel detail, so
+// the test survives a restyle but still fails if the launch path breaks.
 
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:getshap/main.dart';
+import 'package:getshap/common/splash_screen.dart';
+import 'package:getshap/core/legal.dart';
+import 'package:getshap/onboarding/consent_page.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    testWidgets('a user who has not accepted the terms lands on the consent gate',
+        (WidgetTester tester) async {
+        await tester.pumpWidget(
+            const MyApp(hasData: false, consent: ConsentStatus.none),
+        );
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+        expect(find.byType(SplashScreen), findsOneWidget);
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+        // Let the splash's minDuration elapse, then run the fade transition.
+        await tester.pump(const Duration(milliseconds: 1900));
+        await tester.pumpAndSettle();
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
-  });
+        expect(find.byType(ConsentPage), findsOneWidget);
+        expect(find.byType(SplashScreen), findsNothing);
+    });
 }

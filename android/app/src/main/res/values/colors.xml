@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Bokeh background base colour (matches BokehBackground.baseColor). -->
-    <color name="splash_bg">#463B54</color>
+    <!-- Brand blue, matching AppColors.brand500 and the splash screen, so the
+         native launch window and the first Flutter frame are the same colour. -->
+    <color name="splash_bg">#165FEF</color>
 </resources>

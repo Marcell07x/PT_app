@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:getshap/core/legal.dart';
 import 'package:getshap/l10n/app_localizations.dart';
+import 'package:getshap/theme/app_colors.dart';
+import 'package:getshap/theme/app_spacing.dart';
+import 'package:getshap/theme/app_typography.dart';
 
 /// Which page the side menu is currently showing.
-enum SideMenuView { menu, contact, legal }
+enum SideMenuView { menu, contact }
 
 class SideMenu extends StatelessWidget {
     final VoidCallback onSetLevelPressed;
@@ -17,7 +19,6 @@ class SideMenu extends StatelessWidget {
     // sub-page -> menu -> home.
     final SideMenuView view;
     final VoidCallback onContactPressed;
-    final VoidCallback onLegalPressed;
     final VoidCallback onBackToMenuPressed;
 
     const SideMenu({
@@ -28,7 +29,6 @@ class SideMenu extends StatelessWidget {
         required this.onFormPressed,
         required this.view,
         required this.onContactPressed,
-        required this.onLegalPressed,
         required this.onBackToMenuPressed,
     });
 
@@ -45,26 +45,26 @@ class SideMenu extends StatelessWidget {
         await launchUrl(Uri(scheme: 'mailto', path: 'bmarci891@gmail.com'));
     }
 
-    /// Shared blue used by the app bar and this menu.
-    static const Color _blue = Color(0xFF2E6BF0);
-
     @override
     Widget build(BuildContext context) {
-        final double menuWidth = MediaQuery.of(context).size.width * 0.7;
+        final double menuWidth = MediaQuery.of(context).size.width * 0.78;
 
-        // Full-height panel that reaches the top of the screen. Only the left
-        // corners are rounded (the right edge is the screen edge); the drawer's
-        // elevation casts a soft shadow onto the content for a subtle 3D edge,
-        // echoing the floating app bar.
+        // Full-height brand-blue panel reaching the top of the screen. Only the
+        // left corners are rounded (the right edge is the screen edge); the
+        // elevation casts a soft shadow onto the light page behind it.
+        //
+        // The drawer stays saturated blue while the pages behind it are light:
+        // it is chrome, like the app bar and the splash, and it is the one
+        // other place the white logo mark appears.
         return Drawer(
             width: menuWidth,
-            backgroundColor: _blue,
+            backgroundColor: AppColors.brand500,
             elevation: 12,
             clipBehavior: Clip.antiAlias,
             shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(24),
-                    bottomLeft: Radius.circular(24),
+                    topLeft: Radius.circular(AppRadius.xl),
+                    bottomLeft: Radius.circular(AppRadius.xl),
                 ),
             ),
             child: Column(
@@ -81,51 +81,41 @@ class SideMenu extends StatelessWidget {
         switch (view) {
             case SideMenuView.contact:
                 return _buildContactView(context);
-            case SideMenuView.legal:
-                return _buildLegalView(context);
             case SideMenuView.menu:
                 return _buildMenuView(context);
         }
     }
 
-    /// Branded header band at the top of the menu: the white logo mark and
-    /// wordmark on the same blue sheen as the app bar, with a soft depth shadow
-    /// separating it from the list below.
+    /// Branded header band: the white logo mark and wordmark, separated from
+    /// the list below by a hairline rather than the old drop shadow.
     Widget _buildHeader(BuildContext context) {
         final double topPad = MediaQuery.of(context).padding.top;
-        final Color lighter = Color.lerp(_blue, Colors.white, 0.14)!;
 
         return Container(
-            padding: EdgeInsets.fromLTRB(20, topPad + 18, 16, 18),
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [lighter, _blue],
+            padding: EdgeInsets.fromLTRB(
+                AppSpacing.xl,
+                topPad + AppSpacing.xl,
+                AppSpacing.lg,
+                AppSpacing.xl,
+            ),
+            decoration: const BoxDecoration(
+                border: Border(
+                    bottom: BorderSide(color: Color(0x33FFFFFF)),
                 ),
-                boxShadow: const [
-                    BoxShadow(
-                        color: Color(0x40000000),
-                        offset: Offset(0, 3),
-                        blurRadius: 8,
-                    ),
-                ],
             ),
             child: Row(
                 children: [
                     Image.asset(
                         'assets/icon/logo_mark.png',
-                        width: 34,
-                        height: 34,
+                        width: 32,
+                        height: 32,
                         filterQuality: FilterQuality.high,
                     ),
-                    const SizedBox(width: 12),
-                    const Text(
+                    const SizedBox(width: AppSpacing.md),
+                    Text(
                         'GetShap',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 22,
-                            fontWeight: FontWeight.w800,
+                        style: AppText.titleLarge.copyWith(
+                            color: AppColors.onBrand,
                             letterSpacing: 0.3,
                         ),
                     ),
@@ -134,27 +124,37 @@ class SideMenu extends StatelessWidget {
         );
     }
 
+    /// Shared chrome for both pages of the menu: white text and icons on the
+    /// blue panel, with a consistent row shape.
+    Widget _menuList({required List<Widget> children}) {
+        return ListTileTheme(
+            data: ListTileThemeData(
+                iconColor: AppColors.onBrand,
+                textColor: AppColors.onBrand,
+                titleTextStyle: AppText.titleSmall.copyWith(
+                    color: AppColors.onBrand,
+                ),
+            ),
+            child: ListView(
+                padding: const EdgeInsets.symmetric(vertical: AppSpacing.sm),
+                children: children,
+            ),
+        );
+    }
+
     Widget _buildMenuView(BuildContext context) {
         final loc = AppLocalizations.of(context)!;
-        return ListTileTheme(
-            iconColor: Colors.white,
-            textColor: Colors.white,
-            child: ListView(
-            padding: EdgeInsets.zero,
+        return _menuList(
             children: [
                 ListTile(
                     leading: const Icon(Icons.person_outline),
                     title: Text(loc.contact),
                     onTap: onContactPressed,
                 ),
-                ListTile(
-                    leading: const Icon(Icons.policy_outlined),
-                    title: Text(loc.legal),
-                    onTap: onLegalPressed,
-                ),
                 // The menu is available in release mode but these options
                 // are only visible when in debug mode.
                 if (kDebugMode) ...[
+                    const Divider(height: AppSpacing.xxl, color: Color(0x33FFFFFF)),
                     ListTile(
                         leading: const Icon(Icons.settings),
                         title: const Text('Set Level'),
@@ -177,25 +177,25 @@ class SideMenu extends StatelessWidget {
                     ),
                 ],
             ],
-            ),
         );
     }
 
     Widget _buildContactView(BuildContext context) {
         final loc = AppLocalizations.of(context)!;
-        return ListTileTheme(
-            iconColor: Colors.white,
-            textColor: Colors.white,
-            child: ListView(
-            padding: EdgeInsets.zero,
+        return _menuList(
             children: [
                 _buildBackTile(loc),
-                const Divider(height: 1, color: Colors.white30),
+                const Divider(height: 1, color: Color(0x33FFFFFF)),
                 Padding(
-                    padding: const EdgeInsets.all(20.0),
+                    padding: const EdgeInsets.fromLTRB(
+                        AppSpacing.xl,
+                        AppSpacing.xl,
+                        AppSpacing.xl,
+                        AppSpacing.md,
+                    ),
                     child: Text(
                         loc.infoIntro,
-                        style: const TextStyle(fontSize: 16, height: 1.5, color: Colors.white),
+                        style: AppText.bodyMedium.copyWith(color: AppColors.onBrand),
                     ),
                 ),
                 _buildLinkTile(
@@ -209,41 +209,6 @@ class SideMenu extends StatelessWidget {
                     onTap: _openEmail,
                 ),
             ],
-            ),
-        );
-    }
-
-    /// The documents have to stay reachable after onboarding, not just on the
-    /// screen where they were accepted — the App Store requires the privacy
-    /// policy to be linked from inside the app, and the terms have to remain
-    /// available in a form the user can store and retrieve.
-    Widget _buildLegalView(BuildContext context) {
-        final loc = AppLocalizations.of(context)!;
-        return ListTileTheme(
-            iconColor: Colors.white,
-            textColor: Colors.white,
-            child: ListView(
-            padding: EdgeInsets.zero,
-            children: [
-                _buildBackTile(loc),
-                const Divider(height: 1, color: Colors.white30),
-                _buildLinkTile(
-                    icon: Icons.description_outlined,
-                    label: loc.consentTermsLink,
-                    onTap: () => Legal.open(Legal.termsUrl(context)),
-                ),
-                _buildLinkTile(
-                    icon: Icons.favorite_outline,
-                    label: loc.consentHealthLink,
-                    onTap: () => Legal.open(Legal.healthUrl(context)),
-                ),
-                _buildLinkTile(
-                    icon: Icons.lock_outline,
-                    label: loc.consentPrivacyLink,
-                    onTap: () => Legal.open(Legal.privacyUrl(context)),
-                ),
-            ],
-            ),
         );
     }
 
@@ -264,9 +229,10 @@ class SideMenu extends StatelessWidget {
             leading: Icon(icon),
             title: Text(
                 label,
-                style: const TextStyle(
-                    color: Colors.white,
+                style: AppText.titleSmall.copyWith(
+                    color: AppColors.onBrand,
                     decoration: TextDecoration.underline,
+                    decorationColor: const Color(0x99FFFFFF),
                 ),
             ),
             onTap: onTap,

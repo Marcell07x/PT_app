@@ -35,6 +35,15 @@ flutter:
     - assets/videos/
     - assets/icon/logo_mark.png
 
+  # Manrope, SIL Open Font License 1.1 (assets/fonts/OFL.txt). This is the
+  # variable file: its default instance is ExtraLight, so every style in
+  # lib/theme/app_typography.dart drives the `wght` axis via FontVariation.
+  # Bundling one variable face costs ~165 KB instead of ~1.2 MB of statics.
+  fonts:
+    - family: Manrope
+      fonts:
+        - asset: assets/fonts/Manrope-Variable.ttf
+
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true

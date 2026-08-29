@@ -1,28 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'package:getshap/common/ui/app_button.dart';
+import 'package:getshap/common/ui/app_card.dart';
 import 'package:getshap/l10n/app_localizations.dart';
-import 'package:getshap/workout/workout_done_screen.dart';
+import 'package:getshap/theme/app_colors.dart';
+import 'package:getshap/theme/app_spacing.dart';
+import 'package:getshap/theme/app_typography.dart';
 import 'package:getshap/workout/feedback_execution.dart';
-import 'package:getshap/common/pressable_button.dart';
-
-/// Brand blue used across the app.
-const Color _kBrandBlue = Color.fromRGBO(22, 95, 239, 1);
-
-/// Colour spectrum for the effort scale (easy -> hard). Shared between the
-/// slider track painter and the value colour helper so they always match.
-const List<Color> _kRpeSpectrum = [
-    Color(0xFF22A45D), // green
-    Color(0xFF7FBB3D), // lime
-    Color(0xFFF2C230), // amber
-    Color(0xFFF3831E), // orange
-    Color(0xFFE23B3B), // red
-];
+import 'package:getshap/workout/workout_done_screen.dart';
 
 class WorkoutFeedback extends StatefulWidget {
     const WorkoutFeedback({super.key});
 
     @override
-    _WorkoutFeedbackState createState() => _WorkoutFeedbackState();
+    State<WorkoutFeedback> createState() => _WorkoutFeedbackState();
 }
 
 class _WorkoutFeedbackState extends State<WorkoutFeedback> {
@@ -41,13 +33,22 @@ class _WorkoutFeedbackState extends State<WorkoutFeedback> {
         return '🔥'; // very intense — crushed it
     }
 
-    /// Smoothly interpolated colour along [_kRpeSpectrum] for a 1..10 value.
-    Color _colorForRPE(double value) {
+    /// Interpolates along a five-stop spectrum for a 1..10 value.
+    static Color _alongSpectrum(List<Color> spectrum, double value) {
         final double t = ((value - 1) / 9).clamp(0.0, 1.0);
-        final double scaled = t * (_kRpeSpectrum.length - 1);
-        final int i = scaled.floor().clamp(0, _kRpeSpectrum.length - 2);
-        return Color.lerp(_kRpeSpectrum[i], _kRpeSpectrum[i + 1], scaled - i)!;
+        final double scaled = t * (spectrum.length - 1);
+        final int i = scaled.floor().clamp(0, spectrum.length - 2);
+        return Color.lerp(spectrum[i], spectrum[i + 1], scaled - i)!;
     }
+
+    /// The saturated colour — for large areas: the badge glow, the chip fill,
+    /// the page tint.
+    Color _colorForRPE(double value) => _alongSpectrum(AppColors.rpeBright, value);
+
+    /// The readable partner of [_colorForRPE], for anything made of text. The
+    /// bright spectrum is far too light for that on a white page: at RPE 3 it
+    /// measures 2.31:1, which fails even the large-text bar.
+    Color _inkForRPE(double value) => _alongSpectrum(AppColors.rpeInk, value);
 
     @override
     void didChangeDependencies() {
@@ -67,40 +68,56 @@ class _WorkoutFeedbackState extends State<WorkoutFeedback> {
         ];
     }
 
+    Future<void> _submit() async {
+        final navigator = Navigator.of(context);
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setInt('rpe_value', _rpeValue.round());
+
+        await FeedbackExecution.executeOnFeedback();
+
+        if (!mounted) return;
+        navigator.pushReplacement(
+            MaterialPageRoute<void>(builder: (context) => const CongratulationsScreen()),
+        );
+    }
+
     @override
     Widget build(BuildContext context) {
         final l10n = AppLocalizations.of(context)!;
         final int rounded = _rpeValue.round();
         final Color effort = _colorForRPE(_rpeValue);
+        final Color effortInk = _inkForRPE(_rpeValue);
 
         return PopScope(
             // Keep the user on the feedback screen until they tap Next.
             // Placed on the outer route so it blocks BOTH Android's hardware
             // back button and iOS's left-edge back-swipe.
             canPop: false,
-            child: MaterialApp(
-            debugShowCheckedModeBanner: false,
-            localizationsDelegates: AppLocalizations.localizationsDelegates,
-            supportedLocales: AppLocalizations.supportedLocales,
-            home: Scaffold(
-                backgroundColor: Colors.transparent,
-                body: Container(
-                    width: double.infinity,
-                    height: double.infinity,
+            child: Scaffold(
+                // Opaque: without the nested MaterialApp that used to sit here,
+                // a transparent scaffold would let the previous route show
+                // through during the incoming transition.
+                backgroundColor: AppColors.pageBg,
+                body: DecoratedBox(
+                    // A faint wash of the chosen effort colour at the top, so
+                    // the answer tints the whole page without ever getting near
+                    // the text.
                     decoration: BoxDecoration(
                         gradient: LinearGradient(
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
-                            colors: [
-                                effort.withOpacity(0.16),
-                                const Color(0xFFF6F7FB),
-                            ],
+                            colors: [effort.withValues(alpha: 0.14), AppColors.pageBg],
                             stops: const [0.0, 0.5],
                         ),
                     ),
                     child: SafeArea(
                         child: Padding(
-                            padding: const EdgeInsets.fromLTRB(24, 12, 24, 20),
+                            padding: const EdgeInsets.fromLTRB(
+                                AppSpacing.xl,
+                                AppSpacing.md,
+                                AppSpacing.xl,
+                                AppSpacing.xl,
+                            ),
                             child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
@@ -108,88 +125,73 @@ class _WorkoutFeedbackState extends State<WorkoutFeedback> {
                                     Text(
                                         l10n.feedback.toUpperCase(),
                                         textAlign: TextAlign.center,
-                                        style: const TextStyle(
-                                            fontSize: 13,
-                                            fontWeight: FontWeight.w700,
-                                            letterSpacing: 2.0,
-                                            color: Color(0xFF8A90A6),
-                                        ),
+                                        style: AppText.eyebrow.copyWith(color: AppColors.n500),
                                     ),
-                                    const SizedBox(height: 6),
+                                    const SizedBox(height: AppSpacing.sm),
                                     Text(
                                         l10n.howWasTheWorkout,
                                         textAlign: TextAlign.center,
-                                        style: const TextStyle(
-                                            fontSize: 26,
-                                            fontWeight: FontWeight.w700,
-                                            height: 1.15,
-                                            color: Color(0xFFC4C9D4),
-                                            shadows: [
-                                                Shadow(
-                                                    color: Color(0x33000000),
-                                                    blurRadius: 8,
-                                                    offset: Offset(0, 1),
-                                                ),
-                                            ],
-                                        ),
+                                        style: AppText.headlineMedium.copyWith(color: AppColors.n900),
                                     ),
 
                                     // ---- Hero: emoji + number + label ---------------
+                                    // Centred in the free space, but scrollable:
+                                    // the badge and the numeral are fixed-size,
+                                    // so at a large system font they otherwise
+                                    // overflow the space the card and button
+                                    // leave behind.
                                     Expanded(
-                                        child: Column(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                                _EmojiBadge(color: effort, emoji: _emojiForRPE(rounded)),
-                                                const SizedBox(height: 28),
-                                                Row(
-                                                    mainAxisAlignment: MainAxisAlignment.center,
-                                                    crossAxisAlignment: CrossAxisAlignment.baseline,
-                                                    textBaseline: TextBaseline.alphabetic,
-                                                    children: [
-                                                        Text(
-                                                            '$rounded',
-                                                            style: TextStyle(
-                                                                fontSize: 60,
-                                                                fontWeight: FontWeight.w800,
-                                                                height: 1.0,
+                                        child: LayoutBuilder(
+                                            builder: (context, constraints) => SingleChildScrollView(
+                                                child: ConstrainedBox(
+                                                    constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                                                    child: Column(
+                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                        children: [
+                                                            _EmojiBadge(color: effort, emoji: _emojiForRPE(rounded)),
+                                                            const SizedBox(height: AppSpacing.xxl),
+                                                            Row(
+                                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                                crossAxisAlignment: CrossAxisAlignment.baseline,
+                                                                textBaseline: TextBaseline.alphabetic,
+                                                                children: [
+                                                                    Text(
+                                                                        '$rounded',
+                                                                        style: AppText.numeral(
+                                                                            AppText.displaySmall,
+                                                                        ).copyWith(color: effortInk),
+                                                                    ),
+                                                                    const SizedBox(width: AppSpacing.xs),
+                                                                    Text(
+                                                                        '/ 10',
+                                                                        style: AppText.titleMedium.copyWith(color: AppColors.n400),
+                                                                    ),
+                                                                ],
+                                                            ),
+                                                            const SizedBox(height: AppSpacing.lg),
+                                                            _DescriptionChip(
                                                                 color: effort,
+                                                                ink: effortInk,
+                                                                text: _rpeDescriptions.isNotEmpty
+                                                                        ? _rpeDescriptions[rounded - 1]
+                                                                        : '',
                                                             ),
-                                                        ),
-                                                        const SizedBox(width: 4),
-                                                        const Text(
-                                                            '/ 10',
-                                                            style: TextStyle(
-                                                                fontSize: 22,
-                                                                fontWeight: FontWeight.w600,
-                                                                color: Color(0xFF9AA0B4),
-                                                            ),
-                                                        ),
-                                                    ],
+                                                        ],
+                                                    ),
                                                 ),
-                                                const SizedBox(height: 14),
-                                                _DescriptionChip(
-                                                    color: effort,
-                                                    text: _rpeDescriptions.isNotEmpty
-                                                        ? _rpeDescriptions[rounded - 1]
-                                                        : '',
-                                                ),
-                                            ],
+                                            ),
                                         ),
                                     ),
 
                                     // ---- Slider card --------------------------------
-                                    Container(
-                                        padding: const EdgeInsets.fromLTRB(20, 18, 20, 14),
-                                        decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            borderRadius: BorderRadius.circular(24),
-                                            boxShadow: [
-                                                BoxShadow(
-                                                    color: const Color(0xFF1E2233).withOpacity(0.06),
-                                                    blurRadius: 24,
-                                                    offset: const Offset(0, 8),
-                                                ),
-                                            ],
+                                    AppCard(
+                                        radius: AppRadius.lg,
+                                        shadow: AppShadows.md,
+                                        padding: const EdgeInsets.fromLTRB(
+                                            AppSpacing.xl,
+                                            AppSpacing.lg,
+                                            AppSpacing.xl,
+                                            AppSpacing.md,
                                         ),
                                         child: Column(
                                             children: [
@@ -203,8 +205,8 @@ class _WorkoutFeedbackState extends State<WorkoutFeedback> {
                                                             pressedElevation: 6,
                                                         ),
                                                         overlayShape: const RoundSliderOverlayShape(overlayRadius: 24),
-                                                        thumbColor: Colors.white,
-                                                        overlayColor: effort.withOpacity(0.16),
+                                                        thumbColor: AppColors.surface,
+                                                        overlayColor: effort.withValues(alpha: 0.16),
                                                         showValueIndicator: ShowValueIndicator.never,
                                                     ),
                                                     child: Slider(
@@ -217,58 +219,26 @@ class _WorkoutFeedbackState extends State<WorkoutFeedback> {
                                                         },
                                                     ),
                                                 ),
-                                                const SizedBox(height: 2),
+                                                const SizedBox(height: AppSpacing.xxs),
                                                 Row(
                                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                     children: [
                                                         _ScaleEnd(number: '1', label: l10n.rpe1),
-                                                        _ScaleEnd(
-                                                            number: '10',
-                                                            label: l10n.rpe910,
-                                                            alignEnd: true,
-                                                        ),
+                                                        _ScaleEnd(number: '10', label: l10n.rpe910, alignEnd: true),
                                                     ],
                                                 ),
                                             ],
                                         ),
                                     ),
 
-                                    const SizedBox(height: 20),
+                                    const SizedBox(height: AppSpacing.xl),
 
                                     // ---- Continue button ----------------------------
-                                    Pressable3DButton(
-                                        color: _kBrandBlue,
-                                        height: 56,
-                                        width: double.infinity,
-                                        onPressed: () async {
-                                            final navigator = Navigator.of(context);
-                                            final prefs = await SharedPreferences.getInstance();
-                                            await prefs.setInt('rpe_value', _rpeValue.round());
-
-                                            await FeedbackExecution.executeOnFeedback();
-
-                                            if (!mounted) return;
-                                            navigator.pushReplacement(
-                                                MaterialPageRoute(
-                                                    builder: (context) => CongratulationsScreen(),
-                                                ),
-                                            );
-                                        },
-                                        child: Row(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                                Text(
-                                                    l10n.next,
-                                                    style: const TextStyle(
-                                                        fontSize: 18,
-                                                        fontWeight: FontWeight.bold,
-                                                        color: Colors.white,
-                                                    ),
-                                                ),
-                                                const SizedBox(width: 8),
-                                                const Icon(Icons.arrow_forward_rounded, size: 22, color: Colors.white),
-                                            ],
-                                        ),
+                                    AppButton(
+                                        label: l10n.next,
+                                        size: AppButtonSize.md,
+                                        trailingIcon: Icons.arrow_forward_rounded,
+                                        onPressed: _submit,
                                     ),
                                 ],
                             ),
@@ -276,7 +246,6 @@ class _WorkoutFeedbackState extends State<WorkoutFeedback> {
                     ),
                 ),
             ),
-        ),
         );
     }
 }
@@ -295,15 +264,11 @@ class _EmojiBadge extends StatelessWidget {
             height: 152,
             decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.white,
+                color: AppColors.surface,
                 boxShadow: [
-                    BoxShadow(
-                        color: color.withOpacity(0.35),
-                        blurRadius: 40,
-                        spreadRadius: 4,
-                    ),
+                    BoxShadow(color: color.withValues(alpha: 0.35), blurRadius: 40, spreadRadius: 4),
                 ],
-                border: Border.all(color: color.withOpacity(0.35), width: 3),
+                border: Border.all(color: color.withValues(alpha: 0.35), width: 3),
             ),
             alignment: Alignment.center,
             child: Text(emoji, style: const TextStyle(fontSize: 76)),
@@ -311,29 +276,27 @@ class _EmojiBadge extends StatelessWidget {
     }
 }
 
-/// Rounded pill showing the textual effort description.
+/// Rounded pill showing the textual effort description: a wash of the bright
+/// spectrum colour behind the readable ink version of the same hue.
 class _DescriptionChip extends StatelessWidget {
     final Color color;
+    final Color ink;
     final String text;
 
-    const _DescriptionChip({required this.color, required this.text});
+    const _DescriptionChip({required this.color, required this.ink, required this.text});
 
     @override
     Widget build(BuildContext context) {
         return Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl, vertical: AppSpacing.md),
             decoration: BoxDecoration(
-                color: color.withOpacity(0.14),
-                borderRadius: BorderRadius.circular(30),
+                color: color.withValues(alpha: 0.14),
+                borderRadius: AppRadius.all(AppRadius.pill),
             ),
             child: Text(
                 text,
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: 17,
-                    fontWeight: FontWeight.w700,
-                    color: Color.lerp(color, Colors.black, 0.28),
-                ),
+                style: AppText.titleMedium.copyWith(color: ink),
             ),
         );
     }
@@ -345,37 +308,21 @@ class _ScaleEnd extends StatelessWidget {
     final String label;
     final bool alignEnd;
 
-    const _ScaleEnd({
-        required this.number,
-        required this.label,
-        this.alignEnd = false,
-    });
+    const _ScaleEnd({required this.number, required this.label, this.alignEnd = false});
 
     @override
     Widget build(BuildContext context) {
         return Column(
-            crossAxisAlignment:
-                alignEnd ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+            crossAxisAlignment: alignEnd ? CrossAxisAlignment.end : CrossAxisAlignment.start,
             children: [
-                Text(
-                    number,
-                    style: const TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w800,
-                        color: Color(0xFF6B7186),
-                    ),
-                ),
-                const SizedBox(height: 2),
+                Text(number, style: AppText.labelLarge.copyWith(color: AppColors.n600)),
+                const SizedBox(height: AppSpacing.xxs),
                 ConstrainedBox(
                     constraints: const BoxConstraints(maxWidth: 110),
                     child: Text(
                         label,
                         textAlign: alignEnd ? TextAlign.end : TextAlign.start,
-                        style: const TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFF9AA0B4),
-                        ),
+                        style: AppText.bodySmall.copyWith(color: AppColors.n500),
                     ),
                 ),
             ],
@@ -384,7 +331,8 @@ class _ScaleEnd extends StatelessWidget {
 }
 
 /// Slider track painted with the full easy→hard gradient. The segment after the
-/// thumb is dimmed so the current position still reads as progress.
+/// thumb is replaced with a flat neutral so the current position reads as
+/// progress.
 class _GradientRpeTrackShape extends SliderTrackShape with BaseSliderTrackShape {
     const _GradientRpeTrackShape();
 
@@ -423,10 +371,13 @@ class _GradientRpeTrackShape extends SliderTrackShape with BaseSliderTrackShape 
 
         // Full spectrum gradient.
         final Paint gradientPaint = Paint()
-            ..shader = const LinearGradient(colors: _kRpeSpectrum).createShader(trackRect);
+            ..shader = LinearGradient(colors: AppColors.rpeBright).createShader(trackRect);
         canvas.drawRRect(rrect, gradientPaint);
 
-        // Dim the portion ahead of the thumb.
+        // The portion ahead of the thumb. This used to be a 62% white veil,
+        // which worked when the card behind it was dark but vanishes on a white
+        // one — the slider would have looked like it had no progress at all. An
+        // opaque neutral also gives the white thumb something to sit against.
         final double thumbDx = thumbCenter.dx.clamp(trackRect.left, trackRect.right);
         final Rect inactiveRect = Rect.fromLTRB(
             thumbDx,
@@ -434,7 +385,7 @@ class _GradientRpeTrackShape extends SliderTrackShape with BaseSliderTrackShape 
             trackRect.right,
             trackRect.bottom,
         );
-        canvas.drawRect(inactiveRect, Paint()..color = Colors.white.withOpacity(0.62));
+        canvas.drawRect(inactiveRect, Paint()..color = AppColors.n300);
 
         canvas.restore();
     }

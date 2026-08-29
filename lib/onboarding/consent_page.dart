@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:getshap/common/bokeh_background.dart';
-import 'package:getshap/common/pressable_button.dart';
+import 'package:getshap/common/ui/app_button.dart';
+import 'package:getshap/common/ui/app_card.dart';
+import 'package:getshap/common/ui/app_scaffold.dart';
+import 'package:getshap/theme/app_colors.dart';
+import 'package:getshap/theme/app_spacing.dart';
+import 'package:getshap/theme/app_typography.dart';
 import 'package:getshap/core/legal.dart';
 import 'package:getshap/l10n/app_localizations.dart';
 
@@ -34,7 +38,6 @@ class ConsentPage extends StatefulWidget {
 }
 
 class _ConsentPageState extends State<ConsentPage> {
-    static const Color _blue = Color(0xFF2E6BF0);
 
     bool _accepted = false;
     // Guards against a double tap pushing the next screen twice while the
@@ -58,64 +61,22 @@ class _ConsentPageState extends State<ConsentPage> {
     Widget build(BuildContext context) {
         final l = AppLocalizations.of(context)!;
 
-        return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            localizationsDelegates: AppLocalizations.localizationsDelegates,
-            supportedLocales: AppLocalizations.supportedLocales,
-            home: Scaffold(
-                appBar: AppBar(
-                    backgroundColor: _blue,
-                    foregroundColor: Colors.white,
-                    automaticallyImplyLeading: false,
-                    title: Text(
-                        widget.isUpdate ? l.consentUpdatedTitle : l.consentTitle,
-                        style: const TextStyle(fontWeight: FontWeight.bold),
+        return AppScaffold(
+            title: widget.isUpdate ? l.consentUpdatedTitle : l.consentTitle,
+            centerScrollable: true,
+            bottomBar: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                    _buildCheckbox(l),
+                    const SizedBox(height: AppSpacing.md),
+                    AppButton(
+                        label: l.consentAccept,
+                        onPressed: _accepted ? _accept : null,
                     ),
-                ),
-                body: BokehBackground(
-                    child: SafeArea(
-                        child: Padding(
-                            padding: const EdgeInsets.all(16),
-                            child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: [
-                                    // Vertically centred in the free space, and
-                                    // scrollable when it cannot fit (small
-                                    // screens, large system font).
-                                    Expanded(
-                                        child: LayoutBuilder(
-                                            builder: (context, constraints) => SingleChildScrollView(
-                                                child: ConstrainedBox(
-                                                    constraints: BoxConstraints(
-                                                        minHeight: constraints.maxHeight,
-                                                    ),
-                                                    child: Center(child: _buildCard(l)),
-                                                ),
-                                            ),
-                                        ),
-                                    ),
-                                    const SizedBox(height: 12),
-                                    _buildCheckbox(l),
-                                    const SizedBox(height: 12),
-                                    Pressable3DButton(
-                                        color: _blue,
-                                        height: 58,
-                                        onPressed: _accepted ? _accept : null,
-                                        child: Text(
-                                            l.consentAccept,
-                                            style: const TextStyle(
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.white,
-                                            ),
-                                        ),
-                                    ),
-                                ],
-                            ),
-                        ),
-                    ),
-                ),
+                ],
             ),
+            body: _buildCard(l),
         );
     }
 
@@ -125,33 +86,24 @@ class _ConsentPageState extends State<ConsentPage> {
     /// usual contractual practice only binds if attention was drawn to it and
     /// it was expressly accepted. Everything else lives in the documents.
     Widget _buildCard(AppLocalizations l) {
-        return Container(
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(12),
-            ),
-            padding: const EdgeInsets.all(20),
+        return AppCard(
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
                     if (widget.isUpdate) ...[
                         _buildUpdateNotice(l),
-                        const SizedBox(height: 18),
+                        const SizedBox(height: AppSpacing.xl),
                     ],
                     Text(
                         l.consentIntro,
-                        style: const TextStyle(
-                            fontSize: 16,
-                            height: 1.4,
-                            color: Colors.black87,
-                        ),
+                        style: AppText.bodyLarge.copyWith(color: AppColors.n900),
                     ),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: AppSpacing.lg),
                     _buildPoint(l.consentPoint1),
                     _buildPoint(l.consentPoint2),
                     _buildPoint(l.consentPoint3),
-                    const Divider(height: 28),
+                    const Divider(height: AppSpacing.xxxl),
                     _buildLink(l.consentTermsLink, Legal.termsUrl(context)),
                     _buildLink(l.consentHealthLink, Legal.healthUrl(context)),
                     _buildLink(l.consentPrivacyLink, Legal.privacyUrl(context)),
@@ -163,42 +115,30 @@ class _ConsentPageState extends State<ConsentPage> {
     /// Shown only on a re-acceptance: says plainly that the documents changed,
     /// so the returning user knows this is not the app repeating itself.
     Widget _buildUpdateNotice(AppLocalizations l) {
-        return Container(
-            padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
-            decoration: const BoxDecoration(
-                color: Color(0xFFEDF2FE),
-                border: Border(left: BorderSide(color: _blue, width: 4)),
-                borderRadius: BorderRadius.all(Radius.circular(6)),
-            ),
+        return AppCard.notice(
+            accent: AppColors.brand500,
+            color: AppColors.brand50,
             child: Text(
                 l.consentUpdatedBody,
-                style: const TextStyle(
-                    fontSize: 15,
-                    height: 1.4,
-                    color: Colors.black87,
-                ),
+                style: AppText.bodyMedium.copyWith(color: AppColors.n900),
             ),
         );
     }
 
     Widget _buildPoint(String text) {
         return Padding(
-            padding: const EdgeInsets.only(bottom: 12),
+            padding: const EdgeInsets.only(bottom: AppSpacing.md),
             child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                     const Padding(
-                        padding: EdgeInsets.only(top: 3, right: 10),
-                        child: Icon(Icons.circle, size: 8, color: _blue),
+                        padding: EdgeInsets.only(top: 5, right: AppSpacing.md),
+                        child: Icon(Icons.circle, size: 7, color: AppColors.brand500),
                     ),
                     Expanded(
                         child: Text(
                             text,
-                            style: const TextStyle(
-                                fontSize: 15,
-                                height: 1.35,
-                                color: Colors.black87,
-                            ),
+                            style: AppText.bodyMedium.copyWith(color: AppColors.n600),
                         ),
                     ),
                 ],
@@ -209,20 +149,20 @@ class _ConsentPageState extends State<ConsentPage> {
     Widget _buildLink(String label, String url) {
         return InkWell(
             onTap: () => Legal.open(url),
+            borderRadius: AppRadius.all(AppRadius.xs),
             child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 6),
+                padding: const EdgeInsets.symmetric(vertical: AppSpacing.sm),
                 child: Row(
                     children: [
-                        const Icon(Icons.open_in_new, size: 16, color: _blue),
-                        const SizedBox(width: 8),
+                        const Icon(Icons.open_in_new, size: 16, color: AppColors.brand500),
+                        const SizedBox(width: AppSpacing.sm),
                         Flexible(
                             child: Text(
                                 label,
-                                style: const TextStyle(
-                                    fontSize: 15,
-                                    color: _blue,
+                                style: AppText.bodyMedium.copyWith(
+                                    color: AppColors.brand500,
                                     decoration: TextDecoration.underline,
-                                    decorationColor: _blue,
+                                    decorationColor: AppColors.brand500,
                                 ),
                             ),
                         ),
@@ -238,30 +178,30 @@ class _ConsentPageState extends State<ConsentPage> {
     Widget _buildCheckbox(AppLocalizations l) {
         return InkWell(
             onTap: () => setState(() => _accepted = !_accepted),
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: AppRadius.all(AppRadius.sm),
             child: Container(
-                padding: const EdgeInsets.fromLTRB(8, 10, 14, 10),
+                padding: const EdgeInsets.fromLTRB(
+                    AppSpacing.sm,
+                    AppSpacing.md,
+                    AppSpacing.lg,
+                    AppSpacing.md,
+                ),
                 decoration: BoxDecoration(
-                    color: Colors.white.withValues(alpha: 0.92),
-                    borderRadius: BorderRadius.circular(12),
+                    color: AppColors.surface,
+                    borderRadius: AppRadius.all(AppRadius.sm),
+                    border: Border.all(color: AppColors.n200),
                 ),
                 child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                         Checkbox(
                             value: _accepted,
-                            activeColor: _blue,
                             onChanged: (value) =>
                                 setState(() => _accepted = value ?? false),
                         ),
                         Expanded(
                             child: Text(
                                 l.consentCheckbox,
-                                style: const TextStyle(
-                                    fontSize: 14,
-                                    height: 1.3,
-                                    color: Colors.black87,
-                                ),
+                                style: AppText.bodySmall.copyWith(color: AppColors.n900),
                             ),
                         ),
                     ],

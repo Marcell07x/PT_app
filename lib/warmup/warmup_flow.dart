@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:getshap/l10n/app_localizations.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:getshap/workout/workout_flow.dart';
+import 'package:getshap/common/ui/app_scaffold.dart';
 import 'package:getshap/workout/workout_screen.dart';
 import 'package:getshap/core/level.dart';
 import 'package:getshap/warmup/warmup.dart';
@@ -10,7 +10,7 @@ class WarmupFlow extends StatefulWidget {
     const WarmupFlow({super.key});
 
     @override
-    _WarmupFlowState createState() => _WarmupFlowState();
+    State<WarmupFlow> createState() => _WarmupFlowState();
 }
 
 class _WarmupFlowState extends State<WarmupFlow> {
@@ -128,9 +128,12 @@ class _WarmupFlowState extends State<WarmupFlow> {
     @override
     Widget build(BuildContext context) {
         if (warmupParts.isEmpty) {
-            return Scaffold(
-                appBar: AppBar(title: Text('Workout')),
-                body: Center(child: Text('No Exercises Error')),
+            // Transient: the warm-up is still being assembled. Was an
+            // English-only "No Exercises Error" in a Hungarian/English app.
+            return AppScaffold(
+                title: AppLocalizations.of(context)!.warmup,
+                showBack: false,
+                body: const Center(child: CircularProgressIndicator()),
             );
         }
 

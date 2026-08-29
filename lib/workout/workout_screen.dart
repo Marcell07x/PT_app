@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:getshap/l10n/app_localizations.dart';
 import 'package:video_player/video_player.dart';
-import 'package:getshap/main.dart';
-import 'package:getshap/common/pressable_button.dart';
-import 'package:getshap/common/bokeh_background.dart';
-import 'package:getshap/common/outlined_text.dart';
+
+import 'package:getshap/common/ui/app_button.dart';
+import 'package:getshap/common/ui/app_card.dart';
+import 'package:getshap/common/ui/app_scaffold.dart';
+import 'package:getshap/l10n/app_localizations.dart';
+import 'package:getshap/theme/app_colors.dart';
+import 'package:getshap/theme/app_spacing.dart';
+import 'package:getshap/theme/app_typography.dart';
 
 class WorkoutScreen extends StatefulWidget {
     final String videoPath;
@@ -35,7 +38,7 @@ class WorkoutScreen extends StatefulWidget {
     });
 
     @override
-    _WorkoutScreenState createState() => _WorkoutScreenState();
+    State<WorkoutScreen> createState() => _WorkoutScreenState();
 }
 
 class _WorkoutScreenState extends State<WorkoutScreen> {
@@ -84,165 +87,147 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
         super.dispose();
     }
 
+    /// True once there is somewhere to step back to: an earlier exercise, or
+    /// the warm-up that preceded the workout at level 130 and above.
+    bool _canGoBack(AppLocalizations loc) =>
+        widget.currentIndex > 0 ||
+        (widget.label == loc.workout && widget.level >= 130);
+
     @override
     Widget build(BuildContext context) {
-        return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            localizationsDelegates: AppLocalizations.localizationsDelegates,
-            supportedLocales: AppLocalizations.supportedLocales,
-            
-            home: Scaffold(
-                appBar: AppBar(
-                    title: Text(
-                        '${widget.label} ' '(${widget.currentIndex + 1}/${widget.totalWorkouts})',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
+        final AppLocalizations loc = AppLocalizations.of(context)!;
+        final bool canGoBack = _canGoBack(loc);
+
+        return AppScaffold(
+            title: '${widget.label} (${widget.currentIndex + 1}/${widget.totalWorkouts})',
+            leading: IconButton(
+                icon: const Icon(Icons.close),
+                // Pop back to the live home page rather than building a second
+                // one. Both exits from a workout now take the same route (the
+                // congratulations screen already does this), and the existing
+                // home keeps its WorkoutSignal.onSignalChanged registration — a
+                // fresh MyHomePage would claim that single static slot in
+                // initState only for the old page's dispose to null it again
+                // immediately afterwards, silently killing the home screen's
+                // streak/flame refresh for the rest of the session. The workout
+                // route is removed either way, so back still cannot return to it.
+                onPressed: () =>
+                    Navigator.of(context).popUntil((route) => route.isFirst),
+            ),
+            bottomBar: Row(
+                children: <Widget>[
+                    if (canGoBack) ...<Widget>[
+                        AppButton.icon(
+                            icon: Icons.arrow_back_rounded,
+                            label: loc.goback,
+                            onPressed: widget.onPreviousPressed,
+                        ),
+                        const SizedBox(width: AppSpacing.md),
+                    ],
+                    Expanded(
+                        child: AppButton(
+                            label: widget.buttonText,
+                            size: AppButtonSize.md,
+                            trailingIcon: Icons.arrow_forward_rounded,
+                            onPressed: widget.onNextPressed,
                         ),
                     ),
-                    backgroundColor: Color.fromRGBO(22, 95, 239, 1),
-                    leading: IconButton(
-                        icon: Icon(
-                            Icons.close,
-                            color: Colors.white,
-                        ),
-                        onPressed: () { Navigator.of(context).pushAndRemoveUntil(
-                                MaterialPageRoute(
-                                    builder: (context) => const MyHomePage(),
-                                ),
-                                (Route<dynamic> route) => false,
-                            );
-                        },
+                ],
+            ),
+            body: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                    const SizedBox(height: AppSpacing.md),
+                    LinearProgressIndicator(
+                        value: (widget.currentIndex + 1) / widget.totalWorkouts,
+                        minHeight: 6,
+                        borderRadius: AppRadius.all(AppRadius.xs),
                     ),
-                ),
-                body: BokehBackground(
-                    child: SafeArea(
-                    child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Column(
-                            children: [
-                                LinearProgressIndicator(
-                                    value: (widget.currentIndex + 1) / widget.totalWorkouts,
-                                    backgroundColor: Colors.grey[300],
-                                    valueColor: AlwaysStoppedAnimation<Color>(Color.fromRGBO(22, 95, 239, 1)),
-                                ),
-                                SizedBox(height: 20),
-                                Container(
-                                    width: double.infinity,
-                                    constraints: BoxConstraints(
-                                        maxHeight: MediaQuery.of(context).size.height * 0.3,
-                                    ),
-                                    child: AspectRatio(
-                                        aspectRatio: _videoAspectRatio,
-                                        child: Container(
-                                            decoration: BoxDecoration(
-                                                color: Colors.black,
-                                                borderRadius: BorderRadius.circular(12),
-                                                boxShadow: [
-                                                    BoxShadow(
-                                                        color: Colors.grey.withOpacity(0.5),
-                                                        spreadRadius: 2,
-                                                        blurRadius: 5,
-                                                        offset: Offset(0, 3),
-                                                    ),
-                                                ],
-                                            ),
-                                            child: _controller.value.isInitialized
-                                                ? VideoPlayer(_controller)
-                                                : Center(
-                                                    child: Column(
-                                                        mainAxisAlignment: MainAxisAlignment.center,
-                                                        children: [
-                                                            CircularProgressIndicator(),
-                                                            SizedBox(height: 10),
-                                                        ],
-                                                    ),
-                                                ),
+                    const SizedBox(height: AppSpacing.xl),
+                    _buildVideo(context),
+                    const SizedBox(height: AppSpacing.xl),
+                    Text(
+                        widget.exerciseName,
+                        textAlign: TextAlign.center,
+                        style: AppText.headlineSmall.copyWith(color: AppColors.n900),
+                    ),
+                    const SizedBox(height: AppSpacing.md),
+                    _buildRepsPill(),
+                    const SizedBox(height: AppSpacing.xl),
+                    // Takes the remaining height and scrolls inside it, rather
+                    // than the old fixed 200px box that clipped at large system
+                    // font sizes.
+                    Expanded(
+                        child: AppCard(
+                            color: AppColors.n100,
+                            shadow: const <BoxShadow>[],
+                            padding: const EdgeInsets.fromLTRB(
+                                AppSpacing.xl,
+                                AppSpacing.lg,
+                                AppSpacing.sm,
+                                AppSpacing.lg,
+                            ),
+                            child: Scrollbar(
+                                thumbVisibility: true,
+                                child: SingleChildScrollView(
+                                    padding: const EdgeInsets.only(right: AppSpacing.md),
+                                    child: Text(
+                                        widget.description,
+                                        style: AppText.bodyMedium.copyWith(
+                                            color: AppColors.n900,
                                         ),
                                     ),
                                 ),
-                                SizedBox(height: 25),
-                                OutlinedText(
-                                    widget.exerciseName,
-                                    fontSize: 25,
-                                    fontWeight: FontWeight.w700,
-                                ),
-                                SizedBox(height: 15),
-                                OutlinedText(
-                                    widget.reps,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                ),
-                                SizedBox(height: 10),
-                                Container(
-                                    height: 4,
-                                    color: Color.fromRGBO(22, 95, 239, 1),
-                                ),
-                                SizedBox(height: 15),
-                                Container(
-                                    width: double.infinity,
-                                    padding: const EdgeInsets.fromLTRB(16, 12, 8, 12),
-                                    decoration: BoxDecoration(
-                                        color: const Color(0x8C141C2E),
-                                        borderRadius: BorderRadius.circular(14),
-                                    ),
-                                    child: SizedBox(
-                                        height: 200,
-                                        child: Scrollbar(
-                                            thumbVisibility: true,
-                                            child: SingleChildScrollView(
-                                                child: Text(
-                                                    widget.description,
-                                                    style: const TextStyle(
-                                                        fontSize: 16,
-                                                        color: Colors.white,
-                                                        height: 1.35,
-                                                    ),
-                                                    textAlign: TextAlign.left,
-                                                ),
-                                            ),
-                                        ),
-                                    ),
-                                ),
-                                Spacer(),
-                                Row(
-                                    children: [
-                                        if (widget.currentIndex > 0 || (widget.label == AppLocalizations.of(context)!.workout && widget.level >= 130))
-                                            Pressable3DButton(
-                                                color: Colors.grey,
-                                                width: 56,
-                                                height: 50,
-                                                onPressed: widget.onPreviousPressed,
-                                                child: const Icon(
-                                                    Icons.arrow_back_rounded,
-                                                    color: Colors.white,
-                                                    size: 26,
-                                                ),
-                                            ),
-                                        if (widget.currentIndex > 0 || (widget.label == AppLocalizations.of(context)!.workout && widget.level >= 130)) 
-                                            SizedBox(width: 10),
-                                        Expanded(
-                                            flex: 2,
-                                            child: Pressable3DButton(
-                                                color: const Color.fromRGBO(22, 95, 239, 1),
-                                                height: 50,
-                                                onPressed: widget.onNextPressed,
-                                                child: Text(
-                                                    widget.buttonText,
-                                                    style: const TextStyle(
-                                                        fontSize: 18,
-                                                        fontWeight: FontWeight.bold,
-                                                        color: Colors.white,
-                                                    ),
-                                                ),
-                                            ),
-                                        ),
-                                    ],
-                                ),
-                            ],
+                            ),
                         ),
+                    ),
+                    const SizedBox(height: AppSpacing.md),
+                ],
+            ),
+        );
+    }
+
+    Widget _buildVideo(BuildContext context) {
+        return Container(
+            constraints: BoxConstraints(
+                maxHeight: MediaQuery.of(context).size.height * 0.3,
+            ),
+            alignment: Alignment.center,
+            child: AspectRatio(
+                aspectRatio: _videoAspectRatio,
+                child: DecoratedBox(
+                    decoration: BoxDecoration(
+                        color: AppColors.videoBackdrop,
+                        borderRadius: AppRadius.all(AppRadius.md),
+                        boxShadow: AppShadows.md,
+                    ),
+                    child: ClipRRect(
+                        borderRadius: AppRadius.all(AppRadius.md),
+                        child: _controller.value.isInitialized
+                            ? VideoPlayer(_controller)
+                            : const Center(child: CircularProgressIndicator()),
                     ),
                 ),
+            ),
+        );
+    }
+
+    /// The rep count, set apart from the exercise name by a brand-tinted pill
+    /// rather than the old full-width blue rule.
+    Widget _buildRepsPill() {
+        return Center(
+            child: Container(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: AppSpacing.lg,
+                    vertical: AppSpacing.sm,
+                ),
+                decoration: BoxDecoration(
+                    color: AppColors.brand50,
+                    borderRadius: AppRadius.all(AppRadius.pill),
+                ),
+                child: Text(
+                    widget.reps,
+                    style: AppText.titleMedium.copyWith(color: AppColors.brand700),
                 ),
             ),
         );

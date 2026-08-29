@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:getshap/common/bokeh_background.dart';
+import 'package:flutter/services.dart';
 
-/// Branded launch splash: the bokeh background with the app's logo mark
-/// (the white "S" and the exponential curve, no blue box) fading in at the
-/// centre. After [minDuration] it replaces itself with [nextBuilder]'s screen.
+import 'package:getshap/theme/app_colors.dart';
+
+/// Branded launch splash: a full brand-blue field with the app's white logo
+/// mark fading and scaling in at the centre. After [minDuration] it replaces
+/// itself with [nextBuilder]'s screen.
+///
+/// The blue field is not decoration — `logo_mark.png` is pure white, so it
+/// needs a saturated ground to be visible at all. Keeping the splash blue also
+/// lets the native Android and iOS launch screens use the same colour, so the
+/// cold start is one continuous blue from the launcher icon to the first
+/// Flutter frame.
 class SplashScreen extends StatefulWidget {
     /// Builds the screen to show once the splash finishes (home or onboarding).
     final WidgetBuilder nextBuilder;
@@ -46,7 +54,7 @@ class _SplashScreenState extends State<SplashScreen>
         await Future.delayed(widget.minDuration);
         if (!mounted) return;
         Navigator.of(context).pushReplacement(
-            PageRouteBuilder(
+            PageRouteBuilder<void>(
                 transitionDuration: const Duration(milliseconds: 450),
                 pageBuilder: (context, animation, secondaryAnimation) =>
                     widget.nextBuilder(context),
@@ -64,9 +72,19 @@ class _SplashScreenState extends State<SplashScreen>
 
     @override
     Widget build(BuildContext context) {
-        return Scaffold(
-            body: BokehBackground(
-                child: Center(
+        // No app bar here, so AppBarTheme's overlay style never applies —
+        // set it directly or the status bar icons stay dark on the blue.
+        return AnnotatedRegion<SystemUiOverlayStyle>(
+            value: const SystemUiOverlayStyle(
+                statusBarColor: Colors.transparent,
+                statusBarIconBrightness: Brightness.light,
+                statusBarBrightness: Brightness.dark,
+                systemNavigationBarColor: AppColors.brand500,
+                systemNavigationBarIconBrightness: Brightness.light,
+            ),
+            child: Scaffold(
+                backgroundColor: AppColors.brand500,
+                body: Center(
                     child: FadeTransition(
                         opacity: _fade,
                         child: ScaleTransition(

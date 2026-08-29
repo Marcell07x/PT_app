@@ -4,9 +4,11 @@ import 'dart:io' show Platform;
 import 'package:permission_handler/permission_handler.dart';
 import 'package:getshap/l10n/app_localizations.dart';
 import 'package:getshap/main.dart';
-import 'package:getshap/common/bokeh_background.dart';
-import 'package:getshap/common/outlined_text.dart';
-import 'package:getshap/common/pressable_button.dart';
+import 'package:getshap/common/ui/app_button.dart';
+import 'package:getshap/common/ui/app_scaffold.dart';
+import 'package:getshap/theme/app_colors.dart';
+import 'package:getshap/theme/app_spacing.dart';
+import 'package:getshap/theme/app_typography.dart';
 
 class RequestNotiPermission extends StatefulWidget {
     const RequestNotiPermission({super.key});
@@ -52,7 +54,6 @@ class _RequestNotiPermissionState extends State<RequestNotiPermission> {
     }
 
     Future<void> _requestNotificationPermission() async {
-        print(_isPermissionGranted);
 
         if (Platform.isAndroid) {
             if (_isPermissionGranted == false) {
@@ -121,64 +122,47 @@ class _RequestNotiPermissionState extends State<RequestNotiPermission> {
 
     @override
     Widget build(BuildContext context) {
-        return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            localizationsDelegates: AppLocalizations.localizationsDelegates,
-            supportedLocales: AppLocalizations.supportedLocales,
-            home: Scaffold(
-                appBar: AppBar(
-                    title: Text(AppLocalizations.of(context)!.notis),
-                    backgroundColor: Color.fromRGBO(22, 95, 239, 1),
-                    foregroundColor: Colors.white,
-                    actions: [
-                        IconButton(
-                            icon: const Icon(Icons.close),
-                            onPressed: () {
-                                _goToHomePage();
-                            },
-                        ),
-                    ]
+        final AppLocalizations loc = AppLocalizations.of(context)!;
+
+        return AppScaffold(
+            title: loc.notis,
+            // Reached by pushReplacement onto an already-cleared stack, so
+            // there is no back destination.
+            showBack: false,
+            actions: [
+                IconButton(
+                    icon: const Icon(Icons.close),
+                    onPressed: _goToHomePage,
                 ),
-                body: BokehBackground(
-                    child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Column(
-                            children: [
-                                Expanded(
-                                    child: Center(
-                                        child: Padding(
-                                            padding: const EdgeInsets.only(bottom: 150),
-                                            child: OutlinedText(
-                                                AppLocalizations.of(context)!.notisAreImportant,
-                                                fontSize: 23,
-                                                fontWeight: FontWeight.w700,
-                                            ),
-                                            
-                                        ),
-                                    ),
-                                ),
-                                SizedBox(
-                                    width: double.infinity,
-                                    child: Pressable3DButton(
-                                                color: const Color.fromRGBO(22, 95, 239, 1),
-                                                height: 50,
-                                                onPressed: _requestNotificationPermission,
-                                                child: Text(
-                                                    AppLocalizations.of(context)!.enableNotis,
-                                                    style: const TextStyle(
-                                                        fontSize: 18,
-                                                        fontWeight: FontWeight.bold,
-                                                        color: Colors.white,
-                                                    ),
-                                                ),
-                                            ),
-                                ),
-                                const SizedBox(height: 40),
-                            ],  
-                            
+            ],
+            bottomBar: AppButton(
+                label: loc.enableNotis,
+                leadingIcon: Icons.notifications_active_outlined,
+                onPressed: _requestNotificationPermission,
+            ),
+            body: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                    Container(
+                        width: 96,
+                        height: 96,
+                        decoration: const BoxDecoration(
+                            color: AppColors.brand50,
+                            shape: BoxShape.circle,
+                        ),
+                        child: const Icon(
+                            Icons.notifications_none_rounded,
+                            color: AppColors.brand500,
+                            size: 48,
                         ),
                     ),
-                ),    
+                    const SizedBox(height: AppSpacing.xxl),
+                    Text(
+                        loc.notisAreImportant,
+                        textAlign: TextAlign.center,
+                        style: AppText.headlineMedium.copyWith(color: AppColors.n900),
+                    ),
+                ],
             ),
         );
     }

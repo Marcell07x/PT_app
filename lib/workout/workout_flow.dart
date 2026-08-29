@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:getshap/l10n/app_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:getshap/common/ui/app_scaffold.dart';
 import 'package:getshap/workout/workout_screen.dart';
 import 'package:getshap/workout/workout_done_screen.dart';
 import 'package:getshap/workout/workouta.dart';
@@ -21,7 +22,7 @@ class WorkoutFlow extends StatefulWidget {
     const WorkoutFlow({super.key});
 
     @override
-    _WorkoutFlowState createState() => _WorkoutFlowState();
+    State<WorkoutFlow> createState() => _WorkoutFlowState();
 }
 
 class _WorkoutFlowState extends State<WorkoutFlow> {
@@ -171,7 +172,6 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
             inc += 2;
             await prefs.setInt('incspeed', inc);
         }
-        print("the value of incspeed: ${inc}");
         await workoutLevel.setLevel();
         //record the finished workout, maintain the transition-week bonus token
         //and clear today's signal; needs the post-setLevel level to detect the
@@ -210,9 +210,12 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
     @override
     Widget build(BuildContext context) {
         if (workouts.isEmpty) {
-            return Scaffold(
-                appBar: AppBar(title: Text('Workout')),
-                body: Center(child: Text('No Exercises Error')),
+            // Transient: the session is still being assembled. Was an
+            // English-only "No Exercises Error" in a Hungarian/English app.
+            return AppScaffold(
+                title: AppLocalizations.of(context)!.workout,
+                showBack: false,
+                body: const Center(child: CircularProgressIndicator()),
             );
         }
 
@@ -236,7 +239,7 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
         return WorkoutScreen(
             videoPath: currentExercise['videoPath']!,
             exerciseName: _getLocalizedExerciseName(currentExercise['nameKey']!, context),
-            reps: "${repetitions} ${AppLocalizations.of(context)!.reps}",
+            reps: "$repetitions ${AppLocalizations.of(context)!.reps}",
             description: _getLocalizedExerciseName(currentExercise['descriptionKey']!, context),
             buttonText: isLastWorkout ? AppLocalizations.of(context)!.finish : AppLocalizations.of(context)!.next,
             label: AppLocalizations.of(context)!.workout,
