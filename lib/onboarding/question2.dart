@@ -13,6 +13,8 @@ class Question2Page extends StatelessWidget {
         final l = AppLocalizations.of(context)!;
         return QuestionTemplate(
             progressLabel: '2/7',
+            step: 2,
+            stepCount: 7,
             title: l.maxKneePush,
             nextLabel: l.nextq,
             options: const [

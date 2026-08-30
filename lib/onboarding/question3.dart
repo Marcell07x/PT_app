@@ -13,6 +13,8 @@ class Question3Page extends StatelessWidget {
         final l = AppLocalizations.of(context)!;
         return QuestionTemplate(
             progressLabel: '3/7',
+            step: 3,
+            stepCount: 7,
             title: l.maxSquats,
             nextLabel: l.nextq,
             options: const [

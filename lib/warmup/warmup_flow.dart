@@ -144,7 +144,10 @@ class _WarmupFlowState extends State<WarmupFlow> {
         return WorkoutScreen(
             videoPath: currentExercise['videoPath']!,
             exerciseName: _getLocalizedExerciseName(currentExercise['nameKey']!, context),
-            reps: isRunInPlace ? '20 ${AppLocalizations.of(context)!.seconds}' : "12 ${AppLocalizations.of(context)!.reps}",
+            reps: isRunInPlace ? '20' : '12',
+            repsLabel: isRunInPlace
+                ? AppLocalizations.of(context)!.seconds
+                : AppLocalizations.of(context)!.reps,
             description: isRunInPlace ? '' : AppLocalizations.of(context)!.warmupDesc,
             buttonText: AppLocalizations.of(context)!.next,
             label: AppLocalizations.of(context)!.warmup,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:getshap/common/ui/app_button.dart';
 import 'package:getshap/common/ui/app_option_tile.dart';
 import 'package:getshap/common/ui/app_scaffold.dart';
+import 'package:getshap/common/ui/app_step_progress.dart';
 import 'package:getshap/theme/app_colors.dart';
 import 'package:getshap/theme/app_spacing.dart';
 import 'package:getshap/theme/app_typography.dart';
@@ -24,6 +25,12 @@ class QuestionTemplate extends StatefulWidget {
     /// Shown before the "question" word in the app bar, e.g. "2/7".
     final String progressLabel;
 
+    /// Which question this is, 1-based, and how many there are. Drives the
+    /// step bar under the app bar. Left null on a screen that is not part of a
+    /// counted run (the gender question), which then shows no bar.
+    final int? step;
+    final int? stepCount;
+
     /// The question itself.
     final String title;
 
@@ -40,6 +47,8 @@ class QuestionTemplate extends StatefulWidget {
     const QuestionTemplate({
         super.key,
         required this.progressLabel,
+        this.step,
+        this.stepCount,
         required this.title,
         required this.options,
         required this.nextLabel,
@@ -72,6 +81,13 @@ class _QuestionTemplateState extends State<QuestionTemplate> {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
+                    if (widget.step != null && widget.stepCount != null) ...[
+                        AppStepProgress(
+                            total: widget.stepCount!,
+                            completed: widget.step!,
+                        ),
+                        const SizedBox(height: AppSpacing.giant),
+                    ],
                     Text(
                         widget.title,
                         textAlign: TextAlign.center,

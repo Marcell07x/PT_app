@@ -239,7 +239,8 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
         return WorkoutScreen(
             videoPath: currentExercise['videoPath']!,
             exerciseName: _getLocalizedExerciseName(currentExercise['nameKey']!, context),
-            reps: "$repetitions ${AppLocalizations.of(context)!.reps}",
+            reps: repetitions,
+            repsLabel: AppLocalizations.of(context)!.reps,
             description: _getLocalizedExerciseName(currentExercise['descriptionKey']!, context),
             buttonText: isLastWorkout ? AppLocalizations.of(context)!.finish : AppLocalizations.of(context)!.next,
             label: AppLocalizations.of(context)!.workout,

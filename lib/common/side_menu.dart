@@ -49,16 +49,16 @@ class SideMenu extends StatelessWidget {
     Widget build(BuildContext context) {
         final double menuWidth = MediaQuery.of(context).size.width * 0.78;
 
-        // Full-height brand-blue panel reaching the top of the screen. Only the
-        // left corners are rounded (the right edge is the screen edge); the
-        // elevation casts a soft shadow onto the light page behind it.
+        // Full-height white panel reaching the top of the screen. Only the left
+        // corners are rounded (the right edge is the screen edge); the
+        // elevation casts a soft shadow onto the page behind it.
         //
-        // The drawer stays saturated blue while the pages behind it are light:
-        // it is chrome, like the app bar and the splash, and it is the one
-        // other place the white logo mark appears.
+        // It used to be saturated blue, as chrome alongside the app bar and the
+        // splash. The app bar is no longer blue, and a menu is not a decision,
+        // so the panel joins the light content instead.
         return Drawer(
             width: menuWidth,
-            backgroundColor: AppColors.brand500,
+            backgroundColor: AppColors.surface,
             elevation: 12,
             clipBehavior: Clip.antiAlias,
             shape: const RoundedRectangleBorder(
@@ -86,8 +86,12 @@ class SideMenu extends StatelessWidget {
         }
     }
 
-    /// Branded header band: the white logo mark and wordmark, separated from
-    /// the list below by a hairline rather than the old drop shadow.
+    /// Branded header band: the logo mark and wordmark, separated from the list
+    /// below by a hairline.
+    ///
+    /// The bundled mark is white, for the blue splash. On the white panel it
+    /// would be invisible, so it is tinted to the brand blue here rather than
+    /// shipping a second artwork.
     Widget _buildHeader(BuildContext context) {
         final double topPad = MediaQuery.of(context).padding.top;
 
@@ -99,9 +103,7 @@ class SideMenu extends StatelessWidget {
                 AppSpacing.xl,
             ),
             decoration: const BoxDecoration(
-                border: Border(
-                    bottom: BorderSide(color: Color(0x33FFFFFF)),
-                ),
+                border: Border(bottom: BorderSide(color: AppColors.n200)),
             ),
             child: Row(
                 children: [
@@ -110,12 +112,13 @@ class SideMenu extends StatelessWidget {
                         width: 32,
                         height: 32,
                         filterQuality: FilterQuality.high,
+                        color: AppColors.brand500,
                     ),
                     const SizedBox(width: AppSpacing.md),
                     Text(
                         'GetShap',
                         style: AppText.titleLarge.copyWith(
-                            color: AppColors.onBrand,
+                            color: AppColors.n900,
                             letterSpacing: 0.3,
                         ),
                     ),
@@ -124,15 +127,14 @@ class SideMenu extends StatelessWidget {
         );
     }
 
-    /// Shared chrome for both pages of the menu: white text and icons on the
-    /// blue panel, with a consistent row shape.
+    /// Shared chrome for both pages of the menu, with a consistent row shape.
     Widget _menuList({required List<Widget> children}) {
         return ListTileTheme(
             data: ListTileThemeData(
-                iconColor: AppColors.onBrand,
-                textColor: AppColors.onBrand,
+                iconColor: AppColors.n600,
+                textColor: AppColors.n900,
                 titleTextStyle: AppText.titleSmall.copyWith(
-                    color: AppColors.onBrand,
+                    color: AppColors.n900,
                 ),
             ),
             child: ListView(
@@ -152,9 +154,19 @@ class SideMenu extends StatelessWidget {
                     onTap: onContactPressed,
                 ),
                 // The menu is available in release mode but these options
-                // are only visible when in debug mode.
+                // are only visible when in debug mode. They now say so: four
+                // developer tools sitting flush against "Contact" read as
+                // shipped features to anyone looking over your shoulder.
                 if (kDebugMode) ...[
-                    const Divider(height: AppSpacing.xxl, color: Color(0x33FFFFFF)),
+                    const Padding(
+                        padding: EdgeInsets.fromLTRB(
+                            AppSpacing.xl,
+                            AppSpacing.xxl,
+                            AppSpacing.xl,
+                            AppSpacing.sm,
+                        ),
+                        child: _DebugHeading(),
+                    ),
                     ListTile(
                         leading: const Icon(Icons.settings),
                         title: const Text('Set Level'),
@@ -185,7 +197,7 @@ class SideMenu extends StatelessWidget {
         return _menuList(
             children: [
                 _buildBackTile(loc),
-                const Divider(height: 1, color: Color(0x33FFFFFF)),
+                const Divider(height: 1),
                 Padding(
                     padding: const EdgeInsets.fromLTRB(
                         AppSpacing.xl,
@@ -195,16 +207,16 @@ class SideMenu extends StatelessWidget {
                     ),
                     child: Text(
                         loc.infoIntro,
-                        style: AppText.bodyMedium.copyWith(color: AppColors.onBrand),
+                        style: AppText.bodyMedium.copyWith(color: AppColors.n600),
                     ),
                 ),
                 _buildLinkTile(
-                    icon: Icons.camera_alt_outlined,
+                    leading: const _InstagramGlyph(),
                     label: loc.instagramLink,
                     onTap: _openInstagram,
                 ),
                 _buildLinkTile(
-                    icon: Icons.email_outlined,
+                    leading: const Icon(Icons.email_outlined),
                     label: loc.emailLink,
                     onTap: _openEmail,
                 ),
@@ -220,22 +232,176 @@ class SideMenu extends StatelessWidget {
         );
     }
 
+    /// Base size for a contact link. Deliberately its own number rather than a
+    /// slot on the type scale: this text is sized to a constraint (the drawer's
+    /// width) rather than to a role.
+    static const double _linkFontSize = 15;
+
+    /// One tappable contact link — the Instagram handle, the email address.
+    ///
+    /// These are the two strings in the app that must never break across lines:
+    /// half an email address is not an email address, and a handle wrapped after
+    /// "bodnar__" reads as a different name. Three things enforce that
+    /// together:
+    ///
+    /// * [TextScaler.noScaling] — the system font size does not apply here.
+    ///   Everywhere else in the app it should, and does; an address is a piece
+    ///   of data with a fixed shape, not prose, and at 2x it cannot fit any
+    ///   phone's drawer.
+    /// * `maxLines: 1` with `softWrap: false` — no wrapping, ever.
+    /// * [BoxFit.scaleDown] — on a narrow drawer the whole string shrinks
+    ///   instead of wrapping or ellipsising. `Instagram: @bodnar__mar…` would be
+    ///   worse than small but complete: an address you cannot read in full is
+    ///   an address you cannot use.
+    ///
+    /// The labels are the bare handle and address — no "Instagram:" or "Email:"
+    /// prefix, because the icon beside them already says which is which, and at
+    /// 15px the words were most of what had to fit.
     Widget _buildLinkTile({
-        required IconData icon,
+        required Widget leading,
         required String label,
         required VoidCallback onTap,
     }) {
         return ListTile(
-            leading: Icon(icon),
-            title: Text(
-                label,
-                style: AppText.titleSmall.copyWith(
-                    color: AppColors.onBrand,
-                    decoration: TextDecoration.underline,
-                    decorationColor: const Color(0x99FFFFFF),
+            leading: leading,
+            title: Align(
+                alignment: Alignment.centerLeft,
+                child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                        label,
+                        maxLines: 1,
+                        softWrap: false,
+                        overflow: TextOverflow.visible,
+                        textScaler: TextScaler.noScaling,
+                        style: AppText.titleSmall.copyWith(
+                            fontSize: _linkFontSize,
+                            color: AppColors.brand600,
+                            decoration: TextDecoration.underline,
+                            decorationColor: AppColors.brand200,
+                        ),
+                    ),
                 ),
             ),
             onTap: onTap,
+        );
+    }
+}
+
+/// Instagram's glyph, drawn rather than imported.
+///
+/// The camera icon it replaces was a generic camera — it said "photo", not
+/// "Instagram", and next to a bare handle there was nothing left to identify
+/// the service. Drawn with a [CustomPainter] instead of pulling in an icon
+/// package (`font_awesome_flutter` is ~1.5MB of fonts) for the one glyph the
+/// app needs, and it inherits [IconTheme] so it recolours with every other icon
+/// in the list.
+class _InstagramGlyph extends StatelessWidget {
+    final double size;
+
+    const _InstagramGlyph({this.size = 24});
+
+    @override
+    Widget build(BuildContext context) {
+        final Color color = IconTheme.of(context).color ?? AppColors.n600;
+
+        return SizedBox(
+            width: size,
+            height: size,
+            child: CustomPaint(
+                painter: _InstagramPainter(color),
+                isComplex: false,
+            ),
+        );
+    }
+}
+
+class _InstagramPainter extends CustomPainter {
+    final Color color;
+
+    const _InstagramPainter(this.color);
+
+    @override
+    void paint(Canvas canvas, Size size) {
+        final double s = size.shortestSide;
+        // Matches the ~2dp weight of the Material icons it sits beside in the
+        // contact list; anything lighter reads as a different icon set.
+        final double stroke = s * 0.085;
+
+        final Paint outline = Paint()
+            ..color = color
+            ..style = PaintingStyle.stroke
+            ..strokeWidth = stroke
+            ..strokeCap = StrokeCap.round;
+
+        // The rounded square body.
+        final double inset = stroke / 2 + s * 0.045;
+        final double bodyWidth = s - inset * 2;
+        canvas.drawRRect(
+            RRect.fromRectAndRadius(
+                Rect.fromLTRB(inset, inset, s - inset, s - inset),
+                Radius.circular(s * 0.25),
+            ),
+            outline,
+        );
+
+        // The lens, sized against the body's width rather than the icon's, so
+        // the two shapes stay in proportion if the stroke is ever retuned (a
+        // thinner stroke widens the body, and the lens follows). A shade under
+        // a quarter: at exactly a quarter the ring crowds the body at 24px.
+        canvas.drawCircle(Offset(s / 2, s / 2), bodyWidth / 4.4, outline);
+
+        // The flash dot, up in the corner where the real mark carries it. It
+        // keeps ~1.6dp of clear space from the corner arc at 24px; pushed much
+        // further out it starts to merge with the body's stroke on a low-density
+        // screen.
+        canvas.drawCircle(
+            Offset(s * 0.73, s * 0.27),
+            s * 0.045,
+            Paint()
+                ..color = color
+                ..style = PaintingStyle.fill,
+        );
+    }
+
+    @override
+    bool shouldRepaint(_InstagramPainter oldDelegate) =>
+        oldDelegate.color != color;
+}
+
+/// "DEVELOPER · DEBUG" — the heading that fences off the debug-only tools.
+class _DebugHeading extends StatelessWidget {
+    const _DebugHeading();
+
+    @override
+    Widget build(BuildContext context) {
+        return Row(
+            children: <Widget>[
+                Text(
+                    'FEJLESZTŐI',
+                    style: AppText.labelSmall.copyWith(color: AppColors.n400),
+                ),
+                const SizedBox(width: AppSpacing.sm),
+                Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: AppSpacing.sm,
+                        vertical: AppSpacing.xxs,
+                    ),
+                    decoration: BoxDecoration(
+                        color: AppColors.warningSubtle,
+                        borderRadius: AppRadius.all(AppRadius.xs),
+                    ),
+                    child: Text(
+                        'DEBUG',
+                        style: AppText.labelSmall.copyWith(
+                            color: AppColors.warningText,
+                        ),
+                    ),
+                ),
+                const SizedBox(width: AppSpacing.md),
+                const Expanded(child: Divider(height: 1)),
+            ],
         );
     }
 }

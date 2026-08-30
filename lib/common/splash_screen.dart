@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:getshap/theme/app_colors.dart';
+import 'package:getshap/theme/app_theme.dart';
 
 /// Branded launch splash: a full brand-blue field with the app's white logo
 /// mark fading and scaling in at the centre. After [minDuration] it replaces
@@ -72,16 +73,13 @@ class _SplashScreenState extends State<SplashScreen>
 
     @override
     Widget build(BuildContext context) {
-        // No app bar here, so AppBarTheme's overlay style never applies —
-        // set it directly or the status bar icons stay dark on the blue.
+        // No app bar here, so AppBarTheme's overlay style never applies — set it
+        // directly or the status bar icons stay dark on the blue. Both bars take
+        // this screen's own blue; what used to be wrong was not the colour but
+        // that nothing set it back afterwards, so it followed the user through
+        // the entire app.
         return AnnotatedRegion<SystemUiOverlayStyle>(
-            value: const SystemUiOverlayStyle(
-                statusBarColor: Colors.transparent,
-                statusBarIconBrightness: Brightness.light,
-                statusBarBrightness: Brightness.dark,
-                systemNavigationBarColor: AppColors.brand500,
-                systemNavigationBarIconBrightness: Brightness.light,
-            ),
+            value: AppTheme.systemBarsOn(AppColors.brand500),
             child: Scaffold(
                 backgroundColor: AppColors.brand500,
                 body: Center(

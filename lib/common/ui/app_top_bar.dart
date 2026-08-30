@@ -3,31 +3,29 @@ import 'package:flutter/material.dart';
 import 'package:getshap/theme/app_colors.dart';
 import 'package:getshap/theme/app_spacing.dart';
 
-/// The home screen's floating app bar: a rounded brand-blue slab that sits on
-/// a darker ledge, with a gap above it so the page shows through and the bar
-/// reads as raised.
+/// The home screen's app bar.
 ///
-/// Every *other* screen uses a plain [AppBar] — `AppBarTheme` already gives
-/// those the same blue, the same title style and the same status-bar
-/// treatment. This variant exists only for the front door.
+/// It used to be a rounded brand-blue slab sitting on a darker ledge. It is now
+/// what every other screen's header is: the page background, running straight
+/// through, with the content sitting on it. The blue moved to where a decision
+/// is — the primary button — and the ledge to the one button that carries it.
 ///
-/// The press language matches `AppButton`: hard zero-blur ledge plus a soft
-/// ambient shadow.
+/// The widget survives the change because the home screen needs a bar with no
+/// title and a custom leading (the streak flame), and because
+/// [preferredSize] has to stay in step with the padding below it or the body
+/// slides under the bar with no warning.
 class AppTopBar extends StatelessWidget implements PreferredSizeWidget {
     final Widget? title;
     final Widget? leading;
     final List<Widget>? actions;
 
-    /// Height of the bar face, excluding the status bar, [topGap] and [depth].
+    /// Height of the bar content, excluding the status bar and [topGap].
     final double height;
 
-    /// The 3D ledge below the bar.
-    final double depth;
-
-    /// Gap between the status bar and the bar, so it appears to float.
+    /// Gap between the status bar and the bar content.
     final double topGap;
 
-    /// Side margin, so the rounded corners and the ledge are visible.
+    /// Side margin for the bar content.
     final double horizontalMargin;
 
     const AppTopBar({
@@ -36,49 +34,30 @@ class AppTopBar extends StatelessWidget implements PreferredSizeWidget {
         this.leading,
         this.actions,
         this.height = kToolbarHeight,
-        this.depth = 5,
-        this.topGap = 12,
-        this.horizontalMargin = AppSpacing.md,
+        this.topGap = AppSpacing.sm,
+        this.horizontalMargin = AppSpacing.lg,
     });
 
-    // Must stay in step with the padding below, or the body slides under the
-    // bar without any warning.
+    // Must stay in step with the padding below.
     @override
-    Size get preferredSize => Size.fromHeight(topGap + height + depth);
+    Size get preferredSize => Size.fromHeight(topGap + height);
 
     @override
     Widget build(BuildContext context) {
-        final Widget bar = Container(
+        final Widget bar = SizedBox(
             height: height,
-            padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm),
-            decoration: BoxDecoration(
-                color: AppColors.brand500,
-                borderRadius: AppRadius.all(AppRadius.lg),
-                boxShadow: <BoxShadow>[
-                    BoxShadow(
-                        color: const Color(0x1F101A2E),
-                        offset: Offset(0, depth + 3),
-                        blurRadius: 14,
-                    ),
-                    BoxShadow(
-                        color: AppColors.brand700,
-                        offset: Offset(0, depth),
-                        blurRadius: 0,
-                    ),
-                ],
-            ),
             child: IconTheme.merge(
-                data: const IconThemeData(color: AppColors.onBrand),
+                data: const IconThemeData(color: AppColors.n600),
                 child: DefaultTextStyle.merge(
                     style: Theme.of(context).appBarTheme.titleTextStyle ??
-                        const TextStyle(color: AppColors.onBrand),
+                        const TextStyle(color: AppColors.n900),
                     child: Row(
                         children: <Widget>[
                             ?leading,
                             Expanded(
                                 child: Padding(
                                     padding: EdgeInsets.only(
-                                        left: leading == null ? AppSpacing.sm : AppSpacing.xs,
+                                        left: leading == null ? 0 : AppSpacing.xs,
                                     ),
                                     child: Align(
                                         alignment: Alignment.centerLeft,
@@ -100,7 +79,7 @@ class AppTopBar extends StatelessWidget implements PreferredSizeWidget {
                     horizontalMargin,
                     topGap,
                     horizontalMargin,
-                    depth,
+                    0,
                 ),
                 child: bar,
             ),

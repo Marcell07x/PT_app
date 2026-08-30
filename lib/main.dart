@@ -37,6 +37,11 @@ import 'package:getshap/tips/tips_data.dart';
 void main() async {
     WidgetsFlutterBinding.ensureInitialized();
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+    // The baseline for the screens that have no AppBar to carry it (the
+    // feedback page, the tip detail sheet). Every screen that does have one
+    // reapplies the same style through AppBarTheme, so the navigation bar never
+    // changes colour while the app is running.
+    SystemChrome.setSystemUIOverlayStyle(AppTheme.systemBars);
     await ScheduleNotifications.initNotification();
     await DebugClock.load();
     await StreakManager.checkStreak();
@@ -293,11 +298,25 @@ class _MyHomePageState extends State<MyHomePage> {
                     height: 72,
                     child: Center(child: CircularProgressIndicator()),
                 )
+                // The tip is the only content on the home screen, so it gets the
+                // room: titleLarge's size at body weight, rather than the
+                // 15px bodyMedium it shared with metadata everywhere else.
+                // `weight` keeps the variable font's axis in step — copyWith
+                // (fontWeight:) would silently do nothing here.
+                // Six lines, not four. At the old 15px, four lines held all but
+                // two of the eighteen tips; at 20px they hold twelve, so a third
+                // of them would end in an ellipsis the user has to tap through.
+                // Six lines at the larger size restores the original fit — and
+                // the home screen has the room, since the tip is all that is on
+                // it.
                 : Text(
                     _getTipText(context),
-                    maxLines: 4,
+                    maxLines: 6,
                     overflow: TextOverflow.ellipsis,
-                    style: AppText.bodyMedium.copyWith(color: AppColors.n600),
+                    style: AppText.weight(AppText.titleLarge, 400).copyWith(
+                        color: AppColors.n900,
+                        height: 1.45,
+                    ),
                 ),
         );
     }

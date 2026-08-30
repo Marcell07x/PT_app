@@ -197,13 +197,13 @@ abstract class AppLocalizations {
   /// No description provided for @instagramLink.
   ///
   /// In en, this message translates to:
-  /// **'Instagram: @bodnar__marcell'**
+  /// **'@bodnar__marcell'**
   String get instagramLink;
 
   /// No description provided for @emailLink.
   ///
   /// In en, this message translates to:
-  /// **'Email: bmarci891@gmail.com'**
+  /// **'bmarci891@gmail.com'**
   String get emailLink;
 
   /// No description provided for @wallPush.

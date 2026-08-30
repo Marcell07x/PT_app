@@ -46,6 +46,14 @@ enum AppButtonSize {
 /// The nine hand-rolled call sites this replaces used five different heights,
 /// two radii, two depths and two different blues.
 ///
+/// The ledge is a **signal, not a style**: it marks the one action a screen is
+/// asking for. It therefore appears on [AppButtonVariant.primary] and
+/// [AppButtonVariant.inverse] only, at a single 3px depth rather than the
+/// old 4/5/6px that scaled with the button. Raising every button on the page
+/// meant none of them read as raised — a back arrow does not deserve the same
+/// physicality as "start workout". Everything else gets [AppShadows.sm] and a
+/// 1px travel on press.
+///
 /// Beyond the tidy-up it adds three things the old widget lacked: an ambient
 /// shadow (on the old dark background the page did that job for free, on a
 /// light page it does not), a haptic tick, and [Semantics] — the previous
@@ -122,11 +130,21 @@ class _AppButtonState extends State<AppButton> {
         AppButtonSize.hero => AppRadius.lg,
     };
 
-    double get _depth => switch (widget.size) {
-        AppButtonSize.md => 4,
-        AppButtonSize.lg => 5,
-        AppButtonSize.hero => 6,
-    };
+    /// The one ledge depth in the app. Independent of size: it says "this is
+    /// the action", and that does not get truer on a bigger button.
+    static const double _ledgeDepth = 3;
+
+    /// Only the variants that carry a screen's primary action are raised.
+    bool get _hasLedge =>
+        _enabled &&
+        (widget.variant == AppButtonVariant.primary ||
+            widget.variant == AppButtonVariant.inverse);
+
+    double get _depth => _hasLedge ? _ledgeDepth : 0;
+
+    /// How far the face travels on press. Flat buttons still move, just barely,
+    /// so a tap is never silent.
+    double get _travel => _hasLedge ? _ledgeDepth : 1;
 
     /// (face, ledge, label) for the current variant and enabled state.
     (Color, Color, Color) get _palette {
@@ -179,6 +197,7 @@ class _AppButtonState extends State<AppButton> {
     Widget build(BuildContext context) {
         final (Color face, Color ledge, Color ink) = _palette;
         final double depth = _isGhost ? 0 : _depth;
+        final double travel = _isGhost ? 0 : _travel;
 
         final TextStyle labelStyle =
             (widget.size == AppButtonSize.hero ? AppText.buttonHero : AppText.button)
@@ -217,7 +236,7 @@ class _AppButtonState extends State<AppButton> {
             padding: widget._iconOnly != null
                 ? EdgeInsets.zero
                 : const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
-            transform: Matrix4.translationValues(0, _pressed ? depth : 0, 0),
+            transform: Matrix4.translationValues(0, _pressed ? travel : 0, 0),
             decoration: BoxDecoration(
                 color: face,
                 borderRadius: AppRadius.all(_radius),
@@ -226,22 +245,28 @@ class _AppButtonState extends State<AppButton> {
                     : null,
                 boxShadow: _isGhost
                     ? null
-                    : <BoxShadow>[
-                        // Ambient lift, so the button reads as an object on the
-                        // light page rather than a flat rectangle.
-                        BoxShadow(
-                            color: const Color(0x14101A2E),
-                            offset: Offset(0, _pressed ? 2 : depth + 2),
-                            blurRadius: _pressed ? 6 : 10,
-                        ),
-                        // The hard coloured ledge: zero blur, so it reads as a
-                        // solid side rather than a shadow.
-                        BoxShadow(
-                            color: ledge,
-                            offset: Offset(0, _pressed ? 0 : depth),
-                            blurRadius: 0,
-                        ),
-                    ],
+                    : _hasLedge
+                        ? <BoxShadow>[
+                            // Ambient lift, so the button reads as an object on
+                            // the light page rather than a flat rectangle.
+                            BoxShadow(
+                                color: const Color(0x14101A2E),
+                                offset: Offset(0, _pressed ? 2 : depth + 2),
+                                blurRadius: _pressed ? 6 : 10,
+                            ),
+                            // The hard coloured ledge: zero blur, so it reads as
+                            // a solid side rather than a shadow.
+                            BoxShadow(
+                                color: ledge,
+                                offset: Offset(0, _pressed ? 0 : depth),
+                                blurRadius: 0,
+                            ),
+                        ]
+                        // Everything else rests on the page instead of standing
+                        // on it.
+                        : _pressed
+                            ? const <BoxShadow>[]
+                            : AppShadows.sm,
             ),
             alignment: Alignment.center,
             child: content,

@@ -112,18 +112,21 @@ void main() {
         }
     }
 
-    // The screens most likely to overflow once the type scale grows: the ones
-    // with a fixed-height card or a bottom-pinned button.
-    for (final String name in <String>[
-        'consent',
-        'questionnaire',
-        'health warning',
-        'feedback',
-    ]) {
-        testWidgets('[hu] $name survives a 1.3x system font',
-            (WidgetTester tester) async {
-            await show(tester, screens[name]!(), 'hu', textScale: 1.3);
-            expect(tester.takeException(), isNull);
-        });
+    // Every screen, at the scales a user can actually pick. 1.3 was the old
+    // ceiling here, but Android's accessibility slider reaches 2.0 and iOS's
+    // largest Dynamic Type size goes past it — a screen that survives 1.3 tells
+    // you very little about 2.0, because the fixed-height boxes (buttons, the
+    // app bar, the video frame) do not grow with the text inside them.
+    //
+    // Hungarian only: it has the longer strings of the two locales, so it is
+    // the worse case at every scale.
+    for (final double scale in <double>[1.3, 2.0]) {
+        for (final MapEntry<String, Widget Function()> entry in screens.entries) {
+            testWidgets('[hu] ${entry.key} survives a ${scale}x system font',
+                (WidgetTester tester) async {
+                await show(tester, entry.value(), 'hu', textScale: scale);
+                expect(tester.takeException(), isNull);
+            });
+        }
     }
 }

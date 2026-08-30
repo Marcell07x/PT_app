@@ -22,17 +22,6 @@ class _WorkoutFeedbackState extends State<WorkoutFeedback> {
 
     List<String> _rpeDescriptions = [];
 
-    /// Emoji for the effort band. Changes in steps (like the original colour
-    /// bands), staying positive — open-eyed smiles for the lighter levels and
-    /// motivating icons for the hard end, never exhausted- or pained-looking.
-    String _emojiForRPE(int value) {
-        if (value <= 1) return '😌'; // very light — relaxed
-        if (value <= 3) return '🙂'; // light
-        if (value <= 6) return '😀'; // moderate — open-eyed smile
-        if (value <= 8) return '💪'; // vigorous — gave it effort
-        return '🔥'; // very intense — crushed it
-    }
-
     /// Interpolates along a five-stop spectrum for a 1..10 value.
     static Color _alongSpectrum(List<Color> spectrum, double value) {
         final double t = ((value - 1) / 9).clamp(0.0, 1.0);
@@ -148,8 +137,12 @@ class _WorkoutFeedbackState extends State<WorkoutFeedback> {
                                                     child: Column(
                                                         mainAxisAlignment: MainAxisAlignment.center,
                                                         children: [
-                                                            _EmojiBadge(color: effort, emoji: _emojiForRPE(rounded)),
-                                                            const SizedBox(height: AppSpacing.xxl),
+                                                            // The number is the answer, so the number is
+                                                            // the hero. The emoji badge that used to sit
+                                                            // above it was the largest thing on screen and
+                                                            // said less than the figure underneath it —
+                                                            // and an emoji renders differently on every
+                                                            // device, which is a poor way to carry meaning.
                                                             Row(
                                                                 mainAxisAlignment: MainAxisAlignment.center,
                                                                 crossAxisAlignment: CrossAxisAlignment.baseline,
@@ -158,13 +151,13 @@ class _WorkoutFeedbackState extends State<WorkoutFeedback> {
                                                                     Text(
                                                                         '$rounded',
                                                                         style: AppText.numeral(
-                                                                            AppText.displaySmall,
+                                                                            AppText.displayMedium,
                                                                         ).copyWith(color: effortInk),
                                                                     ),
                                                                     const SizedBox(width: AppSpacing.xs),
                                                                     Text(
                                                                         '/ 10',
-                                                                        style: AppText.titleMedium.copyWith(color: AppColors.n400),
+                                                                        style: AppText.titleLarge.copyWith(color: AppColors.n400),
                                                                     ),
                                                                 ],
                                                             ),
@@ -195,31 +188,19 @@ class _WorkoutFeedbackState extends State<WorkoutFeedback> {
                                         ),
                                         child: Column(
                                             children: [
-                                                SliderTheme(
-                                                    data: SliderThemeData(
-                                                        trackHeight: 10,
-                                                        trackShape: const _GradientRpeTrackShape(),
-                                                        thumbShape: const RoundSliderThumbShape(
-                                                            enabledThumbRadius: 14,
-                                                            elevation: 3,
-                                                            pressedElevation: 6,
-                                                        ),
-                                                        overlayShape: const RoundSliderOverlayShape(overlayRadius: 24),
-                                                        thumbColor: AppColors.surface,
-                                                        overlayColor: effort.withValues(alpha: 0.16),
-                                                        showValueIndicator: ShowValueIndicator.never,
-                                                    ),
-                                                    child: Slider(
-                                                        value: _rpeValue,
-                                                        min: 1,
-                                                        max: 10,
-                                                        divisions: 9,
-                                                        onChanged: (value) {
-                                                            setState(() => _rpeValue = value);
-                                                        },
-                                                    ),
+                                                // Ten bars rather than a slider: the value *is*
+                                                // discrete (divisions: 9 on a 1–10 slider), and a
+                                                // continuous gradient track hid that. Each step is
+                                                // its own tap target, and the rising heights say
+                                                // "harder to the right" without needing colour.
+                                                _RpeScale(
+                                                    value: _rpeValue,
+                                                    ink: effortInk,
+                                                    onChanged: (double value) {
+                                                        setState(() => _rpeValue = value);
+                                                    },
                                                 ),
-                                                const SizedBox(height: AppSpacing.xxs),
+                                                const SizedBox(height: AppSpacing.md),
                                                 Row(
                                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                     children: [
@@ -250,28 +231,114 @@ class _WorkoutFeedbackState extends State<WorkoutFeedback> {
     }
 }
 
-/// Glowing circular badge that shows the current effort emoji.
-class _EmojiBadge extends StatelessWidget {
-    final Color color;
-    final String emoji;
+/// The 1–10 effort scale, drawn as ten bars and used as the input.
+///
+/// Replaces the gradient [Slider]. The value was always discrete — the old
+/// slider had `divisions: 9` — but a continuous track invited dragging for a
+/// precision the scale does not have. Here each step is its own tap target, the
+/// bars rise left to right so the direction reads without colour, and the
+/// selected one carries a ring in the readable ink of its own band.
+class _RpeScale extends StatelessWidget {
+    /// Current value, 1..10.
+    final double value;
 
-    const _EmojiBadge({required this.color, required this.emoji});
+    /// The readable partner colour of the current value, for the ring.
+    final Color ink;
+
+    final ValueChanged<double> onChanged;
+
+    const _RpeScale({
+        required this.value,
+        required this.ink,
+        required this.onChanged,
+    });
+
+    static const int _steps = 10;
+    static const double _shortest = 22;
+    static const double _tallest = 60;
+    static const double _gap = AppSpacing.sm;
+
+    /// Two steps per spectrum stop, so the ten bars walk the five bands.
+    static Color _bandFor(int step) => AppColors.rpeBright[
+        ((step - 1) ~/ 2).clamp(0, AppColors.rpeBright.length - 1)
+    ];
+
+    void _pickAt(double dx, double width) {
+        final int step = (dx / (width / _steps)).floor().clamp(0, _steps - 1) + 1;
+        if (step != value.round()) onChanged(step.toDouble());
+    }
+
+    void _nudge(int by) {
+        final int next = (value.round() + by).clamp(1, _steps);
+        if (next != value.round()) onChanged(next.toDouble());
+    }
 
     @override
     Widget build(BuildContext context) {
-        return Container(
-            width: 152,
-            height: 152,
-            decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: AppColors.surface,
-                boxShadow: [
-                    BoxShadow(color: color.withValues(alpha: 0.35), blurRadius: 40, spreadRadius: 4),
-                ],
-                border: Border.all(color: color.withValues(alpha: 0.35), width: 3),
+        final int current = value.round();
+
+        return Semantics(
+            slider: true,
+            value: '$current',
+            increasedValue: '${(current + 1).clamp(1, _steps)}',
+            decreasedValue: '${(current - 1).clamp(1, _steps)}',
+            onIncrease: () => _nudge(1),
+            onDecrease: () => _nudge(-1),
+            child: LayoutBuilder(
+                builder: (BuildContext context, BoxConstraints constraints) {
+                    final double width = constraints.maxWidth;
+
+                    return GestureDetector(
+                        behavior: HitTestBehavior.opaque,
+                        onTapDown: (TapDownDetails d) =>
+                            _pickAt(d.localPosition.dx, width),
+                        onHorizontalDragUpdate: (DragUpdateDetails d) =>
+                            _pickAt(d.localPosition.dx, width),
+                        child: SizedBox(
+                            // Comfortably past the 44px touch minimum even where
+                            // the shortest bar is.
+                            height: _tallest + AppSpacing.md,
+                            child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: <Widget>[
+                                    for (int step = 1; step <= _steps; step++) ...<Widget>[
+                                        if (step > 1) const SizedBox(width: _gap),
+                                        Expanded(
+                                            child: AnimatedContainer(
+                                                duration: const Duration(milliseconds: 140),
+                                                curve: Curves.easeOut,
+                                                height: _shortest +
+                                                    (_tallest - _shortest) *
+                                                        (step - 1) /
+                                                        (_steps - 1),
+                                                decoration: BoxDecoration(
+                                                    color: step <= current
+                                                        ? _bandFor(step)
+                                                        : AppColors.n200,
+                                                    borderRadius: AppRadius.all(AppRadius.xs),
+                                                    // A ring on the chosen bar: the outer
+                                                    // shadow paints first, the surface-coloured
+                                                    // one covers its inner part, leaving a
+                                                    // 2px halo.
+                                                    boxShadow: step == current
+                                                        ? <BoxShadow>[
+                                                            BoxShadow(color: ink, spreadRadius: 4),
+                                                            const BoxShadow(
+                                                                color: AppColors.surface,
+                                                                spreadRadius: 2,
+                                                            ),
+                                                        ]
+                                                        : null,
+                                                ),
+                                            ),
+                                        ),
+                                    ],
+                                ],
+                            ),
+                        ),
+                    );
+                },
             ),
-            alignment: Alignment.center,
-            child: Text(emoji, style: const TextStyle(fontSize: 76)),
         );
     }
 }
@@ -327,66 +394,5 @@ class _ScaleEnd extends StatelessWidget {
                 ),
             ],
         );
-    }
-}
-
-/// Slider track painted with the full easy→hard gradient. The segment after the
-/// thumb is replaced with a flat neutral so the current position reads as
-/// progress.
-class _GradientRpeTrackShape extends SliderTrackShape with BaseSliderTrackShape {
-    const _GradientRpeTrackShape();
-
-    @override
-    void paint(
-        PaintingContext context,
-        Offset offset, {
-        required RenderBox parentBox,
-        required SliderThemeData sliderTheme,
-        required Animation<double> enableAnimation,
-        required TextDirection textDirection,
-        required Offset thumbCenter,
-        Offset? secondaryOffset,
-        bool isDiscrete = false,
-        bool isEnabled = false,
-        double additionalActiveTrackHeight = 2,
-    }) {
-        if (sliderTheme.trackHeight == null || sliderTheme.trackHeight! <= 0) {
-            return;
-        }
-
-        final Rect trackRect = getPreferredRect(
-            parentBox: parentBox,
-            offset: offset,
-            sliderTheme: sliderTheme,
-            isEnabled: isEnabled,
-            isDiscrete: isDiscrete,
-        );
-
-        final Radius radius = Radius.circular(trackRect.height / 2);
-        final RRect rrect = RRect.fromRectAndRadius(trackRect, radius);
-        final Canvas canvas = context.canvas;
-
-        canvas.save();
-        canvas.clipRRect(rrect);
-
-        // Full spectrum gradient.
-        final Paint gradientPaint = Paint()
-            ..shader = LinearGradient(colors: AppColors.rpeBright).createShader(trackRect);
-        canvas.drawRRect(rrect, gradientPaint);
-
-        // The portion ahead of the thumb. This used to be a 62% white veil,
-        // which worked when the card behind it was dark but vanishes on a white
-        // one — the slider would have looked like it had no progress at all. An
-        // opaque neutral also gives the white thumb something to sit against.
-        final double thumbDx = thumbCenter.dx.clamp(trackRect.left, trackRect.right);
-        final Rect inactiveRect = Rect.fromLTRB(
-            thumbDx,
-            trackRect.top,
-            trackRect.right,
-            trackRect.bottom,
-        );
-        canvas.drawRect(inactiveRect, Paint()..color = AppColors.n300);
-
-        canvas.restore();
     }
 }

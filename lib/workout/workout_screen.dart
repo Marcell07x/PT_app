@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
 import 'package:getshap/common/ui/app_button.dart';
-import 'package:getshap/common/ui/app_card.dart';
 import 'package:getshap/common/ui/app_scaffold.dart';
+import 'package:getshap/common/ui/app_step_progress.dart';
 import 'package:getshap/l10n/app_localizations.dart';
 import 'package:getshap/theme/app_colors.dart';
 import 'package:getshap/theme/app_spacing.dart';
@@ -12,7 +12,15 @@ import 'package:getshap/theme/app_typography.dart';
 class WorkoutScreen extends StatefulWidget {
     final String videoPath;
     final String exerciseName;
+
+    /// The count on its own, e.g. "13". Split from [repsLabel] so the number
+    /// can be set at display size — mid-set it has to be readable at a glance,
+    /// from the floor, upside down.
     final String reps;
+
+    /// The localised word after it, e.g. "ismétlés".
+    final String repsLabel;
+
     final String description;
     final String buttonText;
     final String label;
@@ -27,6 +35,7 @@ class WorkoutScreen extends StatefulWidget {
         required this.videoPath,
         required this.exerciseName,
         required this.reps,
+        required this.repsLabel,
         required this.description,
         required this.buttonText,
         required this.label,
@@ -44,6 +53,11 @@ class WorkoutScreen extends StatefulWidget {
 class _WorkoutScreenState extends State<WorkoutScreen> {
     late VideoPlayerController _controller;
     double _videoAspectRatio = 16 / 9;
+
+    /// Owned explicitly so the scrollbar can attach to it, and so the next
+    /// exercise starts at the top of its description rather than wherever the
+    /// last one was left scrolled to.
+    final ScrollController _descriptionScroll = ScrollController();
 
     @override
     void initState() {
@@ -79,10 +93,15 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
             _disposeController();
             _initializeVideo();
         }
+        if (oldWidget.description != widget.description &&
+            _descriptionScroll.hasClients) {
+            _descriptionScroll.jumpTo(0);
+        }
     }
 
     @override
     void dispose() {
+        _descriptionScroll.dispose();
         _disposeController();
         super.dispose();
     }
@@ -138,44 +157,43 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                     const SizedBox(height: AppSpacing.md),
-                    LinearProgressIndicator(
-                        value: (widget.currentIndex + 1) / widget.totalWorkouts,
-                        minHeight: 6,
-                        borderRadius: AppRadius.all(AppRadius.xs),
+                    AppStepProgress(
+                        total: widget.totalWorkouts,
+                        completed: widget.currentIndex + 1,
                     ),
                     const SizedBox(height: AppSpacing.xl),
                     _buildVideo(context),
-                    const SizedBox(height: AppSpacing.xl),
+                    const SizedBox(height: AppSpacing.xxl),
+                    // Left-aligned: centred, a heading reads as a poster
+                    // caption. This is the name of the thing you are doing.
                     Text(
                         widget.exerciseName,
-                        textAlign: TextAlign.center,
-                        style: AppText.headlineSmall.copyWith(color: AppColors.n900),
+                        style: AppText.headlineMedium.copyWith(color: AppColors.n900),
                     ),
                     const SizedBox(height: AppSpacing.md),
-                    _buildRepsPill(),
-                    const SizedBox(height: AppSpacing.xl),
-                    // Takes the remaining height and scrolls inside it, rather
-                    // than the old fixed 200px box that clipped at large system
-                    // font sizes.
+                    _buildReps(),
+                    const SizedBox(height: AppSpacing.lg),
+                    // Plain text on the page rather than the old filled panel,
+                    // which made the instructions outweigh the video — the wrong
+                    // way round for something you glance at between reps.
+                    //
+                    // The scrollbar stays, because a description that runs past
+                    // the fold with no mark on it looks finished. `thumbVisibility`
+                    // keeps it up the whole time instead of fading after a
+                    // scroll, and Flutter paints nothing at all when the text
+                    // already fits — so it appears exactly when it means
+                    // something.
                     Expanded(
-                        child: AppCard(
-                            color: AppColors.n100,
-                            shadow: const <BoxShadow>[],
-                            padding: const EdgeInsets.fromLTRB(
-                                AppSpacing.xl,
-                                AppSpacing.lg,
-                                AppSpacing.sm,
-                                AppSpacing.lg,
-                            ),
-                            child: Scrollbar(
-                                thumbVisibility: true,
-                                child: SingleChildScrollView(
-                                    padding: const EdgeInsets.only(right: AppSpacing.md),
-                                    child: Text(
-                                        widget.description,
-                                        style: AppText.bodyMedium.copyWith(
-                                            color: AppColors.n900,
-                                        ),
+                        child: Scrollbar(
+                            controller: _descriptionScroll,
+                            thumbVisibility: true,
+                            child: SingleChildScrollView(
+                                controller: _descriptionScroll,
+                                padding: const EdgeInsets.only(right: AppSpacing.md),
+                                child: Text(
+                                    widget.description,
+                                    style: AppText.bodyMedium.copyWith(
+                                        color: AppColors.n600,
                                     ),
                                 ),
                             ),
@@ -212,24 +230,29 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
         );
     }
 
-    /// The rep count, set apart from the exercise name by a brand-tinted pill
-    /// rather than the old full-width blue rule.
-    Widget _buildRepsPill() {
-        return Center(
-            child: Container(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: AppSpacing.lg,
-                    vertical: AppSpacing.sm,
-                ),
-                decoration: BoxDecoration(
-                    color: AppColors.brand50,
-                    borderRadius: AppRadius.all(AppRadius.pill),
-                ),
-                child: Text(
+    /// The rep count as a number, not a label.
+    ///
+    /// It used to be an 18px pill reading "13 Ismétlés" — the same weight as
+    /// the metadata around it, for the single figure the screen exists to
+    /// convey. At display size the number is legible across the room; the word
+    /// beside it stays small because it never changes.
+    Widget _buildReps() {
+        return Row(
+            crossAxisAlignment: CrossAxisAlignment.baseline,
+            textBaseline: TextBaseline.alphabetic,
+            children: <Widget>[
+                Text(
                     widget.reps,
-                    style: AppText.titleMedium.copyWith(color: AppColors.brand700),
+                    style: AppText.numeral(AppText.displaySmall).copyWith(
+                        color: AppColors.brand500,
+                    ),
                 ),
-            ),
+                const SizedBox(width: AppSpacing.sm),
+                Text(
+                    widget.repsLabel,
+                    style: AppText.titleSmall.copyWith(color: AppColors.n500),
+                ),
+            ],
         );
     }
 }

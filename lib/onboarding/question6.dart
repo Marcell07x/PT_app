@@ -13,6 +13,8 @@ class Question6Page extends StatelessWidget {
         final l = AppLocalizations.of(context)!;
         return QuestionTemplate(
             progressLabel: '6/7',
+            step: 6,
+            stepCount: 7,
             title: l.motivation,
             nextLabel: l.nextq,
             options: [

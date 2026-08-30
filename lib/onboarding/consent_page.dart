@@ -118,6 +118,7 @@ class _ConsentPageState extends State<ConsentPage> {
         return AppCard.notice(
             accent: AppColors.brand500,
             color: AppColors.brand50,
+            icon: Icons.info_outline_rounded,
             child: Text(
                 l.consentUpdatedBody,
                 style: AppText.bodyMedium.copyWith(color: AppColors.n900),

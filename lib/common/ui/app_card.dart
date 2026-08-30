@@ -21,8 +21,11 @@ class AppCard extends StatelessWidget {
     /// Set by [AppCard.section]: a small uppercase label above a hairline rule.
     final String? _eyebrow;
 
-    /// Set by [AppCard.notice]: the colour of the left rule.
+    /// Set by [AppCard.notice]: the colour of its icon and heading.
     final Color? _accent;
+
+    /// Set by [AppCard.notice]: the glyph that leads it.
+    final IconData? _noticeIcon;
 
     const AppCard({
         super.key,
@@ -33,7 +36,8 @@ class AppCard extends StatelessWidget {
         this.shadow,
         this.onTap,
     })  : _eyebrow = null,
-            _accent = null;
+            _accent = null,
+            _noticeIcon = null;
 
     /// A card that leads with a small uppercase label — "TIP", "FEEDBACK" —
     /// separated from the body by a hairline.
@@ -47,18 +51,26 @@ class AppCard extends StatelessWidget {
         this.onTap,
     })  : _eyebrow = eyebrow,
             _accent = null,
+            _noticeIcon = null,
             padding = null;
 
-    /// A tinted panel with a coloured rule down its left edge: health warnings,
-    /// the "the documents changed" notice.
+    /// A tinted panel led by a circled icon: health warnings, the "the
+    /// documents changed" notice.
+    ///
+    /// It used to carry a 4px coloured rule down its left edge. That pattern
+    /// reads as an admin console rather than an app, and the rule did the work
+    /// an icon does better — colour alone also carries nothing for a
+    /// colour-blind reader, where a shield plainly does.
     const AppCard.notice({
         super.key,
         required Color accent,
+        required IconData icon,
         required this.child,
         this.color,
         this.padding,
-        this.radius = AppRadius.sm,
+        this.radius = AppRadius.md,
     })  : _accent = accent,
+            _noticeIcon = icon,
             _eyebrow = null,
             shadow = null,
             onTap = null;
@@ -136,13 +148,28 @@ class AppCard extends StatelessWidget {
     Widget _buildNotice() {
         return Container(
             width: double.infinity,
-            padding: padding ?? const EdgeInsets.all(AppSpacing.lg),
+            padding: padding ?? const EdgeInsets.all(AppSpacing.xl),
             decoration: BoxDecoration(
                 color: color ?? AppColors.surface,
                 borderRadius: AppRadius.all(radius),
-                border: Border(left: BorderSide(color: _accent!, width: 4)),
             ),
-            child: child,
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                    Container(
+                        width: 56,
+                        height: 56,
+                        decoration: const BoxDecoration(
+                            color: AppColors.surface,
+                            shape: BoxShape.circle,
+                        ),
+                        child: Icon(_noticeIcon, color: _accent, size: 30),
+                    ),
+                    const SizedBox(height: AppSpacing.lg),
+                    child,
+                ],
+            ),
         );
     }
 }

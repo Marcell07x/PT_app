@@ -13,6 +13,8 @@ class QuestionGenderPage extends StatelessWidget {
         final l = AppLocalizations.of(context)!;
         return QuestionTemplate(
             progressLabel: '1/7',
+            step: 1,
+            stepCount: 7,
             title: l.genderQuestion,
             nextLabel: l.nextq,
             options: [

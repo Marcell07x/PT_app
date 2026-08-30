@@ -8,9 +8,10 @@ import 'package:getshap/theme/app_typography.dart';
 //      tapping it opens the streak page
 //      lit = there is a streak and no workout is waiting for today
 //
-// This sits on the blue app bar, so both states are drawn in white: lit is
-// solid, unlit is the same white at 45%. The old unlit colour was
-// `Colors.white38`, which is close to invisible.
+// The bar behind it is now the light page rather than a blue slab, so the unit
+// is drawn as a small white pill: it reads as a tappable object on a page that
+// has no other chrome, and it gives the count somewhere to sit. Lit, the flame
+// keeps its warm gradient; unlit it is a quiet outline in [AppColors.n400].
 class StreakFlame extends StatelessWidget {
     final int streak;
     final bool lit;
@@ -23,55 +24,65 @@ class StreakFlame extends StatelessWidget {
         required this.onTap,
     });
 
-    static const Color _dim = Color(0x73FFFFFF);
-
     @override
     Widget build(BuildContext context) {
-        return InkWell(
-            onTap: onTap,
-            borderRadius: AppRadius.all(AppRadius.sm),
-            child: Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: AppSpacing.sm,
-                    vertical: AppSpacing.xs,
+        return Semantics(
+            button: true,
+            value: '$streak',
+            child: Material(
+                color: AppColors.surface,
+                shape: const StadiumBorder(
+                    side: BorderSide(color: AppColors.n200),
                 ),
-                child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                        // Lit: the warm flame gradient, the one place warmth is
-                        // allowed on the blue bar. Unlit: a quiet outline.
-                        if (lit)
-                            ShaderMask(
-                                blendMode: BlendMode.srcIn,
-                                shaderCallback: (Rect rect) => const LinearGradient(
-                                    begin: Alignment.bottomCenter,
-                                    end: Alignment.topCenter,
-                                    colors: <Color>[
-                                        AppColors.flameA,
-                                        AppColors.flameB,
-                                    ],
-                                ).createShader(rect),
-                                child: const Icon(
-                                    Icons.local_fire_department,
-                                    // The mask's alpha source — not a colour choice.
-                                    color: Colors.white,
-                                    size: 28,
-                                ),
-                            )
-                        else
-                            const Icon(
-                                Icons.local_fire_department_outlined,
-                                color: _dim,
-                                size: 28,
-                            ),
-                        const SizedBox(width: AppSpacing.xs),
-                        Text(
-                            '$streak',
-                            style: AppText.numeral(AppText.titleLarge).copyWith(
-                                color: lit ? AppColors.onBrand : _dim,
-                            ),
+                elevation: 0,
+                child: InkWell(
+                    onTap: onTap,
+                    customBorder: const StadiumBorder(),
+                    child: Padding(
+                        padding: const EdgeInsets.fromLTRB(
+                            AppSpacing.md,
+                            AppSpacing.sm,
+                            AppSpacing.lg,
+                            AppSpacing.sm,
                         ),
-                    ],
+                        child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                                if (lit)
+                                    ShaderMask(
+                                        blendMode: BlendMode.srcIn,
+                                        shaderCallback: (Rect rect) => const LinearGradient(
+                                            begin: Alignment.bottomCenter,
+                                            end: Alignment.topCenter,
+                                            colors: <Color>[
+                                                AppColors.flameC,
+                                                AppColors.flameB,
+                                                AppColors.flameA,
+                                            ],
+                                        ).createShader(rect),
+                                        child: const Icon(
+                                            Icons.local_fire_department,
+                                            // The mask's alpha source — not a colour choice.
+                                            color: Colors.white,
+                                            size: 26,
+                                        ),
+                                    )
+                                else
+                                    const Icon(
+                                        Icons.local_fire_department_outlined,
+                                        color: AppColors.n400,
+                                        size: 26,
+                                    ),
+                                const SizedBox(width: AppSpacing.sm),
+                                Text(
+                                    '$streak',
+                                    style: AppText.numeral(AppText.titleMedium).copyWith(
+                                        color: lit ? AppColors.n900 : AppColors.n400,
+                                    ),
+                                ),
+                            ],
+                        ),
+                    ),
                 ),
             ),
         );

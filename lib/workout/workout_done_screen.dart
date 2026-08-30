@@ -6,6 +6,7 @@ import 'package:getshap/core/streak/streak_increase.dart';
 import 'package:getshap/l10n/app_localizations.dart';
 import 'package:getshap/theme/app_colors.dart';
 import 'package:getshap/theme/app_spacing.dart';
+import 'package:getshap/theme/app_theme.dart';
 import 'package:getshap/theme/app_typography.dart';
 
 /// The reward screen after a finished workout.
@@ -21,12 +22,11 @@ class CongratulationsScreen extends StatelessWidget {
         final l10n = AppLocalizations.of(context)!;
 
         return AnnotatedRegion<SystemUiOverlayStyle>(
-            // No app bar here, so the theme's overlay style never applies.
-            value: const SystemUiOverlayStyle(
-                statusBarColor: Colors.transparent,
-                statusBarIconBrightness: Brightness.light,
-                statusBarBrightness: Brightness.dark,
-            ),
+            // No app bar here, so the theme's overlay style never applies. The
+            // navigation bar takes brand800 — where this screen's gradient ends,
+            // right above it — so the bottom of the page runs into the bottom of
+            // the screen without a seam.
+            value: AppTheme.systemBarsOn(AppColors.brand800),
             child: Scaffold(
                 backgroundColor: AppColors.brand800,
                 body: DecoratedBox(

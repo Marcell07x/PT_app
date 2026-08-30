@@ -64,10 +64,10 @@ class AppLocalizationsHu extends AppLocalizations {
       'Készítette: Bodnár Marcell. \nKérdésekkel, visszajelzéssel keress bátran:';
 
   @override
-  String get instagramLink => 'Instagram: @bodnar__marcell';
+  String get instagramLink => '@bodnar__marcell';
 
   @override
-  String get emailLink => 'Email: bmarci891@gmail.com';
+  String get emailLink => 'bmarci891@gmail.com';
 
   @override
   String get wallPush => 'Fal Fekvőtámasz';

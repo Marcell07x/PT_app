@@ -64,10 +64,10 @@ class AppLocalizationsEn extends AppLocalizations {
       'Made by Marcell Bodnár.\nFeel free to ask questions or give feedback:';
 
   @override
-  String get instagramLink => 'Instagram: @bodnar__marcell';
+  String get instagramLink => '@bodnar__marcell';
 
   @override
-  String get emailLink => 'Email: bmarci891@gmail.com';
+  String get emailLink => 'bmarci891@gmail.com';
 
   @override
   String get wallPush => 'Wall Push-Ups';

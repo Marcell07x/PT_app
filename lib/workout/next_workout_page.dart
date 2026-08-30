@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:getshap/common/ui/app_card.dart';
 import 'package:getshap/common/ui/app_scaffold.dart';
 import 'package:getshap/core/workout_signal.dart';
 import 'package:getshap/l10n/app_localizations.dart';
@@ -10,6 +9,11 @@ import 'package:getshap/theme/app_typography.dart';
 
 // Shown instead of starting a workout when today is a rest day: tells the user,
 // rounded up to whole days, how many days until they can next train.
+//
+// The message used to sit inside an AppCard floating in the middle of an
+// otherwise empty page, which is the one place a card does not help: there is
+// nothing else on screen for it to be separated from. It is now a plain empty
+// state — the page itself is the card.
 class NextWorkoutPage extends StatelessWidget {
     const NextWorkoutPage({super.key});
 
@@ -40,13 +44,13 @@ class NextWorkoutPage extends StatelessWidget {
                             : loc.nextWorkoutDays(days);
 
                     return Center(
-                        child: AppCard(
+                        child: SingleChildScrollView(
                             child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: <Widget>[
                                     Container(
-                                        width: 72,
-                                        height: 72,
+                                        width: 132,
+                                        height: 132,
                                         decoration: const BoxDecoration(
                                             color: AppColors.brand50,
                                             shape: BoxShape.circle,
@@ -54,14 +58,14 @@ class NextWorkoutPage extends StatelessWidget {
                                         child: const Icon(
                                             Icons.self_improvement_rounded,
                                             color: AppColors.brand500,
-                                            size: 38,
+                                            size: 64,
                                         ),
                                     ),
-                                    const SizedBox(height: AppSpacing.xl),
+                                    const SizedBox(height: AppSpacing.xxxl),
                                     Text(
                                         message,
                                         textAlign: TextAlign.center,
-                                        style: AppText.headlineSmall.copyWith(
+                                        style: AppText.headlineMedium.copyWith(
                                             color: AppColors.n900,
                                         ),
                                     ),
