@@ -9,6 +9,6 @@ class PullProgression {
     /// 60+ age group (age == 3) — that exercise is not appropriate for them.
     static Future<bool> steppedUp(int level) async {
         final prefs = await SharedPreferences.getInstance();
-        return level >= 350 && (prefs.getInt('age') ?? 0) != 3;
+        return level >= 300 && (prefs.getInt('age') ?? 0) != 3;
     }
 }

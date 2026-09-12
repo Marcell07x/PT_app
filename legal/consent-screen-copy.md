@@ -12,7 +12,7 @@ elolvasnak. Ez a három viszont maradjon a képernyőn:
    lényegesen eltérő kikötés csak akkor válik a szerződés részévé, ha külön
    felhívtad rá a figyelmet és a felhasználó kifejezetten elfogadta. Linkbe
    rejtve ez nem teljesül;
-3. **orvos / azonnal hagyd abba** – ez az egyetlen pont, ami ténylegesen
+3. **orvos / hagyd abba** – ez az egyetlen pont, ami ténylegesen
    megelőzhet egy bajt.
 
 Minden más (részletes állapotlista, tünetek, korhatár, táplálkozás) az
@@ -39,14 +39,14 @@ a saját testi céljaid felé. Három dolog, mielőtt belevágsz:
 
 **Pontok:**
 
-1. Az edzéseket saját felelősségedre végzed – a mozgás sérüléssel járó
-   kockázatot hordoz.
+1. Az edzéseket saját felelősségedre végzed – mint minden mozgásnál, itt is
+   előfordulhat sérülés.
 2. A nehézséget a válaszaid alapján állítja be az app – ez automatikus
    besorolás, nem szakmai állapotfelmérés, és nem veszi figyelembe az
    egészségi állapotodat. A tartalmat nem egészségügyi szakember állította
    össze.
-3. Ha egészségügyi problémád van, előbb kérdezd meg az orvosod. Fájdalom,
-   szédülés vagy mellkasi panasz esetén azonnal hagyd abba.
+3. Ha egészségügyi problémád van, előbb beszélj az orvosoddal. Edzés közben pedig
+   figyelj magadra – ha valami nem érződik jónak, hagyd abba.
 
 **Linkek:** Felhasználási feltételek · Egészségügyi tájékoztató · Adatvédelem
 
@@ -69,12 +69,12 @@ move towards your own physical goals. Three things before you begin:
 
 **Points:**
 
-1. You train at your own risk – exercise carries a risk of injury.
+1. You train at your own risk – as with any exercise, injuries can happen.
 2. The app sets the difficulty from your answers – that is an automatic
    classification, not a professional assessment, and it does not account for
    your health. The content was not prepared by a healthcare professional.
-3. If you have any health condition, ask your doctor first. Stop immediately if
-   you feel pain, dizziness or chest discomfort.
+3. If you have a health condition, talk to your doctor first. And during a
+   workout, listen to your body – if something doesn't feel right, stop.
 
 **Links:** Terms of Use · Health Disclaimer · Privacy
 

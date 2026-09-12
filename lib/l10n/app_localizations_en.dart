@@ -20,7 +20,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get consentPoint1 =>
-      'You train at your own risk – exercise carries a risk of injury.';
+      'You train at your own risk – as with any exercise, injuries can happen.';
 
   @override
   String get consentPoint2 =>
@@ -28,7 +28,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get consentPoint3 =>
-      'If you have any health condition, ask your doctor first. Stop immediately if you feel pain, dizziness or chest discomfort.';
+      'If you have a health condition, talk to your doctor first. And during a workout, listen to your body – if something doesn\'t feel right, stop.';
 
   @override
   String get consentCheckbox =>

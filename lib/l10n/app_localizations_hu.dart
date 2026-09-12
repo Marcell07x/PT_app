@@ -20,7 +20,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get consentPoint1 =>
-      'Az edzéseket saját felelősségedre végzed – a mozgás sérüléssel járó kockázatot hordoz.';
+      'Az edzéseket saját felelősségedre végzed – mint minden mozgásnál, itt is előfordulhat sérülés.';
 
   @override
   String get consentPoint2 =>
@@ -28,7 +28,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get consentPoint3 =>
-      'Ha egészségügyi problémád van, előbb kérdezd meg az orvosod. Fájdalom, szédülés vagy mellkasi panasz esetén azonnal hagyd abba.';
+      'Ha egészségügyi problémád van, előbb beszélj az orvosoddal. Edzés közben pedig figyelj magadra – ha valami nem érződik jónak, hagyd abba.';
 
   @override
   String get consentCheckbox =>
