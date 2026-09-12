@@ -221,7 +221,7 @@ abstract class AppLocalizations {
   /// No description provided for @diamondTablePush.
   ///
   /// In en, this message translates to:
-  /// **'TODO diamondTablePush'**
+  /// **'Diamond Push Ups on Table'**
   String get diamondTablePush;
 
   /// No description provided for @kneePush.
@@ -242,17 +242,17 @@ abstract class AppLocalizations {
   /// **'Decline Push Ups'**
   String get declinePush;
 
-  /// No description provided for @clapPush.
+  /// No description provided for @explosivePush.
   ///
   /// In en, this message translates to:
-  /// **'Explosive Clap Push Ups'**
-  String get clapPush;
+  /// **'Explosive Push Ups'**
+  String get explosivePush;
 
-  /// No description provided for @archerPush.
+  /// No description provided for @pseudoPush.
   ///
   /// In en, this message translates to:
-  /// **'Archer Push Ups'**
-  String get archerPush;
+  /// **'Pseudo Push Ups'**
+  String get pseudoPush;
 
   /// No description provided for @dipPush.
   ///
@@ -347,31 +347,31 @@ abstract class AppLocalizations {
   /// No description provided for @glute1.
   ///
   /// In en, this message translates to:
-  /// **'TODO glute1'**
+  /// **'Glute Kickbacks'**
   String get glute1;
 
   /// No description provided for @glute2.
   ///
   /// In en, this message translates to:
-  /// **'TODO glute2'**
+  /// **'Glute Bridge'**
   String get glute2;
 
   /// No description provided for @glute3.
   ///
   /// In en, this message translates to:
-  /// **'TODO glute3'**
+  /// **'Elevated Glute Bridge'**
   String get glute3;
 
   /// No description provided for @glute4.
   ///
   /// In en, this message translates to:
-  /// **'TODO glute4'**
+  /// **'Single Leg Glute Bridge'**
   String get glute4;
 
   /// No description provided for @glute5.
   ///
   /// In en, this message translates to:
-  /// **'TODO glute5'**
+  /// **'Single Leg Hip Thrust'**
   String get glute5;
 
   /// No description provided for @core1.
@@ -659,13 +659,13 @@ abstract class AppLocalizations {
   /// No description provided for @tablePushDesc.
   ///
   /// In en, this message translates to:
-  /// **'Place your hands on a stable table or bed, and a bit wider than your shoulders, keep your elbows roughly 30-45 degrees from your body, and keep your body in a straight line. Go as deep as you can, then push yourself up.'**
+  /// **'Place your hands on the edge of a stable table, slightly wider than shoulder-width apart.\nKeep your elbows at a 30 to 45-degree angle from your body, and maintain your body in a straight line. Lower yourself as deep as you can, then push back up.\nThe lower the surface you place your hands on, the more challenging the exercise.'**
   String get tablePushDesc;
 
   /// No description provided for @diamondTablePushDesc.
   ///
   /// In en, this message translates to:
-  /// **'TODO diamondTablePushDesc'**
+  /// **'Place your hands on the edge of a stable table, close together, so that your index fingers and thumbs form a triangle, ensuring your hands do not slip forward.\nKeep your elbows close to your body and maintain your body in a straight line. Lower yourself as deep as you can, then push back up.\nThe lower the surface you place your hands on, the more challenging the exercise.'**
   String get diamondTablePushDesc;
 
   /// No description provided for @kneePushDesc.
@@ -686,17 +686,17 @@ abstract class AppLocalizations {
   /// **'Place your legs onto an elevated surface (like a bed) and your hands a bit wider than your shoulders. Keep your elbows roughly 30-45 degrees from your body, and keep your body in a straight line. Go as deep as you can, then push yourself up.'**
   String get declinePushDesc;
 
-  /// No description provided for @clapPushDesc.
+  /// No description provided for @explosivePushDesc.
   ///
   /// In en, this message translates to:
-  /// **'During a pushup, push yourself off the ground and, if you can, clap your hands while in mid-air.'**
-  String get clapPushDesc;
+  /// **'During a pushup, push yourself off the ground '**
+  String get explosivePushDesc;
 
-  /// No description provided for @archerPushDesc.
+  /// No description provided for @pseudoPushDesc.
   ///
   /// In en, this message translates to:
-  /// **'Put your hands wide and rotate your palms out about 45 degrees. Bend one arm to lower yourself, keeping the other elbow slightly bent, then push back up. Do the same on the other side.'**
-  String get archerPushDesc;
+  /// **'Place your hands shoulder-width apart and turn them slightly outward.\nLean forward so that your hands are positioned somewhere between your shoulders and your hips. Depress your shoulders as much as possible in two ways: push them toward the ground and pull them down toward your torso. Try to maintain this shoulder position as best as you can throughout the movement. At the same time, squeeze your abs.\nThe further you lean forward, the more challenging the exercise.'**
+  String get pseudoPushDesc;
 
   /// No description provided for @dipPushDesc.
   ///
@@ -713,7 +713,7 @@ abstract class AppLocalizations {
   /// No description provided for @reverseSnowAngelDesc.
   ///
   /// In en, this message translates to:
-  /// **'TODO reverseSnowAngelDesc'**
+  /// **'Lie face down on the floor. Raise your head and hands, touching your hands together above your head. Bring your arms out to the sides down to your hips, then touch your hands together above your head again.\nOne complete round trip counts as one repetition.\nKeep your hands elevated off the floor throughout the entire movement.\nTo make it more challenging, hold a book in each hand.'**
   String get reverseSnowAngelDesc;
 
   /// No description provided for @bwPullDesc.
@@ -791,31 +791,31 @@ abstract class AppLocalizations {
   /// No description provided for @glute1Desc.
   ///
   /// In en, this message translates to:
-  /// **'TODO glute1Desc'**
+  /// **'Hold onto a table, lean forward slightly, and extend your leg straight back.\nRemember to do this for both legs.'**
   String get glute1Desc;
 
   /// No description provided for @glute2Desc.
   ///
   /// In en, this message translates to:
-  /// **'TODO glute2Desc'**
+  /// **'Lie on your back with your knees bent so that your shins are roughly vertical. Place your arms slightly out to the sides for better stability.\nDrive your hips up as high as you can while squeezing your glutes, and then come back down.'**
   String get glute2Desc;
 
   /// No description provided for @glute3Desc.
   ///
   /// In en, this message translates to:
-  /// **'TODO glute3Desc'**
+  /// **'Lie on your back with your knees bent, placing your feet on an elevated surface like the edge of a couch. Place your arms slightly out to the sides for better stability.\nDrive your hips up as high as you can while squeezing your glutes, then lower your hips back down.'**
   String get glute3Desc;
 
   /// No description provided for @glute4Desc.
   ///
   /// In en, this message translates to:
-  /// **'TODO glute4Desc'**
+  /// **'Lie on your back with your knees bent so that your shins are roughly vertical, then extend one leg, keeping it in the air. Place your arms slightly out to the sides for better stability.\nDrive your hips up as high as you can while squeezing your glutes, then lower your hips back down.\nRemember to do this for both legs.'**
   String get glute4Desc;
 
   /// No description provided for @glute5Desc.
   ///
   /// In en, this message translates to:
-  /// **'TODO glute5Desc'**
+  /// **'Sit in front of a couch or bed so that the edge is against your upper back. Keep one leg bent and extend the other leg out.\nDrive your hips up as high as you can with one leg while squeezing your glutes, lifting your other foot off the floor as well, then lower back down.\nRemember to do this for both legs.'**
   String get glute5Desc;
 
   /// No description provided for @core1Desc.

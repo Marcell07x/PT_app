@@ -76,7 +76,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tablePush => 'Table Push-Ups';
 
   @override
-  String get diamondTablePush => 'TODO diamondTablePush';
+  String get diamondTablePush => 'Diamond Push Ups on Table';
 
   @override
   String get kneePush => 'Knee Push-Ups';
@@ -88,10 +88,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get declinePush => 'Decline Push Ups';
 
   @override
-  String get clapPush => 'Explosive Clap Push Ups';
+  String get explosivePush => 'Explosive Push Ups';
 
   @override
-  String get archerPush => 'Archer Push Ups';
+  String get pseudoPush => 'Pseudo Push Ups';
 
   @override
   String get dipPush => 'Dips';
@@ -139,19 +139,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get lunge5 => 'Weighted Elevated Lunges';
 
   @override
-  String get glute1 => 'TODO glute1';
+  String get glute1 => 'Glute Kickbacks';
 
   @override
-  String get glute2 => 'TODO glute2';
+  String get glute2 => 'Glute Bridge';
 
   @override
-  String get glute3 => 'TODO glute3';
+  String get glute3 => 'Elevated Glute Bridge';
 
   @override
-  String get glute4 => 'TODO glute4';
+  String get glute4 => 'Single Leg Glute Bridge';
 
   @override
-  String get glute5 => 'TODO glute5';
+  String get glute5 => 'Single Leg Hip Thrust';
 
   @override
   String get core1 => 'Lying Leg Raises';
@@ -300,10 +300,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tablePushDesc =>
-      'Place your hands on a stable table or bed, and a bit wider than your shoulders, keep your elbows roughly 30-45 degrees from your body, and keep your body in a straight line. Go as deep as you can, then push yourself up.';
+      'Place your hands on the edge of a stable table, slightly wider than shoulder-width apart.\nKeep your elbows at a 30 to 45-degree angle from your body, and maintain your body in a straight line. Lower yourself as deep as you can, then push back up.\nThe lower the surface you place your hands on, the more challenging the exercise.';
 
   @override
-  String get diamondTablePushDesc => 'TODO diamondTablePushDesc';
+  String get diamondTablePushDesc =>
+      'Place your hands on the edge of a stable table, close together, so that your index fingers and thumbs form a triangle, ensuring your hands do not slip forward.\nKeep your elbows close to your body and maintain your body in a straight line. Lower yourself as deep as you can, then push back up.\nThe lower the surface you place your hands on, the more challenging the exercise.';
 
   @override
   String get kneePushDesc =>
@@ -318,12 +319,12 @@ class AppLocalizationsEn extends AppLocalizations {
       'Place your legs onto an elevated surface (like a bed) and your hands a bit wider than your shoulders. Keep your elbows roughly 30-45 degrees from your body, and keep your body in a straight line. Go as deep as you can, then push yourself up.';
 
   @override
-  String get clapPushDesc =>
-      'During a pushup, push yourself off the ground and, if you can, clap your hands while in mid-air.';
+  String get explosivePushDesc =>
+      'During a pushup, push yourself off the ground ';
 
   @override
-  String get archerPushDesc =>
-      'Put your hands wide and rotate your palms out about 45 degrees. Bend one arm to lower yourself, keeping the other elbow slightly bent, then push back up. Do the same on the other side.';
+  String get pseudoPushDesc =>
+      'Place your hands shoulder-width apart and turn them slightly outward.\nLean forward so that your hands are positioned somewhere between your shoulders and your hips. Depress your shoulders as much as possible in two ways: push them toward the ground and pull them down toward your torso. Try to maintain this shoulder position as best as you can throughout the movement. At the same time, squeeze your abs.\nThe further you lean forward, the more challenging the exercise.';
 
   @override
   String get dipPushDesc =>
@@ -334,7 +335,8 @@ class AppLocalizationsEn extends AppLocalizations {
       'Fill a bag with books or small weights, aiming for at least 5–10 kg (11–22 lbs). Support yourself with one hand, keeping your torso straight and roughly horizontal. When you lower your hand, try to keep the bag off the ground. During the lift, keep your shoulders pressed down—don’t let them rise toward your ears. Bend your arm to about 90°. \nIf it feels too easy:\n• increase the weight\n• lower it more slowly\n• do more repetitions\nRepeat on both sides.';
 
   @override
-  String get reverseSnowAngelDesc => 'TODO reverseSnowAngelDesc';
+  String get reverseSnowAngelDesc =>
+      'Lie face down on the floor. Raise your head and hands, touching your hands together above your head. Bring your arms out to the sides down to your hips, then touch your hands together above your head again.\nOne complete round trip counts as one repetition.\nKeep your hands elevated off the floor throughout the entire movement.\nTo make it more challenging, hold a book in each hand.';
 
   @override
   String get bwPullDesc => '';
@@ -383,19 +385,24 @@ class AppLocalizationsEn extends AppLocalizations {
       'Fill a bag with books or other weights. Place your back leg on a chair. Have your rear foot on your toes, while your front foot points forward. Keep your feet slightly apart instead of in a straight line to maintain better balance. Keep your front shin vertical and your thigh pointing forward. Lean forward slightly so the weight is on the back of your front leg. Perform on both sides.';
 
   @override
-  String get glute1Desc => 'TODO glute1Desc';
+  String get glute1Desc =>
+      'Hold onto a table, lean forward slightly, and extend your leg straight back.\nRemember to do this for both legs.';
 
   @override
-  String get glute2Desc => 'TODO glute2Desc';
+  String get glute2Desc =>
+      'Lie on your back with your knees bent so that your shins are roughly vertical. Place your arms slightly out to the sides for better stability.\nDrive your hips up as high as you can while squeezing your glutes, and then come back down.';
 
   @override
-  String get glute3Desc => 'TODO glute3Desc';
+  String get glute3Desc =>
+      'Lie on your back with your knees bent, placing your feet on an elevated surface like the edge of a couch. Place your arms slightly out to the sides for better stability.\nDrive your hips up as high as you can while squeezing your glutes, then lower your hips back down.';
 
   @override
-  String get glute4Desc => 'TODO glute4Desc';
+  String get glute4Desc =>
+      'Lie on your back with your knees bent so that your shins are roughly vertical, then extend one leg, keeping it in the air. Place your arms slightly out to the sides for better stability.\nDrive your hips up as high as you can while squeezing your glutes, then lower your hips back down.\nRemember to do this for both legs.';
 
   @override
-  String get glute5Desc => 'TODO glute5Desc';
+  String get glute5Desc =>
+      'Sit in front of a couch or bed so that the edge is against your upper back. Keep one leg bent and extend the other leg out.\nDrive your hips up as high as you can with one leg while squeezing your glutes, lifting your other foot off the floor as well, then lower back down.\nRemember to do this for both legs.';
 
   @override
   String get core1Desc =>

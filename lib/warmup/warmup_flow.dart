@@ -29,8 +29,8 @@ class _WarmupFlowState extends State<WarmupFlow> {
             case 'kneePush': return loc.kneePush;
             case 'pushUp': return loc.pushUp;
             case 'declinePush': return loc.declinePush;
-            case 'clapPush': return loc.clapPush;
-            case 'archerPush': return loc.archerPush;
+            case 'explosivePush': return loc.explosivePush;
+            case 'pseudoPush': return loc.pseudoPush;
             case 'dipPush': return loc.dipPush;
             case 'bagPull': return loc.bagPull;
             case 'reverseSnowAngel': return loc.reverseSnowAngel;
@@ -61,8 +61,8 @@ class _WarmupFlowState extends State<WarmupFlow> {
             case 'kneePushDesc': return loc.kneePushDesc;
             case 'pushUpDesc': return loc.pushUpDesc;
             case 'declinePushDesc': return loc.declinePushDesc;
-            case 'clapPushDesc': return loc.clapPushDesc;
-            case 'archerPushDesc': return loc.archerPushDesc;
+            case 'explosivePushDesc': return loc.explosivePushDesc;
+            case 'pseudoPushDesc': return loc.pseudoPushDesc;
             case 'dipPushDesc': return loc.dipPushDesc;
             case 'bagPullDesc': return loc.bagPullDesc;
             case 'reverseSnowAngelDesc': return loc.reverseSnowAngelDesc;

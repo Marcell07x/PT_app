@@ -40,15 +40,15 @@ class Exercises {
             'reps': ''
         },
         7: {
-            'videoPath': 'assets/videos/clapPush.mp4',
-            'nameKey': 'clapPush',
-            'descriptionKey': 'clapPushDesc',
+            'videoPath': 'assets/videos/test1.mp4',
+            'nameKey': 'explosivePush',
+            'descriptionKey': 'explosivePushDesc',
             'reps': ''
         },
         8: {
             'videoPath': 'assets/videos/test1.mp4',
-            'nameKey': 'archerPush',
-            'descriptionKey': 'archerPushDesc',
+            'nameKey': 'pseudoPush',
+            'descriptionKey': 'pseudoPushDesc',
             'reps': ''
         },
         9: {
