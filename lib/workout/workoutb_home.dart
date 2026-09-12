@@ -46,16 +46,18 @@ class WorkoutBHome {
         // 1 = lunge, 2 = glute) and one full level step is 3 indices on.
         final int legsV = legSwitch.switchState - 1;
 
-        _pushex = exercises.push[_pushe]!;
+        // From level 90 the push has already stepped up one variation, so workout
+        // B starts from pushe + 1 and every tier shifts up with it.
+        _pushex = exercises.push[_pushe + 1]!;
         //from 350 the pull steps up a variation, unless the user is 60+
         final bool harderPullEx = await PullProgression.steppedUp(_levelE);
         _pullex = exercises.pull[harderPullEx ? _pulle + 1 : _pulle]!;
         _legsex = exercises.legs[_legse + legsV]!;
 
-        _pushexp = exercises.push[_pushe+1]!;
+        _pushexp = exercises.push[_pushe + 2]!;
         _legsexp = exercises.legs[_legse + 3 + legsV]!;
 
-        _pushexpp = exercises.push[_pushe+2]!;
+        _pushexpp = exercises.push[_pushe + 3]!;
         _legsexpp = exercises.legs[_legse + 6 + legsV]!;
 
         // Core runs on its own two-state switch: back extensions on one
@@ -65,15 +67,15 @@ class WorkoutBHome {
         _coreex = coreSwitch.switchState == 1 ? lowerBack : abs;
 
         if (_levelE < 190) {
-            // 150–189: harder push not introduced yet — base push only.
+            // 150-189: still the variation the user stepped up to at 90; 190 brings the next one.
             workout_partsBHome = [
                 {..._pushex}, {..._pullex}, {..._legsex},
                 {..._pushex}, {..._pullex}, {..._legsex},
                 {..._pushex}, {..._pullex}, {..._legsex}
             ];
         } else if (_levelE < 230) {
-            // 190+: harder push enters as a single set, placed SECOND (idx3) so a
-            // base-push set leads into it — extra ramp-up for the hard variation.
+            // 190+: the next push variation enters as a single set, placed SECOND (idx3)
+            // so a lighter set leads into it - extra ramp-up for the new variation.
             workout_partsBHome = [
                 {..._pushex}, {..._pullex}, {..._legsex},
                 {..._pushexp}, {..._pullex}, {..._legsex},

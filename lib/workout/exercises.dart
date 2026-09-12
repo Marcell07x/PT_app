@@ -1,4 +1,7 @@
 class Exercises {
+    // From level 90 the workout runs on push[pushe + 1] rather than letting the
+    // reps climb past 15, and workout B steps up from there, so the ladder is
+    // read as far as push[pushe + 3].
     Map<int, Map<String, String>> push = {
         1: {
             'videoPath': 'assets/videos/wallPush.mp4',
@@ -13,36 +16,42 @@ class Exercises {
             'reps': ''
         },
         3: {
+            'videoPath': 'assets/videos/test1.mp4',
+            'nameKey': 'diamondTablePush',
+            'descriptionKey': 'diamondTablePushDesc',
+            'reps': ''
+        },
+        4: {
             'videoPath': 'assets/videos/kneePush.mp4',
             'nameKey': 'kneePush',
             'descriptionKey': 'kneePushDesc',
             'reps': ''
         },
-        4: {
+        5: {
             'videoPath': 'assets/videos/pushUp.mp4',
             'nameKey': 'pushUp',
             'descriptionKey': 'pushUpDesc',
             'reps': ''
         },
-        5: {
+        6: {
             'videoPath': 'assets/videos/declinePush.mp4',
             'nameKey': 'declinePush',
             'descriptionKey': 'declinePushDesc',
             'reps': ''
-        }, 
-        6: {
+        },
+        7: {
             'videoPath': 'assets/videos/clapPush.mp4',
             'nameKey': 'clapPush',
             'descriptionKey': 'clapPushDesc',
             'reps': ''
-        }, 
-        7: {
+        },
+        8: {
             'videoPath': 'assets/videos/test1.mp4',
             'nameKey': 'archerPush',
             'descriptionKey': 'archerPushDesc',
             'reps': ''
-        },   
-        8: {
+        },
+        9: {
             'videoPath': 'assets/videos/test1.mp4',
             'nameKey': 'dipPush',
             'descriptionKey': 'dipPushDesc',

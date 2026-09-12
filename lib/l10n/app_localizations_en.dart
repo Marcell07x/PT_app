@@ -76,6 +76,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tablePush => 'Table Push-Ups';
 
   @override
+  String get diamondTablePush => 'TODO diamondTablePush';
+
+  @override
   String get kneePush => 'Knee Push-Ups';
 
   @override
@@ -298,6 +301,9 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get tablePushDesc =>
       'Place your hands on a stable table or bed, and a bit wider than your shoulders, keep your elbows roughly 30-45 degrees from your body, and keep your body in a straight line. Go as deep as you can, then push yourself up.';
+
+  @override
+  String get diamondTablePushDesc => 'TODO diamondTablePushDesc';
 
   @override
   String get kneePushDesc =>

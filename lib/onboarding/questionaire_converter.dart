@@ -41,9 +41,9 @@ class Converter {
           }
         } else {
           if (_incSpeed == 5 && gender == 'male') {
-            _pushe = 4; // regular push-up
+            _pushe = 5; // regular push-up
           } else {
-            _pushe = 3; // knee push-up
+            _pushe = 4; // knee push-up
           }
         }
 
@@ -57,7 +57,7 @@ class Converter {
             _legse = 7;
         }
 
-        if (_incSpeed > 3 && _pushe >= 3) {
+        if (_incSpeed > 3 && _pushe >= 4) {
             _level = 85;
             _incSpeed = 2;
         }

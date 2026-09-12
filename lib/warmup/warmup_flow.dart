@@ -25,6 +25,7 @@ class _WarmupFlowState extends State<WarmupFlow> {
         switch (localizationKey) {
             case 'wallPush': return loc.wallPush;
             case 'tablePush': return loc.tablePush;
+            case 'diamondTablePush': return loc.diamondTablePush;
             case 'kneePush': return loc.kneePush;
             case 'pushUp': return loc.pushUp;
             case 'declinePush': return loc.declinePush;
@@ -56,6 +57,7 @@ class _WarmupFlowState extends State<WarmupFlow> {
             case 'runInPlace': return loc.runInPlace;
             case 'wallPushDesc': return loc.wallPushDesc;
             case 'tablePushDesc': return loc.tablePushDesc;
+            case 'diamondTablePushDesc': return loc.diamondTablePushDesc;
             case 'kneePushDesc': return loc.kneePushDesc;
             case 'pushUpDesc': return loc.pushUpDesc;
             case 'declinePushDesc': return loc.declinePushDesc;

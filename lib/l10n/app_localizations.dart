@@ -62,8 +62,7 @@ import 'app_localizations_hu.dart';
 /// be consistent with the languages listed in the AppLocalizations.supportedLocales
 /// property.
 abstract class AppLocalizations {
-  AppLocalizations(String locale)
-    : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  AppLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -71,8 +70,7 @@ abstract class AppLocalizations {
     return Localizations.of<AppLocalizations>(context, AppLocalizations);
   }
 
-  static const LocalizationsDelegate<AppLocalizations> delegate =
-      _AppLocalizationsDelegate();
+  static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -84,18 +82,17 @@ abstract class AppLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
-      <LocalizationsDelegate<dynamic>>[
-        delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ];
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
+    delegate,
+    GlobalMaterialLocalizations.delegate,
+    GlobalCupertinoLocalizations.delegate,
+    GlobalWidgetsLocalizations.delegate,
+  ];
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
     Locale('en'),
-    Locale('hu'),
+    Locale('hu')
   ];
 
   /// No description provided for @form.
@@ -217,6 +214,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Table Push-Ups'**
   String get tablePush;
+
+  /// No description provided for @diamondTablePush.
+  ///
+  /// In en, this message translates to:
+  /// **'TODO diamondTablePush'**
+  String get diamondTablePush;
 
   /// No description provided for @kneePush.
   ///
@@ -656,6 +659,12 @@ abstract class AppLocalizations {
   /// **'Place your hands on a stable table or bed, and a bit wider than your shoulders, keep your elbows roughly 30-45 degrees from your body, and keep your body in a straight line. Go as deep as you can, then push yourself up.'**
   String get tablePushDesc;
 
+  /// No description provided for @diamondTablePushDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'TODO diamondTablePushDesc'**
+  String get diamondTablePushDesc;
+
   /// No description provided for @kneePushDesc.
   ///
   /// In en, this message translates to:
@@ -1023,8 +1032,7 @@ abstract class AppLocalizations {
   String get updateLater;
 }
 
-class _AppLocalizationsDelegate
-    extends LocalizationsDelegate<AppLocalizations> {
+class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
   const _AppLocalizationsDelegate();
 
   @override
@@ -1033,26 +1041,25 @@ class _AppLocalizationsDelegate
   }
 
   @override
-  bool isSupported(Locale locale) =>
-      <String>['en', 'hu'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['en', 'hu'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
 }
 
 AppLocalizations lookupAppLocalizations(Locale locale) {
+
+
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'en':
-      return AppLocalizationsEn();
-    case 'hu':
-      return AppLocalizationsHu();
+    case 'en': return AppLocalizationsEn();
+    case 'hu': return AppLocalizationsHu();
   }
 
   throw FlutterError(
     'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
     'an issue with the localizations generation tool. Please file an issue '
     'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.',
+    'that was used.'
   );
 }

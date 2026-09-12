@@ -10,15 +10,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 /// migrate and only the stamp is written, which is correct — that install is
 /// already on the current schema.
 class PrefsMigration {
-    static const int _currentVersion = 1;
+    static const int _currentVersion = 2;
 
-    /// Must run before anything reads `legse` or `switch`.
+    /// Must run before anything reads `legse`, `switch` or `pushe`.
     static Future<void> run() async {
         final prefs = await SharedPreferences.getInstance();
         final int version = prefs.getInt('prefsVersion') ?? 0;
         if (version >= _currentVersion) return;
 
         if (version < 1) await _toV1(prefs);
+        if (version < 2) await _toV2(prefs);
 
         await prefs.setInt('prefsVersion', _currentVersion);
     }
@@ -47,6 +48,20 @@ class PrefsMigration {
         //from the old leg switch so the abs / lower-back order does not restart
         if (!prefs.containsKey('coreSwitch')) {
             await prefs.setInt('coreSwitch', oldSwitch == -1 ? -1 : 1);
+        }
+    }
+
+    /// v2: a new push variation (diamond table push-up) was inserted between
+    /// the table and the knee push-up, so the knee push-up and everything
+    /// above it moved one index on.
+    static Future<void> _toV2(SharedPreferences prefs) async {
+        //the converter is the only writer of `pushe` and can only have written
+        //1..4, so the table covers every value that can actually be stored; the
+        //fallback only guards against a corrupted one
+        final int? pushe = prefs.getInt('pushe');
+        if (pushe != null) {
+            const Map<int, int> remap = {1: 1, 2: 2, 3: 4, 4: 5};
+            await prefs.setInt('pushe', remap[pushe] ?? 2);
         }
     }
 }

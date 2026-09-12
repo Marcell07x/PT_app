@@ -25,6 +25,7 @@
 
     "wallPush": "Wall Push-Ups",
     "tablePush": "Table Push-Ups",
+    "diamondTablePush": "TODO diamondTablePush",
     "kneePush": "Knee Push-Ups",
     "pushUp": "Push-Ups",
     "declinePush": "Decline Push Ups",
@@ -127,6 +128,7 @@
 
     "wallPushDesc": "Stand about one step away from the wall. Place your hands a bit wider than your shoulders, keep your elbows roughly 30-45 degrees from your body, and keep your body in a straight line. Go as close to the wall as you can, then push yourself back.",
     "tablePushDesc": "Place your hands on a stable table or bed, and a bit wider than your shoulders, keep your elbows roughly 30-45 degrees from your body, and keep your body in a straight line. Go as deep as you can, then push yourself up.",
+    "diamondTablePushDesc": "TODO diamondTablePushDesc",
     "kneePushDesc": "Kneel on something soft. Place your hands a bit wider than your shoulders, keep your elbows roughly 30-45 degrees from your body, and keep your body in a straight line. Go as deep as you can, then push yourself up.",
     "pushUpDesc": "Place your hands a bit wider than your shoulders, keep your elbows roughly 30-45 degrees from your body, and keep your body in a straight line. Go as deep as you can, then push yourself up.",
     "declinePushDesc": "Place your legs onto an elevated surface (like a bed) and your hands a bit wider than your shoulders. Keep your elbows roughly 30-45 degrees from your body, and keep your body in a straight line. Go as deep as you can, then push yourself up.",

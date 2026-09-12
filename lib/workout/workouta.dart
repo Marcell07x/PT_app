@@ -16,6 +16,7 @@ class WorkoutA {
     late int _legse;
 
     late var _pushex;
+    late var _pushexp;
     late var _pullex;
     late var _legsex;
 
@@ -31,6 +32,9 @@ class WorkoutA {
         _legse = prefs.getInt('legse')!;
 
         _pushex = exercises.push[_pushe]!;
+        //from 90 the push steps up one variation instead of the reps climbing
+        //past 15, one slot at a time
+        _pushexp = exercises.push[_pushe + 1]!;
         _pullex = exercises.pull[_pulle]!;
         //the three leg families sit next to each other in the legs map, so the
         //switch state is itself the offset from the level base index
@@ -44,17 +48,22 @@ class WorkoutA {
             workout_partsA = [{..._pushex}, {..._pullex}, {..._pushex}];
         } else if (_levelE < 90) {
             workout_partsA = [{..._pushex}, {..._pullex}, {..._pushex}, {..._pullex}];
+        } else if (_levelE < 95) {
+            // 90+: the first push set is the one that would have gone past 15.
+            workout_partsA = [{..._pushexp}, {..._pullex}, {..._pushex}, {..._pullex}];
         } else if (_levelE < 110) {
-            workout_partsA = [{..._pushex}, {..._pullex}, {..._pushex}, {..._pullex}];
+            workout_partsA = [{..._pushexp}, {..._pullex}, {..._pushexp}, {..._pullex}];
         } else if (_levelE < 115) {
-            workout_partsA = [{..._pushex}, {..._pullex}, {..._pushex}, {..._pullex}, {..._pushex}];
-        } else if (_levelE < 130) {
-            workout_partsA = [{..._pushex}, {..._pullex}, {..._pushex}, {..._pullex}, {..._pushex}, {..._pullex},];
+            // the third push set enters low, so it stays on the base variation.
+            workout_partsA = [{..._pushexp}, {..._pullex}, {..._pushexp}, {..._pullex}, {..._pushex}];
+        } else if (_levelE < 125) {
+            workout_partsA = [{..._pushexp}, {..._pullex}, {..._pushexp}, {..._pullex}, {..._pushex}, {..._pullex},];
         } else if (_levelE < 135) {
-            workout_partsA = [{..._pushex}, {..._pullex}, {..._pushex}, {..._pullex}, {..._pushex}, {..._pullex},];
+            // 125+: the third set has caught up too.
+            workout_partsA = [{..._pushexp}, {..._pullex}, {..._pushexp}, {..._pullex}, {..._pushexp}, {..._pullex},];
         } else if (_levelE < 150) {
-            workout_partsA = [{..._pushex}, {..._pullex}, {..._legsex}, {..._pushex},
-                             {..._pullex}, {..._legsex}, {..._pushex}, {..._pullex}, {..._legsex}];
+            workout_partsA = [{..._pushexp}, {..._pullex}, {..._legsex}, {..._pushexp},
+                             {..._pullex}, {..._legsex}, {..._pushexp}, {..._pullex}, {..._legsex}];
         }
     }
 }

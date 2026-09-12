@@ -34,12 +34,10 @@ class Warmup {
         _pulle = prefs.getInt('pulle')!;
         _legse = prefs.getInt('legse')!;
 
-        // Below 190 the base push is the hardest push in the workout, so warm up
-        // one variation easier (wall push-up has nothing easier, so it stays put).
-        // From 190 the harder variant is in the workout, so the base push itself
-        // already works as the warm-up.
-        final int warmupPushe = _levelE < 190 ? (_pushe > 1 ? _pushe - 1 : 1) : _pushe;
-        _pushex = exercises.push[warmupPushe]!;
+        // The workout runs on push[pushe + 1] from level 90 on, and the warm-up
+        // only runs from 130, so the base push is one variation easier
+        // everywhere the warm-up appears.
+        _pushex = exercises.push[_pushe]!;
 
         // Warm up one leg level below the working one (floored at the first),
         // and in the same family the workout itself uses, so the switch state

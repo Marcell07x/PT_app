@@ -45,6 +45,7 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
         switch (localizationKey) {
             case 'wallPush': return loc.wallPush;
             case 'tablePush': return loc.tablePush;
+            case 'diamondTablePush': return loc.diamondTablePush;
             case 'kneePush': return loc.kneePush;
             case 'pushUp': return loc.pushUp;
             case 'declinePush': return loc.declinePush;
@@ -74,6 +75,7 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
             case 'core2': return loc.core2;
             case 'wallPushDesc': return loc.wallPushDesc;
             case 'tablePushDesc': return loc.tablePushDesc;
+            case 'diamondTablePushDesc': return loc.diamondTablePushDesc;
             case 'kneePushDesc': return loc.kneePushDesc;
             case 'pushUpDesc': return loc.pushUpDesc;
             case 'declinePushDesc': return loc.declinePushDesc;

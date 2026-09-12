@@ -25,6 +25,7 @@
 
     "wallPush": "Fal Fekvőtámasz",
     "tablePush": "Asztal Fekvőtámasz",
+    "diamondTablePush": "TODO diamondTablePush",
     "kneePush": "Térdelő Fekvőtámasz",
     "pushUp": "Fekvőtámasz",
     "declinePush": "Feltett Lábas Fekvőtámasz",
@@ -121,6 +122,7 @@
 
     "wallPushDesc": "Állj egy lépésre a faltól. Helyezd a kezeidet vállszélességnél kicsivel szélesebbre, a könyökeidet tartsd a testedtől nagyjából 30-45 fokra, a testedet pedig tartsd egy egyenes vonalban. Engedd magad olyan közel a falhoz, amennyire csak tudod, majd told ki magad.",
     "tablePushDesc": "Helyezd a kezeidet mondjuk egy stabil asztalra, vagy ágyra, vállszélességnél kicsivel szélesebbre, a könyökeidet tartsd a testedtől nagyjából 30-45 fokra, a testedet pedig tartsd egy egyenes vonalban. Engedd le magad olyan mélyre, amennyire csak tudod, majd nyomd ki magad. Minél alacsonyabban van a kezed, annál nehezebb.",
+    "diamondTablePushDesc": "TODO diamondTablePushDesc",
     "kneePushDesc": "Térdelj le valami puha dologra. Helyezd a kezeidet vállszélességnél kicsivel szélesebbre, a könyökeidet tartsd a testedtől nagyjából 30-45 fokra, a testedet pedig tartsd egy egyenes vonalban. Engedd le magad olyan mélyre, amennyire csak tudod, majd nyomd ki magad.",
     "pushUpDesc": "Helyezd a kezeidet vállszélességnél kicsivel szélesebbre, a könyökeidet tartsd a testedtől nagyjából 30-45 fokra, a testedet pedig tartsd egy egyenes vonalban. Engedd le magad olyan mélyre, amennyire csak tudod, majd nyomd ki magad.",
     "declinePushDesc": "Helyezd a lábaidat valami magasabb dologra (mondjuk kanapéra), a kezeidet a földre, vállszélességnél kicsivel szélesebbre, a könyökeidet tartsd a testedtől nagyjából 30-45 fokra, a testedet pedig tartsd egy egyenes vonalban. Engedd le magad olyan mélyre, amennyire csak tudod, majd nyomd ki magad.",

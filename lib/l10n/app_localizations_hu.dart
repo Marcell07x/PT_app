@@ -76,6 +76,9 @@ class AppLocalizationsHu extends AppLocalizations {
   String get tablePush => 'Asztal Fekvőtámasz';
 
   @override
+  String get diamondTablePush => 'TODO diamondTablePush';
+
+  @override
   String get kneePush => 'Térdelő Fekvőtámasz';
 
   @override
@@ -298,6 +301,9 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get tablePushDesc =>
       'Helyezd a kezeidet mondjuk egy stabil asztalra, vagy ágyra, vállszélességnél kicsivel szélesebbre, a könyökeidet tartsd a testedtől nagyjából 30-45 fokra, a testedet pedig tartsd egy egyenes vonalban. Engedd le magad olyan mélyre, amennyire csak tudod, majd nyomd ki magad. Minél alacsonyabban van a kezed, annál nehezebb.';
+
+  @override
+  String get diamondTablePushDesc => 'TODO diamondTablePushDesc';
 
   @override
   String get kneePushDesc =>
