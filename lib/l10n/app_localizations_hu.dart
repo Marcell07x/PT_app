@@ -258,10 +258,10 @@ class AppLocalizationsHu extends AppLocalizations {
   String get congratMessage => 'Megcsináltad a mai edzésed!';
 
   @override
-  String get rpe1 => 'Nagyon Könnyed';
+  String get rpe1 => 'Nagyon Könnyű';
 
   @override
-  String get rpe23 => 'Könnyed';
+  String get rpe23 => 'Könnyű';
 
   @override
   String get rpe46 => 'Kicsit Megerőltető';
@@ -390,7 +390,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get glute2Desc =>
-      'Feküdj hátra hajlított térdel úgy, hogy a lábszáraid nagyjából függőlegesen állnak. Kicsit rakd ki oldalra a kezeid, hogy stabilabb legyél.\nVidd fel a csípődet olyan magasra, amilyenre csak tudod, miközben feszíted a farizmod, majd engedd vissza a csípőd.';
+      'Feküdj hátra hajlított térdel. Kicsit rakd ki oldalra a kezeid, hogy stabilabb legyél.\nVidd fel a csípődet olyan magasra, amilyenre csak tudod, miközben feszíted a farizmod, majd engedd vissza a csípőd.';
 
   @override
   String get glute3Desc =>
@@ -398,7 +398,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get glute4Desc =>
-      'Feküdj hátra hajlított térdel úgy, hogy a lábszáraid nagyjából függőlegesen állnak, majd nyújtsd ki az egyik lábad, miközben a levegőben tartod. Kicsit rakd ki oldalra a kezeid, hogy stabilabb legyél.\nVidd fel a csípődet olyan magasra, amilyenre csak tudod, miközben feszíted a farizmod, majd engedd vissza a csípőd.\nNe felejtsd el mindkét lábra megcsinálni.';
+      'Feküdj hátra hajlított térdel, majd nyújtsd ki az egyik lábad, miközben a levegőben tartod. Kicsit rakd ki oldalra a kezeid, hogy stabilabb legyél.\nVidd fel a csípődet olyan magasra, amilyenre csak tudod, miközben feszíted a farizmod, majd engedd vissza a csípőd.\nNe felejtsd el mindkét lábra megcsinálni.';
 
   @override
   String get glute5Desc =>

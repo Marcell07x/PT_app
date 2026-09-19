@@ -797,7 +797,7 @@ abstract class AppLocalizations {
   /// No description provided for @glute2Desc.
   ///
   /// In en, this message translates to:
-  /// **'Lie on your back with your knees bent so that your shins are roughly vertical. Place your arms slightly out to the sides for better stability.\nDrive your hips up as high as you can while squeezing your glutes, and then come back down.'**
+  /// **'Lie on your back with your knees bent. Place your arms slightly out to the sides for better stability.\nDrive your hips up as high as you can while squeezing your glutes, and then come back down.'**
   String get glute2Desc;
 
   /// No description provided for @glute3Desc.
@@ -809,7 +809,7 @@ abstract class AppLocalizations {
   /// No description provided for @glute4Desc.
   ///
   /// In en, this message translates to:
-  /// **'Lie on your back with your knees bent so that your shins are roughly vertical, then extend one leg, keeping it in the air. Place your arms slightly out to the sides for better stability.\nDrive your hips up as high as you can while squeezing your glutes, then lower your hips back down.\nRemember to do this for both legs.'**
+  /// **'Lie on your back with your knees bent, then extend one leg, keeping it in the air. Place your arms slightly out to the sides for better stability.\nDrive your hips up as high as you can while squeezing your glutes, then lower your hips back down.\nRemember to do this for both legs.'**
   String get glute4Desc;
 
   /// No description provided for @glute5Desc.

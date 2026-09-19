@@ -104,8 +104,8 @@
     "congratMessage": "Megcsináltad a mai edzésed!",
 
 
-    "rpe1": "Nagyon Könnyed",
-    "rpe23": "Könnyed",
+    "rpe1": "Nagyon Könnyű",
+    "rpe23": "Könnyű",
     "rpe46": "Kicsit Megerőltető",
     "rpe78": "Megerőltető",
     "rpe910": "Nagyon Megerőltető",
@@ -144,9 +144,9 @@
     "squat5Desc": "Állj terpeszben, kicsit nézzenek kifelé a lábfejeid. Kezd a leereszkedést az egyik térded behajlításával. Tartsd a felsőtested merőlegesen, amennyire tudod.",
     "lunge5Desc": "Vegyél fel egy könyvekkel telepakolt táskát. A hátsó lábad tedd fel mondjuk egy székre. A hátsó lábfejed lábujjadon támaszkodjon, az első nézzen előre. A két lábujj ne egy vonalban legyen, hogy stabilabban állj. Tartsd az elülső sípcsintod függőlegesen. A combod mutasson előre. Kicsit dőlj előre, hogy az elülső lábad hátsó részén legyen a hangsúly. Mindkét lábaddal elől csináld meg.",
     "glute1Desc": "Kapaszkodj meg egy asztalban, kicsit hajolj előre, és emeld hátra a lábad.\nNe felejtsd el mindkét lábra megcsinálni.",
-    "glute2Desc": "Feküdj hátra hajlított térdel úgy, hogy a lábszáraid nagyjából függőlegesen állnak. Kicsit rakd ki oldalra a kezeid, hogy stabilabb legyél.\nVidd fel a csípődet olyan magasra, amilyenre csak tudod, miközben feszíted a farizmod, majd engedd vissza a csípőd.",
+    "glute2Desc": "Feküdj hátra hajlított térdel. Kicsit rakd ki oldalra a kezeid, hogy stabilabb legyél.\nVidd fel a csípődet olyan magasra, amilyenre csak tudod, miközben feszíted a farizmod, majd engedd vissza a csípőd.",
     "glute3Desc": "Feküdj hátra hajlított térdel úgy, hogy a lábaid valami magaslaton, mondjuk egy kanapé szélén legyen. Kicsit rakd ki oldalra a kezeid, hogy stabilabb legyél.\nVidd fel a csípődet olyan magasra, amilyenre csak tudod, miközben feszíted a farizmod, majd engedd vissza a csípőd.",
-    "glute4Desc": "Feküdj hátra hajlított térdel úgy, hogy a lábszáraid nagyjából függőlegesen állnak, majd nyújtsd ki az egyik lábad, miközben a levegőben tartod. Kicsit rakd ki oldalra a kezeid, hogy stabilabb legyél.\nVidd fel a csípődet olyan magasra, amilyenre csak tudod, miközben feszíted a farizmod, majd engedd vissza a csípőd.\nNe felejtsd el mindkét lábra megcsinálni.",
+    "glute4Desc": "Feküdj hátra hajlított térdel, majd nyújtsd ki az egyik lábad, miközben a levegőben tartod. Kicsit rakd ki oldalra a kezeid, hogy stabilabb legyél.\nVidd fel a csípődet olyan magasra, amilyenre csak tudod, miközben feszíted a farizmod, majd engedd vissza a csípőd.\nNe felejtsd el mindkét lábra megcsinálni.",
     "glute5Desc": "Ülj egy kanapé vagy ágy elé, úgy, hogy az ágy széle a hátadnál legyen. Egyik lábad legyen behajlítva, a másik pedig nyújtva.\nAz egyik lábaddal told ki a csípődet, amennyire csak tudod, miközben feszíted a farizmodat, és a másik lábadat is elemeled a földről, majd ereszkedj le.\nNe felejtsd el mindkét lábra megcsinálni.",
     "core1Desc": "Tedd be a kezeid a feneked alá. Emeld fel a fejed. Feszítsd a hasad, és emeld fel a lábaid, de ne teljesen függőlegesig. Kontrolláltan engedd le a lábaid, és ismétlések között ne pihentesd lent a földön. Térdhajlítással könnyebb.",
     "core2Desc": "Feküdj hassal egy székre, és kapaszkodj a lábaiba. Hajlított térdel emeld fel hátul a lábaid, amennyire tudod.",

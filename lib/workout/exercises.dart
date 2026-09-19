@@ -16,7 +16,7 @@ class Exercises {
             'reps': ''
         },
         3: {
-            'videoPath': 'assets/videos/test1.mp4',
+            'videoPath': 'assets/videos/diamondTablePush.mp4',
             'nameKey': 'diamondTablePush',
             'descriptionKey': 'diamondTablePushDesc',
             'reps': ''
@@ -40,13 +40,13 @@ class Exercises {
             'reps': ''
         },
         7: {
-            'videoPath': 'assets/videos/test1.mp4',
+            'videoPath': 'assets/videos/explosivePush.mp4',
             'nameKey': 'explosivePush',
             'descriptionKey': 'explosivePushDesc',
             'reps': ''
         },
         8: {
-            'videoPath': 'assets/videos/test1.mp4',
+            'videoPath': 'assets/videos/pseudoPush.mp4',
             'nameKey': 'pseudoPush',
             'descriptionKey': 'pseudoPushDesc',
             'reps': ''
@@ -67,7 +67,7 @@ class Exercises {
             'reps': ''
         },
         2: {
-            'videoPath': 'assets/videos/test1.mp4',
+            'videoPath': 'assets/videos/reverseSnowAngel.mp4',
             'nameKey': 'reverseSnowAngel',
             'descriptionKey': 'reverseSnowAngelDesc',
             'reps': ''
@@ -103,7 +103,7 @@ class Exercises {
             'reps': ''
         },
         3: {
-            'videoPath': 'assets/videos/test1.mp4',
+            'videoPath': 'assets/videos/glute1.mp4',
             'nameKey': 'glute1',
             'descriptionKey': 'glute1Desc',
             'reps': ''
@@ -121,7 +121,7 @@ class Exercises {
             'reps': ''
         },
         6: {
-            'videoPath': 'assets/videos/test1.mp4',
+            'videoPath': 'assets/videos/glute2.mp4',
             'nameKey': 'glute2',
             'descriptionKey': 'glute2Desc',
             'reps': ''
@@ -139,7 +139,7 @@ class Exercises {
             'reps': ''
         },
         9: {
-            'videoPath': 'assets/videos/test1.mp4',
+            'videoPath': 'assets/videos/glute3.mp4',
             'nameKey': 'glute3',
             'descriptionKey': 'glute3Desc',
             'reps': ''
@@ -157,7 +157,7 @@ class Exercises {
             'reps': ''
         },
         12: {
-            'videoPath': 'assets/videos/test1.mp4',
+            'videoPath': 'assets/videos/glute4.mp4',
             'nameKey': 'glute4',
             'descriptionKey': 'glute4Desc',
             'reps': ''
@@ -175,7 +175,7 @@ class Exercises {
             'reps': ''
         },
         15: {
-            'videoPath': 'assets/videos/test1.mp4',
+            'videoPath': 'assets/videos/glute5.mp4',
             'nameKey': 'glute5',
             'descriptionKey': 'glute5Desc',
             'reps': ''

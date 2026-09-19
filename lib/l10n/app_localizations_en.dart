@@ -390,7 +390,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get glute2Desc =>
-      'Lie on your back with your knees bent so that your shins are roughly vertical. Place your arms slightly out to the sides for better stability.\nDrive your hips up as high as you can while squeezing your glutes, and then come back down.';
+      'Lie on your back with your knees bent. Place your arms slightly out to the sides for better stability.\nDrive your hips up as high as you can while squeezing your glutes, and then come back down.';
 
   @override
   String get glute3Desc =>
@@ -398,7 +398,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get glute4Desc =>
-      'Lie on your back with your knees bent so that your shins are roughly vertical, then extend one leg, keeping it in the air. Place your arms slightly out to the sides for better stability.\nDrive your hips up as high as you can while squeezing your glutes, then lower your hips back down.\nRemember to do this for both legs.';
+      'Lie on your back with your knees bent, then extend one leg, keeping it in the air. Place your arms slightly out to the sides for better stability.\nDrive your hips up as high as you can while squeezing your glutes, then lower your hips back down.\nRemember to do this for both legs.';
 
   @override
   String get glute5Desc =>
