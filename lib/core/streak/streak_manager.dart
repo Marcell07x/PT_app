@@ -62,6 +62,7 @@ class StreakManager {
         int today = StreakDateUtils.dayNum(current);
         if (state.lastStreakDate != today) {
             state.streak++;
+            //weekCount = number of workouts that week
             state.weekCount++;
             state.lastStreakDate = today;
             state.workoutDays.add(today);
