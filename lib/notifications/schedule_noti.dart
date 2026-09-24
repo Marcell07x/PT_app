@@ -1,11 +1,14 @@
+import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_timezone/flutter_timezone.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:getshap/l10n/app_localizations.dart';
 import 'package:getshap/core/workout_signal.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
-//the time zone is set to Budapest
+//the reminder is scheduled in the device's own time zone
 //Sometimes there won't be notification, when a workout is available,
     //but it's not a big problem
 
@@ -44,12 +47,49 @@ class ScheduleNotifications {
         tz.initializeTimeZones();
     }
 
-    static Future<void> laterNoti(BuildContext context) async {
-        final location = tz.getLocation('Europe/Budapest');
-        final tz.TZDateTime now = tz.TZDateTime.now(location);
+    static Future<bool> isNotificationGranted() async {
+        if (Platform.isAndroid) {
+            final androidPlugin = flutterLocalNotificationsPlugin
+                .resolvePlatformSpecificImplementation<
+                    AndroidFlutterLocalNotificationsPlugin>();
 
+            if (androidPlugin == null) return false;
+
+            final bool? granted = await androidPlugin.areNotificationsEnabled();
+            return granted == true;
+        }
+
+        else if (Platform.isIOS) {
+            final status = await Permission.notification.status;
+            return status == PermissionStatus.granted;
+        }
+
+        return false;
+    }
+
+    //the device's own time zone, so the reminder lands in the user's daytime
+    //wherever they live; falls back to Budapest if the platform reports a
+    //zone the timezone database does not know
+    static Future<tz.Location> _localLocation() async {
+        try {
+            final TimezoneInfo info = await FlutterTimezone.getLocalTimezone();
+            return tz.getLocation(info.identifier);
+        } catch (e) {
+            debugPrint('local time zone lookup failed: $e');
+            return tz.getLocation('Europe/Budapest');
+        }
+    }
+
+    static Future<void> laterNoti(BuildContext context) async {
         final String reminderTitle = AppLocalizations.of(context)!.workoutReminderTitle;
         final String reminderBody = AppLocalizations.of(context)!.workoutReminderBody;
+
+        //iOS refuses to schedule without notification permission (it throws),
+        //so skip the reminder when notifications are off
+        if (!await isNotificationGranted()) return;
+
+        final location = await _localLocation();
+        final tz.TZDateTime now = tz.TZDateTime.now(location);
 
         // schedule the reminder for the next possible workout day, so it never
         // fires before the user can actually train (transition week included)

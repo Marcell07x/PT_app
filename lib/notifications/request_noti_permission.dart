@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'dart:io' show Platform;
-import 'package:permission_handler/permission_handler.dart';
 import 'package:getshap/l10n/app_localizations.dart';
+import 'package:getshap/notifications/schedule_noti.dart';
 import 'package:getshap/main.dart';
 import 'package:getshap/common/ui/app_button.dart';
 import 'package:getshap/common/ui/app_scaffold.dart';
@@ -37,7 +37,7 @@ class _RequestNotiPermissionState extends State<RequestNotiPermission> {
     }
 
     Future<void> _initializePermissionFlow() async {
-        bool granted = await isNotificationGranted();
+        bool granted = await ScheduleNotifications.isNotificationGranted();
         setState(() {
             _isPermissionGranted = granted;
         });
@@ -98,26 +98,6 @@ class _RequestNotiPermissionState extends State<RequestNotiPermission> {
                 _goToHomePage();
             }
         }
-    }
-
-    Future<bool> isNotificationGranted() async {
-        if (Platform.isAndroid) {
-            final androidPlugin = _notificationsPlugin
-                .resolvePlatformSpecificImplementation<
-                    AndroidFlutterLocalNotificationsPlugin>();
-            
-            if (androidPlugin == null) return false;
-            
-            final bool? granted = await androidPlugin.areNotificationsEnabled();
-            return granted == true;
-        }
-
-        else if (Platform.isIOS) {
-            final status = await Permission.notification.status;
-            return status == PermissionStatus.granted;
-        }
-        
-        return false;
     }
 
     @override

@@ -181,32 +181,17 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
         //next-workout day
         final levelAfter = prefs.getInt('level') ?? levelF;
         await WorkoutSignal.onWorkoutFinished(levelF, levelAfter);
-        //the reminder is best effort: if scheduling throws (iOS can refuse it)
-        //or never returns, the workout still has to finish and navigate on,
-        //otherwise _finishing stays true and the finish button goes dead
-        String? notiError;
+        //the reminder is best effort: if scheduling throws or never returns,
+        //the workout still has to finish and navigate on, otherwise _finishing
+        //stays true and the finish button goes dead
         try {
             await ScheduleNotifications.laterNoti(context)
                 .timeout(const Duration(seconds: 5));
         } catch (e) {
             debugPrint('laterNoti failed: $e');
-            notiError = e.toString();
         }
 
         if (!mounted) return;
-
-        //TEMP diagnostics for the iOS finish-button bug: shows why the reminder
-        //could not be scheduled (TimeoutException = it hung). The root
-        //ScaffoldMessenger carries it over to the next screen. Remove once the
-        //cause is known, keep the try/catch above.
-        if (notiError != null) {
-            ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                    content: Text('laterNoti: $notiError'),
-                    duration: const Duration(seconds: 15),
-                ),
-            );
-        }
 
         if (levelF > 149 || (workoutCount == 4 && levelF > 100)) {
             Navigator.of(context).pushReplacement(

@@ -1,7 +1,7 @@
 name: getshap
 description: "Makes Getting In Shape easy."
 publish_to: 'none'
-version: 1.4.0+18
+version: 1.4.1+19
 
 environment:
   sdk: ^3.8.1
@@ -21,6 +21,7 @@ dependencies:
   url_launcher: ^6.3.2
   in_app_update: ^4.2.5
   package_info_plus: ^8.3.0
+  flutter_timezone: ^5.1.0
 
 dev_dependencies:
   flutter_test:
