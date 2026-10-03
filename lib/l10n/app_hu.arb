@@ -115,6 +115,12 @@
 
     "workoutReminderTitle": "Egy kis edzés? 💪",
     "workoutReminderBody": "Épp egy új szokást építesz ki - Nyomjad!",
+    "welcomeNotiTitle": "Vágj bele az edzésbe",
+    "welcomeNotiBody": "nem lesz nehéz 😊",
+    "streakNotiTitle": "Edzés streak 🔥",
+    "streakNotiBody": "Ne felejtsd el meghosszabbítani az edzés streak-edet 🔥",
+    "marciNotiTitle": "Szia, itt Marci.",
+    "marciNotiBody": "Úgy döntöttél, hogy változtatni szeretnél. Ne add fel!",
 
     "notis": "Értesítések",
     "notisAreImportant": "Az emlékeztető értesítések segítenek rászokni az edzésre.",

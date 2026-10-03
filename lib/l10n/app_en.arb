@@ -121,6 +121,12 @@
     
     "workoutReminderTitle": "Quick workout? 💪",
     "workoutReminderBody": "You're building a habit - keep going!",
+    "welcomeNotiTitle": "Jump into your workout",
+    "welcomeNotiBody": "it won't be hard 😊",
+    "streakNotiTitle": "Workout streak 🔥",
+    "streakNotiBody": "Don't forget to extend your workout streak 🔥",
+    "marciNotiTitle": "Hi, Marcell here.",
+    "marciNotiBody": "You decided you want to change. Don't give up!",
 
     "notis": "Notifications",
     "notisAreImportant": "Notifications help you build the habit of working out.",

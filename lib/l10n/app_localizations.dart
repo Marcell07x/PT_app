@@ -632,6 +632,42 @@ abstract class AppLocalizations {
   /// **'You\'re building a habit - keep going!'**
   String get workoutReminderBody;
 
+  /// No description provided for @welcomeNotiTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Jump into your workout'**
+  String get welcomeNotiTitle;
+
+  /// No description provided for @welcomeNotiBody.
+  ///
+  /// In en, this message translates to:
+  /// **'it won\'t be hard 😊'**
+  String get welcomeNotiBody;
+
+  /// No description provided for @streakNotiTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Workout streak 🔥'**
+  String get streakNotiTitle;
+
+  /// No description provided for @streakNotiBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t forget to extend your workout streak 🔥'**
+  String get streakNotiBody;
+
+  /// No description provided for @marciNotiTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Hi, Marcell here.'**
+  String get marciNotiTitle;
+
+  /// No description provided for @marciNotiBody.
+  ///
+  /// In en, this message translates to:
+  /// **'You decided you want to change. Don\'t give up!'**
+  String get marciNotiBody;
+
   /// No description provided for @notis.
   ///
   /// In en, this message translates to:

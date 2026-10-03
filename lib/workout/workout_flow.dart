@@ -177,13 +177,15 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
         await workoutLevel.setLevel();
         //record the finished workout, maintain the transition-week bonus token
         //and clear today's signal; needs the post-setLevel level to detect the
-        //150 crossing, and runs before laterNoti so the reminder uses the fresh
+        //150 crossing, and runs before laterNoti so the reminders use the fresh
         //next-workout day
         final levelAfter = prefs.getInt('level') ?? levelF;
         await WorkoutSignal.onWorkoutFinished(levelF, levelAfter);
-        //the reminder is best effort: if scheduling throws or never returns,
-        //the workout still has to finish and navigate on, otherwise _finishing
-        //stays true and the finish button goes dead
+        //clears the pending notifications and schedules the three
+        //after-workout ones at once (streak reminder, the reminder a day
+        //later, Marci's message). Best effort: if scheduling throws or never
+        //returns, the workout still has to finish and navigate on, otherwise
+        //_finishing stays true and the finish button goes dead
         try {
             await ScheduleNotifications.laterNoti(context)
                 .timeout(const Duration(seconds: 5));

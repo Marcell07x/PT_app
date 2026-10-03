@@ -285,6 +285,24 @@ class AppLocalizationsEn extends AppLocalizations {
   String get workoutReminderBody => 'You\'re building a habit - keep going!';
 
   @override
+  String get welcomeNotiTitle => 'Jump into your workout';
+
+  @override
+  String get welcomeNotiBody => 'it won\'t be hard 😊';
+
+  @override
+  String get streakNotiTitle => 'Workout streak 🔥';
+
+  @override
+  String get streakNotiBody => 'Don\'t forget to extend your workout streak 🔥';
+
+  @override
+  String get marciNotiTitle => 'Hi, Marcell here.';
+
+  @override
+  String get marciNotiBody => 'You decided you want to change. Don\'t give up!';
+
+  @override
   String get notis => 'Notifications';
 
   @override

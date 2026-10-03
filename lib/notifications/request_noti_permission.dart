@@ -27,7 +27,23 @@ class _RequestNotiPermissionState extends State<RequestNotiPermission> {
         _initializePermissionFlow();
     }
 
-    void _goToHomePage() {
+    Future<void> _goToHomePage() async {
+        //clear the pending notifications first, even without permission, so
+        //filling in the questionnaire again (debug) never leaves an older
+        //chain behind. Best effort: if it throws or never returns, the user
+        //still has to get to the home screen
+        try {
+            await ScheduleNotifications.cancelPending()
+                .timeout(const Duration(seconds: 5));
+        } catch (e) {
+            debugPrint('cancelPending failed: $e');
+        }
+        if (!mounted) return;
+
+        //then the "get started" nudge for the next day (skipped without
+        //permission); it handles its own errors, so it is not awaited
+        ScheduleNotifications.welcomeNoti(context);
+
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
                 builder: (context) => const MyHomePage(),

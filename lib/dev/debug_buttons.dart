@@ -16,7 +16,7 @@ class DebugButtonsLogic {
     }) async {
         Navigator.of(context).pop();
         WorkoutSignal.debugSetSignalTrue();
-        await ScheduleNotifications.testNoti();
+        await ScheduleNotifications.testNoti(context);
         updateState();
         int? newLevel = await ManuallySetLevel.showLevelInputDialog(context);
         if (newLevel != null) {

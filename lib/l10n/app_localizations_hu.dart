@@ -285,6 +285,26 @@ class AppLocalizationsHu extends AppLocalizations {
   String get workoutReminderBody => 'Épp egy új szokást építesz ki - Nyomjad!';
 
   @override
+  String get welcomeNotiTitle => 'Vágj bele az edzésbe';
+
+  @override
+  String get welcomeNotiBody => 'nem lesz nehéz 😊';
+
+  @override
+  String get streakNotiTitle => 'Edzés streak 🔥';
+
+  @override
+  String get streakNotiBody =>
+      'Ne felejtsd el meghosszabbítani az edzés streak-edet 🔥';
+
+  @override
+  String get marciNotiTitle => 'Szia, itt Marci.';
+
+  @override
+  String get marciNotiBody =>
+      'Úgy döntöttél, hogy változtatni szeretnél. Ne add fel!';
+
+  @override
   String get notis => 'Értesítések';
 
   @override
