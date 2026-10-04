@@ -119,8 +119,8 @@
     "welcomeNotiBody": "nem lesz nehéz 😊",
     "streakNotiTitle": "Edzés streak 🔥",
     "streakNotiBody": "Ne felejtsd el meghosszabbítani az edzés streak-edet 🔥",
-    "marciNotiTitle": "Szia, itt Marci.",
-    "marciNotiBody": "Úgy döntöttél, hogy változtatni szeretnél. Ne add fel!",
+    "dontGiveUpNotiTitle": "Ne add fel!",
+    "dontGiveUpNotiBody": "Úgy döntöttél, hogy változtatni szeretnél.",
 
     "notis": "Értesítések",
     "notisAreImportant": "Az emlékeztető értesítések segítenek rászokni az edzésre.",

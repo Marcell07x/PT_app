@@ -656,17 +656,17 @@ abstract class AppLocalizations {
   /// **'Don\'t forget to extend your workout streak 🔥'**
   String get streakNotiBody;
 
-  /// No description provided for @marciNotiTitle.
+  /// No description provided for @dontGiveUpNotiTitle.
   ///
   /// In en, this message translates to:
-  /// **'Hi, Marcell here.'**
-  String get marciNotiTitle;
+  /// **'Don\'t give up!'**
+  String get dontGiveUpNotiTitle;
 
-  /// No description provided for @marciNotiBody.
+  /// No description provided for @dontGiveUpNotiBody.
   ///
   /// In en, this message translates to:
-  /// **'You decided you want to change. Don\'t give up!'**
-  String get marciNotiBody;
+  /// **'You decided you want to change.'**
+  String get dontGiveUpNotiBody;
 
   /// No description provided for @notis.
   ///

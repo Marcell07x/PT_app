@@ -298,11 +298,10 @@ class AppLocalizationsHu extends AppLocalizations {
       'Ne felejtsd el meghosszabbítani az edzés streak-edet 🔥';
 
   @override
-  String get marciNotiTitle => 'Szia, itt Marci.';
+  String get dontGiveUpNotiTitle => 'Ne add fel!';
 
   @override
-  String get marciNotiBody =>
-      'Úgy döntöttél, hogy változtatni szeretnél. Ne add fel!';
+  String get dontGiveUpNotiBody => 'Úgy döntöttél, hogy változtatni szeretnél.';
 
   @override
   String get notis => 'Értesítések';

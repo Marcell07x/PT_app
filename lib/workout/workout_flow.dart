@@ -183,9 +183,10 @@ class _WorkoutFlowState extends State<WorkoutFlow> {
         await WorkoutSignal.onWorkoutFinished(levelF, levelAfter);
         //clears the pending notifications and schedules the three
         //after-workout ones at once (streak reminder, the reminder a day
-        //later, Marci's message). Best effort: if scheduling throws or never
-        //returns, the workout still has to finish and navigate on, otherwise
-        //_finishing stays true and the finish button goes dead
+        //later, the "don't give up" message). Best effort: if scheduling
+        //throws or never returns, the workout still has to finish and
+        //navigate on, otherwise _finishing stays true and the finish button
+        //goes dead
         try {
             await ScheduleNotifications.laterNoti(context)
                 .timeout(const Duration(seconds: 5));

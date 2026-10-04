@@ -297,10 +297,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get streakNotiBody => 'Don\'t forget to extend your workout streak 🔥';
 
   @override
-  String get marciNotiTitle => 'Hi, Marcell here.';
+  String get dontGiveUpNotiTitle => 'Don\'t give up!';
 
   @override
-  String get marciNotiBody => 'You decided you want to change. Don\'t give up!';
+  String get dontGiveUpNotiBody => 'You decided you want to change.';
 
   @override
   String get notis => 'Notifications';

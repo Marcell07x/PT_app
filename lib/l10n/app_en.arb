@@ -125,8 +125,8 @@
     "welcomeNotiBody": "it won't be hard 😊",
     "streakNotiTitle": "Workout streak 🔥",
     "streakNotiBody": "Don't forget to extend your workout streak 🔥",
-    "marciNotiTitle": "Hi, Marcell here.",
-    "marciNotiBody": "You decided you want to change. Don't give up!",
+    "dontGiveUpNotiTitle": "Don't give up!",
+    "dontGiveUpNotiBody": "You decided you want to change.",
 
     "notis": "Notifications",
     "notisAreImportant": "Notifications help you build the habit of working out.",

@@ -10,9 +10,9 @@ import 'package:timezone/timezone.dart' as tz;
 
 //goal: after the onboarding a "get started" nudge one day later, and after
 //      every finished workout three notifications scheduled at once:
-//        - the next workout day:            don't forget your streak
-//        - one day after that:              the "quick workout?" reminder
-//        - four days after the workout day: Marci's "don't give up"
+//        - the next workout day:                 don't forget your streak
+//        - one day after that:                   the "quick workout?" reminder
+//        - four days after the next workout day: "don't give up"
 //      every batch clears the still pending ones first, so a workout in
 //      between restarts the chain from the streak reminder
 //
@@ -30,7 +30,7 @@ class ScheduleNotifications {
     //the single reminder of earlier app versions
     static const int _firstId = 0;
     static const int _reminderId = 1;
-    static const int _marciId = 2;
+    static const int _dontGiveUpId = 2;
     static const int _testId = 99;
 
     static Future<void> initNotification() async {
@@ -148,7 +148,7 @@ class ScheduleNotifications {
     //when the after-workout notifications go out: the streak reminder on the
     //next possible workout day, so it never fires before the user can
     //actually train (transition week included), the reminder one day after
-    //it and Marci's message four days after it
+    //it and the "don't give up" message four days after it
     @visibleForTesting
     static List<tz.TZDateTime> afterWorkoutTimes(tz.TZDateTime now, int daysUntilNext) {
         final tz.TZDateTime streak =
@@ -252,9 +252,9 @@ class ScheduleNotifications {
                 when: times[1],
             );
             await _schedule(
-                id: _marciId,
-                title: loc.marciNotiTitle,
-                body: loc.marciNotiBody,
+                id: _dontGiveUpId,
+                title: loc.dontGiveUpNotiTitle,
+                body: loc.dontGiveUpNotiBody,
                 when: times[2],
             );
         } catch (e) {
@@ -305,8 +305,8 @@ class ScheduleNotifications {
             );
             await _showNow(
                 id: _testId + 3,
-                title: loc.marciNotiTitle,
-                body: loc.marciNotiBody,
+                title: loc.dontGiveUpNotiTitle,
+                body: loc.dontGiveUpNotiBody,
             );
         } catch (e) {
             debugPrint('testNoti failed: $e');
