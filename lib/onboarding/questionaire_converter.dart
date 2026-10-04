@@ -36,8 +36,10 @@ class Converter {
         if (kneePushups == 0) {
           if (age == 3 && !prevExp1) {
             _pushe = 1; // wall push-up
-          } else {
+          } else if (!prevExp1) {
             _pushe = 2; // table push-up
+          } else {
+            _pushe = 3; // table diamond push-up
           }
         } else {
           if (_incSpeed == 5 && gender == 'male') {
@@ -57,7 +59,7 @@ class Converter {
             _legse = 7;
         }
 
-        if (_incSpeed > 3 && _pushe >= 4) {
+        if (_incSpeed > 3 && _pushe >= 3) {
             _level = 85;
             _incSpeed = 2;
         }
