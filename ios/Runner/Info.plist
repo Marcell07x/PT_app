@@ -24,6 +24,30 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<!-- UIScene lifecycle: Apple will stop launching apps built with newer SDKs
+	     without it. FlutterSceneDelegate hosts the FlutterViewController from
+	     Main.storyboard; AppDelegate registers plugins once its engine exists. -->
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UIApplicationSupportsMultipleScenes</key>
+		<false/>
+		<key>UISceneConfigurations</key>
+		<dict>
+			<key>UIWindowSceneSessionRoleApplication</key>
+			<array>
+				<dict>
+					<key>UISceneClassName</key>
+					<string>UIWindowScene</string>
+					<key>UISceneConfigurationName</key>
+					<string>flutter</string>
+					<key>UISceneDelegateClassName</key>
+					<string>FlutterSceneDelegate</string>
+					<key>UISceneStoryboardFile</key>
+					<string>Main</string>
+				</dict>
+			</array>
+		</dict>
+	</dict>
 	<!-- HTTPS only, no custom cryptography: declared here so App Store Connect
 	     stops asking the export-compliance question on every upload. -->
 	<key>ITSAppUsesNonExemptEncryption</key>

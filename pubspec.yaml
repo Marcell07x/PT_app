@@ -32,6 +32,15 @@ dev_dependencies:
 flutter:
   generate: true
   uses-material-design: true
+
+  # iOS plugins come from Swift Package Manager; the project has no Podfile.
+  # Pinned here so every build machine uses SPM, not only ones configured for
+  # it. permission_handler depends on this: its Package.swift reads
+  # ios/Runner/Info.plist and compiles in only the notification permission
+  # (no other usage-description keys there). Without SPM it would be built
+  # as a pod with every permission, notifications included, switched off.
+  config:
+    enable-swift-package-manager: true
   assets:
     - assets/videos/
     - assets/icon/logo_mark.png
